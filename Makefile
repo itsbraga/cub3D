@@ -17,7 +17,7 @@ PINK		:=	\e[38;2;255;182;193m
 #	BASICS
 #******************************************************************************#
 
-NAME		=	cub3d
+NAME		=	cub3D
 
 LIBFT_PATH	=	./LIBFT/
 LIBFT		=	$(LIBFT_PATH)libft.a
@@ -25,9 +25,9 @@ MLX_PATH	=	./MLX/
 MLX			=	$(MLX_PATH)libmlx.a
 
 CC			=	cc
-INC			=	./INCLUDES/
+INC			=	-I ./INCLUDES/
 
-CFLAGS		=	-Wall -Wextra -Werror -I
+CFLAGS		=	-Wall -Wextra -Werror
 LFLAGS		=	-L $(LIBFT_PATH)
 MLXFLAGS	=	-Lmlx -lX11 -lXext -lm
 DEPFLAGS	=	-MMD -MP
@@ -39,16 +39,20 @@ DEBUG		=	-O3
 #	SOURCES
 #******************************************************************************#
 
-#TOOLS_DIR		=	TOOLS/
-#TOOLS_F			=	error_handler.c lstclear.c cleanup.c secure.c
+TOOLS_DIR		=	TOOLS/
+TOOLS_F			=	errmsg.c secure.c
+
+GARBAGE_DIR		=	TOOLS/GARBAGE_COLLECTOR/
+GARBAGE_F		=	utils.c lst_utils.c garbage_collector.c
 
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES
 #******************************************************************************#
 
 SRCS_DIR		=	SRCS/
-SRCS_F			=	parsing.c main.c
-#$(addprefix $(TOOLS_DIR), $(TOOLS_F))
+SRCS_F			=	$(addprefix $(TOOLS_DIR), $(TOOLS_F)) \
+					$(addprefix $(GARBAGE_DIR), $(GARBAGE_F)) \
+					parsing.c main.c
 
 OBJS_DIR		=	OBJS/
 OBJS_F			=	$(patsubst %.c,$(OBJS_DIR)%.o,$(SRCS_F))

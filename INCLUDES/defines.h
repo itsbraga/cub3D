@@ -1,0 +1,86 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
+/*   Updated: 2024/12/02 19:25:32 by pmateo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef DEFINES_H
+# define DEFINES_H
+
+/******************************************************************************\
+ * TEXTURES
+\******************************************************************************/
+
+# define NO	0
+# define SO 1
+# define WE 2
+# define EA 3
+
+/******************************************************************************\
+ * FLAGS
+\******************************************************************************/
+
+// Yama
+# define CREATE 0
+# define CREATE_TAB 1
+# define ADD 2
+# define ADD_TAB 3
+# define REMOVE -1
+# define CLEAN_ALL -2
+# define SEARCH -4
+
+/******************************************************************************\
+ * EXIT STATUS
+\******************************************************************************/
+
+# define SUCCESS 0
+# define FAILURE 1
+
+/******************************************************************************\
+ * ERROR
+\******************************************************************************/
+
+# define ERR "Error\n"
+# define ERR_MALLOC "Memory allocation failed"
+
+# define ERR_MAP "Invalid map"
+# define ERR_PATH "No such file or directory" // catch errno +  given path before
+# define ERR_PERM "Permission denied"
+# define ERR_RGB "Invalid color code"
+# define ERR_EXT "Bad extension (must be .cub)"
+# define ERR_CONFIG "Bad config file"
+
+/******************************************************************************\
+ * MLX
+\******************************************************************************/
+
+# define WIDTH 1000
+# define HEIGHT 1000
+
+/******************************************************************************\
+ * NAVIGATION
+\******************************************************************************/
+
+// Keyboard
+# define UP 65362
+# define DOWN 65364
+# define LEFT 65361
+# define RIGHT 65363
+// # define ZERO 65438
+// # define ONE 65436
+// # define TWO 65433
+// # define THREE 65435
+// # define FOUR 65430
+// # define FIVE 65437
+
+// Mouse
+# define MUP	4
+# define MDOWN	5
+
+#endif
