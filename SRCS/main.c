@@ -14,5 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	
+	if (argc != 2)
+    {
+        ft_printf(2, "%susage: ./cub3d < .cub map file >\n", ERR_BADARGS);
+        exit(FAILURE);
+    }
 }

@@ -19,6 +19,9 @@
  * TOOLS
 \******************************************************************************/
 
+//init_structs.c
+t_mlx   *mlx_s(void);
+
 // errmsg.c
 void	err_msg(char *detail, char *reason);
 int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_no);

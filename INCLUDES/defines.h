@@ -49,6 +49,7 @@
 # define ERR "Error\n"
 # define ERR_MALLOC "Memory allocation failed"
 
+# define ERR_BADARGS "\033[5m\033[31m# BAD ARGUMENTS ! #\033[0m\n"
 # define ERR_MAP "Invalid map"
 # define ERR_PATH "No such file or directory" // catch errno +  given path before
 # define ERR_PERM "Permission denied"
