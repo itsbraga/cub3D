@@ -35,5 +35,10 @@
 
 // init_structs.c
 t_mlx	*mlx_s(void);
+void	clean_exit(int exit_status);
+void    __free_mlx(t_mlx *mlx);
+void    __free_data(t_data *data);
+
+
 
 #endif

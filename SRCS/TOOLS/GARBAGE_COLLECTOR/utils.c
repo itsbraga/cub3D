@@ -38,3 +38,19 @@ int	handle_remove(t_gc_lst **yama, void *ptr)
 	else
 		return (remove_gc_node(yama, ptr));
 }
+
+int	free_gc_tab(t_gc_lst **y, char **tab)
+{
+	int	error;
+	int	i;
+
+	error = 0;
+	i = 0;
+	while (tab[i] != NULL)
+	{
+		error = remove_gc_node(y, tab[i]);
+		i++;
+	}
+	remove_gc_node(y, tab);
+	return (error);
+}

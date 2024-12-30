@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void    __free_mlx(t_mlx *mlx)
+void    __free_mlx(t_mlx *mlx)
 {
     mlx_destroy_window(mlx->mlxptr, mlx->winptr);
     mlx_destroy_display(mlx->mlxptr);
@@ -22,7 +22,7 @@ static void    __free_mlx(t_mlx *mlx)
 	
 }
 
-static void    __free_data(t_data *data)
+void    __free_data(t_data *data)
 {
     return ;
 }

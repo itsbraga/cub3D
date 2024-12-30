@@ -13,16 +13,6 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct	s_data
-{
-	char	*map_path;
-	char	**map;
-	char	*tex_path[4];
-	int		f_rgb[3];
-	int		c_rgb[3];
-	t_mlx	*mlx;
-}				t_data;
-
 typedef struct	s_mlx
 {
 	void		*mlxptr;
@@ -32,7 +22,17 @@ typedef struct	s_mlx
 	int			img_bpp;
 	int			img_len;
 	int			img_endian;
-}				t_mlx;
+}	t_mlx;
+
+typedef struct	s_data
+{
+	char	*map_path;
+	char	**map;
+	char	*tex_path[4];
+	int		f_rgb[3];
+	int		c_rgb[3];
+	t_mlx	*mlx;
+}				t_data;
 
 /******************************************************************************\
  * YAMA: Garbage collector

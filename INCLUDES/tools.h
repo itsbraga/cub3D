@@ -42,6 +42,7 @@ void	*new_gc_node(void *ptr, bool is_tab);
 // utils.c
 void	*search_ptr(t_gc_lst **yama, void *ptr);
 int		handle_remove(t_gc_lst **yama, void *ptr);
+int		free_gc_tab(t_gc_lst **y, char **tab);
 
 // garbage_collector.c
 void	*yama(int flag, void *ptr, size_t size);
