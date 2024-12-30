@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2024/12/02 19:25:32 by pmateo           ###   ########.fr       */
+/*   Updated: 2024/12/30 21:17:08 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 \******************************************************************************/
 
 # define ERR "Error\n"
+# define ERR_MLX "Something's wrong with MLX !"
 # define ERR_MALLOC "Memory allocation failed"
 
 # define ERR_BADARGS "\033[5m\033[31m# BAD ARGUMENTS ! #\033[0m\n"

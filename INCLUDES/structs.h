@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2024/12/02 19:28:58 by pmateo           ###   ########.fr       */
+/*   Updated: 2024/12/30 21:44:40 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct	s_data
 	char	*tex_path[4];
 	int		f_rgb[3];
 	int		c_rgb[3];
+	t_mlx	*mlx;
 }				t_data;
 
 typedef struct	s_mlx

@@ -27,8 +27,8 @@ typedef struct	s_point
 
 void	draw_line(t_point p1, t_point p2, char **map)
 {
-	int dx = p2.x - p1.x;
-	int dy = p2.y - p1.y;
+	int dx = abs(p2.x - p1.x);
+	int dy = abs(p2.y - p1.y);
 	int y = p1.y;
 	int eps = 0;
 
