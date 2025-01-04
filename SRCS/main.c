@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../INCLUDES/cub3D.h"
 
 void	init_mlx(t_mlx *mlx, t_data *data)
 {

@@ -2,22 +2,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
+# include "../MLX/mlx.h"
 
-# define HEIGHT 20
-# define WIDTH 20
 
-char	**alloc_map(void)
-{
-	int i = 0;
-	char **map;
-	map = malloc(HEIGHT * sizeof(char *));
-	while (i < HEIGHT)
-	{
-		map[i] = malloc(WIDTH * sizeof(char));
-		i++;
-	}
-	return (map);
-}
+# define HEIGHT 1000
+# define WIDTH 1000
 
 typedef struct	s_point
 {
@@ -46,19 +35,14 @@ void	draw_line(t_point p1, t_point p2, char **map)
 
 int	main(void)
 {
-	char **map = alloc_map();
+	t_mlx	mlx;
+	t_data	data;
 	t_point	p1;
 	t_point p2;
 	(p1.x = 17, p1.y = 4);
 	(p2.x = 4, p2.y = 9);
 	
-	for (int i = 0; i < HEIGHT; i++)
-	{
-		for (int j = 0; j < WIDTH; j++)
-			map[i][j] = '.';
-	}
-	map[p1.y][p1.x] = '*';
-	map[p2.y][p2.x] = '*';
+	init_mlx(&mlx, &data);
 	draw_line(p1, p2, map);
 
 	for (int i = 0; i < HEIGHT; i++)
