@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/04 16:21:43 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/04 20:49:00 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,19 @@
 
 // init_structs.c
 t_mlx	*mlx_s(void);
+void	init_data(t_data *data);
+void	init_mlx(t_mlx *mlx, t_data *data);
+
+/******************************************************************************\
+ * CONFIGS
+\******************************************************************************/
+
+// mlx_events.c
+void	handle_keypress(int key, t_data *data);
+
+// mlx_exit.c
+void	del_win(t_mlx *mlx);
+void	del_img(t_mlx *mlx);
+int		clean(t_mlx *mlx);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   maths.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2024/12/02 19:31:57 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/04 20:44:14 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@
 
 typedef struct	s_mlx
 {
-	void		*mlxptr;
-	void		*winptr;
-	void		*img;
-	char		*imgbuf;
-	int			img_bpp;
-	int			img_len;
-	int			img_endian;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	char		*img_buff;
+	int			bpp;
+	int			line_len;
+	int			endian;
 }	t_mlx;
 
 typedef struct	s_data

@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:25:59 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/04 16:18:21 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/04 19:37:52 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,25 @@ static char	*__append_strs(char *s1, char *s2)
 	return (s1);
 }
 
-void	err_msg(char *detail, char *reason)
+void	err_msg(char *detail, char *reason, int quotes)
 {
 	char	*msg;
 
 	msg = NULL;
 	if (detail != NULL)
 	{
-		msg = __append_strs(__append_strs(NULL, ERR), detail);
+		if (quotes == 1)
+		{
+			msg = __append_strs(__append_strs(NULL, ERR_PREFIX), "‘");
+			msg = __append_strs(__append_strs(msg, detail), "’");
+		}
+		else
+			msg = __append_strs(__append_strs(NULL, ERR_PREFIX), detail);
 		msg = __append_strs(msg, ": ");
 		msg = __append_strs(msg, reason);
 	}
 	else
-		msg = __append_strs(__append_strs(NULL, ERR), reason);
+		msg = __append_strs(__append_strs(NULL, ERR_PREFIX), reason);
 	ft_putendl_fd(msg, STDERR_FILENO);
 	yama(REMOVE, msg, 0);
 }
@@ -51,7 +57,7 @@ int	err_msg_cmd(char *cmd, char *detail, char *reason, int err_no)
 	msg = NULL;
 	if (cmd != NULL)
 	{
-		msg = __append_strs(__append_strs(NULL, ERR), cmd);
+		msg = __append_strs(__append_strs(NULL, ERR_PREFIX), cmd);
 		msg = __append_strs(msg, ": ");
 	}
 	if (detail != NULL)

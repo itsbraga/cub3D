@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:32:30 by pmateo            #+#    #+#             */
-/*   Updated: 2024/12/02 18:57:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/04 19:43:17 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*new_gc_node(void *ptr, bool is_tab)
 
 	node = malloc(sizeof(t_gc_lst));
 	if (node == NULL)
-		return (err_msg(NULL, ERR_MALLOC), NULL);
+		return (err_msg(NULL, ERR_MALLOC, 0), NULL);
 	node->ptr = ptr;
 	node->is_tab = is_tab;
 	node->next = NULL;

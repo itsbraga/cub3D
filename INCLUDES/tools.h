@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:30:51 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/04 16:19:28 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/04 19:39:06 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 \******************************************************************************/
 
 // error.c
-void	err_msg(char *detail, char *reason);
+void	err_msg(char *detail, char *reason, int quotes);
 int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_no);
 
 // free_and_exit.c

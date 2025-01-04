@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:30:28 by pmateo            #+#    #+#             */
-/*   Updated: 2024/12/02 18:57:33 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/04 19:42:56 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	*__create(t_gc_lst **yama, size_t size, bool is_tab)
 	ptr = malloc(size);
 	if (ptr == NULL)
 	{
-		err_msg(NULL, ERR_MALLOC);
+		err_msg(NULL, ERR_MALLOC, 0);
 		return (NULL);
 	}
 	node = new_gc_node(ptr, is_tab);
 	if (node == NULL)
 	{
-		err_msg(NULL, ERR_MALLOC);
+		err_msg(NULL, ERR_MALLOC, 0);
 		return (NULL);
 	}
 	add_gc_node(yama, node);
@@ -43,13 +43,13 @@ static void	*__add_tab(t_gc_lst **yama, void *ptr)
 	tab = (char **)ptr;
 	node = new_gc_node(tab, true);
 	if (node == NULL)
-		return (err_msg(NULL, ERR_MALLOC), NULL);
+		return (err_msg(NULL, ERR_MALLOC, 0), NULL);
 	add_gc_node(yama, node);
 	while (tab[i] != NULL)
 	{
 		node = new_gc_node(tab[i], false);
 		if (node == NULL)
-			return (err_msg(NULL, ERR_MALLOC), NULL);
+			return (err_msg(NULL, ERR_MALLOC, 0), NULL);
 		add_gc_node(yama, node);
 		i++;
 	}
@@ -65,7 +65,7 @@ static void	*__add(t_gc_lst **yama, void *ptr, bool is_tab)
 	node = new_gc_node(ptr, is_tab);
 	if (node == NULL)
 	{
-		err_msg(NULL, ERR_MALLOC);
+		err_msg(NULL, ERR_MALLOC, 0);
 		return (NULL);
 	}
 	add_gc_node(yama, node);
@@ -106,14 +106,14 @@ void	*yama(int flag, void *ptr, size_t size)
 	else if (flag == REMOVE)
 	{
 		if (handle_remove(&yama, ptr) == FAILURE)
-			err_msg(NULL, "No allocation freed, Yama is empty");
+			err_msg(NULL, "No allocation freed, Yama is empty", 0);
 		return (NULL);
 	}
 	else if (flag == CLEAN_ALL)
 	{
 		if (__clean_all(&yama) == FAILURE)
-			err_msg(NULL, "No allocation freed, Yama is empty");
+			err_msg(NULL, "No allocation freed, Yama is empty", 0);
 		return (NULL);
 	}
-	return (err_msg(NULL, "This Yama flag doesn't exist"), NULL);
+	return (err_msg(NULL, "This Yama flag doesn't exist", 0), NULL);
 }

@@ -48,6 +48,12 @@ GARBAGE_F		=	garbage_collector.c utils.c lst_utils.c
 INIT_DIR		=	INIT/
 INIT_F			=	init_structs.c
 
+PARSING_DIR		=	PARSING/
+PARSING_F		=	check_map.c check_cub_file.c
+
+CONFIG_DIR		=	CONFIGS/
+CONFIG_F		=	mlx_events.c mlx_exit.c
+
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES
 #******************************************************************************#
@@ -56,6 +62,8 @@ SRCS_DIR		=	SRCS/
 SRCS_F			=	$(addprefix $(TOOLS_DIR), $(TOOLS_F)) \
 					$(addprefix $(GARBAGE_DIR), $(GARBAGE_F)) \
 					$(addprefix $(INIT_DIR), $(INIT_F)) \
+					$(addprefix $(PARSING_DIR), $(PARSING_F)) \
+					$(addprefix $(CONFIG_DIR), $(CONFIG_F)) \
 					main.c
 
 OBJS_DIR		=	OBJS/

@@ -6,17 +6,14 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:21:02 by art3mis           #+#    #+#             */
-/*   Updated: 2025/01/04 16:21:06 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/04 20:23:06 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLORS_H
 # define COLORS_H
 
-# define R  			"\e[0m"
-# define BP				"\e[38;2;255;182;193m\e[1m"
-# define BPP			"\e[35m\e[1m"
-# define BR				"\e[31m\e[1m"
+# define RESET  		"\e[0m"
 
 # define BOLD			"\e[1m"
 # define ITAL			"\e[3m"
