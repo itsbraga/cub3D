@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2024/12/02 19:31:57 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/04 16:21:43 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include "structs.h"
 # include "defines.h"
 # include "tools.h"
+# include "colors.h"
 
 /******************************************************************************\
  * INIT
@@ -35,10 +36,5 @@
 
 // init_structs.c
 t_mlx	*mlx_s(void);
-void	clean_exit(int exit_status);
-void    __free_mlx(t_mlx *mlx);
-void    __free_data(t_data *data);
-
-
 
 #endif

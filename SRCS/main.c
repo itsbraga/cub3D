@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2024/12/30 21:54:57 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/04 16:25:18 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	render(t_data *data)
 	x = 0;
 	y = 0;
 	byteperline = data->mlx->img_len / 4;
-	color = RED;
+	color = MRED;
 	// if (data->img_bpp != 32)
 	// 	color = mlx_get_color_value(data->mlx_ptr, color);
 	// while (y < 300)
@@ -87,7 +87,7 @@ int	render(t_data *data)
 		}
 		x = 0;
 	}
-	color = WHITE;
+	color = MWHITE;
 	while (y < HEIGHT)
 	{
 		++y;

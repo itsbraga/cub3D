@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:30:51 by pmateo            #+#    #+#             */
-/*   Updated: 2024/12/02 19:31:31 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/04 16:19:28 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
  * TOOLS
 \******************************************************************************/
 
-//init_structs.c
-t_mlx   *mlx_s(void);
-
-// errmsg.c
+// error.c
 void	err_msg(char *detail, char *reason);
 int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_no);
+
+// free_and_exit.c
+void	clean_exit(int exit_status);
 
 // secure.c
 void	secure_malloc(void *to_secure, bool cleanup);

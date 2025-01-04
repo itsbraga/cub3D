@@ -1,66 +1,106 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/13 18:05:18 by pmateo            #+#    #+#              #
-#    Updated: 2024/03/19 22:18:02 by pmateo           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
+#	FEATURES
+#******************************************************************************#
 
-CC = cc
-FLAGS = -Werror -Wextra -Wall -g3 -g
-RM = rm -f
-.DEFAULT_GOAL := all
+RESET		:=	\e[0m
+BOLD		:=	\e[1m
+ITAL		:=	\e[3m
+BLINK		:=	\e[5m
 
-NAME = cub3D
+GREEN		:=	\e[32m
+YELLOW		:=	\e[33m
+BLUE		:=	\e[34m
+CYAN		:=	\e[36m
+PINK		:=	\e[38;2;255;182;193m
 
-DIR_MLX = ./MLX
-MLX = ${DIR_MLX}/libmlx.a
+#******************************************************************************#
+#	BASICS
+#******************************************************************************#
 
-DIR_LIBFT = ./LIBFT
-LIBFT = ${DIR_LIBFT}/libft.a
+NAME		=	cub3D
 
-DIRINC_CUB3D = ./INCLUDES
-DIRINC_LIBFT = ${DIR_LIBFT}/INCLUDES
-DIRINC_MLX = ${DIR_MLX}
-INCFILES = ${DIRINC_CUB3D}/cub3D.h ${DIRINC_CUB3D}/structs.h ${DIRINC_CUB3D}/defines.h ${DIRINC_CUB3D}/tools.h
+LIBFT_DIR	=	./LIBFT/
+LIBFT		=	$(addprefix $(LIBFT_DIR), libft.a)
+MLX_DIR		=	./MLX/
+MLX			=	$(addprefix $(MLX_DIR), libmlx.a)
 
-DIR_SRCS = ./SRCS/
-SRCS =				main.c INIT/init_structs.c TOOLS/errmsg.c TOOLS/free_and_exit.c TOOLS/secure.c
+CC			=	cc
+INC			=	./INCLUDES/
 
-OBJ = ${SRCS:.c=.o}
+CFLAGS		=	-Wall -Wextra -Werror
+LFLAGS		=	-L $(LIBFT_DIR) -lft
+MLXFLAGS	=	-L $(MLX_DIR) -lmlx -lm -lX11 -lXext
+DEPFLAGS	=	-MMD -MP
+MAKEFLAGS	+=	--no-print-directory
 
-%.o: ${DIR_SRCS}%.c ${INCFILES}
-	@${CC} ${FLAGS} -c $< -o $@ 
+DEBUG		=	-O3 -g
 
-${LIBFT}:
-	@${MAKE} -s -C ${DIR_LIBFT}
+#******************************************************************************#
+#	SOURCES
+#******************************************************************************#
 
-${MLX}:
-	@${MAKE} -s -C ${DIR_MLX}
+TOOLS_DIR		=	TOOLS/
+TOOLS_F			=	error.c secure.c free_and_exit.c
 
-${NAME}: ${OBJ} ${LIBFT} ${MLX} ${INCFILES}
-	@${CC} ${FLAGS} -o ${NAME} ${OBJ} -I ${DIRINC_FRACTOL} -I ${DIRINC_LIBFT} -I ${DIRINC_MLX} -L ${DIR_MLX} -lXext -lX11 -lmlx -lm -L ${DIR_LIBFT} -lft
+GARBAGE_DIR		=	TOOLS/GARBAGE_COLLECTOR/
+GARBAGE_F		=	garbage_collector.c utils.c lst_utils.c
 
-all: ${LIBFT} ${MLX} ${NAME}
-		@echo "\033[1;5;32m# CUB3D READY ! #\033[0m"
+INIT_DIR		=	INIT/
+INIT_F			=	init_structs.c
 
-bonus: all
+#******************************************************************************#
+#	COMBINE FILES AND DIRECTORIES
+#******************************************************************************#
+
+SRCS_DIR		=	SRCS/
+SRCS_F			=	$(addprefix $(TOOLS_DIR), $(TOOLS_F)) \
+					$(addprefix $(GARBAGE_DIR), $(GARBAGE_F)) \
+					$(addprefix $(INIT_DIR), $(INIT_F)) \
+					main.c
+
+OBJS_DIR		=	OBJS/
+OBJS_F			=	$(patsubst %.c,$(OBJS_DIR)%.o,$(SRCS_F))
+
+DEPS_F			=	$(patsubst %.c,$(OBJS_DIR)%.d,$(SRCS_F))
+
+#******************************************************************************#
+#	RULES
+#******************************************************************************#
+
+all: $(LIBFT) $(MLX) $(NAME)
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+				@mkdir -p $(dir $@)
+				@printf "$(BOLD)$(ITAL)$(GREEN)Compiled: $(RESET)$(ITAL)$<                                  \n"
+#				@$(CC) $(DEPFLAGS) $(CFLAGS) -I $(INC) -c $< -o $@
+				@$(CC) $(DEPFLAGS) $(CFLAGS) -I $(INC) -I/usr/include -I $(MLX_DIR) -c $< -o $@
+-include $(DEPS_F)
+
+$(LIBFT):
+		@make -sC $(LIBFT_DIR) $(MAKEFLAGS)
+
+$(MLX):
+		@make -sC $(MLX_DIR) $(MAKEFLAGS)
+
+$(NAME): $(OBJS_F) $(LIBFT) $(MLX)
+			@printf "\n\n================= CUB3D =================\n\n"
+			@printf "$(BLINK)$(GREEN)\t\t  READY!$(RESET)\n\n"
+			@printf "$(BOLD)=========================================\n\n$(RESET)"
+#			@$(CC) $(CFLAGS) -I $(INC) $(OBJS_F) $(LFLAGS) $(MLXFLAGS) -o $(NAME)
+			@$(CC) $(CFLAGS) -I $(INC) $(OBJS_F) $(LFLAGS) $(MLXFLAGS) -L/usr/lib -o $(NAME)
 
 clean:
-		@${MAKE} -s -C ${DIR_LIBFT} clean
-		@${MAKE} -s -C ${DIR_MLX} clean
-		@${RM} ${OBJ}
-		@echo "\033[1;9;35m# No more object files. #\033[0m"
+		@rm -rf $(OBJS_DIR)
+		@make clean -sC $(MLX_DIR) $(MAKEFLAGS)
+		@make clean -sC $(LIBFT_DIR) $(MAKEFLAGS)
+		@printf "\n$(BOLD)$(BLUE)[objs]:\t $(RESET)Clean completed\n"
 
 fclean: clean
-		@${MAKE} -s -C ${DIR_LIBFT} fclean
-		@${RM} ${NAME}
-		@echo "\033[1;9;35m# No more executable files. #\033[0m"
+			@rm -rf $(NAME)
+			@rm -rf $(LIBFT) $(MLX)
+			@printf "$(BOLD)$(CYAN)[execs]: $(RESET)Full clean completed!\n\n\n"
 
-re: fclean all
+re:	fclean all
+		@printf "\n$(BOLD)$(YELLOW)make re: $(RESET)All files have been rebuilt! ✨\n\n"
 
-.PHONY: all re clean fclean
+.PHONY:	all clean fclean re

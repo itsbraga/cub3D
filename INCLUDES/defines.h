@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2024/12/30 21:17:08 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/04 16:24:40 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,9 @@
 # define DEFINES_H
 
 /******************************************************************************\
- * TEXTURES
+ * GARBAGE COLLECTOR FLAGS (Yama)
 \******************************************************************************/
 
-# define NO	0
-# define SO 1
-# define WE 2
-# define EA 3
-
-/******************************************************************************\
- * COLORS
-\******************************************************************************/
-
-# define RED 0xFF0000
-# define WHITE 0xFFFFFF
-
-/******************************************************************************\
- * FLAGS
-\******************************************************************************/
-
-// Yama
 # define CREATE 0
 # define CREATE_TAB 1
 # define ADD 2
@@ -59,7 +42,7 @@
 
 # define ERR_BADARGS "\033[5m\033[31m# BAD ARGUMENTS ! #\033[0m\n"
 # define ERR_MAP "Invalid map"
-# define ERR_PATH "No such file or directory" // catch errno +  given path before
+# define ERR_PATH "No such file or directory" // catch errno + given path before
 # define ERR_PERM "Permission denied"
 # define ERR_RGB "Invalid color code"
 # define ERR_EXT "Bad extension (must be .cub)"
@@ -71,6 +54,22 @@
 
 # define WIDTH 1000
 # define HEIGHT 1000
+
+/******************************************************************************\
+ * TEXTURES
+\******************************************************************************/
+
+# define NO	0
+# define SO 1
+# define WE 2
+# define EA 3
+
+/******************************************************************************\
+ * MLX COLORS
+\******************************************************************************/
+
+# define MRED 0xFF0000
+# define MWHITE 0xFFFFFF
 
 /******************************************************************************\
  * NAVIGATION

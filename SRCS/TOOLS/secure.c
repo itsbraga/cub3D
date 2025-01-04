@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   secure.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: u4s2e0r <u4s2e0r@student.42.fr>            +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:58:48 by pmateo            #+#    #+#             */
-/*   Updated: 2024/12/18 16:41:09 by u4s2e0r          ###   ########.fr       */
+/*   Updated: 2025/01/04 16:18:14 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "tools.h"
 
 void	secure_malloc(void *to_secure, bool cleanup)
 {
