@@ -70,7 +70,7 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
 	if (mlx->img_ptr == NULL)
 		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
-	mlx->img_buff = mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, &mlx->line_len,
+	mlx->img_buff = (int *)mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, &mlx->line_len,
 					&mlx->endian);
 	if (mlx->img_buff == NULL)
 		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));

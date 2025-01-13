@@ -18,7 +18,7 @@ typedef struct	s_mlx
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
-	char		*img_buff;
+	int		*img_buff;
 	int			bpp;
 	int			line_len;
 	int			endian;

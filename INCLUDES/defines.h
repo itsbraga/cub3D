@@ -58,8 +58,8 @@
  * MLX
 \******************************************************************************/
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 1920
+# define HEIGHT 1080
 
 /**************\
  * NAVIGATION
@@ -102,7 +102,7 @@
  * MLX COLORS
 \**************/
 
-# define MRED 0xFF0000
-# define MWHITE 0xFFFFFF
+# define MRED 0x00FF0000
+# define MWHITE 0x00FFFFFF
 
 #endif
