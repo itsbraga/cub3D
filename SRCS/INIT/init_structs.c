@@ -32,6 +32,23 @@ t_mlx	*mlx_s(void)
 	return (instance);
 }
 
+t_data	*data_s(void)
+{
+	static t_data	*instance = NULL;
+
+	if (instance == NULL)
+	{
+		instance = yama(CREATE, NULL, sizeof(t_data));
+		secure_malloc(instance, true);
+		instance->map_path = NULL;
+		instance->map= NULL;
+		ft_bzero(instance->texture, 4);
+		ft_bzero(instance->f_rgb, 3);
+		ft_bzero(instance->c_rgb, 3);
+	}
+	return (instance);
+}
+
 void	init_data(t_data *data)
 {
 	data->map_path = NULL;

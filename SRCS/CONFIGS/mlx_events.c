@@ -12,19 +12,19 @@
 
 #include "cub3D.h"
 
-static void __key_msg(int keycode)
-{
-	if (keycode == XK_Up || keycode == W)
-		ft_printf(1, BOLD "UP Key:\t\tmoving ↑\n" RESET); // a voir si on garde
-	else if (keycode == XK_Down || keycode == S)
-		ft_printf(1, BOLD "DOWN Key:\tmoving ↓\n" RESET);
-	else if (keycode == XK_Left || keycode == A)
-		ft_printf(1, BOLD "LEFT Key:\tmoving ←\n" RESET);
-	else if (keycode == XK_Right || keycode == D)
-		ft_printf(1, BOLD "RIGHT Key:\tmoving →\n" RESET);
-}
+// static void __key_msg(int keycode)
+// {
+// 	if (keycode == XK_Up || keycode == W)
+// 		ft_printf(1, BOLD "UP Key:\t\tmoving ↑\n" RESET); // a voir si on garde
+// 	else if (keycode == XK_Down || keycode == S)
+// 		ft_printf(1, BOLD "DOWN Key:\tmoving ↓\n" RESET);
+// 	else if (keycode == XK_Left || keycode == A)
+// 		ft_printf(1, BOLD "LEFT Key:\tmoving ←\n" RESET);
+// 	else if (keycode == XK_Right || keycode == D)
+// 		ft_printf(1, BOLD "RIGHT Key:\tmoving →\n" RESET);
+// }
 
-void	handle_keypress(int key, t_data *data)
+int	handle_keypress(int key, t_data *data)
 {
 	if (key == XK_Escape)
 	{
@@ -39,4 +39,5 @@ void	handle_keypress(int key, t_data *data)
 	// 	//
 	// else if (key == XK_Right || key == D)
 	// 	//
+	return (0);
 }

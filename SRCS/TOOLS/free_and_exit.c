@@ -14,10 +14,11 @@
 
 void	__free_mlx(t_mlx *mlx, bool full_clean)
 {
+	(void)full_clean;
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_destroy_display(mlx->mlx_ptr);
 	free_and_set_null(&mlx->mlx_ptr);
-	if (full_clean == true);
+	// if (full_clean == true);
 	// if (mlx->win_ptr != NULL)
 		// free_and_set_null(&mlx->win_ptr; Doit être free ???
 	
@@ -25,6 +26,7 @@ void	__free_mlx(t_mlx *mlx, bool full_clean)
 
 void	__free_data(t_data *data, bool full_clean)
 {
+	(void)data, (void)full_clean;
 	return ;
 }
 

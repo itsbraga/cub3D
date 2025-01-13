@@ -28,7 +28,7 @@ typedef struct	s_data
 {
 	char			*map_path;
 	char			**map;
-	char			*texture[4];
+	char			texture[4];
 	unsigned int	f_rgb[3];
 	unsigned int	c_rgb[3];
 	t_mlx			*mlx;

@@ -36,6 +36,7 @@
 
 // init_structs.c
 t_mlx	*mlx_s(void);
+t_data	*data_s(void);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
 
@@ -44,7 +45,7 @@ void	init_mlx(t_mlx *mlx, t_data *data);
 \******************************************************************************/
 
 // mlx_events.c
-void	handle_keypress(int key, t_data *data);
+int	handle_keypress(int key, t_data *data);
 
 // mlx_exit.c
 void	del_win(t_mlx *mlx);
