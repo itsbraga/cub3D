@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/04 21:13:40 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/13 09:13:16 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ typedef struct	s_mlx
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
-	int		*img_buff;
+	int			*img_buff;
 	int			bpp;
 	int			line_len;
 	int			endian;
@@ -36,8 +36,8 @@ typedef struct	s_data
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }				t_point;
 
 /******************************************************************************\
