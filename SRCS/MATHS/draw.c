@@ -10,16 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D"
-
-void	draw_line(t_point p0, t_point p1, int color)
-{
-	if (abs(p1.x-p0.x) > abs(p1.y-p0.y))
-		draw_h_line(p0, p1, color);
-	else
-		draw_v_line(p0, p1, color);
-	return ;
-}
+#include "cub3D.h"
 
 static	void	swap_point(t_point *p0, t_point *p1)
 {
@@ -34,7 +25,7 @@ static	void	swap_point(t_point *p0, t_point *p1)
 	p1->y = y_tmp;
 }
 
-static void	draw_h_line(t_point p0, t_point p1, int color)
+static void	draw_h_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
 	int i = 0;
 	int y = 0;
@@ -42,9 +33,10 @@ static void	draw_h_line(t_point p0, t_point p1, int color)
 	int dy = 0;
 	int dir = 0;
 	int p = 0;
-	
+	printf("%s\n", __func__);
 	if (p0.x > p1.x)
 		swap_point(&p0, &p1);
+	printf("1\n");
 	dx = p1.x - p0.x;
 	dy = p1.y - p0.y;
 	if (dy < 0)
@@ -52,24 +44,29 @@ static void	draw_h_line(t_point p0, t_point p1, int color)
 	else
 		dir = 1;
 	dy *= dir;
+	printf("2\n");
 	if (dx != 0)
 	{
 		y = p0.y;
 		p = 2*dy - dx;
+		printf("3\n");
 		while (i <= dx)
 		{
-			my_pixel_put(mlx_s(), color, p0.x + i, y);
+			my_pixel_put(mlx, color, p0.x + i, y);
+			printf("4\n");
 			if (p >= 0)
 			{
 				y += dir;
 				p = p - 2*dx;
 			}
 			p = p + 2*dy;
+			i++;
+			printf("i = %d\n", i);
 		}
 	}
 }
 
-static void	draw_v_line(t_point p0, t_point p1, int color)
+static void	draw_v_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
 	int i = 0;
 	int x = 0;
@@ -77,7 +74,7 @@ static void	draw_v_line(t_point p0, t_point p1, int color)
 	int dy = 0;
 	int dir = 0;
 	int p = 0;
-	
+	printf("%s\n", __func__);
 	if (p0.y > p1.y)
 		swap_point(&p0, &p1);
 	dx = p1.x - p0.x;
@@ -93,13 +90,24 @@ static void	draw_v_line(t_point p0, t_point p1, int color)
 		p = 2*dx - dy;
 		while (i <= dy)
 		{
-			my_pixel_put(mlx_s(), color, x, p0.y + i);
+			my_pixel_put(mlx, color, x, p0.y + i);
 			if (p >= 0)
 			{
 				x += dir;
 				p = p - 2*dy;
 			}
 			p = p + 2*dx;
+			i++;
+			printf("i = %d\n", i);
 		}
 	}
+}
+
+void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
+{
+	if (abs(p1.x-p0.x) > abs(p1.y-p0.y))
+		draw_h_line(mlx, p0, p1, color);
+	else
+		draw_v_line(mlx, p0, p1, color);
+	return ;
 }

@@ -14,10 +14,15 @@
 
 int	render(t_data *data)
 {
-	t_point p0, t_point p1;
-	p0.x = 0, p0.y = 0;
-	p1.x = WIDTH, p1.y = HEIGHT;
-	draw_line(p0, p1, MRED);
+	t_point p0;
+	t_point p1;
+	p0.x = 600;
+	p0.y = 200;
+	p1.x = 1800; 
+	p1.y = 950;
+	draw_line(data->mlx, p0, p1, MRED);
+	// my_pixel_put(data->mlx, MRED, WIDTH / 2, HEIGHT / 2);
+	printf("couuuuuucouuuuu\n");
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr, data->mlx->img_ptr, 0, 0);
 	return (SUCCESS);
 }

@@ -44,7 +44,7 @@ void	init_mlx(t_mlx *mlx, t_data *data);
  * MATHS
 \******************************************************************************/
 
-void	draw_line(t_point p0, t_point p1, int color);
+void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
 
 /******************************************************************************\
  * CONFIGS

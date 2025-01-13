@@ -10,13 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D"
+#include "cub3D.h"
 
 void	my_pixel_put(t_mlx *mlx, int color, int x, int y)
 {
 	int	pixel;
 
+	printf("mlx = %p\n", mlx);
+	printf("linelen = %d\nendian = %d\nimgbuff = %p\n", mlx->line_len, mlx->endian, mlx->img_buff);
+	printf("x = %d\ny = %d\n", x, y);
 	pixel = (y * mlx->line_len) + (x * 4);
+	printf("pixel = %d\n", pixel);
 	if (mlx->endian == 0)
 	{
 		mlx->img_buff[pixel] = (color) & 0xFF;

@@ -27,7 +27,7 @@ MLX			=	$(addprefix $(MLX_DIR), libmlx.a)
 CC			=	cc
 INC			=	./INCLUDES/
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 LFLAGS		=	-L $(LIBFT_DIR) -lft
 MLXFLAGS	=	-L $(MLX_DIR) -lmlx -lm -lX11 -lXext
 DEPFLAGS	=	-MMD -MP

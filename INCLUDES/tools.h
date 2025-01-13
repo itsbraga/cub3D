@@ -20,7 +20,7 @@
 \******************************************************************************/
 
 // pixel_put.c
-void	my_pixel_put(t_data *data, int color, int x, int y);
+void	my_pixel_put(t_mlx *mlx, int color, int x, int y);
 
 // error.c
 void	err_msg(char *detail, char *reason, int quotes);
