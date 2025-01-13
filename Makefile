@@ -55,7 +55,7 @@ CONFIG_DIR		=	CONFIGS/
 CONFIG_F		=	mlx_events.c mlx_exit.c
 
 MATHS_DIR		=	MATHS/
-MATHS_F			=	draw.c
+MATHS_F			=	draw.c utils.c
 
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES

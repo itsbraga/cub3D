@@ -56,6 +56,8 @@ void	init_data(t_data *data)
 	ft_bzero(data->texture, 4);
 	ft_bzero(data->f_rgb, 3);
 	ft_bzero(data->c_rgb, 3);
+	data->player.x = WIDTH / 2;
+	data->player.y = HEIGHT / 2;
 	data->mlx = NULL;
 }
 

@@ -13,6 +13,12 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}				t_point;
+
 typedef struct	s_mlx
 {
 	void		*mlx_ptr;
@@ -31,14 +37,9 @@ typedef struct	s_data
 	char			texture[4];
 	unsigned int	f_rgb[3];
 	unsigned int	c_rgb[3];
+	t_point			player;
 	t_mlx			*mlx;
 }				t_data;
-
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}				t_point;
 
 /******************************************************************************\
  * YAMA: Garbage collector

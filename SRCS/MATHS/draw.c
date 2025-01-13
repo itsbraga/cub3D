@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/13 09:32:51 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/13 22:56:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,20 @@ void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 		draw_h_line(mlx, p0, p1, color);
 	else
 		draw_v_line(mlx, p0, p1, color);
+	return ;
+}
+
+void	draw_player(t_mlx *mlx, t_point player)
+{
+	t_point a;
+	t_point b;
+	t_point c;
+
+	init_point(&a, player.x, player.y - 4);
+	init_point(&b, player.x + 4, player.y + 4);
+	init_point(&c, player.x - 4, player.y + 4);
+	draw_line(mlx, a, b, MYELLOW);
+	draw_line(mlx, b, c, MYELLOW);
+	draw_line(mlx, c, a, MYELLOW);
 	return ;
 }

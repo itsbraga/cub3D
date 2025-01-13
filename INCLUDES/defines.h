@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/04 21:11:31 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/13 22:45:21 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@
  * MLX
 \******************************************************************************/
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1000
+# define HEIGHT 1000
 
 /**************\
  * NAVIGATION
@@ -103,6 +103,7 @@
 \**************/
 
 # define MRED 0x00FF0000
+# define MYELLOW 0x00FFFF00
 # define MWHITE 0x00FFFFFF
 
 #endif
