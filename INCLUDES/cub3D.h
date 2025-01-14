@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/13 22:47:21 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/14 22:56:54 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ void	init_mlx(t_mlx *mlx, t_data *data);
 // draw.c
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
 void	draw_player(t_mlx *mlx, t_point player);
+void	fill_triangle(t_mlx *mlx, t_point a, t_point b, t_point c);
 //utils.c
-void	init_point(t_point *point, int x, int y);
+void	init_point(t_point *point, double x, double y);
+double	get_radian(int degree);
 
 /******************************************************************************\
  * CONFIGS

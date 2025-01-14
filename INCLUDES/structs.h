@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/13 09:13:16 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:29:55 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }				t_point;
 
 typedef struct	s_mlx

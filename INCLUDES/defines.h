@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/13 22:45:21 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/14 17:24:11 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@
  * MLX COLORS
 \**************/
 
-# define MRED 0x00FF0000
-# define MYELLOW 0x00FFFF00
-# define MWHITE 0x00FFFFFF
+# define HRED 0x00FF0000
+# define HYELLOW 0x00FFFF00
+# define HWHITE 0x00FFFFFF
 
 #endif
