@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/01/14 17:23:38 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:46:20 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	render(t_data *data)
 	// draw_line(data->mlx, p0, p1, HRED);
 	// my_pixel_put(data->mlx, HRED, WIDTH / 2, HEIGHT / 2);
 	draw_player(data->mlx, data->player);
-	printf("couuuuuucouuuuu\n");
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr, data->mlx->img_ptr, 0, 0);
 	return (SUCCESS);
 }

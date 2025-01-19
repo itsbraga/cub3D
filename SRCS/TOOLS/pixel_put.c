@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:11:33 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/13 09:15:20 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:33:46 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ void	my_pixel_put(t_mlx *mlx, int color, int x, int y)
 {
 	int	pixel;
 
-	printf("mlx = %p\n", mlx);
-	printf("linelen = %d\nendian = %d\nimgbuff = %p\n", mlx->line_len, mlx->endian, mlx->img_buff);
-	printf("x = %d\ny = %d\n", x, y);
 	pixel = (y * mlx->line_len) + (x * 4);
-	printf("pixel = %d\n", pixel);
 	if (mlx->endian == 0)
 	{
 		mlx->img_buff[pixel] = (color) & 0xFF;

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/14 23:15:04 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:47:15 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,105 +116,108 @@ void	draw_player(t_mlx *mlx, t_point player)
 	t_point a;
 	t_point b;
 	t_point c;
-	// t_point p;
-	int 	L = 300;
-	double h = (sqrt(3) / 2) * L;
-	double theta = get_radian(0);
+	int 	L = 10;
+	double h = 1.3 * L;
+	double theta = get_radian(90);
 	
 	a.x = player.x + cos(theta) * h;
 	a.y = player.y - sin(theta) * h;
 	printf("A.x = %f\nA.y = %f\n", a.x, a.y);
-	b.x = player.x + cos(theta + get_radian(120)) * L;
-	b.y = player.y - sin(theta + get_radian(120)) * L;
+	b.x = player.x + cos(theta + (M_PI / 2)) * (L / 2);
+	b.y = player.y - sin(theta + (M_PI / 2)) * (L / 2);
 	printf("B.x = %f\nB.y = %f\n", b.x, b.y);
-	c.x = player.x + cos(theta + get_radian(240)) * L;
-	c.y = player.y - sin(theta + get_radian(240)) * L;
+	c.x = player.x + cos(theta - (M_PI / 2)) * (L / 2);
+	c.y = player.y - sin(theta - (M_PI / 2)) * (L / 2);
 	printf("C.x = %f\nC.y = %f\n", c.x, c.y);
-	// __swap_point(&a, &b);
-	// p.x = a.x + (((b.y - a.y) * (c.x - a.x)) / (c.y - a.y));
-	// p.y = b.y; 
-	// draw_line(mlx, a, b, HYELLOW);
+	my_pixel_put(mlx, HYELLOW, WIDTH / 2, HEIGHT / 2);
+	// draw_line(mlx, , b, HYELLOW);
 	// draw_line(mlx, b, c, HYELLOW);
 	// draw_line(mlx, c, a, HYELLOW);
-	fill_triangle(mlx, a, b, c);
-	// my_pixel_put(mlx, HRED, p.x, p.y);
+	// fill_triangle(mlx, a, b, c, HYELLOW);
 	return ;
 }
 
-void	flat_top(t_mlx *mlx, t_point a, t_point b, t_point c)
+void fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color)
 {
-	double y;
-	double x;
-	double x_left;
-	double x_right;
+    if (p1.y > p2.y) { 
+        t_point temp = p1; 
+        p1 = p2; 
+        p2 = temp; 
+    }
+    if (p1.y > p3.y) { 
+        t_point temp = p1; 
+        p1 = p3; 
+        p3 = temp; 
+    }
+    if (p2.y > p3.y) { 
+        t_point temp = p2; 
+        p2 = p3; 
+        p3 = temp; 
+    }
 
-	y = a.y;
-	x = a.x;
-	x_left = a.x;
-	x_right = a.x;
-	while (y <= b.y)
-	{
-		while (x <= x_right)
-		{
-			my_pixel_put(mlx, HYELLOW, x_left, y);
-			x++;
-		}
-		x_left = a.x + (((y - a.y) * (b.x - a.x)) / (b.y - a.y));
-		printf("div0 %f | x_left = %f\n", b.y - a.y, x_left);
-		x = x_left;
-		x_right = a.x + (((y - a.y) * (c.x - a.x)) / (c.y - a.y));
-		printf("div0 %f | x_r = %f\n", c.y - a.y, x_right);
-		y++;
-	}
-}
+    float invslope1;
+    if (p2.y - p1.y != 0) {
+        invslope1 = (float)(p2.x - p1.x) / (float)(p2.y - p1.y);
+    } else {
+        invslope1 = 0;
+    }
 
-void	flat_bottom(t_mlx *mlx, t_point a, t_point b, t_point c)
-{
-	double y;
-	// double x;
-	double x_left;
-	double x_right;
+    float invslope2;
+    if (p3.y - p1.y != 0) {
+        invslope2 = (float)(p3.x - p1.x) / (float)(p3.y - p1.y);
+    } else {
+        invslope2 = 0;
+    }
 
-	y = c.y;
-	// x = c.x;
-	x_left = a.x;
-	x_right = a.x;
-	while (y >= a.y)
-	{
-		while (x_left <= x_right)
-		{
-			my_pixel_put(mlx, HYELLOW, x_left, y);
-			x_left++;
-		}
-		x_left = c.x + (((y - c.y) * (b.x - c.x)) / (b.y - c.y));
-		x_right = c.x + (((y - c.y) * (a.x - c.x)) / (a.y - c.y));
-		y--;
-	}
-}
+    float invslope3;
+    if (p3.y - p2.y != 0) {
+        invslope3 = (float)(p3.x - p2.x) / (float)(p3.y - p2.y);
+    } else {
+        invslope3 = 0;
+    }
 
-void	fill_triangle(t_mlx *mlx, t_point a, t_point b, t_point c)
-{
-	t_point	p;
+    float curx1, curx2;
 
-	if (a.y > b.y)
-		__swap_point(&a, &b);
-	if (a.y > c.y)
-		__swap_point(&a, &c);
-	if (b.y > c.y)
-		__swap_point(&b, &c);
+    curx1 = curx2 = p1.x;  
+    
+    int y;
+    for (y = p1.y; y < p2.y; y++) {
+        int x1 = (int)(curx1 + 0.5f);
+        int x2 = (int)(curx2 + 0.5f);
+        
+        if (x1 > x2) {
+            int temp = x1;
+            x1 = x2;
+            x2 = temp;
+        }
+        
+        for (int x = x1; x <= x2; x++) {
+             my_pixel_put(mlx, color, x, y);
+        }
+        
+        curx1 += invslope1;
+        curx2 += invslope2;
+    }
 
-	if (a.y == b.y)
-		flat_top(mlx, a, b, c);
-	else if (b.y == c.y)
-		flat_bottom(mlx, a, b, c);
-	else
-	{
-		p.x = a.x + (((b.y - a.y) * (c.x - a.x)) / (c.y - a.y));
-		p.y = b.y;
-		draw_line(mlx, b, p, HRED);
-		flat_top(mlx, a, b, p);
-		flat_bottom(mlx, p, b, c);
-	}
+    curx1 = p2.x;
+    
+    for (y = p2.y; y <= p3.y; y++) {
+        int x1 = (int)(curx1 + 0.5f);
+        int x2 = (int)(curx2 + 0.5f);
+        
+        if (x1 > x2) {
+            int temp = x1;
+            x1 = x2;
+            x2 = temp;
+        }
+        
+        for (int x = x1; x <= x2; x++) {
+         	  my_pixel_put(mlx, color, x, y);
+        }
+        
+        curx1 += invslope3;
+        curx2 += invslope2;
+    }
 }
 
 
