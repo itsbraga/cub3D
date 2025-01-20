@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/19 14:29:27 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/20 15:20:26 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+/******************************************************************************\
+ * CUB3D
+\******************************************************************************/
 
 typedef struct s_point
 {
@@ -38,6 +42,7 @@ typedef struct	s_data
 	unsigned int	f_rgb[3];
 	unsigned int	c_rgb[3];
 	t_point			player;
+	int				player_dir;
 	t_mlx			*mlx;
 }				t_data;
 

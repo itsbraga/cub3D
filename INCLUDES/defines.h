@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/14 17:24:11 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/20 19:25:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@
  * NAVIGATION
 \**************/
 
+// Player
+# define PLAYER_SPEED 3
+
 // Keyboard
 # define A 97
 # define W 119
@@ -94,9 +97,9 @@
 \**************/
 
 # define NO	0
-# define SO 1
-# define WE 2
-# define EA 3
+# define SO 180
+# define WE 270
+# define EA 90
 
 /**************\
  * MLX COLORS
@@ -105,5 +108,6 @@
 # define HRED 0x00FF0000
 # define HYELLOW 0x00FFFF00
 # define HWHITE 0x00FFFFFF
+# define HBLACK 0xFF000000
 
 #endif

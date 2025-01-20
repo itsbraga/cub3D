@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/01/19 17:46:20 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/20 15:30:04 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	clear_window(t_mlx *mlx)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			my_pixel_put(mlx, HBLACK, x, y);
+			x++;
+		}
+		y++;
+	}
+	return ;
+}
 
 int	render(t_data *data)
 {
@@ -22,7 +42,8 @@ int	render(t_data *data)
 	// p1.y = 950;
 	// draw_line(data->mlx, p0, p1, HRED);
 	// my_pixel_put(data->mlx, HRED, WIDTH / 2, HEIGHT / 2);
-	draw_player(data->mlx, data->player);
+	clear_window(data->mlx);
+	draw_player(data, data->mlx, data->player);
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr, data->mlx->img_ptr, 0, 0);
 	return (SUCCESS);
 }

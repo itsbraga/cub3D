@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/04 20:44:14 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/20 19:19:35 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_data	*data_s(void)
 		instance = yama(CREATE, NULL, sizeof(t_data));
 		secure_malloc(instance, true);
 		instance->map_path = NULL;
-		instance->map= NULL;
+		instance->map = NULL;
 		ft_bzero(instance->texture, 4);
 		ft_bzero(instance->f_rgb, 3);
 		ft_bzero(instance->c_rgb, 3);
@@ -58,6 +58,7 @@ void	init_data(t_data *data)
 	ft_bzero(data->c_rgb, 3);
 	data->player.x = WIDTH / 2;
 	data->player.y = HEIGHT / 2;
+	data->player_dir = WE;
 	data->mlx = NULL;
 }
 

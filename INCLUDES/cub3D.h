@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/19 13:33:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/20 15:42:25 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ void	init_mlx(t_mlx *mlx, t_data *data);
 
 // draw.c
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
-void	draw_player(t_mlx *mlx, t_point player);
+void	draw_player(t_data *data, t_mlx *mlx, t_point player);
 // void	fill_triangle(t_mlx *mlx, t_point a, t_point b, t_point c);
 void    fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color);
+void	clear_window(t_mlx *mlx);
 //utils.c
 void	init_point(t_point *point, double x, double y);
 double	get_radian(int degree);
