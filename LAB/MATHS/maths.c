@@ -5,8 +5,8 @@
 # include "../MLX/mlx.h"
 
 
-# define HEIGHT 1000
-# define WIDTH 1000
+# define W_HEIGHT 1000
+# define W_WIDTH 1000
 
 typedef struct	s_point
 {
@@ -45,9 +45,9 @@ int	main(void)
 	init_mlx(&mlx, &data);
 	draw_line(p1, p2, map);
 
-	for (int i = 0; i < HEIGHT; i++)
+	for (int i = 0; i < W_HEIGHT; i++)
 	{
-		for (int j = 0; j < WIDTH; j++)
+		for (int j = 0; j < W_WIDTH; j++)
 			printf("%c", map[i][j]);
 		printf("\n");
 	}

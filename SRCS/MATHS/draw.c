@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/20 20:10:10 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/21 23:36:41 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,9 @@ void	draw_player(t_data *data, t_mlx *mlx, t_point player)
 	t_point a;
 	t_point b;
 	t_point c;
-	int		L = 10;
+	int		L = 200;
 	double	h = 1.3 * L;
-	double theta = get_radian(data->player_dir);
+	double	theta = get_radian(data->player_dir);
 	
 	a.x = player.x + cos(theta) * h;
 	a.y = player.y + sin(theta) * h;
@@ -132,11 +132,11 @@ void	draw_player(t_data *data, t_mlx *mlx, t_point player)
 	c.y = player.y + sin(theta - (M_PI / 2)) * (L / 2);
 	printf("C.x = %f\nC.y = %f\n", c.x, c.y);
 	
-	// my_pixel_put(mlx, HYELLOW, WIDTH / 2, HEIGHT / 2);
+	// my_pixel_put(mlx, HYELLOW, W_WIDTH / 2, W_HEIGHT / 2);
 	draw_line(mlx, a, b, HYELLOW);
 	draw_line(mlx, b, c, HYELLOW);
 	draw_line(mlx, c, a, HYELLOW);
-	fill_triangle(mlx, a, b, c, HYELLOW);
+	// fill_triangle(mlx, a, b, c, HYELLOW);
 }
 
 void fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color)

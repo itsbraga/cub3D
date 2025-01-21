@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/20 15:20:26 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/21 23:01:43 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ typedef struct s_point
 	float	y;
 }				t_point;
 
+typedef struct s_map
+{
+	char			**map;
+	unsigned int	M_HEIGHT; //MAP
+	unsigned int	M_WIDTH; 
+	unsigned int	T_HEIGHT; //TILES
+	unsigned int	T_WIDTH;
+}				t_map;
+
 typedef struct	s_mlx
 {
 	void		*mlx_ptr;
@@ -37,7 +46,7 @@ typedef struct	s_mlx
 typedef struct	s_data
 {
 	char			*map_path;
-	char			**map;
+	t_map			*map;
 	char			texture[4];
 	unsigned int	f_rgb[3];
 	unsigned int	c_rgb[3];
