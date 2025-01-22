@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/21 23:01:18 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/22 03:57:57 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,19 @@ t_data	*data_s(void)
 	return (instance);
 }
 
+void	init_map(t_map *s, t_data *data)
+{
+	s->map = NULL;
+	s->M_HEIGHT = 0; //MAP
+	s->M_WIDTH = 0; 
+	s->T_HEIGHT = 0; //TILES
+	s->T_WIDTH = 0;
+	data->map = s;
+}
+
 void	init_data(t_data *data)
 {
+	
 	data->map_path = NULL;
 	data->map = NULL;
 	ft_bzero(data->texture, 4);

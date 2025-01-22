@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/21 23:36:41 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/22 04:11:11 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	draw_player(t_data *data, t_mlx *mlx, t_point player)
 	t_point a;
 	t_point b;
 	t_point c;
-	int		L = 200;
+	int		L = 10;
 	double	h = 1.3 * L;
 	double	theta = get_radian(data->player_dir);
 	
@@ -136,7 +136,7 @@ void	draw_player(t_data *data, t_mlx *mlx, t_point player)
 	draw_line(mlx, a, b, HYELLOW);
 	draw_line(mlx, b, c, HYELLOW);
 	draw_line(mlx, c, a, HYELLOW);
-	// fill_triangle(mlx, a, b, c, HYELLOW);
+	fill_triangle(mlx, a, b, c, HYELLOW);
 }
 
 void fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color)

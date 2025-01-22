@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/20 15:42:25 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/01/22 03:56:19 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_mlx	*mlx_s(void);
 t_data	*data_s(void);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
+void	init_map(t_map *map, t_data *data);
 
 /******************************************************************************\
  * MATHS
@@ -47,6 +48,7 @@ void	init_mlx(t_mlx *mlx, t_data *data);
 // draw.c
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
 void	draw_player(t_data *data, t_mlx *mlx, t_point player);
+void	draw_map(t_data *data, t_map *map);
 // void	fill_triangle(t_mlx *mlx, t_point a, t_point b, t_point c);
 void    fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color);
 void	clear_window(t_mlx *mlx);
