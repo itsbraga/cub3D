@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/23 17:57:02 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/24 20:48:51 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ typedef struct s_point
 
 typedef struct s_map
 {
-	char			**map;
-	unsigned int	M_HEIGHT; //MAP
+	char			**map2d;
+	unsigned int	M_HEIGHT; // MAP
 	unsigned int	M_WIDTH; 
-	unsigned int	T_HEIGHT; //TILES
+	unsigned int	T_HEIGHT; // TILES
 	unsigned int	T_WIDTH;
+	unsigned int	T_SIZE;
 }				t_map;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -41,9 +42,16 @@ typedef struct	s_mlx
 	int			bpp;
 	int			line_len;
 	int			endian;
-}	t_mlx;
+}				t_mlx;
 
-typedef struct	s_data
+typedef struct s_ray
+{
+	unsigned int	fov;
+	t_point			ray_inter;
+	t_point			offset;
+}				t_ray;
+
+typedef struct s_data
 {
 	char			*map_path;
 	t_map			*map;

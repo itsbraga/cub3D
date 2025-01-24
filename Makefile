@@ -46,7 +46,7 @@ GARBAGE_DIR		=	TOOLS/GARBAGE_COLLECTOR/
 GARBAGE_F		=	garbage_collector.c utils.c lst_utils.c
 
 INIT_DIR		=	INIT/
-INIT_F			=	init_structs.c draw_map.c
+INIT_F			=	init_structs.c draw_map2d.c
 
 PARSING_DIR		=	PARSING/
 PARSING_F		=	check_map.c check_cub_file.c
@@ -55,7 +55,7 @@ CONFIG_DIR		=	CONFIGS/
 CONFIG_F		=	mlx_events.c mlx_exit.c
 
 MATHS_DIR		=	MATHS/
-MATHS_F			=	draw.c utils.c
+MATHS_F			=	draw.c draw_grid.c utils.c raycasting.c
 
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES

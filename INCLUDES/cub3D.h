@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/22 03:56:19 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/24 20:46:57 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_data	*data_s(void);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
 void	init_map(t_map *map, t_data *data);
+void	init_ray(t_ray *ray);
 
 /******************************************************************************\
  * MATHS
@@ -47,14 +48,16 @@ void	init_map(t_map *map, t_data *data);
 
 // draw.c
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
+void	draw_grid(t_data *data);
 void	draw_player(t_data *data, t_mlx *mlx, t_point player);
-void	draw_map(t_data *data, t_map *map);
+void	raycasting(t_data *data, t_map *m);
+void	draw_map2d(t_data *data, t_map *map);
 // void	fill_triangle(t_mlx *mlx, t_point a, t_point b, t_point c);
 void    fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color);
 void	clear_window(t_mlx *mlx);
 //utils.c
-void	init_point(t_point *point, double x, double y);
-double	get_radian(int degree);
+void	init_point(t_point *point, float x, float y);
+float	get_radian(int degree);
 
 /******************************************************************************\
  * CONFIGS

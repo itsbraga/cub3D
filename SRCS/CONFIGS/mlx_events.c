@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/01/23 18:51:12 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/24 20:26:03 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	handle_keypress(int key, t_data *data)
 	{
 		data->player_dir -= 4;
 		if (data->player_dir < 0)
-			data->player_dir += 360; // (pour rester entre 0 et 2 M_PI radians)
+			data->player_dir += 360; // (pour rester entre 0 et 2 PI radians)
 	}
 	else if (key == XK_Right)
 	{
