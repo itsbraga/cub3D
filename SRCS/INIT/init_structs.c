@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/24 20:46:11 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:19:03 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_data(t_data *data)
 	
 	data->map_path = NULL;
 	data->map = NULL;
+	data->ray = NULL;
 	ft_bzero(data->texture, 4);
 	ft_bzero(data->f_rgb, 3);
 	ft_bzero(data->c_rgb, 3);
@@ -87,11 +88,15 @@ void	init_map(t_map *m, t_data *data)
 	m->M_WIDTH = 0; 
 	m->T_HEIGHT = 0; // TILES
 	m->T_WIDTH = 0;
-	m->T_SIZE = 0;
 	data->map = m;
 }
 
-void	init_ray(t_ray *ray)
+void	init_ray(t_data *data, t_ray *ray)
 {
 	ray->fov = 60;
+	ray->offset.x = 0;
+	ray->offset.y = 0;
+	ray->ray_inter.x = 0;
+	ray->ray_inter.y = 0;
+	data->ray = ray;
 }

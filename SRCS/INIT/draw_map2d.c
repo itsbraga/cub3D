@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:09:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/24 20:46:57 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:19:06 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,52 +43,47 @@ void	get_tiles_size(t_map *m)
 {
 	m->T_HEIGHT = (W_HEIGHT + m->M_HEIGHT / 2) / m->M_HEIGHT;
 	m->T_WIDTH = (W_WIDTH + m->M_WIDTH / 2) / m->M_WIDTH;
-	m->T_SIZE = (m->T_HEIGHT * m->T_WIDTH);
 }
 
-void	draw_tile(t_data *data, t_map *m, size_t tile_x, size_t tile_y)
+void	draw_tile(t_data *data, t_map *m, t_point tile)
 {
-	size_t x;
-	size_t y;
-	size_t x_end;
-	size_t y_end;
+	t_point	pixel;
+	size_t	x_end;
+	size_t	y_end;
 
-	x = tile_x * m->T_WIDTH;
-	y = tile_y * m->T_HEIGHT;
-	x_end = x + (m->T_WIDTH);
-	y_end = y + (m->T_HEIGHT);
-	while (y < y_end)
+	pixel.x = tile.x * m->T_WIDTH;
+	pixel.y = tile.y * m->T_HEIGHT;
+	x_end = pixel.x + (m->T_WIDTH);
+	y_end = pixel.y + (m->T_HEIGHT);
+	while (pixel.y < y_end)
 	{
-		x = tile_x * m->T_WIDTH;
-		while (x < x_end)
+		pixel.x = tile.x * m->T_WIDTH;
+		while (pixel.x < x_end)
 		{
-			my_pixel_put(data->mlx, HLAVENDER, x, y);
-			x++;
+			my_pixel_put(data->mlx, HLAVENDER, pixel.x, pixel.y);
+			pixel.x++;
 		}
-		y++;
+		pixel.y++;
 	}
 }
 
 void	draw_map2d(t_data *data, t_map *m)
 {
-	size_t tile_x;
-	size_t tile_y;
+	t_point	tile;
 	
-	tile_y = 0;
+	tile.y = 0;
 	get_map2d(m);
 	get_map_size(m);
 	get_tiles_size(m);
-	while (tile_y < m->M_HEIGHT)
+	while (tile.y < m->M_HEIGHT)
 	{
-		tile_x = 0;
-		while (tile_x < m->M_WIDTH)
+		tile.x = 0;
+		while (tile.x < m->M_WIDTH)
 		{
-			if (m->map2d[tile_y][tile_x] == '1')
-			{
-				draw_tile(data, m, tile_x, tile_y);
-			}
-			tile_x++;
+			if (m->map2d[(int)tile.y][(int)tile.x] == '1')
+				draw_tile(data, m, tile);
+			tile.x++;
 		}
-		tile_y++;
+		tile.y++;
 	}
 }

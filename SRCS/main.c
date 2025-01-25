@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/01/24 20:46:57 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/24 22:56:13 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	render(t_data *data)
 	draw_map2d(data, data->map);
 	draw_grid(data);
 	draw_player(data, data->mlx, data->player);
-	raycasting(data, data->map);
+	raycasting(data, data->map, data->ray);
 	printf("play.pos.x = %f | play.pos.y = %f\n", data->player.x, data->player.y);
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr, data->mlx->img_ptr, 0, 0);
 	return (SUCCESS);
@@ -57,6 +57,7 @@ int	main(int argc, char **argv)
 	t_mlx	mlx;
 	t_data	data;
 	t_map map;
+	t_ray ray;
 
 	(void)argv;
 	(void)argc;
@@ -68,6 +69,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	init_mlx(&mlx, &data);
 	init_map(&map ,&data);
+	init_ray(&data, &ray);
 	mlx_loop_hook(mlx.mlx_ptr, &render, &data);
 	mlx_hook(mlx.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_loop(mlx.mlx_ptr);
