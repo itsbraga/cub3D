@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/25 18:19:11 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/28 19:40:52 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct s_map
 	char		**map2d;
 	size_t		M_HEIGHT; // MAP
 	size_t		M_WIDTH; 
-	size_t		T_HEIGHT; // TILES
-	size_t		T_WIDTH;
+	int			T_HEIGHT; // TILES
+	int			T_WIDTH;
 }				t_map;
 
 typedef struct s_mlx
@@ -45,9 +45,11 @@ typedef struct s_mlx
 
 typedef struct s_ray
 {
+	unsigned int	ray_amount;
 	t_point			ray_inter;
 	t_point			offset;
 	unsigned int	fov;
+	float			rad;
 }				t_ray;
 
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/25 18:19:03 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/28 20:46:16 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	init_data(t_data *data)
 	ft_bzero(data->texture, 4);
 	ft_bzero(data->f_rgb, 3);
 	ft_bzero(data->c_rgb, 3);
-	data->player.x = 444;
-	data->player.y = 423;
+	data->player.x = 357;
+	data->player.y = 379;
 	data->player_dir = WE;
 	data->mlx = NULL;
 }
@@ -93,7 +93,9 @@ void	init_map(t_map *m, t_data *data)
 
 void	init_ray(t_data *data, t_ray *ray)
 {
+	ray->ray_amount = 1;
 	ray->fov = 60;
+	ray->rad = get_radian(data->player_dir);
 	ray->offset.x = 0;
 	ray->offset.y = 0;
 	ray->ray_inter.x = 0;
