@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/28 19:40:52 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/30 22:33:29 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ typedef struct s_mlx
 typedef struct s_ray
 {
 	unsigned int	ray_amount;
-	t_point			ray_inter;
-	t_point			offset;
+	t_point			h_ray_inter;
+	t_point			v_ray_inter;
+	t_point			h_offset;
+	t_point			v_offset;
 	unsigned int	fov;
 	float			rad;
 }				t_ray;

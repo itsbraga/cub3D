@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/24 20:44:30 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/29 18:29:00 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ static void	draw_v_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
+	if (is_point_valid(p0) == false || is_point_valid(p1) == false)
+	{
+		ft_printf(2, "Point called with %s is out of map !!\n", __func__);
+		return;
+	}
 	if (abs((int)p1.x-(int)p0.x) > abs((int)p1.y-(int)p0.y))
 		draw_h_line(mlx, p0, p1, color);
 	else
