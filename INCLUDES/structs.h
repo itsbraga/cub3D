@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/30 22:33:29 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/31 04:29:14 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_map
 	char		**map2d;
 	size_t		M_HEIGHT; // MAP
 	size_t		M_WIDTH; 
-	int			T_HEIGHT; // TILES
-	int			T_WIDTH;
 }				t_map;
 
 typedef struct s_mlx

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/29 18:28:19 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/31 03:37:46 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ bool	is_point_valid(t_point point)
 float	get_radian(int degree)
 {
 	return (degree * (PI / 180));
+}
+
+float	square(float to_square)
+{
+	float result;
+
+	result = to_square * to_square;
+	return (result);
 }

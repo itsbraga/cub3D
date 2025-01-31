@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/30 22:33:54 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/31 04:31:55 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	init_map(t_map *m, t_data *data)
 	m->map2d = NULL;
 	m->M_HEIGHT = 0; // MAP
 	m->M_WIDTH = 0; 
-	m->T_HEIGHT = 0; // TILES
-	m->T_WIDTH = 0;
 	data->map = m;
 }
 

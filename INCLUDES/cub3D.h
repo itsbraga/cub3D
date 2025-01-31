@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/29 18:28:33 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/31 03:37:58 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	clear_window(t_mlx *mlx);
 void	init_point(t_point *point, float x, float y);
 bool	is_point_valid(t_point point);
 float	get_radian(int degree);
+float	square(float to_square);
 
 /******************************************************************************\
  * CONFIGS
