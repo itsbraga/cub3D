@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:09:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/31 04:54:31 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/01/31 19:12:29 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,24 @@
 
 void	get_map2d(t_map *m)
 {
-	m->map2d = malloc(7 * sizeof(char *));
+	m->map2d = malloc(16 * sizeof(char *));
 	m->map2d[0] = ft_strdup("1111111111111111");
 	m->map2d[1] = ft_strdup("1010000001000001");
 	m->map2d[2] = ft_strdup("1010001001000001");
 	m->map2d[3] = ft_strdup("1010001000111001");
-	m->map2d[4] = ft_strdup("1000000000000001");
-	m->map2d[5] = ft_strdup("1111111111111111");
-	m->map2d[6] = NULL;
+	m->map2d[4] = ft_strdup("1010001000000001");
+	m->map2d[5] = ft_strdup("1010001111111001");
+	m->map2d[6] = ft_strdup("1010000000000001");
+	m->map2d[7] = ft_strdup("1011111100000001");
+	m->map2d[8] = ft_strdup("1000000000000001");
+	m->map2d[9] = ft_strdup("1000000000000001");
+	m->map2d[10] = ft_strdup("1000000000000001");
+	m->map2d[11] = ft_strdup("1000001111000001");
+	m->map2d[12] = ft_strdup("1000001001000001");
+	m->map2d[13] = ft_strdup("1000001001000001");
+	m->map2d[14] = ft_strdup("1000000000000001");
+	m->map2d[15] = ft_strdup("1111111111111111");
+	m->map2d[16] = NULL;
 }
 
 void	get_map_size(t_map *m)

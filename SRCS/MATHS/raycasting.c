@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/31 04:56:57 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/02 06:44:49 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 // 	}
 // }
 
-void	found_closest_inter(t_data *d, t_point *to_set_inter, t_point *to_set_offset)
+void	found_closest_inter(t_data *d, t_point *closest_inter)
 {
 	float	delta_xh;
 	float	delta_yh;
@@ -61,27 +61,33 @@ void	found_closest_inter(t_data *d, t_point *to_set_inter, t_point *to_set_offse
 	dist_v = (delta_xv * delta_xv) + (delta_yv * delta_yv);
 	if (dist_h < dist_v)
 	{
-		to_set_inter->x = d->ray->h_ray_inter.x;
-		to_set_inter->y = d->ray->h_ray_inter.y;
-		to_set_offset->x = d->ray->h_offset.x;
-		to_set_offset->y = d->ray->h_offset.y;
+		closest_inter->x = d->ray->h_ray_inter.x;
+		closest_inter->y = d->ray->h_ray_inter.y;
 	}
 	else
 	{
-		to_set_inter->x = d->ray->v_ray_inter.x;
-		to_set_inter->y = d->ray->v_ray_inter.y;
-		to_set_offset->x = d->ray->v_offset.x;
-		to_set_offset->y = d->ray->v_offset.y;
+		closest_inter->x = d->ray->v_ray_inter.x;
+		closest_inter->y = d->ray->v_ray_inter.y;
 	}
-
 }
 
-static	void	__inter_hline(t_data *d, t_ray *r)
+static	void	__inter_hline(t_data *d, t_ray *r, float ray_rad)
 {
 	float	inv_tan;
+	t_point	curr_tile;
+
 	
-	inv_tan = -1 / tan(r->rad);
-	if (r->rad > PI)
+	if (tan(ray_rad) != 0)
+		inv_tan = -1 / tan(ray_rad);
+	else
+		inv_tan = 0;
+	if (ray_rad == PI / 2 || ray_rad == (3 * PI / 2))
+	{
+		r->h_ray_inter.x = d->player.x;
+		r->h_ray_inter.y = d->player.y;
+		return;
+	}
+	else if (ray_rad > PI)
 	{
 		r->h_ray_inter.y = floor(d->player.y / TILE_SIZE) * TILE_SIZE - 0.0001;
 		r->h_ray_inter.x =  d->player.x + (d->player.y - r->h_ray_inter.y) * inv_tan;
@@ -89,7 +95,7 @@ static	void	__inter_hline(t_data *d, t_ray *r)
 		r->h_offset.x = -(r->h_offset.y) * inv_tan;
 		printf("1\n");
 	}
-	else if (r->rad < PI)
+	else if (ray_rad < PI)
 	{
 		r->h_ray_inter.y = floor(d->player.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
 		r->h_ray_inter.x = d->player.x + (d->player.y - r->h_ray_inter.y) * inv_tan;
@@ -97,20 +103,46 @@ static	void	__inter_hline(t_data *d, t_ray *r)
 		r->h_offset.x = -r->h_offset.y * inv_tan;
 		printf("2\n");
 	}
-	else if (r->rad == PI || r->rad == 0)
+	while (1)
 	{
-		r->h_ray_inter.x = d->player.x;
-		r->h_ray_inter.y = d->player.y;
-		printf("3\n");
+		curr_tile.x = r->h_ray_inter.x / TILE_SIZE;
+		curr_tile.y = r->h_ray_inter.y / TILE_SIZE;
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH ||
+        (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
+    	{
+        	printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
+        	break;
+    	}
+		if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
+		{
+			printf("HIT A WALL !");
+			break;
+		}
+		else
+		{
+			printf("OFFSET ++\n");
+			printf("offset.x = %f | offset.y = %f\n", r->h_offset.x, r->h_offset.y);
+			r->h_ray_inter.x += r->h_offset.x;
+			r->h_ray_inter.y += r->h_offset.y;
+		}
 	}
+	
 }
 
-static	void	__inter_vline(t_data *d, t_ray *r)
+static	void	__inter_vline(t_data *d, t_ray *r, float ray_rad)
 {
 	float	neg_tan;
+	t_point	curr_tile;
 	
-	neg_tan = -tan(r->rad);
-	if (r->rad > (PI / 2) && r->rad < (3 * PI / 2))
+	printf("%s\n", __func__);
+	neg_tan = -tan(ray_rad);
+	if (ray_rad == PI || ray_rad == 0)
+	{
+		r->v_ray_inter.x = d->player.x;
+		r->v_ray_inter.y = d->player.y;
+		return;
+	}
+	else if (ray_rad > (PI / 2) && ray_rad < (3 * PI / 2))
 	{
 		r->v_ray_inter.x = floor(d->player.x / TILE_SIZE) * TILE_SIZE - 0.0001;
 		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) * neg_tan;
@@ -118,7 +150,7 @@ static	void	__inter_vline(t_data *d, t_ray *r)
 		r->v_offset.y = -r->v_offset.x * neg_tan;
 		printf("4\n");
 	}
-	else if (r->rad < (PI / 2) || r->rad > (3 * PI / 2))
+	else if (ray_rad < (PI / 2) || ray_rad > (3 * PI / 2))
 	{
 		r->v_ray_inter.x = floor(d->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
 		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) * neg_tan;
@@ -127,52 +159,48 @@ static	void	__inter_vline(t_data *d, t_ray *r)
 		printf("5\n");
 
 	}
-	else if (r->rad == PI || r->rad == 0)
+	while (1)
 	{
-		r->v_ray_inter.x = d->player.x;
-		r->v_ray_inter.y = d->player.y;
-		printf("6\n");
+		curr_tile.x = r->v_ray_inter.x / TILE_SIZE;
+		curr_tile.y = r->v_ray_inter.y / TILE_SIZE;
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH ||
+        (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
+    	{
+        	printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
+        	break;
+    	}
+		if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
+		{
+			printf("HIT A WALL\n");
+			break;
+		}
+		else
+		{
+			printf("OFFSET ++\n");
+			printf("offset.x = %f | offset.y = %f\n", r->v_offset.x, r->v_offset.y);
+			r->v_ray_inter.x += r->v_offset.x;
+			r->v_ray_inter.y += r->v_offset.y;
+		}
 	}
 }
 
 // Draw 3D rays
-void	raycasting(t_data *data, t_map *m, t_ray *r)
+void	raycasting(t_data *data, t_ray *r)
 {
 	unsigned int	ray_drawed;
-	t_point			curr_tile;
 	t_point			closest_inter;
-	t_point			next_offset;
+	float			ray_angle;
 
 	ray_drawed = 0;
+	ray_angle = r->player_rad - (get_radian(r->fov) / 2);
 	while (ray_drawed < r->ray_amount)
 	{
-		printf("ray rad = %f\n", r->rad);
-		__inter_hline(data, r);
-		printf("## AFTER HLINE ##\n inter.x = %f | inter.y = %f\n", closest_inter.x, closest_inter.y);
-		printf("offset.x = %f | offset.y = %f\n\n", next_offset.x, next_offset.y);
-		__inter_vline(data, r);
-		found_closest_inter(data, &closest_inter, &next_offset);
-		printf("## AFTER VLINE ##\n inter.x = %f | inter.y = %f\n", closest_inter.x, closest_inter.y);
-		printf("offset.x = %f | offset.y = %f\n\n", next_offset.x, next_offset.y);
-		while (true)
-		{
-			curr_tile.x = closest_inter.x / TILE_SIZE;
-			curr_tile.y = closest_inter.y / TILE_SIZE;
-			printf("curr_tile X: %d   --   curr_tile Y: %d\n", (int)curr_tile.x, (int)curr_tile.y);
-			if (m->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1') // check if ray has hit a wall
-			{
-				printf("HIT A WALL\n");
-				break;
-			}
-			else // go to the next ray_inter
-			{
-				printf("OFFSET ++\n");
-				printf("offset.x = %f | offset.y = %f\n", next_offset.x, next_offset.y);
-				closest_inter.x += next_offset.x;
-				closest_inter.y += next_offset.y;
-			}
-		}
+		printf("ray rad = %f\n", ray_angle);
+		__inter_hline(data, r, ray_angle);
+		__inter_vline(data, r, ray_angle);
+		found_closest_inter(data, &closest_inter);
+		draw_line(data->mlx, data->player, closest_inter, HRED);
 		ray_drawed++;
-		draw_line(data->mlx, data->player, closest_inter, HRED);	
+		ray_angle += (get_radian(r->fov) / W_WIDTH);
 	}
 }

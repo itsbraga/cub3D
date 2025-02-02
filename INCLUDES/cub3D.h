@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/31 03:37:58 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/02 06:11:47 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_ray(t_data *data, t_ray *ray);
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
 void	draw_grid(t_data *data);
 void	draw_player(t_data *data, t_mlx *mlx, t_point player);
-void	raycasting(t_data *data, t_map *m, t_ray *r);
+void	raycasting(t_data *data, t_ray *r);
 void	draw_map2d(t_data *data, t_map *map);
 // void	fill_triangle(t_mlx *mlx, t_point a, t_point b, t_point c);
 void    fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color);

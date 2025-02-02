@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/01/28 20:33:13 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/02 06:17:33 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	render(t_data *data)
 	draw_map2d(data, data->map);
 	draw_grid(data);
 	draw_player(data, data->mlx, data->player);
-	raycasting(data, data->map, data->ray);
+	raycasting(data, data->ray);
 	printf("play.pos.x = %f | play.pos.y = %f\n", data->player.x, data->player.y);
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr, data->mlx->img_ptr, 0, 0);
 	return (SUCCESS);
