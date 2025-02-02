@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/01/28 19:39:50 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/02 06:45:19 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int	handle_keypress(int key, t_data *data)
 		data->player_dir -= 4;
 		if (data->player_dir < 0)
 			data->player_dir += 360; // (pour rester entre 0 et 2 PI radians)
-		data->ray->rad = get_radian(data->player_dir);
+		data->ray->player_rad = get_radian(data->player_dir);
 	}
 	else if (key == XK_Right)
 	{
 		data->player_dir += 4;
 		if (data->player_dir > 360)
 			data->player_dir = data->player_dir % 360;
-		data->ray->rad = get_radian(data->player_dir);
+		data->ray->player_rad = get_radian(data->player_dir);
 	}
 	else if (key == W)
 	{
