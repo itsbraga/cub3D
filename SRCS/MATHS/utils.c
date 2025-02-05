@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/31 03:37:46 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/06 00:22:22 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,14 @@ float	square(float to_square)
 
 	result = to_square * to_square;
 	return (result);
+}
+
+float	normalize_rad(float rad)
+{
+
+	if (rad < 0)
+		rad += (2 * PI);
+	else if (rad > (2 * PI))
+		rad -= (2 * PI);
+	return (rad);
 }

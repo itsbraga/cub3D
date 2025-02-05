@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <math.h>
 
+# define PI 3.1415926535
+
+
 typedef struct s_point
 {
 	int x;
@@ -22,12 +25,29 @@ typedef struct s_point
 // 	p1->y = y_tmp;
 // }
 
+float	normalize_rad2(float rad)
+{
+	if (rad < 0)
+		rad += (2 * PI);
+	else if (rad > 0)
+		rad -= (2 * PI);
+	return (rad);
+}
+
+float	normalize_radians(float rad)
+{
+	float normalized;
+
+	normalized = fmod(rad, (2 * PI));
+	if (normalized < 0)
+		normalized += (2 * PI);
+	return(normalized);
+}
+
 int main() 
 {
-	
-	
-	float	dx_h = 100 - 20
-	float	dy_h = 60 - 400;
-	float	dx_v = ;
+	float rad = 7.050273;
+	printf("rad fmod = %f\n", normalize_radians(rad));
+	printf("rad newfunc = %f\n", normalize_rad2(rad));
     return 0;
 }
