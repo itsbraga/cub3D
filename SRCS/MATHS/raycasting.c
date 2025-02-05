@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/02 06:44:49 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/06 00:37:59 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static	void	__inter_hline(t_data *d, t_ray *r, float ray_rad)
 		inv_tan = -1 / tan(ray_rad);
 	else
 		inv_tan = 0;
-	if (ray_rad == PI / 2 || ray_rad == (3 * PI / 2))
+	if (fabs(ray_rad - PI2) < EPS || fabs(ray_rad - PI3) < EPS)
 	{
 		r->h_ray_inter.x = d->player.x;
 		r->h_ray_inter.y = d->player.y;
@@ -120,8 +120,8 @@ static	void	__inter_hline(t_data *d, t_ray *r, float ray_rad)
 		}
 		else
 		{
-			printf("OFFSET ++\n");
-			printf("offset.x = %f | offset.y = %f\n", r->h_offset.x, r->h_offset.y);
+			// printf("OFFSET ++\n");
+			// printf("offset.x = %f | offset.y = %f\n", r->h_offset.x, r->h_offset.y);
 			r->h_ray_inter.x += r->h_offset.x;
 			r->h_ray_inter.y += r->h_offset.y;
 		}
@@ -136,13 +136,13 @@ static	void	__inter_vline(t_data *d, t_ray *r, float ray_rad)
 	
 	printf("%s\n", __func__);
 	neg_tan = -tan(ray_rad);
-	if (ray_rad == PI || ray_rad == 0)
+	if (fabs(ray_rad - PI) < EPS || fabs(ray_rad) < EPS)
 	{
 		r->v_ray_inter.x = d->player.x;
 		r->v_ray_inter.y = d->player.y;
 		return;
 	}
-	else if (ray_rad > (PI / 2) && ray_rad < (3 * PI / 2))
+	else if (ray_rad > PI2 && ray_rad < PI3)
 	{
 		r->v_ray_inter.x = floor(d->player.x / TILE_SIZE) * TILE_SIZE - 0.0001;
 		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) * neg_tan;
@@ -150,7 +150,7 @@ static	void	__inter_vline(t_data *d, t_ray *r, float ray_rad)
 		r->v_offset.y = -r->v_offset.x * neg_tan;
 		printf("4\n");
 	}
-	else if (ray_rad < (PI / 2) || ray_rad > (3 * PI / 2))
+	else if (ray_rad < PI2 || ray_rad > PI3)
 	{
 		r->v_ray_inter.x = floor(d->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
 		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) * neg_tan;
@@ -176,8 +176,8 @@ static	void	__inter_vline(t_data *d, t_ray *r, float ray_rad)
 		}
 		else
 		{
-			printf("OFFSET ++\n");
-			printf("offset.x = %f | offset.y = %f\n", r->v_offset.x, r->v_offset.y);
+			// printf("OFFSET ++\n");
+			// printf("offset.x = %f | offset.y = %f\n", r->v_offset.x, r->v_offset.y);
 			r->v_ray_inter.x += r->v_offset.x;
 			r->v_ray_inter.y += r->v_offset.y;
 		}
@@ -192,15 +192,18 @@ void	raycasting(t_data *data, t_ray *r)
 	float			ray_angle;
 
 	ray_drawed = 0;
-	ray_angle = r->player_rad - (get_radian(r->fov) / 2);
+	ray_angle = normalize_rad(r->player_rad - (get_radian(r->fov) / 2));
 	while (ray_drawed < r->ray_amount)
 	{
+		printf("ray rad = %d\n", ray_drawed);
 		printf("ray rad = %f\n", ray_angle);
+		printf("player dir = %f\n", r->player_rad);
 		__inter_hline(data, r, ray_angle);
 		__inter_vline(data, r, ray_angle);
 		found_closest_inter(data, &closest_inter);
 		draw_line(data->mlx, data->player, closest_inter, HRED);
 		ray_drawed++;
 		ray_angle += (get_radian(r->fov) / W_WIDTH);
+		ray_angle = normalize_rad(ray_angle);
 	}
 }
