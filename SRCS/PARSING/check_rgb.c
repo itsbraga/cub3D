@@ -1,51 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   check_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
+/*   Created: 2025/02/11 19:09:25 by annabrag          #+#    #+#             */
 /*   Updated: 2025/02/11 19:36:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parsing.h"
 
-void	init_point(t_point *point, float x, float y)
+bool	valid_rgb(unsigned int rgb[3])
 {
-	point->x = x;
-	point->y = y;
-}
+	int	i;
 
-bool	valid_point(t_point point)
-{
-	if (point.x > W_WIDTH || point.x < 0)
-		return (false);
-	if (point.y > W_HEIGHT || point.y < 0)
-		return (false);
+	i = 0;
+	while (rgb[i] != '\0')
+	{
+		if (rgb[i] > 255 || rgb[i] < 0)
+			return (false);
+		i++;
+	}
 	return (true);
-}
-
-float	get_radian(int degree)
-{
-	return (degree * (PI / 180));
-}
-
-float	square(float to_square)
-{
-	float result;
-
-	result = to_square * to_square;
-	return (result);
-}
-
-float	norm_angle(float angle)
-{
-
-	if (angle < 0)
-		angle += (2 * PI);
-	else if (angle > (2 * PI))
-		angle -= (2 * PI);
-	return (angle);
 }

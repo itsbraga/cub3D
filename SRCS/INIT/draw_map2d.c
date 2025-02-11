@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map2d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:09:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/31 19:12:29 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/11 18:47:48 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	get_map2d(t_map *m)
+static void	__get_map2d(t_map *m)
 {
 	m->map2d = malloc(16 * sizeof(char *));
 	m->map2d[0] = ft_strdup("1111111111111111");
@@ -34,7 +34,7 @@ void	get_map2d(t_map *m)
 	m->map2d[16] = NULL;
 }
 
-void	get_map_size(t_map *m)
+static void	__get_map_size(t_map *m)
 {
 	size_t	x;
 	size_t	y;
@@ -55,7 +55,7 @@ void	get_map_size(t_map *m)
 // 	TILE_SIZE = (W_WIDTH + m->M_WIDTH / 2) / m->M_WIDTH;
 // }
 
-void	draw_tile(t_data *data, t_point tile)
+static void	__draw_tile(t_data *data, t_point tile)
 {
 	t_point	pixel;
 	size_t	x_end;
@@ -82,8 +82,8 @@ void	draw_map2d(t_data *data, t_map *m)
 	t_point	tile;
 	
 	tile.y = 0;
-	get_map2d(m);
-	get_map_size(m);
+	__get_map2d(m);
+	__get_map_size(m);
 	// get_tiles_size(m);
 	while (tile.y < m->M_HEIGHT)
 	{
@@ -91,7 +91,7 @@ void	draw_map2d(t_data *data, t_map *m)
 		while (tile.x < m->M_WIDTH)
 		{
 			if (m->map2d[(int)tile.y][(int)tile.x] == '1')
-				draw_tile(data, tile);
+				__draw_tile(data, tile);
 			tile.x++;
 		}
 		tile.y++;

@@ -25,7 +25,7 @@ typedef struct s_point
 // 	p1->y = y_tmp;
 // }
 
-float	normalize_rad2(float rad)
+float	norm_angle2(float rad)
 {
 	if (rad < 0)
 		rad += (2 * PI);
@@ -34,7 +34,7 @@ float	normalize_rad2(float rad)
 	return (rad);
 }
 
-float	normalize_radians(float rad)
+float	norm_angleians(float rad)
 {
 	float normalized;
 
@@ -47,7 +47,7 @@ float	normalize_radians(float rad)
 int main() 
 {
 	float rad = 7.050273;
-	printf("rad fmod = %f\n", normalize_radians(rad));
-	printf("rad newfunc = %f\n", normalize_rad2(rad));
+	printf("rad fmod = %f\n", norm_angleians(rad));
+	printf("rad newfunc = %f\n", norm_angle2(rad));
     return 0;
 }

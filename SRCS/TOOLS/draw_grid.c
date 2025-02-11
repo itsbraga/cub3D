@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:12:07 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/31 04:55:19 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/11 19:15:52 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "tools.h"
 
-void draw_vgrid(t_mlx *mlx)
+static void	__draw_vgrid(t_mlx *mlx)
 {
 	t_point p1;
 	t_point p2;
@@ -29,7 +29,7 @@ void draw_vgrid(t_mlx *mlx)
 	}
 }
 
-void draw_hgrid(t_mlx *mlx)
+static void	__draw_hgrid(t_mlx *mlx)
 {
 	t_point p1;
 	t_point p2;
@@ -48,6 +48,6 @@ void draw_hgrid(t_mlx *mlx)
 
 void	draw_grid(t_data *data)
 {
-	draw_hgrid(data->mlx);
-	draw_vgrid(data->mlx);
+	__draw_hgrid(data->mlx);
+	__draw_vgrid(data->mlx);
 }

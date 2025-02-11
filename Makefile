@@ -40,22 +40,22 @@ DEBUG		=	-O3 -g
 #******************************************************************************#
 
 TOOLS_DIR		=	TOOLS/
-TOOLS_F			=	error.c secure.c pixel_put.c free_and_exit.c
+TOOLS_F			=	error.c secure.c free_and_exit.c pixel_put.c draw_grid.c
 
 GARBAGE_DIR		=	TOOLS/GARBAGE_COLLECTOR/
-GARBAGE_F		=	garbage_collector.c utils.c lst_utils.c
+GARBAGE_F		=	garbage_collector.c gc_utils.c lst_utils.c
 
 INIT_DIR		=	INIT/
-INIT_F			=	init_structs.c draw_map2d.c
+INIT_F			=	init_structs.c draw_map2d.c render_game.c
 
 PARSING_DIR		=	PARSING/
-PARSING_F		=	check_map.c check_cub_file.c
+PARSING_F		=	check_map.c check_map2.c check_cub_file.c check_rgb.c
 
 CONFIG_DIR		=	CONFIGS/
 CONFIG_F		=	mlx_events.c mlx_exit.c
 
 MATHS_DIR		=	MATHS/
-MATHS_F			=	draw.c draw_grid.c utils.c raycasting.c
+MATHS_F			=	draw_player.c utils.c raycasting.c 2d_to_3d.c
 
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES
