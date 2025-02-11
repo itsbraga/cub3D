@@ -3,53 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 18:01:03 by art3mis           #+#    #+#             */
-/*   Updated: 2025/01/04 21:21:56 by art3mis          ###   ########.fr       */
+/*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
+/*   Updated: 2025/02/11 19:15:00 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parsing.h"
 
-bool    check_borders(char **map, int rows, int cols)
+static bool	__has_valid_chars(char **map, int rows)
 {
-	int i;
+	int		i;
+	int		j;
+	char	c;
 
-	i = 0;
-	while (i < cols)
-	{
-		if (map[0][i] != '1' || map[rows - 1][i] != '1')
-			return (false);
-		i++;
-	}
 	i = 0;
 	while (i < rows)
 	{
-		if (map[i][0] != '1' || map[i][cols - 1] != '1')
-			return (false);
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			c = map[i][j];
+			if (ft_strchr(VALID_MAP, c) == NULL)
+				return (err_msg(c, ERR_CHAR, 1), false);
+			j++;
+		}
 		i++;
 	}
 	return (true);
 }
 
-bool	is_fully_enclosed(char **map, int rows, int cols, int x, int y)
+static bool	__find_player_start(char **map, int rows, t_point *start_pos)
 {
-	bool	left;
-	bool	right;
-	bool	up;
-	bool	down;
+	bool	found_start;
+	int		i;
+	int		j;
+	char	c;
 
-	if (x < 0 || y < 0 || x >= cols || y >= rows || map[y][x] == ' ')
+	i = 0;
+	while (i < rows)
+	{
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			c = map[i][j];
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			{
+				if (found_start == true)
+					return (err_msg(NULL, ERR_MPLAYER, 0), false);
+				found_start = true;
+				start_pos->x = j;
+				start_pos->y = i;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (found_start == false)
+		return (err_msg(NULL, ERR_START_P, 0), false);
+	return (true);
+}
+
+bool    first_verification(char **map, int rows, t_point *start)
+{
+	if (__has_valid_chars(map, rows) == false)
 		return (false);
-	if (map[y][x] == '1' || map[y][x] == '2')
-		return (true);
-	map[y][x] = '2'; // on marque comme deja vu
-	right = is_fully_enclosed(map, rows, cols, x + 1, y);
-	left = is_fully_enclosed(map, rows, cols, x - 1, y);
-	down = is_fully_enclosed(map, rows, cols, x, y + 1);
-	up = is_fully_enclosed(map, rows, cols, x, y - 1);
-	if (right == true && left == true && down == true && up == true)
-		return (true);
-	return (false);
+	if (__find_player_start(map, rows, start) == false)
+		return (false);
+	return (true);
 }

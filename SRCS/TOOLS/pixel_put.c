@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_put.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:11:33 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/19 17:33:46 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/11 19:15:17 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "tools.h"
 
 void	my_pixel_put(t_mlx *mlx, int color, int x, int y)
 {

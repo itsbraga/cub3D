@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/01/29 18:29:00 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/11 19:36:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	__swap_point(t_point *p0, t_point *p1)
 	p0->y = tmp.y;
 }
 
-static void	draw_h_line(t_mlx *mlx, t_point p0, t_point p1, int color)
+static void	__draw_hline(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
 	int i = 0;
 	int y = 0;
@@ -62,7 +62,7 @@ static void	draw_h_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 	}
 }
 
-static void	draw_v_line(t_mlx *mlx, t_point p0, t_point p1, int color)
+static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
 	int i = 0;
 	int x = 0;
@@ -101,41 +101,17 @@ static void	draw_v_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 	}
 }
 
-void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
+static void	__draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
-	if (is_point_valid(p0) == false || is_point_valid(p1) == false)
-	{
+	if (valid_point(p0) == false || valid_point(p1) == false)
 		ft_printf(2, "Point called with %s is out of map !!\n", __func__);
-		return;
-	}
 	if (abs((int)p1.x-(int)p0.x) > abs((int)p1.y-(int)p0.y))
-		draw_h_line(mlx, p0, p1, color);
+		__draw_hline(mlx, p0, p1, color);
 	else
-		draw_v_line(mlx, p0, p1, color);
+		__draw_vline(mlx, p0, p1, color);
 }
 
-void	draw_player(t_data *data, t_mlx *mlx, t_point player)
-{
-	t_point a;
-	t_point b;
-	t_point c;
-	int		L = 10;
-	double	h = 1.3 * L;
-	float	theta = get_radian(data->player_dir);
-	
-	a.x = player.x + cos(theta) * h;
-	a.y = player.y + sin(theta) * h;
-	b.x = player.x + cos(theta + (PI / 2)) * (L / 2);
-	b.y = player.y + sin(theta + (PI / 2)) * (L / 2);
-	c.x = player.x + cos(theta - (PI / 2)) * (L / 2);
-	c.y = player.y + sin(theta - (PI / 2)) * (L / 2);
-	draw_line(mlx, a, b, HYELLOW);
-	draw_line(mlx, b, c, HYELLOW);
-	draw_line(mlx, c, a, HYELLOW);
-	fill_triangle(mlx, a, b, c, HYELLOW);
-}
-
-void fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color)
+static void	__fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color)
 {
     // Tri des points par Y croissant
     if (p1.y > p2.y) { t_point temp = p1; p1 = p2; p2 = temp; }
@@ -217,4 +193,25 @@ void fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color)
             curx2 += slope2;
         }
     }
+}
+
+void	draw_player(t_data *data, t_mlx *mlx, t_point player)
+{
+	t_point a;
+	t_point b;
+	t_point c;
+	int		L = 10;
+	double	h = 1.3 * L;
+	float	theta = get_radian(data->player_dir);
+	
+	a.x = player.x + cos(theta) * h;
+	a.y = player.y + sin(theta) * h;
+	b.x = player.x + cos(theta + (PI / 2)) * (L / 2);
+	b.y = player.y + sin(theta + (PI / 2)) * (L / 2);
+	c.x = player.x + cos(theta - (PI / 2)) * (L / 2);
+	c.y = player.y + sin(theta - (PI / 2)) * (L / 2);
+	__draw_line(mlx, a, b, HYELLOW);
+	__draw_line(mlx, b, c, HYELLOW);
+	__draw_line(mlx, c, a, HYELLOW);
+	__fill_triangle(mlx, a, b, c, HYELLOW);
 }

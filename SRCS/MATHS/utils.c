@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/06 00:22:22 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/11 19:36:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ void	init_point(t_point *point, float x, float y)
 {
 	point->x = x;
 	point->y = y;
-	return ;
 }
 
-bool	is_point_valid(t_point point)
+bool	valid_point(t_point point)
 {
 	if (point.x > W_WIDTH || point.x < 0)
 		return (false);
@@ -41,12 +40,12 @@ float	square(float to_square)
 	return (result);
 }
 
-float	normalize_rad(float rad)
+float	norm_angle(float angle)
 {
 
-	if (rad < 0)
-		rad += (2 * PI);
-	else if (rad > (2 * PI))
-		rad -= (2 * PI);
-	return (rad);
+	if (angle < 0)
+		angle += (2 * PI);
+	else if (angle > (2 * PI))
+		angle -= (2 * PI);
+	return (angle);
 }
