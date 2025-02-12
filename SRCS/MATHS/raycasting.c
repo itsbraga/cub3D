@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/06 00:37:59 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/07 22:49:36 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,6 @@ static	void	__inter_vline(t_data *d, t_ray *r, float ray_rad)
 	}
 }
 
-// Draw 3D rays
 void	raycasting(t_data *data, t_ray *r)
 {
 	unsigned int	ray_drawed;
