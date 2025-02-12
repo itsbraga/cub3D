@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/11 19:15:00 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:11:25 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	__has_valid_chars(char **map, int rows)
 		{
 			c = map[i][j];
 			if (ft_strchr(VALID_MAP, c) == NULL)
-				return (err_msg(c, ERR_CHAR, 1), false);
+				return (err_msg(&c, ERR_CHAR, 1), false);
 			j++;
 		}
 		i++;

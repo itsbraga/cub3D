@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/01/04 21:22:55 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:24:47 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	__free_mlx(t_mlx *mlx, bool full_clean)
 	// if (full_clean == true);
 	// if (mlx->win_ptr != NULL)
 		// free_and_set_null(&mlx->win_ptr; Doit être free ???
+	return ;
 	
 }
 
