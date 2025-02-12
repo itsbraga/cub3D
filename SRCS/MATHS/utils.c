@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/02/07 00:17:42 by pmateo           ###   ########.fr       */
-=======
-/*   Updated: 2025/02/11 19:36:27 by annabrag         ###   ########.fr       */
->>>>>>> 3dbbc232b03eb618ea312caa03c51d253e17a066
+/*   Updated: 2025/02/12 16:05:34 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	init_point(t_point *point, float x, float y)
-{
-	point->x = x;
-	point->y = y;
-}
 
 bool	valid_point(t_point point)
 {

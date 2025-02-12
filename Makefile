@@ -46,7 +46,7 @@ GARBAGE_DIR		=	TOOLS/GARBAGE_COLLECTOR/
 GARBAGE_F		=	garbage_collector.c gc_utils.c lst_utils.c
 
 INIT_DIR		=	INIT/
-INIT_F			=	init_structs.c draw_map2d.c render_game.c
+INIT_F			=	init_structs.c draw_map2d.c
 
 PARSING_DIR		=	PARSING/
 PARSING_F		=	check_map.c check_map2.c check_cub_file.c check_rgb.c
@@ -55,7 +55,10 @@ CONFIG_DIR		=	CONFIGS/
 CONFIG_F		=	mlx_events.c mlx_exit.c
 
 MATHS_DIR		=	MATHS/
-MATHS_F			=	draw_player.c utils.c raycasting.c 2d_to_3d.c
+MATHS_F			=	draw_line.c draw_player.c utils.c raycasting.c
+
+EXEC_DIR		=	EXECUTION/
+EXEC_F			=	render_game.c
 
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES
@@ -68,6 +71,7 @@ SRCS_F			=	$(addprefix $(TOOLS_DIR), $(TOOLS_F)) \
 					$(addprefix $(PARSING_DIR), $(PARSING_F)) \
 					$(addprefix $(CONFIG_DIR), $(CONFIG_F)) \
 					$(addprefix $(MATHS_DIR), $(MATHS_F)) \
+					$(addprefix $(EXEC_DIR), $(EXEC_F)) \
 					main.c
 
 OBJS_DIR		=	OBJS/

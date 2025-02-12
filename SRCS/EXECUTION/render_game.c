@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:56:25 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/11 18:57:00 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/12 23:41:39 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D"
+#include "cub3D.h"
+
+void	init_point(t_point *point, float x, float y)
+{
+	point->x = x;
+	point->y = y;
+}
 
 static void	__clear_window(t_mlx *mlx)
 {
@@ -29,6 +35,7 @@ static void	__clear_window(t_mlx *mlx)
 		}
 		y++;
 	}
+	return ;
 }
 
 int	render(t_data *data)
@@ -43,8 +50,8 @@ int	render(t_data *data)
 	// my_pixel_put(data->mlx, HRED, W_WIDTH / 2, W_HEIGHT / 2);
 	__clear_window(data->mlx);
 	draw_map2d(data, data->map);
-	draw_grid(data);
-	draw_player(data, data->mlx, data->player);
+	// draw_grid(data);
+	// draw_player(data, data->mlx, data->player);
 	raycasting(data, data->ray);
 	printf("play.pos.x = %f | play.pos.y = %f\n", data->player.x, data->player.y);
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr, data->mlx->img_ptr, 0, 0);

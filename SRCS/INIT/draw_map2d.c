@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map2d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:09:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/11 18:47:48 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/12 23:43:17 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,51 +49,46 @@ static void	__get_map_size(t_map *m)
 	m->M_HEIGHT = y;
 }
 
-// void	get_tiles_size(t_map *m)
+// static void	__draw_tile(t_data *data, t_point tile)
 // {
-// 	TILE_SIZE = (W_HEIGHT + m->M_HEIGHT / 2) / m->M_HEIGHT;
-// 	TILE_SIZE = (W_WIDTH + m->M_WIDTH / 2) / m->M_WIDTH;
+// 	t_point	pixel;
+// 	size_t	x_end;
+// 	size_t	y_end;
+
+// 	pixel.x = tile.x * TILE_SIZE;
+// 	pixel.y = tile.y * TILE_SIZE;
+// 	x_end = pixel.x + (TILE_SIZE);
+// 	y_end = pixel.y + (TILE_SIZE);
+// 	while (pixel.y < y_end)
+// 	{
+// 		pixel.x = tile.x * TILE_SIZE;
+// 		while (pixel.x < x_end)
+// 		{
+// 			my_pixel_put(data->mlx, HLAVENDER, pixel.x, pixel.y);
+// 			pixel.x++;
+// 		}
+// 		pixel.y++;
+// 	}
 // }
-
-static void	__draw_tile(t_data *data, t_point tile)
-{
-	t_point	pixel;
-	size_t	x_end;
-	size_t	y_end;
-
-	pixel.x = tile.x * TILE_SIZE;
-	pixel.y = tile.y * TILE_SIZE;
-	x_end = pixel.x + (TILE_SIZE);
-	y_end = pixel.y + (TILE_SIZE);
-	while (pixel.y < y_end)
-	{
-		pixel.x = tile.x * TILE_SIZE;
-		while (pixel.x < x_end)
-		{
-			my_pixel_put(data->mlx, HLAVENDER, pixel.x, pixel.y);
-			pixel.x++;
-		}
-		pixel.y++;
-	}
-}
 
 void	draw_map2d(t_data *data, t_map *m)
 {
-	t_point	tile;
+	(void)data;
+	// t_point	tile;
 	
-	tile.y = 0;
+	// tile.y = 0;
 	__get_map2d(m);
 	__get_map_size(m);
 	// get_tiles_size(m);
-	while (tile.y < m->M_HEIGHT)
-	{
-		tile.x = 0;
-		while (tile.x < m->M_WIDTH)
-		{
-			if (m->map2d[(int)tile.y][(int)tile.x] == '1')
-				__draw_tile(data, tile);
-			tile.x++;
-		}
-		tile.y++;
-	}
+	// while (tile.y < m->M_HEIGHT)
+	// {
+	// 	tile.x = 0;
+	// 	while (tile.x < m->M_WIDTH)
+	// 	{
+	// 		if (m->map2d[(int)tile.y][(int)tile.x] == '1')
+	// 			__draw_tile(data, tile);
+	// 		tile.x++;
+	// 	}
+	// 	tile.y++;
+	// }
 }
