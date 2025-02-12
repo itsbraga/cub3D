@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/06 00:22:22 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/07 00:17:42 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ float	square(float to_square)
 
 float	normalize_rad(float rad)
 {
-
 	if (rad < 0)
 		rad += (2 * PI);
 	else if (rad > (2 * PI))
