@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: u4s2e0r <u4s2e0r@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/05 05:53:18 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/13 22:07:09 by u4s2e0r          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define PI3 3*PI/2
 # define EPS 0.000001
 # define TILE_SIZE 64
+# define FOV 60
+# define PROJ_DISTANCE ((W_WIDTH / 2) / tan(get_radian(FOV) / 2))
 
 /******************************************************************************\
  * GARBAGE COLLECTOR FLAGS (Yama)
