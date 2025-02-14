@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/12 16:41:00 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 16:07:26 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ typedef struct s_ray
 	unsigned int	fov;
 	float			player_rad;
 }				t_ray;
+
+typedef struct s_game
+{
+	bool	game_started;
+}
 
 typedef struct s_data
 {
