@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/12 16:23:31 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 19:13:22 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,11 @@ static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
+	if (mlx == NULL)
+	{
+		err_msg("mlx", "is uninitialized", 0);
+		return ;
+	}
 	if (valid_point(p0) == false || valid_point(p1) == false)
 	{
 		ft_printf(2, "Point called with %s is out of map !!\n", __func__);

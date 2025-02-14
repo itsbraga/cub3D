@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 14:41:22 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 20:20:42 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	find_closest_inter(t_data *d, t_ray *ray, t_point *closest_inter)
 	}
 }
 
-void	draw_wall(t_mlx *mlx, t_ray *ray, float ray_angle, unsigned int curr_x)
+void	draw_wall(t_ray *ray, float ray_angle, unsigned int curr_x)
 {
 	float	wall_h;
 	t_point	start;
@@ -171,7 +171,7 @@ void	draw_wall(t_mlx *mlx, t_ray *ray, float ray_angle, unsigned int curr_x)
 	start.y = (W_HEIGHT / 2) - (wall_h / 2);
 	end.x = (float)curr_x;
 	end.y = start.y + wall_h;
-	draw_line(mlx, start, end, HLAVENDER);
+	draw_line(mlx_s(), start, end, HLAVENDER);
 }
 
 void	raycasting(t_data *data, t_ray *r)
@@ -191,7 +191,8 @@ void	raycasting(t_data *data, t_ray *r)
 		__inter_vline(data, r, ray_angle);
 		find_closest_inter(data, r, &closest_inter);
 		// draw_line(data->mlx, data->player, closest_inter, HRED);
-		draw_wall(data->mlx, r, ray_angle, ray_drawed);
+		// draw_wall(data->mlx, r, ray_angle, ray_drawed);
+		draw_wall(r, ray_angle, ray_drawed);
 		ray_angle += (get_radian(r->fov) / W_WIDTH);
 		ray_angle = norm_angle(ray_angle);
 		ray_drawed++;

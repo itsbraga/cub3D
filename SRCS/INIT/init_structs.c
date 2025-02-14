@@ -3,34 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/13 15:53:24 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 20:41:37 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_mlx(t_mlx *mlx, t_data *data)
+/*	SINGLETON (data_s() & mlx_s())
+	
+	ensures a class or structure has only one instance
+	and provides a global access point to it
+*/
+t_data	*data_s(void)
 {
-	mlx->mlx_ptr = mlx_init();
-	if (mlx->mlx_ptr == NULL)
-		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, W_WIDTH, W_HEIGHT, "kub");
-	if (mlx->win_ptr == NULL)
-		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
-	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, W_WIDTH, W_HEIGHT);
-	if (mlx->img_ptr == NULL)
-		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
-	mlx->img_buff = (char *)mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, &mlx->line_len,
-					&mlx->endian);
-	if (mlx->img_buff == NULL)
-		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
-	data->mlx = mlx;
+	static t_data	*instance = NULL;
+
+	if (instance == NULL)
+	{
+		instance = yama(CREATE, NULL, sizeof(t_data));
+		secure_malloc(instance, true);
+		instance->map_path = NULL;
+		instance->map = yama(CREATE, NULL, sizeof(t_map));
+		secure_malloc(instance->map, true);
+		instance->ray = yama(CREATE, NULL, sizeof(t_ray));
+		secure_malloc(instance->ray, true);
+		ft_bzero(instance->texture, 4);
+		ft_bzero(instance->f_rgb, 3);
+		ft_bzero(instance->c_rgb, 3);
+		instance->mlx = NULL;
+	}
+	return (instance);
 }
 
-// singleton version
+void	init_data(t_data *data)
+{
+	data->player.x = 160;
+	data->player.y = 80;
+	data->player_dir = WE;
+}
+
 t_mlx	*mlx_s(void)
 {
 	static t_mlx	*instance = NULL;
@@ -50,35 +64,22 @@ t_mlx	*mlx_s(void)
 	return (instance);
 }
 
-void	init_data(t_data *data)
+void	init_mlx(t_mlx *mlx, t_data *data)
 {
-	
-	data->map_path = NULL;
-	data->map = NULL;
-	data->ray = NULL;
-	ft_bzero(data->texture, 4);
-	ft_bzero(data->f_rgb, 3);
-	ft_bzero(data->c_rgb, 3);
-	data->player.x = 160;
-	data->player.y = 80;
-	data->player_dir = WE;
-	data->mlx = NULL;
-}
-
-t_data	*data_s(void)
-{
-	static t_data	*instance = NULL;
-
-	if (instance == NULL)
-	{
-		instance = yama(CREATE, NULL, sizeof(t_data));
-		secure_malloc(instance, true);
-		instance->map_path = NULL;
-		ft_bzero(instance->texture, 4);
-		ft_bzero(instance->f_rgb, 3);
-		ft_bzero(instance->c_rgb, 3);
-	}
-	return (instance);
+	mlx->mlx_ptr = mlx_init();
+	if (mlx->mlx_ptr == NULL)
+		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, W_WIDTH, W_HEIGHT, "kub");
+	if (mlx->win_ptr == NULL)
+		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
+	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, W_WIDTH, W_HEIGHT);
+	if (mlx->img_ptr == NULL)
+		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
+	mlx->img_buff = (char *)mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, &mlx->line_len,
+					&mlx->endian);
+	if (mlx->img_buff == NULL)
+		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
+	data->mlx = mlx;
 }
 
 void	init_map(t_map *m, t_data *data)
