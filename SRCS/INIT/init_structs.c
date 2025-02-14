@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/02 06:43:47 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/13 15:53:24 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	init_data(t_data *data)
 	ft_bzero(data->texture, 4);
 	ft_bzero(data->f_rgb, 3);
 	ft_bzero(data->c_rgb, 3);
-	data->player.x = 357;
-	data->player.y = 379;
+	data->player.x = 160;
+	data->player.y = 80;
 	data->player_dir = WE;
 	data->mlx = NULL;
 }
