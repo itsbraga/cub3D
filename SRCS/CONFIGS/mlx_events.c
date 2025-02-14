@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/14 21:49:02 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:53:40 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	handle_movement(t_data *data, t_kevent *key)
 	int	i;
 	move_tab	functions[7];
 
+	(void)key;
 	i = 0;
 	init_movetab(functions);
 	data->player.x = roundf(data->player.x + data->move_x);
