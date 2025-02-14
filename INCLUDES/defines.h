@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 04:06:29 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 20:49:59 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@
  * NAVIGATION
 \**************/
 
+//Array of pointers on functions
+typedef void	(*move_tab)(t_data *data);
+
 // Keyboard
 # define A 97
 # define W 119
@@ -105,6 +108,17 @@
 # define SO 180
 # define WE 270
 # define EA 90
+
+/**************\
+ * MLX EVENTS
+\**************/
+
+# define W_KEY 0
+# define S_KEY 1
+# define D_KEY 2
+# define A_KEY 3
+# define LEFT_KEY 4
+# define RIGHT_KEY 5
 
 /**************\
  * MLX COLORS
