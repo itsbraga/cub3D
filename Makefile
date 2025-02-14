@@ -46,7 +46,7 @@ GARBAGE_DIR		=	TOOLS/GARBAGE_COLLECTOR/
 GARBAGE_F		=	garbage_collector.c gc_utils.c lst_utils.c
 
 INIT_DIR		=	INIT/
-INIT_F			=	init_structs.c draw_map2d.c
+INIT_F			=	init_structs.c start_screen.c draw_map2d.c
 
 PARSING_DIR		=	PARSING/
 PARSING_F		=	check_map.c check_map2.c check_cub_file.c check_rgb.c

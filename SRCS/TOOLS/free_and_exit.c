@@ -3,45 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/02/12 16:24:47 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 20:20:02 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tools.h"
 
-void	__free_mlx(t_mlx *mlx, bool full_clean)
+static void	__free_mlx(t_mlx *mlx)
 {
-	(void)full_clean;
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_destroy_display(mlx->mlx_ptr);
 	free_and_set_null(&mlx->mlx_ptr);
 	// if (full_clean == true);
 	// if (mlx->win_ptr != NULL)
-		// free_and_set_null(&mlx->win_ptr; Doit être free ???
-	return ;
-	
+		// free_and_set_null(&mlx->win_ptr; Doit être free ???	
 }
 
-void	__free_data(t_data *data, bool full_clean)
+void	free_tab(char **tab)
 {
-	(void)data, (void)full_clean;
-	return ;
+	int	i;
+
+	if (tab == NULL)
+		return ;
+	i = 0;
+	while (tab[i] != NULL)
+	{
+		free_and_set_null((void **)&tab[i]);
+		i++;
+	}
+	free_and_set_null((void **)&tab);
 }
+
+// static void	__free_data(t_data *data)
+// {
+// 	if (data != NULL)
+// 	{
+// 		if (data->map_path != NULL)
+// 			free_and_set_null((void **)&data->map_path);
+// 		if (data->map != NULL)
+// 			free_tab(data->map->map2d);
+// 		if (data->ray != NULL)
+// 			// ?
+// 	}
+// }
 
 void	clean_exit(int exit_status)
 {
-	t_mlx   *mlx_ptr;
-	t_data  *data_ptr;
-	
-	mlx_ptr = mlx_s();
-	data_ptr = data_s(); // Il n'y a pas de singleton pour la struct data ?!
-	if (mlx_ptr != NULL)
-		__free_mlx(mlx_ptr, true);
-	if (data_ptr != NULL)
-		__free_data(data_ptr, true);
+	if (mlx_s() != NULL)
+		__free_mlx(mlx_s());
+	// if (data_s() != NULL)
+	// 	__free_data(data_s());
 	// yama(CLEAN_ALL, NULL, 0);
 	exit(exit_status);
 }

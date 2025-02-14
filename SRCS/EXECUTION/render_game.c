@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:56:25 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/13 15:51:04 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 20:38:52 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	__clear_window(t_mlx *mlx)
 	int	x;
 	int	y;
 
-	x = 0;
+	if (mlx == NULL|| mlx->img_buff == NULL)
+		return ;
 	y = 0;
 	while (y < W_HEIGHT)
 	{
