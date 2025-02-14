@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/12 16:10:50 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 21:47:14 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	draw_map2d(t_data *data, t_map *map);
 \******************************************************************************/
 
 // mlx_events.c
-int		handle_keypress(int key, t_data *data);
+int     set_keypress_flag(int key, t_data *data, t_kevent *k);
 
 // mlx_exit.c
 void	del_win(t_mlx *mlx);
