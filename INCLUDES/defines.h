@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/13 15:50:46 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 04:06:29 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define PI3 3*PI/2
 # define EPS 0.000001
 # define TILE_SIZE 64
+# define FOV 60
+# define PROJ_DISTANCE ((W_WIDTH / 2) / tan(get_radian(FOV) / 2))
 
 /******************************************************************************\
  * GARBAGE COLLECTOR FLAGS (Yama)
