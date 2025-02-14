@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 04:05:59 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 04:19:47 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,13 @@ void	find_closest_inter(t_data *d, t_ray *ray, t_point *closest_inter)
 	{
 		closest_inter->x = ray->h_ray_inter.x;
 		closest_inter->y = ray->h_ray_inter.y;
-		ray->dist_wall = dist_h;
+		ray->dist_wall = sqrt(dist_h);
 	}
 	else
 	{
 		closest_inter->x = ray->v_ray_inter.x;
 		closest_inter->y = ray->v_ray_inter.y;
-		ray->dist_wall = dist_v;
+		ray->dist_wall = sqrt(dist_v);
 	}
 }
 
@@ -164,6 +164,7 @@ void	draw_wall(t_mlx *mlx, t_ray *ray, float ray_angle, unsigned int curr_x)
 	ray->dist_wall = ray->dist_wall * cos(fixed_angle);
 	// **************************************************
 	wall_h = (TILE_SIZE * PROJ_DISTANCE) / ray->dist_wall;
+	printf("##dist_wall = %f##\n##wall_h = %f##\n", ray->dist_wall, wall_h);
 	if (wall_h > W_HEIGHT)
 		wall_h = W_HEIGHT;
 	start.x = (float)curr_x;
