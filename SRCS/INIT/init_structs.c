@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 21:46:09 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:52:47 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,22 +82,6 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 	if (mlx->img_buff == NULL)
 		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
 	data->mlx = mlx;
-}
-
-t_data	*data_s(void)
-{
-	static t_data	*instance = NULL;
-
-	if (instance == NULL)
-	{
-		instance = yama(CREATE, NULL, sizeof(t_data));
-		secure_malloc(instance, true);
-		instance->map_path = NULL;
-		ft_bzero(instance->texture, 4);
-		ft_bzero(instance->f_rgb, 3);
-		ft_bzero(instance->c_rgb, 3);
-	}
-	return (instance);
 }
 
 void	init_map(t_map *m, t_data *data)
