@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 20:41:37 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:46:09 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	init_data(t_data *data)
 	data->player.x = 160;
 	data->player.y = 80;
 	data->player_dir = WE;
+	data->move_x = 0;
+	data->move_y = 0;
 }
 
 t_mlx	*mlx_s(void)
@@ -82,12 +84,34 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 	data->mlx = mlx;
 }
 
+t_data	*data_s(void)
+{
+	static t_data	*instance = NULL;
+
+	if (instance == NULL)
+	{
+		instance = yama(CREATE, NULL, sizeof(t_data));
+		secure_malloc(instance, true);
+		instance->map_path = NULL;
+		ft_bzero(instance->texture, 4);
+		ft_bzero(instance->f_rgb, 3);
+		ft_bzero(instance->c_rgb, 3);
+	}
+	return (instance);
+}
+
 void	init_map(t_map *m, t_data *data)
 {
 	m->map2d = NULL;
 	m->M_HEIGHT = 0; // MAP
 	m->M_WIDTH = 0; 
 	data->map = m;
+}
+
+void	init_kevent(t_data *data, t_kevent *k)
+{
+	(void)data;
+	ft_bzero(k->key_tab, 6);
 }
 
 void	init_ray(t_data *data, t_ray *ray)
