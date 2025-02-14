@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/13 15:50:41 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 04:05:59 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,9 +163,9 @@ void	draw_wall(t_mlx *mlx, t_ray *ray, float ray_angle, unsigned int curr_x)
 	fixed_angle = norm_angle(fixed_angle);
 	ray->dist_wall = ray->dist_wall * cos(fixed_angle);
 	// **************************************************
-	wall_h = (TILE_SIZE * W_WIDTH) / ray->dist_wall;
-	if (wall_h > W_WIDTH)
-		wall_h = W_WIDTH;
+	wall_h = (TILE_SIZE * PROJ_DISTANCE) / ray->dist_wall;
+	if (wall_h > W_HEIGHT)
+		wall_h = W_HEIGHT;
 	start.x = (float)curr_x;
 	start.y = (W_HEIGHT / 2) - (wall_h / 2);
 	end.x = (float)curr_x;
