@@ -6,13 +6,13 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 15:48:41 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 16:05:40 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 19:16:53 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	draw_start_screen()
-{
+// void	draw_start_screen()
+// {
 	
-}
+// }

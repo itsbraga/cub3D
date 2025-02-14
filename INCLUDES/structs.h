@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 16:07:26 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 20:29:52 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ typedef struct s_ray
 	float			player_rad;
 }				t_ray;
 
-typedef struct s_game
+typedef	struct	s_keyevent
 {
-	bool	game_started;
-}
+	bool	key_tab[6];
+}			t_kevent;
 
 typedef struct s_data
 {
@@ -68,6 +68,8 @@ typedef struct s_data
 	unsigned int	c_rgb[3];
 	t_point			player;
 	int				player_dir;
+	float			move_x;
+	float			move_y;
 	t_mlx			*mlx;
 }				t_data;
 

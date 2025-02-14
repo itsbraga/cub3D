@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/13 15:53:24 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/14 20:30:08 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	init_data(t_data *data)
 	data->player.x = 160;
 	data->player.y = 80;
 	data->player_dir = WE;
+	data->move_x = 0;
+	data->move_y = 0;
 	data->mlx = NULL;
 }
 
@@ -87,6 +89,13 @@ void	init_map(t_map *m, t_data *data)
 	m->M_HEIGHT = 0; // MAP
 	m->M_WIDTH = 0; 
 	data->map = m;
+}
+
+void	init_kevent(t_data *data, t_kevent *k)
+{
+	
+	(void)data;
+	ft_bzero(k->key_tab, 6);
 }
 
 void	init_ray(t_data *data, t_ray *ray)
