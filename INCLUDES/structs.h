@@ -3,15 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 21:46:48 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/17 02:31:52 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+/******************************************************************************\
+ * GRAPHIC LIBRARY
+\******************************************************************************/
+
+typedef struct s_mlx
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	char		*img_buff;
+	int			bpp;
+	int			line_len;
+	int			endian;
+}				t_mlx;
 
 /******************************************************************************\
  * CUB3D
@@ -30,17 +45,6 @@ typedef struct s_map
 	size_t		M_WIDTH; 
 }				t_map;
 
-typedef struct s_mlx
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	void		*img_ptr;
-	char		*img_buff;
-	int			bpp;
-	int			line_len;
-	int			endian;
-}				t_mlx;
-
 typedef struct s_ray
 {
 	unsigned int	ray_amount;
@@ -53,10 +57,24 @@ typedef struct s_ray
 	float			player_rad;
 }				t_ray;
 
+typedef enum e_state
+{
+	STATE_TITLE,
+	STATE_GAME
+}			t_state;
+
+typedef struct s_game
+{
+	t_state		game_state;
+	t_point		button;
+	int			width;
+	int			height;
+}				t_game;
+
 typedef	struct s_keyevent
 {
 	bool	key_tab[6];
-}			t_kevent;
+}				t_kevent;
 
 typedef struct s_data
 {
@@ -71,6 +89,7 @@ typedef struct s_data
 	float			move_x;
 	float			move_y;
 	t_mlx			*mlx;
+	t_game			*game;
 }				t_data;
 
 /******************************************************************************\

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/14 21:53:40 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/17 02:43:34 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-//ne pas oublier de reset le tableau de boolean
+// NE PAS OUBLIER DE RESET LE TAB DE BOOLEAN
 
 void	move_forward(t_data *data)
 {
@@ -67,36 +67,32 @@ void	init_movetab(move_tab *functions)
 
 void	handle_movement(t_data *data, t_kevent *key)
 {
-	int	i;
+	// int	i;
 	move_tab	functions[7];
 
 	(void)key;
-	i = 0;
+	// i = 0;
 	init_movetab(functions);
 	data->player.x = roundf(data->player.x + data->move_x);
 	data->player.y = roundf(data->player.y + data->move_y);
 }
 
-int	set_keypress_flag(int keyval, t_data *data, t_kevent *key)
-{	
-	if (keyval == XK_Escape)
-	{
-		mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
-		data->mlx->win_ptr = NULL;
-	}
-	if (keyval == W)
+int	set_keypress_flag(int keycode, t_data *data, t_kevent *key)
+{
+	(void)data;
+	if (keycode == XK_Escape)
+		clean(mlx_s());
+	if (keycode == W)
 		key->key_tab[W_KEY] = 1;
-	if (keyval == S)
+	if (keycode == S)
 		key->key_tab[S_KEY] = 1;
-	if (keyval == D)
+	if (keycode == D)
 		key->key_tab[D_KEY] = 1;
-	if (keyval == A)
+	if (keycode == A)
 		key->key_tab[A_KEY] = 1;
-	if (keyval == XK_Left)
+	if (keycode == XK_Left)
 		key->key_tab[LEFT_KEY] = 1;
-	if (keyval == XK_Right)
+	if (keycode == XK_Right)
 		key->key_tab[RIGHT_KEY] = 1;
 	return (SUCCESS);
 }
-
-

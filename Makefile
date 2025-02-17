@@ -40,25 +40,25 @@ DEBUG		=	-O3 -g
 #******************************************************************************#
 
 TOOLS_DIR		=	TOOLS/
-TOOLS_F			=	error.c secure.c free_and_exit.c pixel_put.c draw_grid.c
+TOOLS_F			=	error.c secure.c free_and_exit.c draw_grid.c
 
 GARBAGE_DIR		=	TOOLS/GARBAGE_COLLECTOR/
 GARBAGE_F		=	garbage_collector.c gc_utils.c lst_utils.c
 
-INIT_DIR		=	INIT/
-INIT_F			=	init_structs.c start_screen.c draw_map2d.c
-
 PARSING_DIR		=	PARSING/
 PARSING_F		=	check_map.c check_map2.c check_cub_file.c check_rgb.c
 
-CONFIG_DIR		=	CONFIGS/
-CONFIG_F		=	mlx_events.c mlx_exit.c
+CONFIG_DIR		=	CONFIGS/MLX_HOOKS/
+CONFIG_F		=	mlx_events.c mlx_events2.c mlx_exit.c
 
 MATHS_DIR		=	MATHS/
-MATHS_F			=	draw_line.c draw_player.c utils.c raycasting.c
+MATHS_F			=	draw_line.c draw_player.c formulas.c raycasting.c
+
+INIT_DIR		=	INITIALIZATION/
+INIT_F			=	singletons.c init_structs.c
 
 EXEC_DIR		=	EXECUTION/
-EXEC_F			=	render_game.c
+EXEC_F			=	start_screen.c draw_map2d.c render.c
 
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES
@@ -67,10 +67,10 @@ EXEC_F			=	render_game.c
 SRCS_DIR		=	SRCS/
 SRCS_F			=	$(addprefix $(TOOLS_DIR), $(TOOLS_F)) \
 					$(addprefix $(GARBAGE_DIR), $(GARBAGE_F)) \
-					$(addprefix $(INIT_DIR), $(INIT_F)) \
 					$(addprefix $(PARSING_DIR), $(PARSING_F)) \
 					$(addprefix $(CONFIG_DIR), $(CONFIG_F)) \
 					$(addprefix $(MATHS_DIR), $(MATHS_F)) \
+					$(addprefix $(INIT_DIR), $(INIT_F)) \
 					$(addprefix $(EXEC_DIR), $(EXEC_F)) \
 					main.c
 

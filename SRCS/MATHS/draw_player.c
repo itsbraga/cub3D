@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/12 16:04:33 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/17 00:44:12 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	__fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int 
     }
 }
 
-void	draw_player(t_data *data, t_mlx *mlx, t_point player)
+void	draw_player(t_mlx *mlx, t_data *data, t_point player)
 {
 	t_point a;
 	t_point b;

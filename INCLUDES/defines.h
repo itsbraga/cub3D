@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 21:47:07 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/17 02:42:19 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
+
+/******************************************************************************\
+ * MATHS
+\******************************************************************************/
 
 # define PI 3.1415926535
 # define PI2 PI/2
@@ -69,9 +73,9 @@
 # define W_WIDTH 1024
 # define W_HEIGHT 1024
 
-/**************\
+/*****************\
  * NAVIGATION
-\**************/
+\*****************/
 
 // Array of pointers to functions
 typedef void	(*move_tab)(t_data *data);
@@ -82,13 +86,15 @@ typedef void	(*move_tab)(t_data *data);
 # define D 100
 # define S 115
 
-// Mouse
-# define MUP	4
-# define MDOWN	5
+/*****************\
+ * START SCREEN
+\*****************/
 
-/**************\
+# define START_SCREEN "../START_SCREEN/Teletubbies.xpm"
+
+/*****************\
  * MESSAGES
-\**************/
+\*****************/
 
 # define DEL_WIN "\nWindow successfully destroyed.\n\n"
 # define DEL_IMG "\nImage and window successfully destroyed.\n\n"

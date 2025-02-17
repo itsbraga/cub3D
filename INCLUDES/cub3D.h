@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 21:47:14 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/17 02:06:25 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,65 +33,70 @@
 # include "colors.h"
 /*******************************************/
 
-// main.c
-void	clear_window(t_mlx *mlx);
-
 /******************************************************************************\
- * INIT
+* INITIALIZATION
 \******************************************************************************/
 
 // init_structs.c
+void	init_map(t_map *map, t_data *data);
+void	init_ray(t_ray *ray, t_data *data);
+void	init_kevent(t_data *data, t_kevent *k);
+void	init_game(t_game *game);
+void	init_structs(t_data *data, t_mlx *mlx);
+
+// singletons.c
 t_mlx	*mlx_s(void);
 t_data	*data_s(void);
 void	init_data(t_data *data);
 void	init_mlx(t_mlx *mlx, t_data *data);
-void	init_map(t_map *map, t_data *data);
-void	init_ray(t_data *data, t_ray *ray);
-
-// draw_map2d.c
-void	draw_map2d(t_data *data, t_map *map);
 
 /******************************************************************************\
- * CONFIGS
+* CONFIGS/MLX_HOOKS
 \******************************************************************************/
-
+ 
 // mlx_events.c
-int     set_keypress_flag(int key, t_data *data, t_kevent *k);
+int		set_keypress_flag(int keycode, t_data *data, t_kevent *k);
 
+// mlx_events2.c
+void	set_hooks(t_mlx *mlx, t_data *data);
+ 
 // mlx_exit.c
 void	del_win(t_mlx *mlx);
 void	del_img(t_mlx *mlx);
 int		clean(t_mlx *mlx);
-
+ 
 /******************************************************************************\
- * MATHS
+* MATHS
 \******************************************************************************/
-
+  
 // utils.c
-bool	valid_point(t_point point);
 float	get_radian(int degree);
 float	square(float to_square);
 float	norm_angle(float angle);
 
 // draw_line.c
-void	swap_point(t_point *p0, t_point *p1);
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
-
+  
 // draw_player.c
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
-void	draw_player(t_data *data, t_mlx *mlx, t_point player);
-
+void	draw_player(t_mlx *mlx, t_data *data, t_point player);
+  
 // raycasting.c
 void	raycasting(t_data *data, t_ray *r);
 
-// 2d_to_3d.c
-
 /******************************************************************************\
- * EXECUTION
+* EXECUTION
 \******************************************************************************/
-
-// render_game.c
-void	init_point(t_point *point, float x, float y);
+   
+// render.c
+void	my_pixel_put(t_mlx *mlx, int color, int x, int y);
+void	clear_window(t_mlx *mlx);
 int		render(t_data *data);
+
+// start_screen.c
+void	draw_start_screen(t_mlx *mlx, t_game *game);
+   
+// draw_map2d.c
+void	draw_map2d(t_data *data, t_map *map);
 
 #endif

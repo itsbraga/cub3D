@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:30:51 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/11 18:51:18 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:16:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ void	secure_malloc(void *to_secure, bool cleanup);
 void	free_and_set_null(void **to_free);
 
 // draw_grid.c
-void	draw_grid(t_data *data);
-
-// pixel_put.c
-void	my_pixel_put(t_mlx *mlx, int color, int x, int y);
+void	draw_grid(t_mlx *mlx);
 
 /******************************************************************************\
  * GARBAGE_COLLECTOR
@@ -52,6 +49,5 @@ int		free_gc_tab(t_gc_lst **y, char **tab);
 
 // garbage_collector.c
 void	*yama(int flag, void *ptr, size_t size);
-
 
 #endif
