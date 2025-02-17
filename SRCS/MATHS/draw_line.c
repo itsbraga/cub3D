@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 19:13:22 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:30:54 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	swap_point(t_point *p0, t_point *p1)
+static void	__swap_point(t_point *p0, t_point *p1)
 {
 	t_point tmp;
 
@@ -22,6 +22,15 @@ void	swap_point(t_point *p0, t_point *p1)
 	p1->y = p0->y;
 	p0->x = tmp.x;
 	p0->y = tmp.y;
+}
+
+static bool	__valid_point(t_point point)
+{
+	if (point.x > W_WIDTH || point.x < 0)
+		return (false);
+	if (point.y > W_HEIGHT || point.y < 0)
+		return (false);
+	return (true);
 }
 
 static void	__draw_hline(t_mlx *mlx, t_point p0, t_point p1, int color)
@@ -34,7 +43,7 @@ static void	__draw_hline(t_mlx *mlx, t_point p0, t_point p1, int color)
 	int p = 0;
 	
 	if (p0.x > p1.x)
-		swap_point(&p0, &p1);
+		__swap_point(&p0, &p1);
 	dx = p1.x - p0.x;
 	dy = p1.y - p0.y;
 	
@@ -73,8 +82,7 @@ static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 	int p = 0;
 	
 	if (p0.y > p1.y)
-		swap_point(&p0, &p1);
-	
+		__swap_point(&p0, &p1);
 	dx = p1.x - p0.x;
 	dy = p1.y - p0.y;
 	
@@ -105,12 +113,7 @@ static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
-	if (mlx == NULL)
-	{
-		err_msg("mlx", "is uninitialized", 0);
-		return ;
-	}
-	if (valid_point(p0) == false || valid_point(p1) == false)
+	if (__valid_point(p0) == false || __valid_point(p1) == false)
 	{
 		ft_printf(2, "Point called with %s is out of map !!\n", __func__);
 		return ;

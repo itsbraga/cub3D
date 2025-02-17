@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_structs.c                                     :+:      :+:    :+:   */
+/*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 21:52:47 by annabrag         ###   ########.fr       */
+/*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
+/*   Updated: 2025/02/17 01:28:28 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/*	SINGLETON (data_s() & mlx_s())
+/*	SINGLETON
 	
 	ensures a class or structure has only one instance
 	and provides a global access point to it
@@ -34,23 +34,16 @@ t_data	*data_s(void)
 		ft_bzero(instance->f_rgb, 3);
 		ft_bzero(instance->c_rgb, 3);
 		instance->mlx = NULL;
+		instance->game = yama(CREATE, NULL, sizeof(t_game));
+		secure_malloc(instance->game, true);
 	}
 	return (instance);
-}
-
-void	init_data(t_data *data)
-{
-	data->player.x = 160;
-	data->player.y = 80;
-	data->player_dir = WE;
-	data->move_x = 0;
-	data->move_y = 0;
 }
 
 t_mlx	*mlx_s(void)
 {
 	static t_mlx	*instance = NULL;
-
+	
 	if (instance == NULL)
 	{
 		instance = yama(CREATE, NULL, sizeof(t_mlx));
@@ -66,50 +59,32 @@ t_mlx	*mlx_s(void)
 	return (instance);
 }
 
+void	init_data(t_data *data)
+{
+	data->player.x = 160;
+	data->player.y = 80;
+	data->player_dir = WE;
+	data->move_x = 0;
+	data->move_y = 0;
+}
+
 void	init_mlx(t_mlx *mlx, t_data *data)
 {
+	char	*win_title;
+
+	win_title = "TeleCubies zombies";
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
 		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, W_WIDTH, W_HEIGHT, "kub");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, W_WIDTH, W_HEIGHT, win_title);
 	if (mlx->win_ptr == NULL)
-		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
+		(err_msg("MLX", ERR_MLX, 0), del_win(mlx));
 	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, W_WIDTH, W_HEIGHT);
 	if (mlx->img_ptr == NULL)
-		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
-	mlx->img_buff = (char *)mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, &mlx->line_len,
-					&mlx->endian);
+		(err_msg("MLX", ERR_MLX, 0), del_img(mlx));
+	mlx->img_buff = (char *)mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, 
+			&mlx->line_len, &mlx->endian);
 	if (mlx->img_buff == NULL)
 		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
 	data->mlx = mlx;
-}
-
-void	init_map(t_map *m, t_data *data)
-{
-	m->map2d = NULL;
-	m->M_HEIGHT = 0; // MAP
-	m->M_WIDTH = 0; 
-	data->map = m;
-}
-
-void	init_kevent(t_data *data, t_kevent *k)
-{
-	(void)data;
-	ft_bzero(k->key_tab, 6);
-}
-
-void	init_ray(t_data *data, t_ray *ray)
-{
-	ray->ray_amount = W_WIDTH;
-	ray->fov = 60;
-	ray->player_rad = get_radian(data->player_dir);
-	ray->h_offset.x = 0;
-	ray->h_offset.y = 0;
-	ray->v_offset.x = 0;
-	ray->v_offset.y = 0;
-	ray->h_ray_inter.x = 0;
-	ray->h_ray_inter.y = 0;
-	ray->v_ray_inter.x = 0;
-	ray->v_ray_inter.y = 0;
-	data->ray = ray;
 }

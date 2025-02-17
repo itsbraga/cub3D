@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:37:38 by art3mis           #+#    #+#             */
-/*   Updated: 2025/01/04 20:47:48 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/17 01:15:09 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	del_win(t_mlx *mlx)
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	free(mlx->mlx_ptr);
 	mlx->mlx_ptr = NULL;
-	exit(EXIT_FAILURE);
+	exit(FAILURE);
 }
 
 void	del_img(t_mlx *mlx)
@@ -28,7 +28,7 @@ void	del_img(t_mlx *mlx)
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	free(mlx->mlx_ptr);
 	mlx->mlx_ptr = NULL;
-	exit(EXIT_FAILURE);
+	exit(FAILURE);
 }
 
 int	clean(t_mlx *mlx)
@@ -39,5 +39,5 @@ int	clean(t_mlx *mlx)
 	mlx_destroy_display(mlx->mlx_ptr);
 	free(mlx->mlx_ptr);
 	mlx->mlx_ptr = NULL;
-	exit(EXIT_SUCCESS);
+	exit(SUCCESS);
 }

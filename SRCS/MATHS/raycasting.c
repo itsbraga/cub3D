@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 20:20:42 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/17 00:45:01 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,18 @@ static void	__inter_hline(t_data *d, t_ray *r, float ray_rad)
 	else if (ray_rad > PI)
 	{
 		r->h_ray_inter.y = floor(d->player.y / TILE_SIZE) * TILE_SIZE - 0.0001;
-		r->h_ray_inter.x =  d->player.x + (d->player.y - r->h_ray_inter.y) * inv_tan;
+		r->h_ray_inter.x =  d->player.x + (d->player.y - r->h_ray_inter.y)
+				* inv_tan;
 		r->h_offset.y = -TILE_SIZE;
 		r->h_offset.x = -(r->h_offset.y) * inv_tan;
 		printf("1\n");
 	}
 	else if (ray_rad < PI)
 	{
-		r->h_ray_inter.y = floor(d->player.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-		r->h_ray_inter.x = d->player.x + (d->player.y - r->h_ray_inter.y) * inv_tan;
+		r->h_ray_inter.y = floor(d->player.y / TILE_SIZE) * TILE_SIZE
+				+ TILE_SIZE;
+		r->h_ray_inter.x = d->player.x + (d->player.y - r->h_ray_inter.y)
+				* inv_tan;
 		r->h_offset.y = TILE_SIZE;
 		r->h_offset.x = -r->h_offset.y * inv_tan;
 		printf("2\n");
@@ -83,15 +86,18 @@ static void	__inter_vline(t_data *d, t_ray *r, float ray_rad)
 	else if (ray_rad > PI2 && ray_rad < PI3)
 	{
 		r->v_ray_inter.x = floor(d->player.x / TILE_SIZE) * TILE_SIZE - 0.0001;
-		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) * neg_tan;
+		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) 
+				* neg_tan;
 		r->v_offset.x = -TILE_SIZE;
 		r->v_offset.y = -r->v_offset.x * neg_tan;
 		printf("4\n");
 	}
 	else if (ray_rad < PI2 || ray_rad > PI3)
 	{
-		r->v_ray_inter.x = floor(d->player.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) * neg_tan;
+		r->v_ray_inter.x = floor(d->player.x / TILE_SIZE) * TILE_SIZE
+				+ TILE_SIZE;
+		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) 
+				* neg_tan;
 		r->v_offset.x = TILE_SIZE;
 		r->v_offset.y = -r->v_offset.x * neg_tan;
 		printf("5\n");
@@ -101,8 +107,8 @@ static void	__inter_vline(t_data *d, t_ray *r, float ray_rad)
 	{
 		curr_tile.x = r->v_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->v_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH ||
-        (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH
+			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
     	{
         	printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
         	break;
@@ -136,7 +142,6 @@ void	find_closest_inter(t_data *d, t_ray *ray, t_point *closest_inter)
 	delta_yv = ray->v_ray_inter.y - d->player.y;
 	dist_h = (delta_xh * delta_xh) + (delta_yh * delta_yh);
 	dist_v = (delta_xv * delta_xv) + (delta_yv * delta_yv);
-	
 	if (dist_h < dist_v)
 	{
 		closest_inter->x = ray->h_ray_inter.x;
@@ -190,8 +195,8 @@ void	raycasting(t_data *data, t_ray *r)
 		__inter_hline(data, r, ray_angle);
 		__inter_vline(data, r, ray_angle);
 		find_closest_inter(data, r, &closest_inter);
-		// draw_line(data->mlx, data->player, closest_inter, HRED);
-		// draw_wall(data->mlx, r, ray_angle, ray_drawed);
+		// draw_line(mlx_s(), data->player, closest_inter, HRED);
+		// draw_wall(mlx_s(), r, ray_angle, ray_drawed);
 		draw_wall(r, ray_angle, ray_drawed);
 		ray_angle += (get_radian(r->fov) / W_WIDTH);
 		ray_angle = norm_angle(ray_angle);

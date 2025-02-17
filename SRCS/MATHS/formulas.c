@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   formula.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/12 16:05:34 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/16 23:28:47 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-bool	valid_point(t_point point)
-{
-	if (point.x > W_WIDTH || point.x < 0)
-		return (false);
-	if (point.y > W_HEIGHT || point.y < 0)
-		return (false);
-	return (true);
-}
 
 float	get_radian(int degree)
 {

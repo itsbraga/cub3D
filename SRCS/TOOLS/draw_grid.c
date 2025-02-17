@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:12:07 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/12 16:23:59 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/16 23:24:17 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	__draw_hgrid(t_mlx *mlx)
 	return ;
 }
 
-void	draw_grid(t_data *data)
+void	draw_grid(t_mlx *mlx)
 {
-	__draw_hgrid(data->mlx);
-	__draw_vgrid(data->mlx);
+	__draw_hgrid(mlx);
+	__draw_vgrid(mlx);
 }
