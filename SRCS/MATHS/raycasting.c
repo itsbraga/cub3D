@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/17 00:45:01 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/17 05:08:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void	draw_wall(t_ray *ray, float ray_angle, unsigned int curr_x)
 	fixed_angle = norm_angle(fixed_angle);
 	ray->dist_wall = ray->dist_wall * cos(fixed_angle);
 	// **************************************************
-	wall_h = (TILE_SIZE * PROJ_DISTANCE) / ray->dist_wall;
+	wall_h = (TILE_SIZE * W_HEIGHT) / ray->dist_wall;
 	printf("##dist_wall = %f##\n##wall_h = %f##\n", ray->dist_wall, wall_h);
 	if (wall_h > W_HEIGHT)
 		wall_h = W_HEIGHT;
