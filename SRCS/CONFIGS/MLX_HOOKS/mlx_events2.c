@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_events2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 22:40:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/17 02:44:19 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/18 18:25:13 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static int	__keypress_handler(int keycode, t_data *data)
 {
-	float	move_x = 0;
-	float	move_y = 0;
-	
+	float	move_x;
+	float	move_y;
+
+	move_x = 0;
+	move_y = 0;
 	if (data->game->game_state == STATE_TITLE)
 	{
 		if (keycode == XK_Return) // Touche Entrée
@@ -41,6 +43,7 @@ static int	__keypress_handler(int keycode, t_data *data)
 		data->player_dir = data->player_dir % 360;
 		data->ray->player_rad = get_radian(data->player_dir);
 	}
+	/********************** Player mouvements *************************/
 	if (keycode == W)
 	{
 		// cos = deplacement horizontal ; sin = deplacement vertical
@@ -64,6 +67,7 @@ static int	__keypress_handler(int keycode, t_data *data)
 	}
 	data->player.x = roundf(data->player.x + move_x);
 	data->player.y = roundf(data->player.y + move_y);
+	/******************************************************************/
 	return (SUCCESS);
 }
 

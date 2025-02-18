@@ -60,6 +60,9 @@ INIT_F			=	singletons.c init_structs.c
 EXEC_DIR		=	EXECUTION/
 EXEC_F			=	start_screen.c draw_map2d.c render.c
 
+BONUS_DIR		=	BONUS/
+BONUS_F			=	collisions.c
+
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES
 #******************************************************************************#
@@ -72,6 +75,7 @@ SRCS_F			=	$(addprefix $(TOOLS_DIR), $(TOOLS_F)) \
 					$(addprefix $(MATHS_DIR), $(MATHS_F)) \
 					$(addprefix $(INIT_DIR), $(INIT_F)) \
 					$(addprefix $(EXEC_DIR), $(EXEC_F)) \
+					$(addprefix $(BONUS_DIR), $(BONUS_F)) \
 					main.c
 
 OBJS_DIR		=	OBJS/

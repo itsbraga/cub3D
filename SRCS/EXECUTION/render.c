@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/17 05:17:13 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/18 19:18:34 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ int	render(t_data *data)
 	// draw_line(mlx, p0, p1, HRED);
 	// my_pixel_put(mlx, HRED, W_WIDTH / 2, W_HEIGHT / 2);
 
-	if (data->game != NULL && data->game->game_state == STATE_TITLE)
-		draw_start_screen(mlx, data->game);
-	else
-	{
+	// if (data->game != NULL && data->game->game_state == STATE_TITLE)
+	// 	draw_start_screen(mlx, data->game);
+	// else
+	// {
 		clear_window(mlx);
 		draw_map2d(data, data->map);
 		// draw_grid(mlx);
@@ -80,6 +80,6 @@ int	render(t_data *data)
 		printf("play.pos.x = %f | play.pos.y = %f\n", data->player.x, data->player.y);
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,
 			mlx->img_ptr, 0, 0);
-	}
+	// }
 	return (SUCCESS);
 }

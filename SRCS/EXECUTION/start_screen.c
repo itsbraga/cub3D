@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_screen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 15:48:41 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/17 05:24:13 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/18 19:14:53 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	__draw_start_button(t_mlx *mlx, t_game *game)
 
 void	draw_start_screen(t_mlx *mlx, t_game *game)
 {
-	void	*tmp_bg_img;
+	void	*tmp_bg_img = NULL;
 	void	*tmp_button_img;
 	char	*button_buff;
 	t_mlx	*tmp_mlx;
