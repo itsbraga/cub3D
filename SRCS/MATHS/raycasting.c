@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/17 05:08:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/18 18:23:26 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	__inter_hline(t_data *d, t_ray *r, float ray_rad)
     	}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
-			printf("HIT A WALL !");
+			printf("HIT A WALL !\n");
 			break;
 		}
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/17 02:42:19 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/18 19:17:14 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef void	(*move_tab)(t_data *data);
  * START SCREEN
 \*****************/
 
-# define START_SCREEN "../START_SCREEN/Teletubbies.xpm"
+# define START_SCREEN "/SRCS/CONFIGS/START_SCREEN/Teletubbies.xpm"
 
 /*****************\
  * MESSAGES
