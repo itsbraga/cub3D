@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/19 21:41:30 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 00:10:48 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 // init_structs.c
 void	init_map(t_map *map, t_data *data);
 void	init_ray(t_ray *ray, t_data *data);
-void	init_kevent(t_data *data, t_kevent *k);
+void	init_keys(t_keys *key, t_data *data);
 void	init_game(t_game *game);
 void	init_structs(t_data *data, t_mlx *mlx);
 
@@ -55,7 +55,8 @@ void	init_mlx(t_mlx *mlx, t_data *data);
 \******************************************************************************/
  
 // mlx_events.c
-int		set_keypress_flag(int keycode, t_data *data, t_kevent *k);
+int		set_keypress_flag(int keycode, t_data *data);
+int		set_keyrelease_flag(int keycode, t_data *data);
 
 // mlx_events2.c
 void	set_hooks(t_mlx *mlx, t_data *data);
