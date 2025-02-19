@@ -36,10 +36,10 @@ void	init_ray(t_ray *ray, t_data *data)
 	data->ray = ray;
 }
 
-void	init_kevent(t_data *data, t_kevent *k)
+void	init_kevent(t_kevent *k, t_data *data)
 {
-	(void)data;
 	ft_bzero(k->key_tab, 6);
+	data->key = k;
 }
 
 void	init_game(t_game *game)
@@ -57,6 +57,6 @@ void	init_structs(t_data *data, t_mlx *mlx)
 	init_mlx(mlx, data);
 	init_map(data->map, data);
 	init_ray(data->ray, data);
-	// init_kevent(data, data->kevent);
+	init_kevent(data->key, data);
 	init_game(data->game);
 }

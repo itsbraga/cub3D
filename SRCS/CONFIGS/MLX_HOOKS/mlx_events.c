@@ -67,32 +67,63 @@ void	init_movetab(move_tab *functions)
 
 void	handle_movement(t_data *data, t_kevent *key)
 {
-	// int	i;
+	int	i;
 	move_tab	functions[7];
-
-	(void)key;
-	// i = 0;
+	
+	i = 0;
 	init_movetab(functions);
+	data->player.x = roundf(data->player.x + data->move_x);
+	data->player.y = roundf(data->player.y + data->move_y);
+	while (i != 6)
+	{
+		if (key->key_tab[i] == 1)
+			functions[i](data);
+		i++;
+	}
 	data->player.x = roundf(data->player.x + data->move_x);
 	data->player.y = roundf(data->player.y + data->move_y);
 }
 
-int	set_keypress_flag(int keycode, t_data *data, t_kevent *key)
+void	reset_var(t_data *data)
 {
-	(void)data;
+	data->move_x = 0;
+	data->move_y = 0;
+}
+
+int	set_keyrelease_flag(int keycode, t_data *d)
+{
+	if (keycode == W)
+		d->key->key_tab[W_KEY] = 0;
+	if (keycode == S)
+		d->key->key_tab[S_KEY] = 0;
+	if (keycode == D)
+		d->key->key_tab[D_KEY] = 0;
+	if (keycode == A)
+		d->key->key_tab[A_KEY] = 0;
+	if (keycode == XK_Left)
+		d->key->key_tab[LEFT_KEY] = 0;
+	if (keycode == XK_Right)
+		d->key->key_tab[RIGHT_KEY] = 0;
+	return (SUCCESS);
+}
+
+int	set_keypress_flag(int keycode, t_data *d)
+{
 	if (keycode == XK_Escape)
 		clean(mlx_s());
 	if (keycode == W)
-		key->key_tab[W_KEY] = 1;
+		d->key->key_tab[W_KEY] = 1;
 	if (keycode == S)
-		key->key_tab[S_KEY] = 1;
+		d->key->key_tab[S_KEY] = 1;
 	if (keycode == D)
-		key->key_tab[D_KEY] = 1;
+		d->key->key_tab[D_KEY] = 1;
 	if (keycode == A)
-		key->key_tab[A_KEY] = 1;
+		d->key->key_tab[A_KEY] = 1;
 	if (keycode == XK_Left)
-		key->key_tab[LEFT_KEY] = 1;
+		d->key->key_tab[LEFT_KEY] = 1;
 	if (keycode == XK_Right)
-		key->key_tab[RIGHT_KEY] = 1;
+		d->key->key_tab[RIGHT_KEY] = 1;
+	handle_movement(d, d->key);
+	reset_var(d);
 	return (SUCCESS);
 }

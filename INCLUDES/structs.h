@@ -90,6 +90,7 @@ typedef struct s_data
 	float			move_y;
 	t_mlx			*mlx;
 	t_game			*game;
+	t_kevent		*key;
 }				t_data;
 
 /******************************************************************************\
