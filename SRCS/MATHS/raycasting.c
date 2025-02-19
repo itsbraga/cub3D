@@ -6,13 +6,13 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/18 18:23:26 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/19 22:45:07 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	__inter_hline(t_data *d, t_ray *r, float ray_rad)
+void	inter_hline(t_data *d, t_ray *r, float ray_rad)
 {
 	float	inv_tan;
 	t_point	curr_tile;
@@ -70,7 +70,7 @@ static void	__inter_hline(t_data *d, t_ray *r, float ray_rad)
 	}
 }
 
-static void	__inter_vline(t_data *d, t_ray *r, float ray_rad)
+void	inter_vline(t_data *d, t_ray *r, float ray_rad)
 {
 	float	neg_tan;
 	t_point	curr_tile;
@@ -189,16 +189,14 @@ void	raycasting(t_data *data, t_ray *r)
 	ray_angle = norm_angle(r->player_rad - (get_radian(r->fov) / 2));
 	while (ray_drawed < r->ray_amount)
 	{
-		printf("ray rad = %d\n", ray_drawed);
-		printf("ray rad = %f\n", ray_angle);
+		printf("ray_drawed rad = %d\n", ray_drawed);
+		printf("ray_angle rad = %f\n", ray_angle);
 		printf("player dir = %f\n", r->player_rad);
-		__inter_hline(data, r, ray_angle);
-		__inter_vline(data, r, ray_angle);
+		inter_hline(data, r, ray_angle);
+		inter_vline(data, r, ray_angle);
 		find_closest_inter(data, r, &closest_inter);
-		// draw_line(mlx_s(), data->player, closest_inter, HRED);
-		// draw_wall(mlx_s(), r, ray_angle, ray_drawed);
 		draw_wall(r, ray_angle, ray_drawed);
-		ray_angle += (get_radian(r->fov) / W_WIDTH);
+		ray_angle += (get_radian(r->fov) / W_WIDTH); // peut-etre cosinus
 		ray_angle = norm_angle(ray_angle);
 		ray_drawed++;
 	}

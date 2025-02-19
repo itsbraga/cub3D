@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/02/14 20:20:02 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/19 21:52:36 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,25 @@ void	free_tab(char **tab)
 	free_and_set_null((void **)&tab);
 }
 
-// static void	__free_data(t_data *data)
-// {
-// 	if (data != NULL)
-// 	{
-// 		if (data->map_path != NULL)
-// 			free_and_set_null((void **)&data->map_path);
-// 		if (data->map != NULL)
-// 			free_tab(data->map->map2d);
-// 		if (data->ray != NULL)
-// 			// ?
-// 	}
-// }
+static void	__free_data(t_data *data)
+{
+	if (data != NULL)
+	{
+		if (data->map_path != NULL)
+			free_and_set_null((void **)&data->map_path);
+		if (data->map != NULL)
+			free_tab(data->map->map2d);
+		// if (data->ray != NULL)
+			// ?
+	}
+}
 
 void	clean_exit(int exit_status)
 {
 	if (mlx_s() != NULL)
 		__free_mlx(mlx_s());
-	// if (data_s() != NULL)
-	// 	__free_data(data_s());
+	if (data_s() != NULL)
+		__free_data(data_s());
 	// yama(CLEAN_ALL, NULL, 0);
 	exit(exit_status);
 }

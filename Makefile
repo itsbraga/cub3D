@@ -58,10 +58,10 @@ INIT_DIR		=	INITIALIZATION/
 INIT_F			=	singletons.c init_structs.c
 
 EXEC_DIR		=	EXECUTION/
-EXEC_F			=	start_screen.c draw_map2d.c render.c
+EXEC_F			=	start_screen.c map_info.c render.c
 
 BONUS_DIR		=	BONUS/
-BONUS_F			=	collisions.c
+BONUS_F			=	collisions.c minimap.c
 
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES

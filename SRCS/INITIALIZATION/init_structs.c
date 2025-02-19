@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/17 02:47:50 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/19 22:44:50 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_map(t_map *m, t_data *data)
 void	init_ray(t_ray *ray, t_data *data)
 {
 	ray->ray_amount = W_WIDTH;
-	ray->fov = 60;
+	ray->fov = 45;
 	ray->player_rad = get_radian(data->player_dir);
 	ray->h_offset.x = 0;
 	ray->h_offset.y = 0;

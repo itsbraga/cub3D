@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map2d.c                                       :+:      :+:    :+:   */
+/*   map_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:09:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/14 18:25:23 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/19 21:54:16 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	__get_map2d(t_map *m)
+void	get_map2d(t_map *m)
 {
-	m->map2d = malloc(16 * sizeof(char *));
+	m->map2d = malloc(17 * sizeof(char *));
+	secure_malloc(m->map2d, true);
 	m->map2d[0] = ft_strdup("1111111111111111");
 	m->map2d[1] = ft_strdup("1010000001000001");
 	m->map2d[2] = ft_strdup("1010001001000001");
@@ -34,7 +35,7 @@ static void	__get_map2d(t_map *m)
 	m->map2d[16] = NULL;
 }
 
-static void	__get_map_size(t_map *m)
+void	get_map_size(t_map *m)
 {
 	size_t	x;
 	size_t	y;
@@ -49,45 +50,8 @@ static void	__get_map_size(t_map *m)
 	m->M_HEIGHT = y;
 }
 
-// static void	__draw_tile(t_data *data, t_point tile)
-// {
-// 	t_point	pixel;
-// 	size_t	x_end;
-// 	size_t	y_end;
-
-// 	pixel.x = tile.x * TILE_SIZE;
-// 	pixel.y = tile.y * TILE_SIZE;
-// 	x_end = pixel.x + (TILE_SIZE);
-// 	y_end = pixel.y + (TILE_SIZE);
-// 	while (pixel.y < y_end)
-// 	{
-// 		pixel.x = tile.x * TILE_SIZE;
-// 		while (pixel.x < x_end)
-// 		{
-// 			my_pixel_put(data->mlx, HLAVENDER, pixel.x, pixel.y);
-// 			pixel.x++;
-// 		}
-// 		pixel.y++;
-// 	}
-// }
-
-void	draw_map2d(t_data *data, t_map *m)
+void	get_map_info(t_map *m)
 {
-	(void)data;
-	// t_point	tile;
-	
-	// tile.y = 0;
-	__get_map2d(m);
-	__get_map_size(m);
-	// while (tile.y < m->M_HEIGHT)
-	// {
-	// 	tile.x = 0;
-	// 	while (tile.x < m->M_WIDTH)
-	// 	{
-	// 		if (m->map2d[(int)tile.y][(int)tile.x] == '1')
-	// 			__draw_tile(data, tile);
-	// 		tile.x++;
-	// 	}
-	// 	tile.y++;
-	// }
+	get_map2d(m);
+	get_map_size(m);
 }
