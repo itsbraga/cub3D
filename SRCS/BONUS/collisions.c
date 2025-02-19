@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/19 23:28:33 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 00:04:08 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,25 @@ int	avoid_collisions(int keycode, t_data *d)
 	float	buffer;
 	int		collision_pos;
 	int		collision_neg;
-
+	
 	move_x = 0;
 	move_y = 0;
-	next_player_x = 0;
-	next_player_y = 0;
-	buffer = 0.2;
-	collision_pos = d->map->map2d[(int)(next_player_x + buffer)][(int)(next_player_y + buffer)];
-	collision_neg = d->map->map2d[(int)(next_player_x - buffer)][(int)(next_player_y - buffer)];
-	if (keycode == W)
+	if (keycode == W) // d->keys->key_tab[0]
 	{
 		move_x = cos(get_radian(d->player_dir)) * 5;
 		move_y = sin(get_radian(d->player_dir)) * 5;
 	}
-	else if (keycode == A)
+	else if (keycode == A) // d->keys->key_tab[2]
 	{
 		move_x = sin(get_radian(d->player_dir)) * 5;
 		move_y = -cos(get_radian(d->player_dir)) * 5;
 	}
-	else if (keycode == S)
+	else if (keycode == S) // d->keys->key_tab[1]
 	{
 		move_x = -cos(get_radian(d->player_dir)) * 5;
 		move_y = -sin(get_radian(d->player_dir)) * 5;
 	}
-	else if (keycode == D)
+	else if (keycode == D) // d->keys->key_tab[3]
 	{
 		move_x = -sin(get_radian(d->player_dir)) * 5;
 		move_y = cos(get_radian(d->player_dir)) * 5;
@@ -65,23 +60,28 @@ int	avoid_collisions(int keycode, t_data *d)
 	next_player_x = d->player.x + move_x;
 	next_player_y = d->player.y + move_y;
 	printf("d->map->map2d[x: %d][y: %d]\n", (int)next_player_x, (int)next_player_y);
+	
+	// Verif des limites de la map
 	if (next_player_x < 0 || next_player_x >= d->map->M_WIDTH ||
 		next_player_y < 0 || next_player_y >= d->map->M_HEIGHT)
-		return (SUCCESS);
-
-	/*	Verif des collisions comprenant le joueur et sa zone de securite (buffer)
-	
-		obs: Sans buffer, la collision n'est effectuee qu'a la position exacte du joueur
-			 donc il peut se retrouver trop pres des murs
-	*/
+		return (SUCCESS); // same as continue;
+		
+		// Verif des collisions comprenant le joueur et sa zone de securite (buffer)
+		
+		// obs: Sans buffer, la collision n'est effectuee qu'a la position exacte du joueur
+		// 		donc il peut se retrouver trop pres des murs
+	buffer = 0.2;
+	collision_pos = d->map->map2d[(int)(next_player_x + buffer)][(int)(next_player_y + buffer)];
+	collision_neg = d->map->map2d[(int)(next_player_x - buffer)][(int)(next_player_y - buffer)];
 	if (collision_pos == '1' || collision_neg == '1')
 	{
 		printf(BOLD RED "Collision!\n" RESET);
-		return (SUCCESS);
+		return (SUCCESS); // same as continue;
 	}
 
 	// Mise a jour de la position du joueur
 	d->player.x = next_player_x;
 	d->player.y = next_player_y;
+
 	return (SUCCESS);
 }

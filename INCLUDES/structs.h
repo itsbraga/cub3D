@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/17 02:31:52 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/19 23:56:37 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ typedef struct s_game
 	int			height;
 }				t_game;
 
-typedef	struct s_keyevent
+typedef	struct s_keys_event
 {
 	bool	key_tab[6];
-}				t_kevent;
+}				t_keys;
 
 typedef struct s_data
 {
@@ -90,6 +90,7 @@ typedef struct s_data
 	float			move_y;
 	t_mlx			*mlx;
 	t_game			*game;
+	t_keys			*keys;
 }				t_data;
 
 /******************************************************************************\

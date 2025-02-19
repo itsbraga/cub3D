@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/19 22:44:50 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 00:10:54 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	init_ray(t_ray *ray, t_data *data)
 	data->ray = ray;
 }
 
-void	init_kevent(t_data *data, t_kevent *k)
+void	init_keys(t_keys *k, t_data *data)
 {
-	(void)data;
 	ft_bzero(k->key_tab, 6);
+	data->keys = k;
 }
 
 void	init_game(t_game *game)
@@ -57,6 +57,6 @@ void	init_structs(t_data *data, t_mlx *mlx)
 	init_mlx(mlx, data);
 	init_map(data->map, data);
 	init_ray(data->ray, data);
-	// init_kevent(data, data->kevent);
+	init_keys(data->keys, data);
 	init_game(data->game);
 }
