@@ -28,7 +28,8 @@ int	main(int argc, char **argv)
 	init_structs(data, mlx);
 	// printf("%s\noffset.x = %f | offset.y = %f\n", __func__, ray.offset.x, ray.offset.y);
 	mlx_loop_hook(mlx->mlx_ptr, &render, data);
-	// mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &set_keypress_flag, data);
-	set_hooks(mlx, data);
+	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &set_keypress_flag, data);
+	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &set_keyrelease_flag, data);
+	// set_hooks(mlx, data);
 	mlx_loop(mlx->mlx_ptr);
 }

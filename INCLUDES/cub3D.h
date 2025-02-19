@@ -40,7 +40,7 @@
 // init_structs.c
 void	init_map(t_map *map, t_data *data);
 void	init_ray(t_ray *ray, t_data *data);
-void	init_kevent(t_data *data, t_kevent *k);
+void	init_kevent(t_kevent *key, t_data *data);
 void	init_game(t_game *game);
 void	init_structs(t_data *data, t_mlx *mlx);
 
@@ -55,7 +55,8 @@ void	init_mlx(t_mlx *mlx, t_data *data);
 \******************************************************************************/
  
 // mlx_events.c
-int		set_keypress_flag(int keycode, t_data *data, t_kevent *k);
+int		set_keypress_flag(int keycode, t_data *data);
+int		set_keyrelease_flag(int keycode, t_data *data);
 
 // mlx_events2.c
 void	set_hooks(t_mlx *mlx, t_data *data);

@@ -35,6 +35,7 @@ t_data	*data_s(void)
 		ft_bzero(instance->c_rgb, 3);
 		instance->mlx = NULL;
 		instance->game = yama(CREATE, NULL, sizeof(t_game));
+		instance->key = yama(CREATE, NULL, sizeof(t_game));
 		secure_malloc(instance->game, true);
 	}
 	return (instance);
