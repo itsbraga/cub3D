@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/17 02:05:13 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/19 22:47:53 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	main(int argc, char **argv)
 	mlx = mlx_s();
 	init_structs(data, mlx);
 	// printf("%s\noffset.x = %f | offset.y = %f\n", __func__, ray.offset.x, ray.offset.y);
-	mlx_loop_hook(mlx->mlx_ptr, &render, data);
+	// mlx_loop_hook(mlx->mlx_ptr, &render, data);
+	mlx_loop_hook(mlx->mlx_ptr, &render_2d, data);
 	// mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &set_keypress_flag, data);
 	set_hooks(mlx, data);
 	mlx_loop(mlx->mlx_ptr);

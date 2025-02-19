@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/18 17:38:02 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/19 21:41:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
 void	draw_player(t_mlx *mlx, t_data *data, t_point player);
   
 // raycasting.c
+void	inter_hline(t_data *d, t_ray *r, float ray_rad);
+void	inter_vline(t_data *d, t_ray *r, float ray_rad);
+void	find_closest_inter(t_data *d, t_ray *ray, t_point *closest_inter);
 void	raycasting(t_data *data, t_ray *r);
 
 /******************************************************************************\
@@ -96,13 +99,21 @@ int		render(t_data *data);
 // start_screen.c
 void	draw_start_screen(t_mlx *mlx, t_game *game);
    
-// draw_map2d.c
-void	draw_map2d(t_data *data, t_map *map);
+// map_info.c
+void	get_map2d(t_map *m);
+void	get_map_size(t_map *m);
+void	get_map_info(t_map *m);
 
 /******************************************************************************\
-* BONUS
-\******************************************************************************/
+ * BONUS
+ \******************************************************************************/
+ 
+// collisions.c
+int		avoid_collisions(int keycode, t_data *data);
 
-
+// minimap.c
+void	draw_map2d(t_data *data, t_map *map);
+void	raycasting_2d(t_data *data, t_ray *r);
+int		render_2d(t_data *data);
 
 #endif

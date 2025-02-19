@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/18 19:17:14 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/19 22:55:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,8 @@ typedef void	(*move_tab)(t_data *data);
 # define HWHITE 0x00FFFFFF
 # define HBLACK 0xFF000000
 # define HLAVENDER 0x009683EC
+# define HLPINK 0x00FFB6C1
+# define HROYPURPLE 0x005A006C
+# define HBRUSSIAN 0x0019001E
 
 #endif

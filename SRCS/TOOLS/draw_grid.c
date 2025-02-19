@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 16:12:07 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/16 23:24:17 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/19 22:51:18 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	__draw_vgrid(t_mlx *mlx)
 	p2.y = W_HEIGHT;
 	while (p1.x < W_WIDTH)
 	{
-		draw_line(mlx, p1, p2, HWHITE);
+		draw_line(mlx, p1, p2, HBLACK);
 		p1.x += TILE_SIZE;
 		p2.x += TILE_SIZE;
 	}
@@ -41,7 +41,7 @@ static void	__draw_hgrid(t_mlx *mlx)
 	p2.y = TILE_SIZE; 
 	while (p1.y < W_HEIGHT)
 	{
-		draw_line(mlx, p1, p2, HWHITE);
+		draw_line(mlx, p1, p2, HBLACK);
 		p1.y += TILE_SIZE;
 		p2.y += TILE_SIZE;
 	}

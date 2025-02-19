@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/17 01:28:28 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/19 21:26:11 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ t_mlx	*mlx_s(void)
 
 void	init_data(t_data *data)
 {
-	data->player.x = 160;
-	data->player.y = 80;
-	data->player_dir = WE;
+	data->player.x = 200;
+	data->player.y = 100;
+	data->player_dir = SO;
 	data->move_x = 0;
 	data->move_y = 0;
 }

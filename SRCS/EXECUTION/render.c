@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/18 19:18:34 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/19 22:54:42 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	clear_window(t_mlx *mlx)
 		pixel.x = 0;
 		while (pixel.x < W_WIDTH)
 		{
-			my_pixel_put(mlx, HBLACK, pixel.x, pixel.y);
+			my_pixel_put(mlx, HBRUSSIAN, pixel.x, pixel.y);
 			pixel.x++;
 		}
 		pixel.y++;
@@ -73,9 +73,7 @@ int	render(t_data *data)
 	// else
 	// {
 		clear_window(mlx);
-		draw_map2d(data, data->map);
-		// draw_grid(mlx);
-		// draw_player(mlx, data, data->player);
+		get_map_info(data->map);
 		raycasting(data, data->ray);
 		printf("play.pos.x = %f | play.pos.y = %f\n", data->player.x, data->player.y);
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,
