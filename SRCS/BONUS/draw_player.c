@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/17 00:44:12 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:08:31 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,12 @@ void	draw_player(t_mlx *mlx, t_data *data, t_point player)
 	double	h = 1.3 * L;
 	float	theta = get_radian(data->player_dir);
 	
-	a.x = player.x + cos(theta) * h;
-	a.y = player.y + sin(theta) * h;
-	b.x = player.x + cos(theta + (PI / 2)) * (L / 2);
-	b.y = player.y + sin(theta + (PI / 2)) * (L / 2);
-	c.x = player.x + cos(theta - (PI / 2)) * (L / 2);
-	c.y = player.y + sin(theta - (PI / 2)) * (L / 2);
+	a.x = (player.x + cos(theta) * h) / 2;
+	a.y = (player.y + sin(theta) * h) / 2;
+	b.x = (player.x + cos(theta + (PI / 2)) * (L / 2)) / 2;
+	b.y = (player.y + sin(theta + (PI / 2)) * (L / 2)) / 2;
+	c.x = (player.x + cos(theta - (PI / 2)) * (L / 2)) / 2;
+	c.y = (player.y + sin(theta - (PI / 2)) * (L / 2)) / 2;
 	draw_line(mlx, a, b, HYELLOW);
 	draw_line(mlx, b, c, HYELLOW);
 	draw_line(mlx, c, a, HYELLOW);

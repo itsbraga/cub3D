@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw_line_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 19:18:08 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:17:25 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	__swap_point(t_point *p0, t_point *p1)
 
 static bool	__valid_point(t_point point)
 {
-	if (point.x > W_WIDTH || point.x < 0)
+	if (point.x > (W_WIDTH / 4) || point.x < 0)
 		return (false);
-	if (point.y > W_HEIGHT || point.y < 0)
+	if (point.y > (W_HEIGHT / 4) || point.y < 0)
 		return (false);
 	return (true);
 }
@@ -59,7 +59,7 @@ static void	__draw_hline(t_mlx *mlx, t_point p0, t_point p1, int color)
 		p = 2 * dy - dx;
 		while (i <= dx)
 		{
-			my_pixel_put(mlx, color, p0.x + i, y);
+			my_pixel_put(mlx, color, ((p0.x + i) / 2), (y / 2));
 			if (p >= 0)
 			{
 				y += dir;
@@ -98,7 +98,7 @@ static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 		p = 2 * dx - dy;
 		while (i <= dy)
 		{
-			my_pixel_put(mlx, color, x, p0.y + i);
+			my_pixel_put(mlx, color, (x / 2), ((p0.y + i) / 2));
 			if (p >= 0)
 			{
 				x += dir;
@@ -111,7 +111,7 @@ static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 	return ;
 }
 
-void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
+void	draw_line_bonus(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
 	if (__valid_point(p0) == false || __valid_point(p1) == false)
 	{
