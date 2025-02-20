@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/19 22:45:07 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:42:24 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	inter_hline(t_data *d, t_ray *r, float ray_rad)
 				* inv_tan;
 		r->h_offset.y = -TILE_SIZE;
 		r->h_offset.x = -(r->h_offset.y) * inv_tan;
-		printf("1\n");
+		// printf("1\n");
 	}
 	else if (ray_rad < PI)
 	{
@@ -44,7 +44,7 @@ void	inter_hline(t_data *d, t_ray *r, float ray_rad)
 				* inv_tan;
 		r->h_offset.y = TILE_SIZE;
 		r->h_offset.x = -r->h_offset.y * inv_tan;
-		printf("2\n");
+		// printf("2\n");
 	}
 	while (true)
 	{
@@ -53,12 +53,12 @@ void	inter_hline(t_data *d, t_ray *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
     	{
-        	printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
+        	// printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
-			printf("HIT A WALL !\n");
+			// printf("HIT A WALL !\n");
 			break;
 		}
 		else
@@ -75,7 +75,7 @@ void	inter_vline(t_data *d, t_ray *r, float ray_rad)
 	float	neg_tan;
 	t_point	curr_tile;
 	
-	printf("%s\n", __func__);
+	// printf("%s\n", __func__);
 	neg_tan = -tan(ray_rad);
 	if (fabs(ray_rad - PI) < EPS || fabs(ray_rad) < EPS)
 	{
@@ -90,7 +90,7 @@ void	inter_vline(t_data *d, t_ray *r, float ray_rad)
 				* neg_tan;
 		r->v_offset.x = -TILE_SIZE;
 		r->v_offset.y = -r->v_offset.x * neg_tan;
-		printf("4\n");
+		// printf("4\n");
 	}
 	else if (ray_rad < PI2 || ray_rad > PI3)
 	{
@@ -100,7 +100,7 @@ void	inter_vline(t_data *d, t_ray *r, float ray_rad)
 				* neg_tan;
 		r->v_offset.x = TILE_SIZE;
 		r->v_offset.y = -r->v_offset.x * neg_tan;
-		printf("5\n");
+		// printf("5\n");
 
 	}
 	while (true)
@@ -110,12 +110,12 @@ void	inter_vline(t_data *d, t_ray *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
     	{
-        	printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
+        	// printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
-			printf("HIT A WALL\n");
+			// printf("HIT A WALL\n");
 			break;
 		}
 		else

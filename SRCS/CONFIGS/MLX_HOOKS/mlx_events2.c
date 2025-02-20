@@ -6,12 +6,13 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 22:40:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/20 00:08:09 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:16:20 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+// cos = deplacement horizontal ; sin = deplacement vertical
 static int	__keypress_handler(int keycode, t_data *d)
 {
 	float	move_x;
@@ -28,7 +29,7 @@ static int	__keypress_handler(int keycode, t_data *d)
 		}
 	}
 	if (keycode == XK_Escape)
-		clean(d->mlx);
+		exit_game(d->mlx);
 	if (keycode == XK_Left)
 	{
 		d->player_dir -= 4;
@@ -43,36 +44,11 @@ static int	__keypress_handler(int keycode, t_data *d)
 		d->player_dir = d->player_dir % 360;
 		d->ray->player_rad = get_radian(d->player_dir);
 	}
-	/********************** Player mouvements *************************/
 
-	// if (avoid_collisions(keycode, d) == FAILURE)
-	// 	return (FAILURE);
-
-	// cos = deplacement horizontal ; sin = deplacement vertical
-	if (keycode == W)
-	{
-		move_x = cos(get_radian(d->player_dir)) * 5;
-		move_y = sin(get_radian(d->player_dir)) * 5;
-	}
-	else if (keycode == A)
-	{
-		move_x = sin(get_radian(d->player_dir)) * 5;
-		move_y = -cos(get_radian(d->player_dir)) * 5;
-	}
-	else if (keycode == S)
-	{
-		move_x = -cos(get_radian(d->player_dir)) * 5;
-		move_y = -sin(get_radian(d->player_dir)) * 5;
-	}
-	else if (keycode == D)
-	{
-		move_x = -sin(get_radian(d->player_dir)) * 5;
-		move_y = cos(get_radian(d->player_dir)) * 5;
-	}
-	d->player.x = roundf(d->player.x + move_x);
-	d->player.y = roundf(d->player.y + move_y);
+	if (avoid_collisions(keycode, d) == FAILURE)
+		return (SUCCESS);
 	
-	/******************************************************************/
+	// printf("Player position updated: (%.2f, %.2f)\n", d->player.x, d->player.y);
 	
 	return (SUCCESS);
 }
@@ -101,5 +77,5 @@ void	set_hooks(t_mlx *mlx, t_data *data)
 {
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__keypress_handler, data);
 	mlx_mouse_hook(mlx->win_ptr, &__mouse_handler, data);
-	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &clean, mlx);
+	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
 }

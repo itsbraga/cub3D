@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/02/19 21:52:36 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:33:11 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	__free_data(t_data *data)
 	}
 }
 
-void	clean_exit(int exit_status)
+void	clean_structs(int exit_status)
 {
 	if (mlx_s() != NULL)
 		__free_mlx(mlx_s());

@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/20 00:08:46 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:31:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	init_movetab(move_tab *functions)
 
 void	handle_movement(t_data *data, t_keys *key)
 {
-	int	i;
+	int			i;
 	move_tab	functions[7];
 	
 	i = 0;
@@ -110,7 +110,7 @@ int	set_keyrelease_flag(int keycode, t_data *d)
 int	set_keypress_flag(int keycode, t_data *d)
 {
 	if (keycode == XK_Escape)
-		clean(mlx_s());
+		exit_game(mlx_s());
 	if (keycode == W)
 		d->keys->key_tab[W_KEY] = 1;
 	if (keycode == S)
@@ -153,5 +153,5 @@ int	set_keypress_flag(int keycode, t_data *d)
 // 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &set_keypress_flag, data);
 // 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &set_keyrelease_flag, data);
 // 	// mlx_mouse_hook(mlx->win_ptr, &mouse_handler, data);
-// 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &clean, mlx);
+// 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
 // }

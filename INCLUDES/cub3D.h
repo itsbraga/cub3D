@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 00:10:48 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:34:23 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	set_hooks(t_mlx *mlx, t_data *data);
 // mlx_exit.c
 void	del_win(t_mlx *mlx);
 void	del_img(t_mlx *mlx);
-int		clean(t_mlx *mlx);
+int		exit_game(t_mlx *mlx);
  
 /******************************************************************************\
 * MATHS
