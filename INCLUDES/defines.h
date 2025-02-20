@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/19 22:55:01 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:53:34 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define TILE_SIZE 64
 # define FOV 60
 # define PROJ_DISTANCE ((W_WIDTH / 2) / tan(get_radian(FOV) / 2))
+# define MOVE_SPEED 3
 
 /******************************************************************************\
  * GARBAGE COLLECTOR FLAGS (Yama)

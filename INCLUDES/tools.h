@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:30:51 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/16 23:16:10 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/20 14:34:52 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	err_msg(char *detail, char *reason, int quotes);
 int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_no);
 
 // free_and_exit.c
-void	clean_exit(int exit_status);
+void	clean_structs(int exit_status);
 
 // secure.c
 void	secure_malloc(void *to_secure, bool cleanup);

@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 15:48:41 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/18 19:14:53 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:36:07 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_start_screen(t_mlx *mlx, t_game *game)
 	button_buff = mlx_get_data_addr(tmp_button_img, &mlx->bpp, &mlx->line_len,
 			&mlx->endian);
 	if (button_buff == NULL)
-		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
+		(err_msg("MLX", ERR_MLX, 0), clean_structs(FAILURE));
 	printf("##DEBUG 3 ##\n");
 	tmp_mlx->mlx_ptr = mlx->mlx_ptr;
 	tmp_mlx->win_ptr = mlx->win_ptr;

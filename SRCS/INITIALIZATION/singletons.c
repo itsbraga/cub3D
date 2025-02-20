@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/20 00:07:50 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:25:13 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ t_mlx	*mlx_s(void)
 
 void	init_data(t_data *data)
 {
-	data->player.x = 200;
-	data->player.y = 100;
+	data->player.x = 800;
+	data->player.y = 700;
 	data->player_dir = SO;
 	data->move_x = 0;
 	data->move_y = 0;
@@ -77,7 +77,7 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 	win_title = "TeleCubies zombies";
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
-		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
+		(err_msg("MLX", ERR_MLX, 0), clean_structs(FAILURE));
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, W_WIDTH, W_HEIGHT, win_title);
 	if (mlx->win_ptr == NULL)
 		(err_msg("MLX", ERR_MLX, 0), del_win(mlx));
@@ -87,6 +87,6 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 	mlx->img_buff = (char *)mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, 
 			&mlx->line_len, &mlx->endian);
 	if (mlx->img_buff == NULL)
-		(err_msg("MLX", ERR_MLX, 0), clean_exit(FAILURE));
+		(err_msg("MLX", ERR_MLX, 0), clean_structs(FAILURE));
 	data->mlx = mlx;
 }
