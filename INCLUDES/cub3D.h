@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 14:34:23 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:17:41 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	get_map_info(t_map *m);
 int		avoid_collisions(int keycode, t_data *data);
 
 // minimap.c
+void	draw_line_bonus(t_mlx *mlx, t_point p0, t_point p1, int color);
 void	draw_map2d(t_data *data, t_map *map);
 void	raycasting_2d(t_data *data, t_ray *r);
 int		render_2d(t_data *data);
