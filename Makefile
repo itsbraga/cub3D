@@ -49,7 +49,7 @@ PARSING_DIR		=	PARSING/
 PARSING_F		=	check_map.c check_map2.c check_cub_file.c check_rgb.c
 
 CONFIG_DIR		=	CONFIGS/MLX_HOOKS/
-CONFIG_F		=	movements.c camera.c mlx_events.c mlx_events2.c mlx_exit.c
+CONFIG_F		=	movements.c camera.c mlx_events.c mlx_exit.c
 
 MATHS_DIR		=	MATHS/
 MATHS_F			=	draw_line.c formulas.c raycasting.c
@@ -58,7 +58,7 @@ INIT_DIR		=	INITIALIZATION/
 INIT_F			=	singletons.c init_structs.c
 
 EXEC_DIR		=	EXECUTION/
-EXEC_F			=	start_screen.c map_info.c render.c
+EXEC_F			=	start_screen.c map_info.c render.c debug.c
 
 BONUS_DIR		=	BONUS/
 BONUS_F			=	collisions.c draw_line_bonus.c draw_player.c minimap.c
