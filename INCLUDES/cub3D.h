@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 19:17:41 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:17:02 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,20 @@ void	init_mlx(t_mlx *mlx, t_data *data);
 /******************************************************************************\
 * CONFIGS/MLX_HOOKS
 \******************************************************************************/
- 
+
+// movements.c
+void	move_forward(t_data *data);
+void	move_backward(t_data *data);
+void	straf_leftward(t_data *data);
+void	straf_rightward(t_data *data);
+
+// camera.c
+void	rotate_leftward(t_data *data);
+void	rotate_rightward(t_data *data);
+
 // mlx_events.c
 int		set_keypress_flag(int keycode, t_data *data);
 int		set_keyrelease_flag(int keycode, t_data *data);
-
-// mlx_events2.c
 void	set_hooks(t_mlx *mlx, t_data *data);
  
 // mlx_exit.c
@@ -110,7 +118,7 @@ void	get_map_info(t_map *m);
  \******************************************************************************/
  
 // collisions.c
-int		avoid_collisions(int keycode, t_data *data);
+int		avoid_collisions(t_data *data, t_point *new_player);
 
 // minimap.c
 void	draw_line_bonus(t_mlx *mlx, t_point p0, t_point p1, int color);
