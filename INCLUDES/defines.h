@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 18:58:49 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/24 18:29:19 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef void	(*move_tab)(t_data *data);
  * START SCREEN
 \*****************/
 
-# define START_SCREEN "/SRCS/CONFIGS/START_SCREEN/Teletubbies.xpm"
+# define START_SCREEN "./START_SCREEN/Teletubbies.xpm"
 
 /*****************\
  * MESSAGES
@@ -122,8 +122,8 @@ typedef void	(*move_tab)(t_data *data);
 
 # define W_KEY 0
 # define S_KEY 1
-# define D_KEY 2
-# define A_KEY 3
+# define A_KEY 2
+# define D_KEY 3
 # define LEFT_KEY 4
 # define RIGHT_KEY 5
 

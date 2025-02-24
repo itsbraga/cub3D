@@ -40,28 +40,34 @@ DEBUG		=	-O3 -g
 #******************************************************************************#
 
 TOOLS_DIR		=	TOOLS/
-TOOLS_F			=	error.c secure.c free_and_exit.c draw_grid.c
+TOOLS_F			=	error.c secure.c cleanup.c pixels.c draw_tools.c
 
 GARBAGE_DIR		=	TOOLS/GARBAGE_COLLECTOR/
 GARBAGE_F		=	garbage_collector.c gc_utils.c lst_utils.c
+
+DEBUG_DIR		=	TOOLS/2D_DEBUG/
+DEBUG_F			=	debug.c draw_line.c draw_grid.c draw_player.c
 
 PARSING_DIR		=	PARSING/
 PARSING_F		=	check_map.c check_map2.c check_cub_file.c check_rgb.c
 
 CONFIG_DIR		=	CONFIGS/MLX_HOOKS/
-CONFIG_F		=	movements.c camera.c mlx_events.c mlx_exit.c
+CONFIG_F		=	movements.c camera.c move_tab.c hooks.c mlx_exit.c
 
 MATHS_DIR		=	MATHS/
 MATHS_F			=	draw_line.c formulas.c raycasting.c
 
 INIT_DIR		=	INITIALIZATION/
-INIT_F			=	singletons.c init_structs.c
+INIT_F			=	singletons.c init_structs.c init.c
 
 EXEC_DIR		=	EXECUTION/
-EXEC_F			=	start_screen.c map_info.c render.c debug.c
+EXEC_F			=	map_info.c render.c
 
 BONUS_DIR		=	BONUS/
-BONUS_F			=	collisions.c draw_line_bonus.c draw_player.c minimap.c
+BONUS_F			=	collisions.c start_screen.c
+
+MINIMAP_DIR		=	BONUS/MINIMAP/
+MINIMAP_F		=	draw_line_bonus.c draw_miniplayer.c minimap.c
 
 #******************************************************************************#
 #	COMBINE FILES AND DIRECTORIES
@@ -70,12 +76,14 @@ BONUS_F			=	collisions.c draw_line_bonus.c draw_player.c minimap.c
 SRCS_DIR		=	SRCS/
 SRCS_F			=	$(addprefix $(TOOLS_DIR), $(TOOLS_F)) \
 					$(addprefix $(GARBAGE_DIR), $(GARBAGE_F)) \
+					$(addprefix $(DEBUG_DIR), $(DEBUG_F)) \
 					$(addprefix $(PARSING_DIR), $(PARSING_F)) \
 					$(addprefix $(CONFIG_DIR), $(CONFIG_F)) \
 					$(addprefix $(MATHS_DIR), $(MATHS_F)) \
 					$(addprefix $(INIT_DIR), $(INIT_F)) \
 					$(addprefix $(EXEC_DIR), $(EXEC_F)) \
 					$(addprefix $(BONUS_DIR), $(BONUS_F)) \
+					$(addprefix $(MINIMAP_DIR), $(MINIMAP_F)) \
 					main.c
 
 OBJS_DIR		=	OBJS/

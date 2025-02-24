@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 00:10:54 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/24 20:09:49 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,19 @@ void	init_keys(t_keys *k, t_data *data)
 	data->keys = k;
 }
 
-void	init_game(t_game *game)
+void	init_game(t_game *game, t_data *data)
 {
 	game->game_state = STATE_TITLE;
 	game->button.x = 300;
 	game->button.y = 400;
 	game->width = W_WIDTH;
 	game->height = W_HEIGHT;
+	data->game = game;
 }
 
-void	init_structs(t_data *data, t_mlx *mlx)
+void	init_minimap(t_minimap *mini, t_data *data)
 {
-	init_data(data);
-	init_mlx(mlx, data);
-	init_map(data->map, data);
-	init_ray(data->ray, data);
-	init_keys(data->keys, data);
-	init_game(data->game);
+	mini->img_ptr = NULL;
+	mini->img_buff = NULL;
+	data->minimap = mini;
 }

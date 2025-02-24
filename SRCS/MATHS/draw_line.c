@@ -6,32 +6,11 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 19:18:08 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/24 18:37:47 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static void	__swap_point(t_point *p0, t_point *p1)
-{
-	t_point tmp;
-
-	tmp.x = p1->x;
-	tmp.y = p1->y;
-	p1->x = p0->x;
-	p1->y = p0->y;
-	p0->x = tmp.x;
-	p0->y = tmp.y;
-}
-
-static bool	__valid_point(t_point point)
-{
-	if (point.x > W_WIDTH || point.x < 0)
-		return (false);
-	if (point.y > W_HEIGHT || point.y < 0)
-		return (false);
-	return (true);
-}
 
 static void	__draw_hline(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
@@ -43,7 +22,7 @@ static void	__draw_hline(t_mlx *mlx, t_point p0, t_point p1, int color)
 	int p = 0;
 	
 	if (p0.x > p1.x)
-		__swap_point(&p0, &p1);
+		swap_point(&p0, &p1);
 	dx = p1.x - p0.x;
 	dy = p1.y - p0.y;
 	
@@ -82,7 +61,7 @@ static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 	int p = 0;
 	
 	if (p0.y > p1.y)
-		__swap_point(&p0, &p1);
+		swap_point(&p0, &p1);
 	dx = p1.x - p0.x;
 	dy = p1.y - p0.y;
 	
@@ -113,12 +92,13 @@ static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 
 void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
-	if (__valid_point(p0) == false || __valid_point(p1) == false)
+	if (valid_point(p0, W_WIDTH, W_HEIGHT) == false
+		|| valid_point(p1, W_WIDTH, W_HEIGHT) == false)
 	{
 		ft_printf(2, "Point called with %s is out of map !!\n", __func__);
 		return ;
 	}
-	if (abs((int)p1.x-(int)p0.x) > abs((int)p1.y-(int)p0.y))
+	if (abs((int)p1.x - (int)p0.x) > abs((int)p1.y - (int)p0.y))
 		__draw_hline(mlx, p0, p1, color);
 	else
 		__draw_vline(mlx, p0, p1, color);

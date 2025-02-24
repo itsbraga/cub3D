@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 17:42:24 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:45:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void	inter_hline(t_data *d, t_ray *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
     	{
-        	// printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
+        	printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
-			// printf("HIT A WALL !\n");
+			printf("HIT A WALL !\n");
 			break;
 		}
 		else
@@ -110,12 +110,12 @@ void	inter_vline(t_data *d, t_ray *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
     	{
-        	// printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
+        	printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
-			// printf("HIT A WALL\n");
+			printf("HIT A WALL\n");
 			break;
 		}
 		else
@@ -196,6 +196,7 @@ void	raycasting(t_data *data, t_ray *r)
 		inter_vline(data, r, ray_angle);
 		find_closest_inter(data, r, &closest_inter);
 		draw_wall(r, ray_angle, ray_drawed);
+		// peut-etre draw_line de la minimap
 		ray_angle += (get_radian(r->fov) / W_WIDTH); // peut-etre cosinus
 		ray_angle = norm_angle(ray_angle);
 		ray_drawed++;

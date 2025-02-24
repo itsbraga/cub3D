@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_and_exit.c                                    :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/02/20 14:33:11 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/24 20:59:32 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static void	__free_mlx(t_mlx *mlx)
 	mlx_destroy_display(mlx->mlx_ptr);
 	free_and_set_null(&mlx->mlx_ptr);
 	// if (full_clean == true);
-	// if (mlx->win_ptr != NULL)
-		// free_and_set_null(&mlx->win_ptr; Doit être free ???	
 }
 
 void	free_tab(char **tab)

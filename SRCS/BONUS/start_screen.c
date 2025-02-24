@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 15:48:41 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 14:36:07 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/24 18:33:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_start_screen(t_mlx *mlx, t_game *game)
 	char	*button_buff;
 	t_mlx	*tmp_mlx;
 
-	clear_window(mlx);
+	clear_window(mlx, W_WIDTH, W_HEIGHT, HBLACK);
 	tmp_mlx = mlx;
 
 	// Créer une image temporaire pour le fond
@@ -50,17 +50,20 @@ void	draw_start_screen(t_mlx *mlx, t_game *game)
 	printf("##DEBUG 1 ##\n");
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, tmp_bg_img, 0, 0);
 	mlx_destroy_image(mlx->mlx_ptr, tmp_bg_img);
-	printf("##DEBUG 1 ##\n");
+	printf("##DEBUG 2 ##\n");
+
 	// Créer une image temporaire pour le bouton
 	tmp_button_img = mlx_new_image(mlx->mlx_ptr, W_WIDTH, W_HEIGHT);
 	if (tmp_button_img == NULL)
 		(err_msg("MLX", ERR_MLX, 0), del_img(mlx));
-	printf("##DEBUG 2 ##\n");
+	printf("##DEBUG 3 ##\n");
+
 	button_buff = mlx_get_data_addr(tmp_button_img, &mlx->bpp, &mlx->line_len,
 			&mlx->endian);
 	if (button_buff == NULL)
 		(err_msg("MLX", ERR_MLX, 0), clean_structs(FAILURE));
-	printf("##DEBUG 3 ##\n");
+	printf("##DEBUG 4 ##\n");
+
 	tmp_mlx->mlx_ptr = mlx->mlx_ptr;
 	tmp_mlx->win_ptr = mlx->win_ptr;
 	tmp_mlx->img_ptr = tmp_button_img;
@@ -68,9 +71,11 @@ void	draw_start_screen(t_mlx *mlx, t_game *game)
 	tmp_mlx->bpp = mlx->bpp;
 	tmp_mlx->line_len = mlx->line_len;
 	tmp_mlx->endian = mlx->endian;
-	printf("##DEBUG 4 ##\n");
-	__draw_start_button(tmp_mlx, game);
 	printf("##DEBUG 5 ##\n");
+
+	__draw_start_button(tmp_mlx, game);
+	printf("##DEBUG 6 ##\n");
+
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, tmp_button_img, 0, 0);
 	mlx_destroy_image(mlx->mlx_ptr, tmp_button_img);
 }

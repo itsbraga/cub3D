@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/20 17:25:13 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/24 20:45:42 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_data	*data_s(void)
 		secure_malloc(instance->game, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
+		instance->minimap = yama(CREATE, NULL, sizeof(t_minimap));
+		secure_malloc(instance->minimap, true);
 	}
 	return (instance);
 }
@@ -66,15 +68,15 @@ void	init_data(t_data *data)
 	data->player.x = 800;
 	data->player.y = 700;
 	data->player_dir = SO;
-	data->move_x = 0;
-	data->move_y = 0;
+	data->move.x = 0;
+	data->move.y = 0;
 }
 
 void	init_mlx(t_mlx *mlx, t_data *data)
 {
 	char	*win_title;
 
-	win_title = "TeleCubies zombies";
+	win_title = "Telecubies zombies";
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
 		(err_msg("MLX", ERR_MLX, 0), clean_structs(FAILURE));
@@ -84,7 +86,7 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, W_WIDTH, W_HEIGHT);
 	if (mlx->img_ptr == NULL)
 		(err_msg("MLX", ERR_MLX, 0), del_img(mlx));
-	mlx->img_buff = (char *)mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, 
+	mlx->img_buff = mlx_get_data_addr(mlx->img_ptr, &mlx->bpp, 
 			&mlx->line_len, &mlx->endian);
 	if (mlx->img_buff == NULL)
 		(err_msg("MLX", ERR_MLX, 0), clean_structs(FAILURE));
