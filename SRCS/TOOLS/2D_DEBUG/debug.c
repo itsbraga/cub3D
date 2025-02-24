@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 21:12:11 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/21 21:23:18 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/24 18:35:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-
-void	clear_window_2d(t_mlx *mlx)
-{
-	t_point	pixel;
-
-	if (mlx == NULL|| mlx->img_buff == NULL)
-		return ;
-	pixel.y = 0;
-	while (pixel.y < W_HEIGHT)
-	{
-		pixel.x = 0;
-		while (pixel.x < W_WIDTH)
-		{
-			my_pixel_put(mlx, HLAVENDER, pixel.x, pixel.y);
-			pixel.x++;
-		}
-		pixel.y++;
-	}
-	return ;
-}
+#include "tools.h"
 
 static void	__draw_tile(t_data *data, t_point tile)
 {
@@ -40,8 +20,8 @@ static void	__draw_tile(t_data *data, t_point tile)
 
 	pixel.x = tile.x * TILE_SIZE;
 	pixel.y = tile.y * TILE_SIZE;
-	x_end = pixel.x + TILE_SIZE; // NOT OK
-	y_end = pixel.y + TILE_SIZE; //
+	x_end = pixel.x + TILE_SIZE;
+	y_end = pixel.y + TILE_SIZE;
 	while (pixel.y < y_end)
 	{
 		pixel.x = tile.x * TILE_SIZE;
@@ -54,7 +34,7 @@ static void	__draw_tile(t_data *data, t_point tile)
 	}
 }
 
-void	draw_map2d(t_data *data, t_map *m)
+static void	__draw_map2d(t_data *data, t_map *m)
 {
 	t_point	tile;
 	
@@ -74,7 +54,7 @@ void	draw_map2d(t_data *data, t_map *m)
 	}
 }
 
-void	raycasting_2d(t_data *data, t_ray *r)
+static void	__raycasting_2d(t_data *data, t_ray *r)
 {
 	unsigned int	ray_drawed;
 	t_point			closest_inter;
@@ -87,7 +67,7 @@ void	raycasting_2d(t_data *data, t_ray *r)
 		inter_hline(data, r, ray_angle);
 		inter_vline(data, r, ray_angle);
 		find_closest_inter(data, r, &closest_inter);
-		draw_line_bonus(mlx_s(), data->player, closest_inter, HRED);
+		draw_line_2d(mlx_s(), data->player, closest_inter, HRED);
 		ray_angle += (get_radian(r->fov) / W_WIDTH);
 		ray_angle = norm_angle(ray_angle);
 		ray_drawed++;
@@ -99,11 +79,11 @@ int	render_2d(t_data *data)
 	t_mlx	*mlx;
 	
 	mlx = mlx_s();
-	clear_window_2d(mlx); // peut-etre retirer
-	draw_map2d(data, data->map);
-	draw_grid(mlx); // retirer
+	clear_window(mlx, W_WIDTH, W_HEIGHT, HBRUSSIAN);
+	__draw_map2d(data, data->map);
+	draw_grid(mlx);
 	draw_player(mlx, data, data->player);
-	raycasting_2d(data, data->ray);
+	__raycasting_2d(data, data->ray);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr,
 		0, 0);
 	return (SUCCESS);

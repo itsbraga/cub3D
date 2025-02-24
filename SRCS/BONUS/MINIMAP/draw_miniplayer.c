@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player.c                                      :+:      :+:    :+:   */
+/*   draw_miniplayer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/21 21:22:46 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/24 18:48:39 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "bonus.h"
 
 static void	__fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color)
 {
@@ -96,44 +96,23 @@ static void	__fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int 
     }
 }
 
-// void	draw_player(t_mlx *mlx, t_data *data, t_point player)
-// {
-// 	t_point a;
-// 	t_point b;
-// 	t_point c;
-// 	int		L = 10;
-// 	double	h = 1.3 * L;
-// 	float	theta = get_radian(data->player_dir);
-	
-// 	a.x = (player.x + cos(theta) * h) / 2;
-// 	a.y = (player.y + sin(theta) * h) / 2;
-// 	b.x = (player.x + cos(theta + (PI / 2)) * (L / 2)) / 2;
-// 	b.y = (player.y + sin(theta + (PI / 2)) * (L / 2)) / 2;
-// 	c.x = (player.x + cos(theta - (PI / 2)) * (L / 2)) / 2;
-// 	c.y = (player.y + sin(theta - (PI / 2)) * (L / 2)) / 2;
-// 	draw_line(mlx, a, b, HYELLOW);
-// 	draw_line(mlx, b, c, HYELLOW);
-// 	draw_line(mlx, c, a, HYELLOW);
-// 	__fill_triangle(mlx, a, b, c, HYELLOW);
-// }
-
-void	draw_player(t_mlx *mlx, t_data *data, t_point player)
+void	draw_miniplayer(t_mlx *mlx, t_data *data, t_point player)
 {
 	t_point a;
 	t_point b;
 	t_point c;
-	int		L = 10;
+	int		L = 30; //  augmenter si map tres petite, voir n (window / n)
 	double	h = 1.3 * L;
 	float	theta = get_radian(data->player_dir);
 	
-	a.x = player.x + cos(theta) * h;
-	a.y = player.y + sin(theta) * h;
-	b.x = player.x + cos(theta + (PI / 2)) * (L / 2);
-	b.y = player.y + sin(theta + (PI / 2)) * (L / 2);
-	c.x = player.x + cos(theta - (PI / 2)) * (L / 2);
-	c.y = player.y + sin(theta - (PI / 2)) * (L / 2);
-	draw_line(mlx, a, b, HYELLOW);
-	draw_line(mlx, b, c, HYELLOW);
-	draw_line(mlx, c, a, HYELLOW);
+	a.x = (player.x + cos(theta) * h) / 3;
+	a.y = (player.y + sin(theta) * h) / 3;
+	b.x = (player.x + cos(theta + (PI / 2)) * (L / 2)) / 3;
+	b.y = (player.y + sin(theta + (PI / 2)) * (L / 2)) / 3;
+	c.x = (player.x + cos(theta - (PI / 2)) * (L / 2)) / 3;
+	c.y = (player.y + sin(theta - (PI / 2)) * (L / 2)) / 3;
+	draw_line_bonus(mlx, a, b, HYELLOW);
+	draw_line_bonus(mlx, b, c, HYELLOW);
+	draw_line_bonus(mlx, c, a, HYELLOW);
 	__fill_triangle(mlx, a, b, c, HYELLOW);
 }

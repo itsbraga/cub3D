@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/21 21:16:00 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/02/24 20:45:42 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "bonus.h"
 
 int	avoid_collisions(t_data *data, t_point *new_player)
 {
@@ -18,8 +18,8 @@ int	avoid_collisions(t_data *data, t_point *new_player)
 
 	cell.x = 0;
 	cell.y = 0;
-	new_player->x += data->move_x;
-	new_player->y += data->move_y;
+	new_player->x += data->move.x;
+	new_player->y += data->move.y;
 	// printf("New player pos: (%.2f, %.2f)\n", new_player->x, new_player->y);
 	cell.x = new_player->x * data->map->M_WIDTH / W_WIDTH;
 	cell.y = new_player->y * data->map->M_HEIGHT / W_HEIGHT;

@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 19:09:46 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/24 17:06:28 by annabrag         ###   ########.fr       */
+/*   Created: 2025/02/24 18:59:14 by annabrag          #+#    #+#             */
+/*   Updated: 2025/02/24 20:10:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "cub3D.h"
 
-# include "cub3D.h"
-
-// check_map.c
-bool    first_verification(char **map, int rows, t_point *start);
-
-// check_map2.c
-
-
-// check_rgb.c
-bool	valid_rgb(unsigned int rgb[3]);
-
-// check_cub_file.c
-
-
-#endif
+void	init_structs(t_data *data, t_mlx *mlx)
+{
+	init_data(data);
+	init_mlx(mlx, data);
+	init_map(data->map, data);
+	init_ray(data->ray, data);
+	init_keys(data->keys, data);
+	init_game(data->game, data);
+	init_minimap(data->minimap, data);
+}

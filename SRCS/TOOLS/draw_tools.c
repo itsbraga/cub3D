@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   draw_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 19:09:46 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/24 17:06:28 by annabrag         ###   ########.fr       */
+/*   Created: 2025/02/24 17:22:58 by annabrag          #+#    #+#             */
+/*   Updated: 2025/02/24 17:40:52 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "tools.h"
 
-# include "cub3D.h"
+void	swap_point(t_point *p0, t_point *p1)
+{
+	t_point tmp;
 
-// check_map.c
-bool    first_verification(char **map, int rows, t_point *start);
+	tmp.x = p1->x;
+	tmp.y = p1->y;
+	p1->x = p0->x;
+	p1->y = p0->y;
+	p0->x = tmp.x;
+	p0->y = tmp.y;
+}
 
-// check_map2.c
-
-
-// check_rgb.c
-bool	valid_rgb(unsigned int rgb[3]);
-
-// check_cub_file.c
-
-
-#endif
+bool	valid_point(t_point point, size_t win_x, size_t win_y)
+{
+	if (point.x > win_x || point.x < 0)
+		return (false);
+	if (point.y > win_y || point.y < 0)
+		return (false);
+	return (true);
+}

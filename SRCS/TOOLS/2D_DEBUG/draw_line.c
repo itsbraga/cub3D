@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/24 18:37:47 by annabrag         ###   ########.fr       */
+/*   Created: 2025/02/24 16:45:30 by annabrag          #+#    #+#             */
+/*   Updated: 2025/02/24 17:59:42 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "tools.h"
 
 static void	__draw_hline(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
@@ -90,7 +90,7 @@ static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 	return ;
 }
 
-void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
+void	draw_line_2d(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
 	if (valid_point(p0, W_WIDTH, W_HEIGHT) == false
 		|| valid_point(p1, W_WIDTH, W_HEIGHT) == false)
@@ -98,7 +98,7 @@ void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 		ft_printf(2, "Point called with %s is out of map !!\n", __func__);
 		return ;
 	}
-	if (abs((int)p1.x - (int)p0.x) > abs((int)p1.y - (int)p0.y))
+	if (abs((int)p1.x-(int)p0.x) > abs((int)p1.y-(int)p0.y))
 		__draw_hline(mlx, p0, p1, color);
 	else
 		__draw_vline(mlx, p0, p1, color);

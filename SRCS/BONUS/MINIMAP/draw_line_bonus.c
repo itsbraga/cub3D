@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw_line_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/24 18:37:47 by annabrag         ###   ########.fr       */
+/*   Created: 2025/02/24 17:54:38 by annabrag          #+#    #+#             */
+/*   Updated: 2025/02/24 18:37:38 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "bonus.h"
 
 static void	__draw_hline(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
@@ -90,10 +90,10 @@ static void	__draw_vline(t_mlx *mlx, t_point p0, t_point p1, int color)
 	return ;
 }
 
-void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
+void	draw_line_bonus(t_mlx *mlx, t_point p0, t_point p1, int color)
 {
-	if (valid_point(p0, W_WIDTH, W_HEIGHT) == false
-		|| valid_point(p1, W_WIDTH, W_HEIGHT) == false)
+	if (valid_point(p0, (W_WIDTH / 4), (W_HEIGHT / 4)) == false
+		|| valid_point(p1, (W_WIDTH / 4), (W_HEIGHT / 4)) == false)
 	{
 		ft_printf(2, "Point called with %s is out of map !!\n", __func__);
 		return ;

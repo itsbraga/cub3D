@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:09:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/20 18:15:27 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/24 21:26:04 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	get_map2d(t_map *m)
 {
+	if (m->map2d != NULL)
+		return ;
 	m->map2d = malloc(17 * sizeof(char *));
 	secure_malloc(m->map2d, true);
 	m->map2d[0] = ft_strdup("1111111111111111");
