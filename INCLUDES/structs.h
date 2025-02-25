@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/24 20:45:22 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/25 01:04:22 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_data
 	unsigned int	c_rgb[3];
 	int				player_dir;
 	t_point			player;
-	t_point			move;
+	t_point			move; // peut-etre ajouter ptr
 	t_mlx			*mlx;
 	t_game			*game;
 	t_keys			*keys;

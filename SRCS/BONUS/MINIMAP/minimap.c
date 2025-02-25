@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/24 21:21:31 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/25 00:55:28 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static void	__draw_minimap(t_data *data, t_map *mini)
 {
 	t_point	tile;
 	
-	get_map2d(mini);
-	get_map_size(mini);
+	get_map_info(mini);
 	tile.y = 0;
 	while (tile.y < mini->M_HEIGHT)
 	{
@@ -54,25 +53,25 @@ static void	__draw_minimap(t_data *data, t_map *mini)
 	}
 }
 
-static void	__raycasting_2d(t_data *data, t_ray *r)
-{
-	unsigned int	ray_drawed;
-	t_point			closest_inter;
-	float			ray_angle;
+// static void	__raycasting_2d(t_data *data, t_ray *r)
+// {
+// 	unsigned int	ray_drawed;
+// 	t_point			closest_inter;
+// 	float			ray_angle;
 
-	ray_drawed = 0;
-	ray_angle = norm_angle(r->player_rad - (get_radian(r->fov) / 2));
-	while (ray_drawed < r->ray_amount)
-	{
-		inter_hline(data, r, ray_angle);
-		inter_vline(data, r, ray_angle);
-		find_closest_inter(data, r, &closest_inter);
-		draw_line_bonus(mlx_s(), data->player, closest_inter, HRED);
-		ray_angle += (get_radian(r->fov) / W_WIDTH);
-		ray_angle = norm_angle(ray_angle);
-		ray_drawed++;
-	}
-}
+// 	ray_drawed = 0;
+// 	ray_angle = norm_angle(r->player_rad - (get_radian(r->fov) / 2));
+// 	while (ray_drawed < r->ray_amount)
+// 	{
+// 		inter_hline(data, r, ray_angle);
+// 		inter_vline(data, r, ray_angle);
+// 		find_closest_inter(data, r, &closest_inter);
+// 		draw_line_bonus(mlx_s(), data->player, closest_inter, HRED);
+// 		ray_angle += (get_radian(r->fov) / W_WIDTH);
+// 		ray_angle = norm_angle(ray_angle);
+// 		ray_drawed++;
+// 	}
+// }
 
 int	render_minimap(t_data *data, t_minimap *mini)
 {
@@ -105,7 +104,7 @@ int	render_minimap(t_data *data, t_minimap *mini)
 	clear_window(mlx, (W_WIDTH / 3), (W_HEIGHT / 3), HLAVENDER);
 	__draw_minimap(data, data->map);
 	draw_miniplayer(mlx, data, data->player);
-	__raycasting_2d(data, data->ray);
+	// __raycasting_2d(data, data->ray);
 
 	mlx->img_ptr = main_img;
 	mlx->img_buff = main_buff;
