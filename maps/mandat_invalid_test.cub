@@ -1,7 +1,7 @@
-NO ../TEXTURES/SandstoneskullsD.gif
-SO ../TEXTURES/Stone1D.gif
-WE ../TEXTURES/StoneUWHitlerL.gif
-EA ../TEXTURES/SteelwallL.gif
+NO ../mandatory/configs/textures/SandstoneskullsD.gif
+SO ../mandatory/configs/textures/Stone1D.gif
+WE ../mandatory/configs/textures/StoneUWHitlerL.gif
+EA ../mandatory/configs/textures/SteelwallL.gif
 
 F 128,128,128
 C 102,51,0
