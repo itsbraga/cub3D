@@ -6,13 +6,13 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/26 21:16:41 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/27 23:09:22 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static void	__draw_horizontal_line(t_mlx *mlx, t_point p0, t_point p1,
+static void	__draw_horizontal_line(t_img *img, t_vector p0, t_vector p1,
 int color)
 {
 	int i = 0;
@@ -39,7 +39,7 @@ int color)
 		p = 2 * dy - dx;
 		while (i <= dx)
 		{
-			my_pixel_put(mlx, color, p0.x + i, y);
+			my_pixel_put_to_img(img, color, p0.x + i, y);
 			if (p >= 0)
 			{
 				y += dir;
@@ -52,7 +52,7 @@ int color)
 	return ;
 }
 
-static void	__draw_vertical_line(t_mlx *mlx, t_point p0, t_point p1, int color)
+static void	__draw_vertical_line(t_img *img, t_vector p0, t_vector p1, int color)
 {
 	int i = 0;
 	int x = 0;
@@ -78,7 +78,7 @@ static void	__draw_vertical_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 		p = 2 * dx - dy;
 		while (i <= dy)
 		{
-			my_pixel_put(mlx, color, x, p0.y + i);
+			my_pixel_put_to_img(img, color, x, p0.y + i);
 			if (p >= 0)
 			{
 				x += dir;
@@ -91,7 +91,7 @@ static void	__draw_vertical_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 	return ;
 }
 
-void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
+void	draw_line(t_img *img, t_vector p0, t_vector p1, int color)
 {
 	if (valid_point(p0, WIN_WIDTH, WIN_HEIGHT) == false
 		|| valid_point(p1, WIN_WIDTH, WIN_HEIGHT) == false)
@@ -100,7 +100,7 @@ void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color)
 		return ;
 	}
 	if (abs((int)p1.x - (int)p0.x) > abs((int)p1.y - (int)p0.y))
-		__draw_horizontal_line(mlx, p0, p1, color);
+		__draw_horizontal_line(img, p0, p1, color);
 	else
-		__draw_vertical_line(mlx, p0, p1, color);
+		__draw_vertical_line(img, p0, p1, color);
 }

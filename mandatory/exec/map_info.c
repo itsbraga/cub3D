@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:09:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/24 21:26:04 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:22:37 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	get_map_size(t_map *m)
 		x++;
 	while (m->map2d[y] != NULL)
 		y++;
-	m->M_WIDTH = x;
-	m->M_HEIGHT = y;
+	m->MAP_WIDTH = x;
+	m->MAP_HEIGHT = y;
 }
 
 void	get_map_info(t_map *m)

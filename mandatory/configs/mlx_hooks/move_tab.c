@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/26 20:39:32 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/27 20:12:24 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_movetab(move_tab *functions)
 	functions[6] = NULL;
 }
 
-void	handle_movement(t_data *data, t_keys *key)
+void	update_player_move(t_data *data, t_keys *key)
 {
 	int			i;
 	move_tab	functions[7];

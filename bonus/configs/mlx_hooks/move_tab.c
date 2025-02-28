@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/26 20:54:17 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/27 20:12:24 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	init_movetab(move_tab *functions)
 	functions[6] = NULL;
 }
 
-void	handle_movement(t_data *data, t_keys *key)
+void	update_player_move(t_data *data, t_keys *key)
 {
 	int			i;
 	move_tab	functions[7];
-	t_point		new_player;
+	t_vector	new_player_pos;
 	
 	i = 0;
 	init_movetab(functions);
@@ -37,13 +37,13 @@ void	handle_movement(t_data *data, t_keys *key)
 			functions[i](data);
 		i++;
 	}
-	new_player.x = data->player.x;
-	new_player.y = data->player.y;
-	if (avoid_collisions(data, &new_player) == FAILURE)
+	new_player_pos.x = data->player.x;
+	new_player_pos.y = data->player.y;
+	if (avoid_collisions(data, &new_player_pos) == FAILURE)
 		return ;
 	// Mise a jour de la position du joueur si pas de collision trouvée
-	data->player.x = roundf(new_player.x);
-	data->player.y = roundf(new_player.y);
+	data->player.x = roundf(new_player_pos.x);
+	data->player.y = roundf(new_player_pos.y);
 }
 
 void	reset_var(t_data *data)

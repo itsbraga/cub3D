@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:58:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/26 22:03:42 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 01:50:31 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # include "../LIBFT/INCLUDES/ft_printf.h"
 # include "structs.h"
 # include "defines.h"
-# include "tools.h"
 # include "colors.h"
 
 /******************************************************************************\
@@ -40,31 +39,72 @@
 \******************************************************************************/
 
 // check_map.c
-bool	first_verification(char **map, int rows, t_point *start);
+bool	first_verification(char **map, int rows, t_vector *start);
 
 // check_rgb.c
 bool	valid_rgb(unsigned int rgb[3]);
+
+/******************************************************************************\
+ * TOOLS
+\******************************************************************************/
+
+// error.c
+void	err_msg(char *detail, char *reason, int quotes);
+int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_no);
+
+// cleanup.c
+void	free_tab(char **tab);
+void	clean_structs(int exit_status);
+
+// secure.c
+void	secure_malloc(void *to_secure, bool cleanup);
+void	free_and_set_null(void **to_free);
+
+// draw_tools.c
+void	swap_point(t_vector *p0, t_vector *p1);
+bool	valid_point(t_vector point, size_t win_x, size_t win_y);
+
+/******************************************************************************\
+ * GARBAGE_COLLECTOR
+\******************************************************************************/
+ 
+// lst_utils.c
+int		remove_gc_node(t_gc_lst**yama, void *ptr);
+void	add_gc_node(t_gc_lst **yama, t_gc_lst *node);
+void	*new_gc_node(void *ptr, bool is_tab);
+ 
+// utils.c
+void	*search_ptr(t_gc_lst **yama, void *ptr);
+int		handle_remove(t_gc_lst **yama, void *ptr);
+int		free_gc_tab(t_gc_lst **y, char **tab);
+ 
+// garbage_collector.c
+void	*yama(int flag, void *ptr, size_t size);
 
 /******************************************************************************\
  * INIT
 \******************************************************************************/
 
 // init_structs.c
+void	init_data(t_data *data);
 void	init_map(t_map *map, t_data *data);
-void	init_ray(t_ray *ray, t_data *data);
+void	init_raycast(t_raycast *ray, t_data *data);
 void	init_keys(t_keys *key, t_data *data);
-void	init_game(t_game *game, t_data *data);
-void	init_minimap(t_minimap *mini, t_data *data);
 void	init_structs(t_data *data, t_mlx *mlx);
+
+// init_mlx.c
+void	init_mlx(t_mlx *mlx, t_data *data);
 
 // singletons.c
 t_mlx	*mlx_s(void);
 t_data	*data_s(void);
-void	init_data(t_data *data);
-void	init_mlx(t_mlx *mlx, t_data *data);
 
-// collisions.c
-int		avoid_collisions(t_data *data, t_point *new_player);
+// generate_img.c
+t_img	generate_img(char *path_to_file);
+
+// title_screen.c
+void	init_title_screen(t_title_screen *screen);
+void	draw_title_screen(t_data *data);
 
 /******************************************************************************\
  * CONFIGS/MLX_HOOKS
@@ -82,59 +122,61 @@ void	rotate_rightward(t_data *data);
 
 // move_tab.c
 void	init_movetab(move_tab *functions);
-void	handle_movement(t_data *data, t_keys *key);
+void	update_player_move(t_data *data, t_keys *key);
 void	reset_var(t_data *data);
 
-// hooks.c
+// setter.c
 void	set_hooks(t_mlx *mlx, t_data *data);
- 
-// mlx_exit.c
+
+// clean_exit.c
 void	del_win(t_mlx *mlx);
 void	del_img(t_mlx *mlx);
-int		exit_game(t_mlx *mlx);
- 
+int		exit_game(t_mlx *mlx, int err_status);
+
 /******************************************************************************\
  * MATHS
 \******************************************************************************/
-  
+
 // formulas.c
 float	get_radian(int degree);
-float	square(float to_square);
+float	square(float to_square); // pas utilise
 float	norm_angle(float angle);
 
 // draw_line.c
-void	draw_line(t_mlx *mlx, t_point p0, t_point p1, int color);
-  
+void	draw_line(t_img *img, t_vector p0, t_vector p1, int color);
+
 // raycasting.c
-void	intersection_horizontal_line(t_data *d, t_ray *r, float ray_rad);
-void	intersection_vertical_line(t_data *d, t_ray *r, float ray_rad);
-void	find_closest_intersection(t_data *d, t_ray *ray, t_point *closest_inter);
-void	raycasting(t_data *data, t_ray *r);
+void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad);
+void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad);
+void	find_closest_intersection(t_data *d, t_raycast *ray, 
+	t_vector *closest_inter);
+void	raycasting(t_data *data, t_raycast *r);
+
+/******************************************************************************\
+ * RENDER
+\******************************************************************************/
+
+// pixels.c
+void	my_pixel_put_to_img(t_img *img, int color, int x, int y);
+void	clear_img(t_img *img, size_t size_x, size_t size_y, int color);
+
+// draw_player_pos.c
+void	draw_player_pos(t_data *data, t_vector player);
+
+// minimap.c
+void	draw_minimap(t_data *data, t_map *minimap);
+
+// render.c
+int		render(t_data *data);
 
 /******************************************************************************\
  * EXEC
 \******************************************************************************/
-   
-// render.c
-int		render(t_data *data);
 
-// start_screen.c
-void	draw_start_screen(t_mlx *mlx, t_game *game);
-   
 // map_info.c
 void	get_map_info(t_map *m);
 
-/******************************************************************************\
- * MINIMAP
-\******************************************************************************/
-
-// draw_miniline.c
-void	draw_miniline(t_mlx *mlx, t_point p0, t_point p1, int color);
-
-// draw_miniplayer.c
-void	draw_miniplayer(t_mlx *mlx, t_data *data, t_point player);
-
-// minimap.c
-int		render_minimap(t_data *data, t_minimap *mini);
+// collisions.c
+int		avoid_collisions(t_data *data, t_vector *new_player_pos);
 
 #endif

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   draw_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:22:58 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/24 17:40:52 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:31:13 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "cub3D_bonus.h"
 
-void	swap_point(t_point *p0, t_point *p1)
+void	swap_point(t_vector *p0, t_vector *p1)
 {
-	t_point tmp;
+	t_vector tmp;
 
 	tmp.x = p1->x;
 	tmp.y = p1->y;
@@ -24,7 +24,7 @@ void	swap_point(t_point *p0, t_point *p1)
 	p0->y = tmp.y;
 }
 
-bool	valid_point(t_point point, size_t win_x, size_t win_y)
+bool	valid_point(t_vector point, size_t win_x, size_t win_y)
 {
 	if (point.x > win_x || point.x < 0)
 		return (false);

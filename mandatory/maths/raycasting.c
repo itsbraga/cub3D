@@ -6,16 +6,16 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/26 21:16:41 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/27 23:14:55 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	intersection_horizontal_line(t_data *d, t_ray *r, float ray_rad)
+void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 {
-	float	inv_tan;
-	t_point	curr_tile;
+	float		inv_tan;
+	t_vector	curr_tile;
 	
 	if (tan(ray_rad) != 0)
 		inv_tan = -1 / tan(ray_rad);
@@ -50,10 +50,10 @@ void	intersection_horizontal_line(t_data *d, t_ray *r, float ray_rad)
 	{
 		curr_tile.x = r->h_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->h_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH
-			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->MAP_WIDTH
+			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->MAP_HEIGHT)
     	{
-        	printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
+        	printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
@@ -70,10 +70,10 @@ void	intersection_horizontal_line(t_data *d, t_ray *r, float ray_rad)
 	}
 }
 
-void	intersection_vertical_line(t_data *d, t_ray *r, float ray_rad)
+void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 {
-	float	neg_tan;
-	t_point	curr_tile;
+	float		neg_tan;
+	t_vector	curr_tile;
 	
 	// printf("%s\n", __func__);
 	neg_tan = -tan(ray_rad);
@@ -107,10 +107,10 @@ void	intersection_vertical_line(t_data *d, t_ray *r, float ray_rad)
 	{
 		curr_tile.x = r->v_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->v_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->M_WIDTH
-			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->M_HEIGHT)
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->MAP_WIDTH
+			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->MAP_HEIGHT)
     	{
-        	printf("Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n", (int)curr_tile.x, (int)curr_tile.y);
+        	printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
@@ -127,7 +127,7 @@ void	intersection_vertical_line(t_data *d, t_ray *r, float ray_rad)
 	}
 }
 
-void	find_closest_intersection(t_data *d, t_ray *ray, t_point *closest_inter)
+void	find_closest_intersection(t_data *d, t_raycast *ray, t_vector *closest_inter)
 {
 	float	delta_xh;
 	float	delta_yh;
@@ -156,12 +156,12 @@ void	find_closest_intersection(t_data *d, t_ray *ray, t_point *closest_inter)
 	}
 }
 
-void	draw_wall(t_ray *ray, float ray_angle, unsigned int curr_x)
+void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 {
-	float	wall_h;
-	t_point	start;
-	t_point	end;
-	float	fixed_angle;
+	float		wall_h;
+	t_vector	start;
+	t_vector	end;
+	float		fixed_angle;
 
 	// FIX FISHEYE **************************************
 	fixed_angle = ray->player_rad - ray_angle;
@@ -169,20 +169,20 @@ void	draw_wall(t_ray *ray, float ray_angle, unsigned int curr_x)
 	ray->dist_wall = ray->dist_wall * cos(fixed_angle);
 	// **************************************************
 	wall_h = (TILE_SIZE * WIN_HEIGHT) / ray->dist_wall;
-	printf("##dist_wall = %f##\n##wall_h = %f##\n", ray->dist_wall, wall_h);
+	printf(PG "\n--> dist_wall = %f\n--> wall_h = %f\n\n" RESET, ray->dist_wall, wall_h);
 	if (wall_h > WIN_HEIGHT)
 		wall_h = WIN_HEIGHT;
 	start.x = (float)curr_x;
 	start.y = (WIN_HEIGHT / 2) - (wall_h / 2);
 	end.x = (float)curr_x;
 	end.y = start.y + wall_h;
-	draw_line(mlx_s(), start, end, LAVENDER_PIX);
+	draw_line(&mlx_s()->img, start, end, LAVENDER_PIX);
 }
 
-void	raycasting(t_data *data, t_ray *r)
+void	raycasting(t_data *data, t_raycast *r)
 {
 	unsigned int	ray_drawed;
-	t_point			closest_inter;
+	t_vector		closest_inter;
 	float			ray_angle;
 
 	ray_drawed = 0;
@@ -191,7 +191,7 @@ void	raycasting(t_data *data, t_ray *r)
 	{
 		printf("ray_drawed rad = %d\n", ray_drawed);
 		printf("ray_angle rad = %f\n", ray_angle);
-		printf("player dir = %f\n", r->player_rad);
+		printf("player dir = %f\n\n", r->player_rad);
 		intersection_horizontal_line(data, r, ray_angle);
 		intersection_vertical_line(data, r, ray_angle);
 		find_closest_intersection(data, r, &closest_inter);

@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/26 19:50:34 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/27 14:02:38 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static bool	__has_valid_chars(char **map, int rows)
 	return (true);
 }
 
-static bool	__find_player_start(char **map, int rows, t_point *start_pos)
+static bool	__find_player_start(char **map, int rows, t_vector *start_pos)
 {
 	bool	found_start;
 	int		i;
@@ -65,7 +65,7 @@ static bool	__find_player_start(char **map, int rows, t_point *start_pos)
 	return (true);
 }
 
-bool    first_verification(char **map, int rows, t_point *start)
+bool    first_verification(char **map, int rows, t_vector *start)
 {
 	if (__has_valid_chars(map, rows) == false)
 		return (false);
