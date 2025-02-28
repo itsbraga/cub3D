@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 01:52:50 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:56:56 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 \******************************************************************************/
 
 // check_map.c
-bool	first_verification(char **map, int rows, t_vector *start);
+bool	first_verification(char **map, int rows, t_point *start);
 
 // check_rgb.c
 bool	valid_rgb(unsigned int rgb[3]);
@@ -61,8 +61,8 @@ void	secure_malloc(void *to_secure, bool cleanup);
 void	free_and_set_null(void **to_free);
 
 // draw_tools.c
-void	swap_point(t_vector *p0, t_vector *p1);
-bool	valid_point(t_vector point, size_t win_x, size_t win_y);
+void	swap_point(t_point *p0, t_point *p1);
+bool	valid_point(t_point point, size_t win_x, size_t win_y);
 
 /******************************************************************************\
  * GARBAGE_COLLECTOR
@@ -125,7 +125,7 @@ void	reset_var(t_data *data);
 void	set_hooks(t_mlx *mlx, t_data *data);
  
 // clean_exit.c
-void	del_win(t_mlx *mlx);
+void	del_window(t_mlx *mlx);
 void	del_img(t_mlx *mlx);
 int		exit_game(t_mlx *mlx, int err_status);
 
@@ -139,12 +139,12 @@ float	square(float to_square); // pas utilise
 float	norm_angle(float angle);
 
 // draw_line.c
-void	draw_line(t_img *img, t_vector p0, t_vector p1, int color);
+void	draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 // raycasting.c
 void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad);
 void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad);
-void	find_closest_intersection(t_data *d, t_raycast *ray, t_vector *closest_inter);
+void	find_closest_intersection(t_data *d, t_raycast *ray, t_point *closest_inter);
 void	raycasting(t_data *data, t_raycast *r);
 
 /******************************************************************************\

@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:58:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/28 01:50:31 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:54:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 \******************************************************************************/
 
 // check_map.c
-bool	first_verification(char **map, int rows, t_vector *start);
+bool	first_verification(char **map, int rows, t_point *start);
 
 // check_rgb.c
 bool	valid_rgb(unsigned int rgb[3]);
@@ -50,19 +50,22 @@ bool	valid_rgb(unsigned int rgb[3]);
 
 // error.c
 void	err_msg(char *detail, char *reason, int quotes);
-int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_no);
+int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_status);
 
-// cleanup.c
+// free_singletons.c
+void	singletons_cleanup(int exit_status);
+
+// free.c
 void	free_tab(char **tab);
-void	clean_structs(int exit_status);
+void	free_title_screen(t_title_screen *screen);
 
 // secure.c
 void	secure_malloc(void *to_secure, bool cleanup);
 void	free_and_set_null(void **to_free);
 
 // draw_tools.c
-void	swap_point(t_vector *p0, t_vector *p1);
-bool	valid_point(t_vector point, size_t win_x, size_t win_y);
+void	swap_point(t_point *p0, t_point *p1);
+bool	valid_point(t_point point, size_t win_x, size_t win_y);
 
 /******************************************************************************\
  * GARBAGE_COLLECTOR
@@ -100,10 +103,10 @@ t_mlx	*mlx_s(void);
 t_data	*data_s(void);
 
 // generate_img.c
-t_img	generate_img(char *path_to_file);
+t_img	generate_img(char *relative_path);
 
 // title_screen.c
-void	init_title_screen(t_title_screen *screen);
+int		init_title_screen(t_title_screen *screen);
 void	draw_title_screen(t_data *data);
 
 /******************************************************************************\
@@ -129,9 +132,9 @@ void	reset_var(t_data *data);
 void	set_hooks(t_mlx *mlx, t_data *data);
 
 // clean_exit.c
-void	del_win(t_mlx *mlx);
-void	del_img(t_mlx *mlx);
-int		exit_game(t_mlx *mlx, int err_status);
+void	del_window(t_mlx *mlx);
+void	del_img(t_mlx *mlx, void *img_ptr);
+int		exit_game(t_mlx *mlx, void *img_ptr, int err_status);
 
 /******************************************************************************\
  * MATHS
@@ -143,13 +146,13 @@ float	square(float to_square); // pas utilise
 float	norm_angle(float angle);
 
 // draw_line.c
-void	draw_line(t_img *img, t_vector p0, t_vector p1, int color);
+void	draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 // raycasting.c
 void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad);
 void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad);
 void	find_closest_intersection(t_data *d, t_raycast *ray, 
-	t_vector *closest_inter);
+	t_point *closest_inter);
 void	raycasting(t_data *data, t_raycast *r);
 
 /******************************************************************************\
@@ -161,7 +164,7 @@ void	my_pixel_put_to_img(t_img *img, int color, int x, int y);
 void	clear_img(t_img *img, size_t size_x, size_t size_y, int color);
 
 // draw_player_pos.c
-void	draw_player_pos(t_data *data, t_vector player);
+void	draw_player_pos(t_data *data, t_point player);
 
 // minimap.c
 void	draw_minimap(t_data *data, t_map *minimap);
@@ -177,6 +180,6 @@ int		render(t_data *data);
 void	get_map_info(t_map *m);
 
 // collisions.c
-int		avoid_collisions(t_data *data, t_vector *new_player_pos);
+int		avoid_collisions(t_data *data, t_point *new_player_pos);
 
 #endif

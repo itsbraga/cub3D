@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/27 23:20:07 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:54:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 {
 	float		inv_tan;
-	t_vector	curr_tile;
+	t_point	curr_tile;
 	
 	if (tan(ray_rad) != 0)
 		inv_tan = -1 / tan(ray_rad);
@@ -53,12 +53,12 @@ void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->MAP_WIDTH
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->MAP_HEIGHT)
     	{
-        	printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
+        	// printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
-			printf("HIT A WALL !\n");
+			// printf("HIT A WALL !\n");
 			break;
 		}
 		else
@@ -73,7 +73,7 @@ void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 {
 	float		neg_tan;
-	t_vector	curr_tile;
+	t_point	curr_tile;
 	
 	// printf("%s\n", __func__);
 	neg_tan = -tan(ray_rad);
@@ -110,12 +110,12 @@ void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->MAP_WIDTH
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->MAP_HEIGHT)
     	{
-        	printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
+        	// printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
-			printf("HIT A WALL\n");
+			// printf("HIT A WALL\n");
 			break;
 		}
 		else
@@ -127,7 +127,7 @@ void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 	}
 }
 
-void	find_closest_intersection(t_data *d, t_raycast *ray, t_vector *closest_inter)
+void	find_closest_intersection(t_data *d, t_raycast *ray, t_point *closest_inter)
 {
 	float	delta_xh;
 	float	delta_yh;
@@ -159,8 +159,8 @@ void	find_closest_intersection(t_data *d, t_raycast *ray, t_vector *closest_inte
 void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 {
 	float		wall_h;
-	t_vector	start;
-	t_vector	end;
+	t_point	start;
+	t_point	end;
 	float		fixed_angle;
 
 	// FIX FISHEYE **************************************
@@ -169,7 +169,7 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 	ray->dist_wall = ray->dist_wall * cos(fixed_angle);
 	// **************************************************
 	wall_h = (TILE_SIZE * WIN_HEIGHT) / ray->dist_wall;
-	printf(PG "\n--> dist_wall = %f\n--> wall_h = %f\n\n" RESET, ray->dist_wall, wall_h);
+	// printf(PG "\n--> dist_wall = %f\n--> wall_h = %f\n\n" RESET, ray->dist_wall, wall_h);
 	if (wall_h > WIN_HEIGHT)
 		wall_h = WIN_HEIGHT;
 	start.x = (float)curr_x;
@@ -182,16 +182,16 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 void	raycasting(t_data *data, t_raycast *r)
 {
 	unsigned int	ray_drawed;
-	t_vector		closest_inter;
+	t_point		closest_inter;
 	float			ray_angle;
 
 	ray_drawed = 0;
 	ray_angle = norm_angle(r->player_rad - (get_radian(r->fov) / 2));
 	while (ray_drawed < r->ray_amount)
 	{
-		printf("ray_drawed rad = %d\n", ray_drawed);
-		printf("ray_angle rad = %f\n", ray_angle);
-		printf("player dir = %f\n\n", r->player_rad);
+		// printf("ray_drawed rad = %d\n", ray_drawed);
+		// printf("ray_angle rad = %f\n", ray_angle);
+		// printf("player dir = %f\n\n", r->player_rad);
 		intersection_horizontal_line(data, r, ray_angle);
 		intersection_vertical_line(data, r, ray_angle);
 		find_closest_intersection(data, r, &closest_inter);

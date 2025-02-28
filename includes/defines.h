@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/26 21:17:57 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 23:29:55 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@
  * ERROR
 \******************************************************************************/
 
-# define ERR_PREFIX "Error\n"
-# define ERR_MLX "Something went wrong with MLX !"
+# define ERR_PREFIX "\033[1m\033[31mError: \033[0m"
+# define ERR_MLX "Something went wrong with MinilibX"
+# define ERR_XPM "Unable to put .xpm file to image"
+# define ERR_ADDR "Unable to find image address in memory"
 # define ERR_MALLOC "Memory allocation failed"
 
-# define ERR_ARGS "\033[5m\033[31m# BAD ARGUMENTS ! #\033[0m\n"
 # define ERR_PATH "No such file or directory" // catch errno + given path before
 # define ERR_PERM "Permission denied"
 # define ERR_EXT "Bad extension (must be .cub)"
@@ -64,11 +65,11 @@
 # define ERR_EMPTY "Oops! This file seems to be empty"
 # define ERR_MAP "Invalid map"
 # define ERR_CHAR "Invalid character in map"
-# define ERR_RGB "Invalid RGB code"
+# define ERR_RGB "Invalid RGB"
 # define ERR_CONFIG "Bad config file"
 
-# define ERR_START_P "No starting position found for the player"
-# define ERR_MPLAYER "Multiple starting positions found"
+# define ERR_START_POS "No starting position found for the player"
+# define ERR_MULT_POS "Multiple starting positions found"
 
 /******************************************************************************\
  * MLX
@@ -127,5 +128,7 @@ typedef void	(*move_tab)(t_data *data);
 # define LPINK_PIX 0x00FFB6C1
 # define ROY_PURPLE_PIX 0x005A006C
 # define RUSS_PURPLE_PIX 0x0019001E
+# define LGRAY_PIX 0x00D3D3D3
+# define GRAY_PIX 0x00303030
 
 #endif

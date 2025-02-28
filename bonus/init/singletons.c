@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 00:43:42 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 21:18:18 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_data	*data_s(void)
 		instance = yama(CREATE, NULL, sizeof(t_data));
 		secure_malloc(instance, true);
 		instance->mlx = NULL;
-		instance->game_state = STATE_TITLE;
 		instance->map_path = NULL;
 		instance->map = yama(CREATE, NULL, sizeof(t_map));
 		secure_malloc(instance->map, true);
@@ -34,8 +33,6 @@ t_data	*data_s(void)
 		ft_bzero(instance->texture, 4);
 		ft_bzero(instance->f_rgb, 3);
 		ft_bzero(instance->c_rgb, 3);
-		// instance->button = yama(CREATE, NULL, sizeof(t_button));
-		// secure_malloc(instance->button, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
 	}
@@ -54,7 +51,7 @@ t_mlx	*mlx_s(void)
 		instance->win_ptr = NULL;
 		instance->img.img_ptr = NULL;
 		instance->img.addr = NULL;
-		instance->img.bpp = 0;
+		instance->img.bits_per_pixel = 0;
 		instance->img.line_len = 0;
 		instance->img.endian = 0;
 		instance->img.name = "Telecubbies ZOMBIE";

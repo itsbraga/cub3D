@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:25:59 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/27 18:31:13 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 21:55:03 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	err_msg(char *detail, char *reason, int quotes)
 	yama(REMOVE, msg, 0);
 }
 
-int	err_msg_cmd(char *cmd, char *detail, char *reason, int err_no)
+int	err_msg_cmd(char *cmd, char *detail, char *reason, int err_status)
 {
 	char	*msg;
 
@@ -68,5 +68,5 @@ int	err_msg_cmd(char *cmd, char *detail, char *reason, int err_no)
 	msg = __append_strs(msg, reason);
 	ft_putendl_fd(msg, STDERR_FILENO);
 	yama(REMOVE, msg, 0);
-	return (err_no);
+	return (err_status);
 }

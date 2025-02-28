@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:35:26 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/27 23:13:25 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:54:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	my_pixel_put_to_img(t_img *img, int color, int x, int y)
 
 void	clear_img(t_img *img, size_t size_x, size_t size_y, int color)
 {
-	t_vector	pixel;
+	t_point	pixel;
 
 	if (img->addr == NULL)
 		return ;

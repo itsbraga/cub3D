@@ -6,15 +6,15 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/27 16:39:50 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:54:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-int	avoid_collisions(t_data *data, t_vector *new_player_pos)
+int	avoid_collisions(t_data *data, t_point *new_player_pos)
 {
-	t_vector	cell;
+	t_point	cell;
 
 	cell.x = 0;
 	cell.y = 0;

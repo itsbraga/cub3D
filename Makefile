@@ -228,7 +228,7 @@ $(NAME_BONUS): $(LIBFT) $(MLX)
 			@echo "\t\t        Grrrr\n"
 			@echo "$(BOLD)======================================================\n\n$(RESET)"
 
-$(OBJS_F): | init_bonus_build
+$(BONUS_OBJS_F): | init_bonus_build
 
 init_bonus_build:
 		@$(call building_msg,$(NAME),$(ORANGE))
@@ -244,8 +244,8 @@ fclean: clean
 			@rm -rf $(LIBFT) $(MLX)
 			@echo "$(BOLD)$(CYAN)[executables]:\t$(RESET)Removed!\n"
 
-re:	fclean all bonus
-		@echo "\n$(BOLD)$(YELLOW)make re: $(RESET)Project successfully rebuilt! ✨\n\n"
+re:	fclean all
+		@echo "$(BOLD)$(YELLOW)make re: $(RESET)Project successfully rebuilt! ✨ (mandatory only)\n"
 
 debug: fclean $(LIBFT) $(MLX)
 		@make --no-print-directory $(NAME) CFLAGS="$(CFLAGS) $(DEBUG)"
