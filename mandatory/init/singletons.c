@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 02:02:45 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 21:18:18 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_mlx	*mlx_s(void)
 		instance->win_ptr = NULL;
 		instance->img.img_ptr = NULL;
 		instance->img.addr = NULL;
-		instance->img.bpp = 0;
+		instance->img.bits_per_pixel = 0;
 		instance->img.line_len = 0;
 		instance->img.endian = 0;
 		instance->img.name = "Telecubbies";

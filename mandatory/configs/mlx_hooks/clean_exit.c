@@ -6,13 +6,13 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:37:38 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/27 21:38:16 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:57:57 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	del_win(t_mlx *mlx)
+void	del_window(t_mlx *mlx)
 {
 	ft_printf(STDERR_FILENO, BOLD YELLOW DEL_WIN RESET);
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);

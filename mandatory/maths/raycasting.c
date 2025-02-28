@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/27 23:14:55 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:55:33 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 {
 	float		inv_tan;
-	t_vector	curr_tile;
+	t_point		curr_tile;
 	
 	if (tan(ray_rad) != 0)
 		inv_tan = -1 / tan(ray_rad);
@@ -73,7 +73,7 @@ void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 {
 	float		neg_tan;
-	t_vector	curr_tile;
+	t_point		curr_tile;
 	
 	// printf("%s\n", __func__);
 	neg_tan = -tan(ray_rad);
@@ -127,7 +127,7 @@ void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 	}
 }
 
-void	find_closest_intersection(t_data *d, t_raycast *ray, t_vector *closest_inter)
+void	find_closest_intersection(t_data *d, t_raycast *ray, t_point *closest_inter)
 {
 	float	delta_xh;
 	float	delta_yh;
@@ -158,10 +158,10 @@ void	find_closest_intersection(t_data *d, t_raycast *ray, t_vector *closest_inte
 
 void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 {
-	float		wall_h;
-	t_vector	start;
-	t_vector	end;
-	float		fixed_angle;
+	float	wall_h;
+	t_point	start;
+	t_point	end;
+	float	fixed_angle;
 
 	// FIX FISHEYE **************************************
 	fixed_angle = ray->player_rad - ray_angle;
@@ -182,7 +182,7 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 void	raycasting(t_data *data, t_raycast *r)
 {
 	unsigned int	ray_drawed;
-	t_vector		closest_inter;
+	t_point			closest_inter;
 	float			ray_angle;
 
 	ray_drawed = 0;

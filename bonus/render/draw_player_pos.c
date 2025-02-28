@@ -6,18 +6,18 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/27 23:22:06 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 23:25:20 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static void	__fill_triangle(t_vector p1, t_vector p2, t_vector p3, int color)
+static void	__fill_triangle(t_point p1, t_point p2, t_point p3, int color)
 {
     // Tri des points par Y croissant
-    if (p1.y > p2.y) { t_vector temp = p1; p1 = p2; p2 = temp; }
-    if (p1.y > p3.y) { t_vector temp = p1; p1 = p3; p3 = temp; }
-    if (p2.y > p3.y) { t_vector temp = p2; p2 = p3; p3 = temp; }
+    if (p1.y > p2.y) { t_point temp = p1; p1 = p2; p2 = temp; }
+    if (p1.y > p3.y) { t_point temp = p1; p1 = p3; p3 = temp; }
+    if (p2.y > p3.y) { t_point temp = p2; p2 = p3; p3 = temp; }
 
     // Calcul des deltas pour chaque segment
     double dx12 = p2.x - p1.x;
@@ -96,12 +96,12 @@ static void	__fill_triangle(t_vector p1, t_vector p2, t_vector p3, int color)
     }
 }
 
-void	draw_player_pos(t_data *data, t_vector player)
+void	draw_player_pos(t_data *data, t_point player)
 {
-	t_vector a;
-	t_vector b;
-	t_vector c;
-	int		L = 30; //  augmenter si map tres petite, voir n (window / n)
+	t_point a;
+	t_point b;
+	t_point c;
+	int		L = 40; //  augmenter si map tres petite, voir n (window / n)
 	double	h = 1.3 * L;
 	float	theta = get_radian(data->player_dir);
 	
@@ -111,8 +111,8 @@ void	draw_player_pos(t_data *data, t_vector player)
 	b.y = (player.y + sin(theta + (PI / 2)) * (L / 2)) / 4;
 	c.x = (player.x + cos(theta - (PI / 2)) * (L / 2)) / 4;
 	c.y = (player.y + sin(theta - (PI / 2)) * (L / 2)) / 4;
-	draw_line(&data->minimap, a, b, YELLOW_PIX);
-	draw_line(&data->minimap, b, c, YELLOW_PIX);
-	draw_line(&data->minimap, c, a, YELLOW_PIX);
-	__fill_triangle(a, b, c, YELLOW_PIX);
+	draw_line(&data->minimap, a, b, RED_PIX);
+	draw_line(&data->minimap, b, c, RED_PIX);
+	draw_line(&data->minimap, c, a, RED_PIX);
+	__fill_triangle(a, b, c, RED_PIX);
 }

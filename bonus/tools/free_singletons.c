@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   secure.c                                           :+:      :+:    :+:   */
+/*   free_singletons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 18:58:48 by pmateo            #+#    #+#             */
+/*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
 /*   Updated: 2025/02/28 21:12:01 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	secure_malloc(void *to_secure, bool cleanup)
+static void	__free_mlx(t_mlx *mlx)
 {
-	if (to_secure == NULL)
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	mlx_destroy_display(mlx->mlx_ptr);
+	free_and_set_null(&mlx->mlx_ptr);
+	// if (full_clean == true);
+}
+
+static void	__free_data(t_data *data)
+{
+	if (data != NULL)
 	{
-		err_msg("malloc", strerror(errno), 0);
-		if (cleanup == true)
-			singletons_cleanup(FAILURE);
+		if (data->map_path != NULL)
+			free_and_set_null((void **)&data->map_path);
+		if (data->map != NULL)
+			free_tab(data->map->map2d);
+		// if (data->ray != NULL)
+			// ?
 	}
 }
 
-void	free_and_set_null(void **to_free)
+void	singletons_cleanup(int exit_status)
 {
-	if (to_free != NULL && (*to_free) != NULL)
-	{
-		free(*to_free);
-		*to_free = NULL;
-	}
+	if (mlx_s() != NULL)
+		__free_mlx(mlx_s());
+	if (data_s() != NULL)
+		__free_data(data_s());
+	// yama(CLEAN_ALL, NULL, 0);
+	exit(exit_status);
 }

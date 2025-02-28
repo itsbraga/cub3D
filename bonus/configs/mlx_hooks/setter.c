@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 01:59:06 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 21:03:45 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	__set_keypress_flag(int keycode, t_data *d)
 		}
 	}
 	if (keycode == XK_Escape)
-		exit_game(mlx_s(), SUCCESS);
+		exit_game(mlx_s(), mlx_s()->img.img_ptr, SUCCESS);
 	if (keycode == W)
 		d->keys->key_tab[W_KEY] = 1;
 	if (keycode == S)
@@ -58,22 +58,18 @@ static int	__set_keypress_flag(int keycode, t_data *d)
 	return (SUCCESS);
 }
 
-// NE FONCTIONNE PAS ENCORE
-static int	__mouse_handler(int pressed, int cursor_x, int cursor_y, t_data *d)
+static int	__mouse_handler(int button, int x, int y, t_data *data)
 {
 	t_button	btn;
 
-	btn = d->title_screen.start_btn;
-	if (d->game_state == STATE_TITLE)
+	btn = data->title_screen.start_btn;
+	if (data->game_state == STATE_TITLE && button == Button1) // Clic gauche
 	{
-		if (pressed == Button1) // Clic gauche
+		if ((x >= btn.pos.x && x <= btn.pos.x + btn.width)
+			&& (y >= btn.pos.y && y <= btn.pos.y + btn.height))
 		{
-			if ((cursor_x >= btn.pos.x && cursor_x <= btn.pos.x + btn.width)
-				&& (cursor_y >= btn.pos.y && cursor_y <= btn.pos.y + btn.height))
-				{
-					d->game_state = STATE_GAME;
-					return (SUCCESS);
-				}
+			data->game_state = STATE_GAME;
+			free_title_screen(&data->title_screen);
 		}
 	}
 	return (SUCCESS);
@@ -84,6 +80,6 @@ void	set_hooks(t_mlx *mlx, t_data *data)
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress_flag, data);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease_flag,
 		data);
-	mlx_mouse_hook(mlx->win_ptr, &__mouse_handler, data);
+	mlx_mouse_hook(mlx->win_ptr, &__mouse_handler, data); // for title screen only
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
 }

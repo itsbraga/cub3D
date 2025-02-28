@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 00:42:36 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:54:41 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_img
 	char	*name;
 	void	*img_ptr;
 	char	*addr;
-	int		bpp;
+	int		bits_per_pixel;
 	int		line_len;
 	int		endian;
 	int		width;
@@ -44,7 +44,7 @@ typedef struct s_vector
 {
 	float		x;
 	float		y;
-}				t_vector;
+}				t_point;
 
 typedef struct s_map
 {
@@ -56,10 +56,10 @@ typedef struct s_map
 typedef struct s_ray
 {
 	unsigned int	ray_amount;
-	t_vector		h_ray_inter;
-	t_vector		v_ray_inter;
-	t_vector		h_offset;
-	t_vector		v_offset;
+	t_point			h_ray_inter;
+	t_point			v_ray_inter;
+	t_point			h_offset;
+	t_point			v_offset;
 	float			dist_wall;
 	unsigned int	fov;
 	float			player_rad;
@@ -73,7 +73,7 @@ typedef enum e_state
 
 typedef struct s_button
 {
-	t_vector	pos;
+	t_point		pos;
 	t_img		img;
 	size_t		width;
 	size_t		height;
@@ -101,12 +101,12 @@ typedef struct s_data
 	unsigned int	f_rgb[3]; // peut-etre mettre floor et ceiling ensemble
 	unsigned int	c_rgb[3];
 	int				player_dir;
-	t_vector		player;
-	t_vector		move; // peut-etre ajouter ptr
+	t_point			player;
+	t_point			move; // peut-etre ajouter ptr
 	t_keys			*keys;
 	t_title_screen	title_screen;
 	t_img			minimap;
-	t_vector		minimap_pos;
+	t_point			minimap_pos;
 }				t_data;
 
 /******************************************************************************\

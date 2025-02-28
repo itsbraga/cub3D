@@ -6,13 +6,13 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/27 23:09:22 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:54:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static void	__draw_horizontal_line(t_img *img, t_vector p0, t_vector p1,
+static void	__draw_horizontal_line(t_img *img, t_point p0, t_point p1,
 int color)
 {
 	int i = 0;
@@ -52,7 +52,7 @@ int color)
 	return ;
 }
 
-static void	__draw_vertical_line(t_img *img, t_vector p0, t_vector p1, int color)
+static void	__draw_vertical_line(t_img *img, t_point p0, t_point p1, int color)
 {
 	int i = 0;
 	int x = 0;
@@ -91,7 +91,7 @@ static void	__draw_vertical_line(t_img *img, t_vector p0, t_vector p1, int color
 	return ;
 }
 
-void	draw_line(t_img *img, t_vector p0, t_vector p1, int color)
+void	draw_line(t_img *img, t_point p0, t_point p1, int color)
 {
 	if (valid_point(p0, WIN_WIDTH, WIN_HEIGHT) == false
 		|| valid_point(p1, WIN_WIDTH, WIN_HEIGHT) == false)

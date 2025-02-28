@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/27 20:51:37 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:56:24 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@ static int	__set_keyrelease_flag(int keycode, t_data *d)
 
 static int	__set_keypress_flag(int keycode, t_data *d)
 {
-	if (d->game_state == STATE_TITLE)
-	{
-		if (keycode == XK_Return) // Touche Entrée
-		{
-			d->game_state = STATE_GAME;
-			return (SUCCESS);
-		}
-	}
 	if (keycode == XK_Escape)
 		exit_game(mlx_s(), SUCCESS);
 	if (keycode == W)

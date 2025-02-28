@@ -6,32 +6,34 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:33:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 01:39:30 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:11:12 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-t_img	generate_img(char *path_to_file)
+t_img	generate_img(char *relative_path)
 {
 	t_img	img;
 
-	img.img_ptr = mlx_xpm_file_to_image(mlx_s()->mlx_ptr, path_to_file,
+	ft_memset(&img, 0, sizeof(t_img));
+	img.img_ptr = mlx_xpm_file_to_image(mlx_s()->mlx_ptr, relative_path,
 			&img.width,
 			&img.height);
 	if (img.img_ptr == NULL)
 	{
-		err_msg("MLX", ERR_MLX, 0); // specifier erreur
-		del_img(mlx_s()); // a verifier
+		err_msg("MinilibX", ERR_XPM, 0);
+		return (img);
 	}
 	img.addr = mlx_get_data_addr(img.img_ptr,
-			&img.bpp,
+			&img.bits_per_pixel,
 			&img.line_len,
 			&img.endian);
 	if (img.addr == NULL)
 	{
-		err_msg("MLX", ERR_MLX, 0); // specifier erreur
-		exit_game(mlx_s(), FAILURE); // a verifier
+		err_msg("MinilibX", ERR_ADDR, 0);
+		del_img(mlx_s(), img.img_ptr);
+		ft_memset(&img, 0, sizeof(t_img));
 	}
 	return (img);
 }
