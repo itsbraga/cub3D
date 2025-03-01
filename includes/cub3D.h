@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 22:56:56 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/01 19:32:25 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ bool	first_verification(char **map, int rows, t_point *start);
 
 // check_rgb.c
 bool	valid_rgb(unsigned int rgb[3]);
+
+//map_data.c
+void    get_map_data(t_data *data);
+
 
 /******************************************************************************\
  * TOOLS

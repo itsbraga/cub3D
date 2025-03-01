@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:24:27 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/26 19:50:33 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/01 19:28:37 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+// verifier si le fichier existe + permission apres avoir verifier l'extension
+// si cub file est ok a 100% donner le fd du fichier ouvert dans data
 
 // bool	valid_ext(char *filename)
 // {

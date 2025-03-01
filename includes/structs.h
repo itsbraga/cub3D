@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 22:54:41 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/01 19:32:57 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ typedef struct s_data
 {
 	t_mlx			*mlx;
 	t_state			game_state;
-	char			*map_path;
 	t_map			*map;
 	t_raycast		*ray;
+	int				fd_cubfile;
 	char			texture[4]; // peut-etre 5 pour les portes
-	unsigned int	f_rgb[3]; // peut-etre mettre floor et ceiling ensemble
-	unsigned int	c_rgb[3];
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
 	int				player_dir;
 	t_point			player;
 	t_point			move; // peut-etre ajouter ptr

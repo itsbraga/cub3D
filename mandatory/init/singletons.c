@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 21:18:18 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/01 19:33:28 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ t_data	*data_s(void)
 		secure_malloc(instance, true);
 		instance->mlx = NULL;
 		instance->game_state = STATE_TITLE;
-		instance->map_path = NULL;
 		instance->map = yama(CREATE, NULL, sizeof(t_map));
 		secure_malloc(instance->map, true);
 		instance->ray = yama(CREATE, NULL, sizeof(t_raycast));
 		secure_malloc(instance->ray, true);
+		instance->fd_cubfile = -1;
 		ft_bzero(instance->texture, 4);
-		ft_bzero(instance->f_rgb, 3);
-		ft_bzero(instance->c_rgb, 3);
+		instance->floor_color = NULL;
+		instance->ceiling_color = NULL;
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
 	}

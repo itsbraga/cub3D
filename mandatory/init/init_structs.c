@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 01:52:21 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/01 19:05:11 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	init_data(t_data *data)
 {
-	data->player.x = 800;
-	data->player.y = 700;
-	data->player_dir = SO;
+	data->player.x = 800; // a remplacer
+	data->player.y = 700; // a remplacer
+	data->player_dir = SO; // a remplacer
 	data->move.x = 0;
 	data->move.y = 0;
 }
