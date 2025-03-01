@@ -1,5 +1,5 @@
 #—————————————————————————————————————————————
-#	FEATURES
+#	ANSI
 #—————————————————————————————————————————————
 
 RESET			:=	\033[0m
@@ -20,44 +20,45 @@ ORANGE			:=	\033[38;2;255;178;127m
 #	BASE
 #—————————————————————————————————————————————
 
-LIBFT_DIR		=	LIBFT/
-LIBFT			=	$(addprefix $(LIBFT_DIR), libft.a)
-MLX_DIR			=	mlx/
-MLX				=	$(addprefix $(MLX_DIR), libmlx.a)
+LIBFT_DIR		:=	LIBFT/
+LIBFT			:=	$(addprefix $(LIBFT_DIR), libft.a)
+MLX_DIR			:=	mlx/
+MLX				:=	$(addprefix $(MLX_DIR), libmlx.a)
 
-HEADERS			=	-Iincludes -I/usr/include -I$(MLX_DIR)
+HEADERS			:=	-Iincludes -I/usr/include -I$(MLX_DIR)
 
-CFLAGS			=	-Wall -Wextra -Werror
-LFLAGS			=	-L$(LIBFT_DIR) -lft
-MLXFLAGS		=	-L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
-DEPFLAGS		=	-MMD -MP
-DEBUG			=	-O3 -g3 #-0fast
+CFLAGS			+=	-Wall -Wextra -Werror
+LFLAGS			+=	-L$(LIBFT_DIR) -lft
+MLXFLAGS		+=	-L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
+DEPFLAGS		+=	-MMD -MP
+DEBUG			+=	-O3 -g3 #-0fast
+NO_PRINT_DIR	+=	--no-print-directory
 
 #—————————————————————————————————————————————
 #	MANDATORY
 #—————————————————————————————————————————————
 
-NAME			=	cub3D
+NAME			:=	cub3D
 
-SRCS_DIR		=	$(shell find mandatory -type d)
-SRCS_F			=	$(shell find mandatory -type f -name '*.c')
+SRCS_DIR		:=	$(shell find mandatory -type d)
+SRCS_F			:=	$(shell find mandatory -type f -name '*.c')
 
-OBJS_DIR		=	mandatory/objs/
-OBJS_F			=	$(patsubst mandatory/%.c,$(OBJS_DIR)%.o,$(SRCS_F))
-DEPENDENCIES	=	$(OBJS_F:.o=.d)
+OBJS_DIR		:=	mandatory/objs/
+OBJS_F			:=	$(patsubst mandatory/%.c,$(OBJS_DIR)%.o,$(SRCS_F))
+DEPENDENCIES	:=	$(OBJS_F:.o=.d)
 
 #—————————————————————————————————————————————
 #	BONUS
 #—————————————————————————————————————————————
 
-NAME_BONUS		=	cub3D_bonus
+NAME_BONUS		:=	cub3D_bonus
 
-BONUS_SRCS_DIR	=	$(shell find bonus -type d)
-BONUS_SRCS_F	=	$(shell find bonus -type f -name '*.c')
+BONUS_SRCS_DIR	:=	$(shell find bonus -type d)
+BONUS_SRCS_F	:=	$(shell find bonus -type f -name '*.c')
 
-BONUS_OBJS_DIR	=	bonus/objs/
-BONUS_OBJS_F	=	$(patsubst bonus/%.c,$(BONUS_OBJS_DIR)%.o,$(BONUS_SRCS_F))
-B_DEPENDENCIES	=	$(BONUS_OBJS_F:.o=.d)
+BONUS_OBJS_DIR	:=	bonus/objs/
+BONUS_OBJS_F	:=	$(patsubst bonus/%.c,$(BONUS_OBJS_DIR)%.o,$(BONUS_SRCS_F))
+B_DEPENDENCIES	:=	$(BONUS_OBJS_F:.o=.d)
 
 #—————————————————————————————————————————————
 #	CURSOR CONTROL
@@ -72,7 +73,7 @@ define restore_cursor
 endef
 
 define move_to_status_line
-	printf "\033[%d;0H" "$$(($$(tput lines) - 1))"
+	printf "\033[$$(tput lines);1H"
 endef
 
 define clear_line
@@ -84,173 +85,124 @@ endef
 #—————————————————————————————————————————————
 
 define building_msg
-	printf "\033[H"
-	printf "\033[2J"
 	printf "$(BOLD)$(2)Building $(1)...$(RESET)\n\n"
 endef
 
-define draw_progress_bar
+define display_compiled_file
+	printf "$(BOLD)$(ITAL)$(1)Compiled: $(RESET)$(ITAL)$(2)                                  \n$(RESET)"
+endef
+
+define progress_bar
 	$(save_cursor)
 	$(move_to_status_line)
 	$(clear_line)
 	files_total=$$(echo "$(SRCS_F)" | wc -w); \
 	files_compiled=$$(find $(OBJS_DIR) -name "*.o" 2>/dev/null | wc -l); \
-	if [ $$files_total -eq 0 ]; then \
-		percent=0; \
-	else \
-		percent=$$((files_compiled * 100 / files_total)); \
-	fi; \
+	if [ $$files_total -eq 0 ]; then percent=0; else percent=$$((files_compiled * 100 / files_total)); fi; \
 	bar_len=80; \
 	completed=$$((bar_len * files_compiled / files_total)); \
 	remaining=$$((bar_len - completed)); \
 	bar=""; \
-	for i in $$(seq 1 $$completed); do \
-		bar="$$bar#"; \
-	done; \
-	for i in $$(seq 1 $$remaining); do \
-		bar="$$bar "; \
-	done; \
-	printf "$(BOLD)Loading: [$(GREEN)$$bar$(RESET)$(BOLD)] $$percent%%$(RESET)"
+	for i in $$(seq 1 $$completed); do bar="$$bar#"; done; \
+	for i in $$(seq 1 $$remaining); do bar="$$bar "; done; \
+	printf "\r$(BOLD)Loading: [$(GREEN)$$bar$(RESET)$(BOLD)] $$percent%%$(RESET)" > /dev/tty; \
 	$(restore_cursor)
 endef
 
-define draw_bonus_progress_bar
+define bonus_progress_bar
 	$(save_cursor)
 	$(move_to_status_line)
 	$(clear_line)
 	files_total=$$(echo "$(BONUS_SRCS_F)" | wc -w); \
 	files_compiled=$$(find $(BONUS_OBJS_DIR) -name "*.o" 2>/dev/null | wc -l); \
-	if [ $$files_total -eq 0 ]; then \
-		percent=0; \
-	else \
-		percent=$$((files_compiled * 100 / files_total)); \
-	fi; \
+	if [ $$files_total -eq 0 ]; then percent=0; else percent=$$((files_compiled * 100 / files_total)); fi; \
 	bar_len=80; \
 	completed=$$((bar_len * files_compiled / files_total)); \
 	remaining=$$((bar_len - completed)); \
 	bar=""; \
-	for i in $$(seq 1 $$completed); do \
-		bar="$$bar#"; \
-	done; \
-	for i in $$(seq 1 $$remaining); do \
-		bar="$$bar "; \
-	done; \
-	printf "$(BOLD)Loading: [$(GREEN)$$bar$(RESET)$(BOLD)] $$percent%%$(RESET)"
+	for i in $$(seq 1 $$completed); do bar="$$bar#"; done; \
+	for i in $$(seq 1 $$remaining); do bar="$$bar "; done; \
+	printf "\r$(BOLD)Loading: [$(GREEN)$$bar$(RESET)$(BOLD)] $$percent%%$(RESET)" > /dev/tty; \
 	$(restore_cursor)
-endef
-
-define draw_creepy_ascii_art
-	printf "\n\
-\t⢀⣾⣿⣿⣾⣿⣿⡿⣱⣿⣿⣿⡿⠁⢸⡟⢸⣿⣵⣿⣿⡿⣿⢻⡿⠀⠀⠀⠀⠀⠀⢀⡀⠈⢹⣾⣯⣿⣿⡙⣿⣿⣿⣇⡀⠀⠀⠀⠀⠀\n\
-⠀ ⠀⠀⠀ ⢀⣿⣿⣿⣇⣿⣿⡿⣸⣿⣿⣿⣿⡁⢰⣿⢠⣿⣱⣿⣿⡟⣱⡟⣿⠆⠀⠀⠀⠀⠀⠀⠈⢱⠀⠆⢻⣾⣿⣿⣧⢻⣿⣿⣧⠱⠀⠀⠀⠀⠀\n\
- ⠀⠀⠀⠀ ⣾⣼⣿⣿⣼⣿⡿⣹⣿⣿⣿⣿⡗⠛⢦⣷⣿⢻⣿⣿⡿⣱⠟⢠⣿⠀⠀⠀⠀⠀⠀⠁⡅⢸⢇⠀⠙⣿⣿⣿⣿⣮⣿⣿⣿⣧⢣⠀⠀⠀⠀\n\
- ⠀⠀⠀ ⢰⢧⣿⣿⡯⣿⣿⣣⣯⡿⣿⣿⣿⡝⣀⢸⣿⢻⣿⣿⣿⢱⡛⣠⣼⡇⠀⠀⠀⠀⠀⠀⠀⠡⠘⢈⣦⡇⢹⣿⣿⢿⣏⣿⣿⣿⣿⡌⠀⠀⠀⠀\n\
- ⠀⠀⠀ ⢸⣼⣿⣿⣿⣿⠃⡟⣼⠃⣿⣿⡯⢃⣽⢿⢳⣿⣿⡿⢡⠛⠁⠇⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⡃⠘⣿⣿⢸⣇⣿⣿⣿⣿⡏⠀⠀⠀⠀\n\
- ⠀⠀⠀ ⠺⣿⣿⣿⣿⠏⠀⠛⠉⢰⣿⠹⡟⠉⢱⣹⣾⠋⣹⡾⠁⠀⠀⣸⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣸⡇⣿⣿⣿⣿⡷⠀⠀⠀⠀\n\
- ⠀⠀⠀ ⢀⣿⣿⣿⡟⠀⠀⠆⢠⢾⣿⣰⣄⠒⠋⠘⠱⠀⣿⠁⠀⠀⠀⣿⡁⠀⠀⠀⠀⠀⠀⣀⣀⠀⠀⠀⠇⠰⣼⣿⣿⣿⢿⣿⣿⣿⣿⣿⡀⠀⠀⠀\n\
- ⠀⠀ ⢀⢼⣿⣿⣿⠆⠀⣠⣼⣾⣾⣿⣾⣿⣿⣆⡀⠐⠊⠉⠀⠀⠀⢰⡿⠀⠀⠀⣀⣤⣾⣿⣿⣾⣿⣶⣦⣄⠀⣿⡎⢿⣿⢸⣿⣿⣿⣿⣿⣧⠀⠀⠀\n\
- ⠀⠀ ⠈⢺⣿⣿⣼⣠⣸⣿⣿⠟⠛⢻⠟⠻⣿⣿⣿⣆⡀⠀⠀⠀⠀⠀⠁⠀⡴⣶⣿⣿⣿⡿⠛⠛⠛⢿⣿⣿⡄⣀⡂⠂⠉⣸⣿⣿⣿⣿⣿⣟⠀⠀⠀\n\
- ⠀⠀ ⠀⢺⣿⡿⠀⣿⣽⣿⠇⢀⣼⣿⣶⣈⢋⠙⣿⣿⡗⠀⠀⠀⠀⠀⠀⠘⣽⣿⣿⡿⢋⢔⣂⣀⠀⠀⠈⢿⣿⠸⡤⠄⠀⢸⣿⣿⣿⣿⣿⣿⡄⠀⠀\n\
- ⠀⠀ ⠀⣼⣿⣯⠀⣿⣿⣯⠀⢸⣿⣿⣿⣿⣏⢀⣿⣿⣯⠀⠀⠀⠀⠀⠀⢾⣿⣿⣿⡴⣿⣿⣿⣿⣿⡄⡄⢸⣿⡀⠃⠀⠀⠸⣿⣿⣿⣿⣿⣿⡇⠀⠀\n\
-⠀ ⠀⡄⣹⣿⡗⠈⢻⣾⣿⣇⠌⢻⠿⠿⣿⣼⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⣿⣿⣿⣧⢹⣿⣿⣿⣿⢧⢀⣾⣿⢃⠃⠀⠀⢸⣿⣿⣿⣿⣿⣿⡇⠀⠀\n\
-  ⠀⠀⠃⣿⣿⣿⢠⠈⢹⣿⡿⣷⣶⣾⣾⣿⣿⣟⣿⡟⠙⡆⠀⠀⠀⠀⠀⠂⢹⣿⣿⣿⣷⣽⣿⣋⣷⣬⣿⣿⢣⠀⠁⠀⠀⣾⣿⣿⣿⣿⣿⣿⠌⠀⠀\n\
-  ⠀⠀⠀⣿⣿⣿⣘⠆ ⠘⡟⡯⣿⣷⣼⣿⣿⣿⠟⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⡿⡿⢿⠟⠛⣩⠲⠁⠀⠀⠀⢤⣿⣿⣿⣿⣿⣿⣿⠦⡆⠀\n\
-  ⠀⠀⠀⣿⣿⣿⣿⠄⠀ ⠀⠙⠻⢻⡿⢿⠟⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠿⣿⣿⣶⣿⠿⠿⠃⠀⠀⠀⣠⣡⣸⣿⣿⣿⣿⣿⣿⣿⡟⠃⠀\n\
- ⠀ ⠀⠀⣿⣿⣿⣿⣶⡄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠩⠙⠌⠀⠠⠊⠀⠀⠰⠍⢿⣿⣿⣿⣿⣿⣿⣿⣿⡷⢀⠀\n\
- ⠀ ⠀⠈⣿⣿⣿⣿⣿⠉⠣⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⣀⣀⣴⢷⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀\n\
- ⠀ ⠀⢐⣿⣿⣿⣿⣿⡃⡀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⠳⣴⣧⣦⠄⠀⠀⠀⠀⠀⠀⠀⠀⢀⠰⣶⣷⠿⣤⠞⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢀\n\
- ⠀ ⠀⣺⣾⣿⣿⣿⣿⣷⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⣿⣿⡶⠋⣿⣿⣾⠀⠀⠀⠀⠀⠀⠀⠀⣟⣊⡹⣺⣾⢟⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠈\n\
-  ⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⡄⢾⣆⠀⠀⠀⠀⠀⠀⠐⣿⣿⠈⠃⠙⢿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠉⣩⣾⡿⢃⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀\n\
-  ⢆⠀⠀⣿⣿⣿⣿⣿⣿⣿⣟⣎⣿⣧⡄⠀⠀⠀⠀⠀⠙⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢐⣦⣾⡿⢋⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀\n\
-  ⢸⡦⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⡌⠹⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⣀⣼⣿⣿⠉⣐⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⡇⠀\n\
-  ⠀⢸⠃⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⠈⢻⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⣿⡿⠃⣡⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀\n\
-  ⠀⠀⠙⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠙⠿⣿⣿⣦⣤⣀⣠⣀⣤⣴⣿⣿⣿⠋⠁⠤⣬⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀\n\
-  ⠀⠀⡜⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣀⠉⠛⠻⣿⣿⣿⣿⠿⠛⠿⢉⣀⡤⡀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀\n\
-  ⠀⠀⠇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠂⠀⠈⢳⡒⢀⣀⠤⢀⠀⣭⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣼⠁⠀⠀\n\
- ⠀ ⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣈⠣⠄⠀⠉⠀⣠⣵⠞⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⣧⠀⠀⠀\n\
-  ⠀⠀⣤⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠒⢶⠒⠶⠀⠉⠀⠀⠈⣿⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣹⣯⠀⠀⠀\n\
-  ⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢳⢀⠸⠀⠀⠀⠀⠀⠀⠐⣿⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢹⡾⡃⠀⠀\n\
-  ⠀⠀⣿⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣾⣞⡄⠀⠀⠀⠀⠀⠀⠂⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⣿⠀⠀⠀\n\
-  ⠀⠀⣿⡟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣤⣿⣿⣿⣿⣿⣌⠀⠀⠀⠀⠠⠀⠀⣿⣿⣿⣿⣿⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠹⠃⠀⠀\n\
-  ⠀⠰⣘⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⡃⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠈⠀⠀⠀\n\
-  ⠀⠀⡿⠟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⢿⡇⠀⠀⠀⠀⠀⠈⡇⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣀⠀\n\
-	"
 endef
 
 #—————————————————————————————————————————————
 #	RULES
 #—————————————————————————————————————————————
 
-all: $(NAME)
+all: init_display $(NAME)
+
+init_display: .init_done
+
+.init_done:
+		@clear
+		@$(call building_msg,$(NAME),$(PURPLE))
+		@$(progress_bar)
+		@echo ""
+		@touch .init_done
 
 $(OBJS_DIR)%.o: mandatory/%.c
-				@mkdir -p $(dir $@)
-				@printf "$(BOLD)$(ITAL)$(PINK)Compiled: $(RESET)$(ITAL)$<                                  \n$(RESET)"
-				@cc $(DEPFLAGS) $(CFLAGS) $(HEADERS) -c $< -o $@
-				@$(draw_progress_bar)
+		@mkdir -p $(dir $@)
+		@$(progress_bar)
+		@$(call display_compiled_file,$(PINK),$<)
+		@cc $(DEPFLAGS) $(CFLAGS) $(HEADERS) -c $< -o $@
+		@$(progress_bar)
 -include $(DEPENDENCIES)
 
 $(LIBFT) $(MLX):
-			@make --no-print-directory -sC $(LIBFT_DIR)
-			@make --no-print-directory -sC $(MLX_DIR) > /dev/null 2>&1
+		@make $(NO_PRINT_DIR) -sC $(LIBFT_DIR)
+		@make $(NO_PRINT_DIR) -sC $(MLX_DIR) > /dev/null 2>&1
 
-$(NAME): $(LIBFT) $(MLX)
-			@$(call building_msg,$(NAME),$(PURPLE))
-			@make --no-print-directory $(OBJS_F)
-			@cc $(CFLAGS) $(HEADERS) $(OBJS_F) $(LFLAGS) $(MLXFLAGS) -o $(NAME)
-			@clear
-			@echo "\n\n$(BOLD)=================== $(shell bash rainbow.sh "cub3D") ===================\n"
-			@echo "$(BLINK)$(GREEN)\t\t    READY!$(RESET)\n"
-			@echo "$(BOLD)=============================================\n\n$(RESET)"
+$(NAME): $(OBJS_F) $(LIBFT) $(MLX)
+		@echo "\n\n$(BOLD)=================== $(shell bash rainbow.sh "cub3D") $(BOLD)===================\n"
+		@echo "$(BLINK)$(GREEN)\t\t    READY!$(RESET)\n"
+		@echo "$(BOLD)=============================================\n\n"
+		@cc $(CFLAGS) $(HEADERS) $(OBJS_F) $(LFLAGS) $(MLXFLAGS) -o $(NAME)
 
-$(OBJS_F): | init_build
+init_bonus_display: .bonus_init_done
 
-init_build:
-		@$(call building_msg,$(NAME),$(PURPLE))
-
-bonus: $(NAME_BONUS) 
+.bonus_init_done:
+		@clear
+		@$(call building_msg,$(NAME_BONUS),$(ORANGE))
+		@$(bonus_progress_bar)
+		@echo ""
+		@touch .bonus_init_done
 
 $(BONUS_OBJS_DIR)%.o: bonus/%.c
-				@mkdir -p $(dir $@)
-				@printf "$(BOLD)$(ITAL)$(PURPLE)Compiled: $(RESET)$(ITAL)$<                                  \n$(RESET)"
-				@cc $(DEPFLAGS) $(CFLAGS) $(HEADERS) -c $< -o $@
-				@$(draw_bonus_progress_bar)
+		@mkdir -p $(dir $@)
+		@$(bonus_progress_bar)
+		@$(call display_compiled_file,$(PURPLE),$<)
+		@cc $(DEPFLAGS) $(CFLAGS) $(HEADERS) -c $< -o $@
+		@$(bonus_progress_bar)
 -include $(B_DEPENDENCIES)
 
-$(NAME_BONUS): $(LIBFT) $(MLX)
-			@$(call building_msg,$(NAME),$(ORANGE))
-			@make --no-print-directory $(BONUS_OBJS_F)
-			@cc $(CFLAGS) $(HEADERS) $(BONUS_OBJS_F) $(LFLAGS) $(MLXFLAGS) -o $(NAME_BONUS)
-			@clear
-			@$(draw_creepy_ascii_art)
-			@echo "\n\n$(BOLD)================ $(RED)Telecubbies3D Horror$(RESET)$(BOLD) ================\n"
-			@echo "$(BLINK)$(GREEN)\t\t     BONUS READY!$(RESET)"
-			@echo "\t\t        Grrrr\n"
-			@echo "$(BOLD)======================================================\n\n$(RESET)"
+bonus: init_bonus_display $(NAME_BONUS)
 
-$(BONUS_OBJS_F): | init_bonus_build
-
-init_bonus_build:
-		@$(call building_msg,$(NAME),$(ORANGE))
+$(NAME_BONUS): $(BONUS_OBJS_F) $(LIBFT) $(MLX)
+		@bash creepy_art.sh
+		@echo "\n\n$(BOLD)================ $(RED)Telecubbies3D Horror$(RESET)$(BOLD) ================\n"
+		@echo "$(BLINK)$(GREEN)\t\t     BONUS READY!$(RESET)\n"
+		@echo "$(BOLD)======================================================\n\n";
+		@cc $(CFLAGS) $(HEADERS) $(BONUS_OBJS_F) $(LFLAGS) $(MLXFLAGS) -o $(NAME_BONUS)
 
 clean:
 		@rm -rf $(OBJS_DIR) $(BONUS_OBJS_DIR)
-		@make --no-print-directory clean -sC $(MLX_DIR) > /dev/null 2>&1
-		@make --no-print-directory clean -sC $(LIBFT_DIR)
+		@make $(NO_PRINT_DIR) clean -sC $(MLX_DIR) > /dev/null 2>&1
+		@make $(NO_PRINT_DIR) clean -sC $(LIBFT_DIR)
 		@echo "\n$(BOLD)$(BLUE)[objects]:\t$(RESET)Removed!"
 
 fclean: clean
-			@rm -rf $(NAME) $(NAME_BONUS)
-			@rm -rf $(LIBFT) $(MLX)
-			@echo "$(BOLD)$(CYAN)[executables]:\t$(RESET)Removed!\n"
+		@rm -rf $(NAME) $(NAME_BONUS)
+		@rm -rf $(LIBFT) $(MLX)
+		@echo "$(BOLD)$(CYAN)[executables]:\t$(RESET)Removed!\n"
 
 re:	fclean all
 		@echo "$(BOLD)$(YELLOW)make re: $(RESET)Project successfully rebuilt! ✨ (mandatory only)\n"
 
 debug: fclean $(LIBFT) $(MLX)
-		@make --no-print-directory $(NAME) CFLAGS="$(CFLAGS) $(DEBUG)"
+		@make $(NO_PRINT_DIR) $(NAME) CFLAGS="$(CFLAGS) $(DEBUG)"
 
 debug_bonus: fclean $(LIBFT) $(MLX)
-		@make --no-print-directory $(NAME_BONUS) CFLAGS="$(CFLAGS) $(DEBUG)"
+		@make $(NO_PRINT_DIR) $(NAME_BONUS) CFLAGS="$(CFLAGS) $(DEBUG)"
 
-.PHONY:	all bonus init_build init_bonus_build clean fclean re debug debug_bonus
+.PHONY:	all clean fclean re bonus
