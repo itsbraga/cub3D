@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/01 19:32:11 by pmateo           ###   ########.fr       */
+/*   Created: 2025/03/01 18:53:59 by pmateo            #+#    #+#             */
+/*   Updated: 2025/03/01 22:58:45 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+# include "cub3D.h"
 
-int	main(int argc, char **argv)
+//recupere le fd du fichier cub, le traite, et le ferme
+
+int *get_textures()
 {
-	t_data	*data;
-	t_mlx	*mlx;
+    
+}
 
-	if (argc != 2)
-		exit(FAILURE);
-	data = data_s();
-	mlx = mlx_s();
-	//parsing(argv);
-	get_map_data(data);
-	init_structs(data, mlx);
-	set_hooks(mlx, data);
-	mlx_loop_hook(mlx->mlx_ptr, &render, data);
-	mlx_loop(mlx->mlx_ptr);
+unsigned int	rgb_to_int()
+{
+    
+}
+
+void    get_map_data(t_data *data)
+{
+    int fd;
+
+    fd = data->fd_cubfile;
+    
 }
