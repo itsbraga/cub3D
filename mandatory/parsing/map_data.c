@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 18:53:59 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/02 17:25:45 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 17:37:35 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3D.h"
+#include "cub3D.h"
 
 //recupere le fd du fichier cub, le traite, et le ferme
 
