@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_img.c                                     :+:      :+:    :+:   */
+/*   generate_img_by_xpm.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:33:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 22:11:12 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 17:37:58 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D_bonus.h"
+#include "cub3D.h"
 
 t_img	generate_img(char *relative_path)
 {

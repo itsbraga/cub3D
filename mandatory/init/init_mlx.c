@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:26:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 22:56:56 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 14:49:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 		exit_game(mlx, FAILURE); // a verifier
 	}
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
-			mlx->img.name);
+			"Telecubbies");
 	if (mlx->win_ptr == NULL)
 	{
 		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
