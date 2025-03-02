@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 17:25:45 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 17:37:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_data	*data_s(void)
 		secure_malloc(instance->ray, true);
 		instance->fd = -1;
 		instance->texture = NULL;
-		instance->floor_color = NULL;
-		instance->ceiling_color = NULL;
+		instance->floor_color = 0;
+		instance->ceiling_color = 0;
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
 	}
