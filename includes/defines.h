@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 23:29:55 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 20:15:11 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@
 
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 1024
+// # define WIN_WIDTH 960
+// # define WIN_HEIGHT 720
 
 # define DEL_WIN "\nWindow successfully destroyed.\n\n"
 # define DEL_IMG "\nImage and window successfully destroyed.\n\n"

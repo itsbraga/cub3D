@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/28 21:00:26 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 19:47:59 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	render(t_data *data)
 {
-	printf("Game state: %d\n", data->game_state);
-
 	if (data->game_state == STATE_TITLE)
 		draw_title_screen(data);
 	else if (data->game_state == STATE_GAME)
