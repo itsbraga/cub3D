@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/01 19:32:57 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 17:25:45 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 typedef struct s_img
 {
-	char	*name;
 	void	*img_ptr;
 	char	*addr;
 	int		bits_per_pixel;
@@ -96,8 +95,8 @@ typedef struct s_data
 	t_state			game_state;
 	t_map			*map;
 	t_raycast		*ray;
-	int				fd_cubfile;
-	char			texture[4]; // peut-etre 5 pour les portes
+	int				fd;
+	int				**texture;
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
 	int				player_dir;
