@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/02 17:25:45 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 23:45:37 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ typedef struct s_vector
 
 typedef struct s_map
 {
-	char			**map2d;
-	size_t			MAP_HEIGHT; // MAP
-	size_t			MAP_WIDTH; 
+	char		**map2d;
+	size_t		height;
+	size_t		width; 
 }				t_map;
 
 typedef struct s_ray
@@ -70,18 +70,19 @@ typedef enum e_state
 	STATE_GAME = 2
 }			t_state;
 
-typedef struct s_button
+typedef struct s_layer
 {
 	t_point		pos;
 	t_img		img;
 	size_t		width;
 	size_t		height;
-}				t_button;
+}				t_layer;
 
 typedef struct s_title_screen
 {
 	t_img		bg_img;
-	t_button	start_btn;
+	t_layer		blood;
+	t_layer		start_button;
 }				t_title_screen;
 
 typedef	struct s_keys_event

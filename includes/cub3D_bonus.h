@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:58:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/02 18:02:21 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 19:26:10 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ t_data	*data_s(void);
 t_img	generate_img(char *relative_path);
 
 // title_screen.c
-int		init_title_screen(t_title_screen *screen);
+void	init_title_screen(t_title_screen *screen);
 void	draw_title_screen(t_data *data);
 
 /******************************************************************************\

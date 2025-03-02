@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 22:54:10 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 19:37:46 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 	{
 		curr_tile.x = r->h_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->h_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->MAP_WIDTH
-			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->MAP_HEIGHT)
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
+			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
     	{
         	// printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
         	break;
@@ -107,8 +107,8 @@ void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 	{
 		curr_tile.x = r->v_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->v_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->MAP_WIDTH
-			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->MAP_HEIGHT)
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
+			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
     	{
         	// printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
         	break;

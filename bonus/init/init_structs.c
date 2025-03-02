@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 22:14:42 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 19:37:46 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	init_data(t_data *data)
 void	init_map(t_map *m, t_data *data)
 {
 	m->map2d = NULL;
-	m->MAP_HEIGHT = 0;
-	m->MAP_WIDTH = 0; 
+	m->height = 0;
+	m->width = 0; 
 	data->map = m;
 }
 
@@ -58,14 +58,7 @@ void	init_structs(t_data *data, t_mlx *mlx)
 {
 	init_data(data);
 	init_mlx(mlx, data);
-	if (init_title_screen(&data->title_screen) == FAILURE)
-	{
-		// err_msg("Title screen", "initialization failed", 0);
-		printf("Title screen initialization failed, setting game state to GAME\n");
-		data->game_state = STATE_GAME;
-	}
-	else
-		printf("Title screen initialization OK\n");
+	init_title_screen(&data->title_screen);
 	init_map(data->map, data);
 	init_raycast(data->ray, data);
 	init_keys(data->keys, data);

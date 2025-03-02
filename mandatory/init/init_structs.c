@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/01 19:05:11 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 19:37:46 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	init_data(t_data *data)
 void	init_map(t_map *m, t_data *data)
 {
 	m->map2d = NULL;
-	m->MAP_HEIGHT = 0;
-	m->MAP_WIDTH = 0; 
+	m->height = 0;
+	m->width = 0; 
 	data->map = m;
 }
 

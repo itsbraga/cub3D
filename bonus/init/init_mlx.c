@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:26:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 17:31:02 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 19:55:20 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-
-// Ajuster la taille de la minimap selon la taille de la window:
-//
-// WIN_SIZE (x,y) / (div TILE_SIZE) = MINIMAP_SIZE (x,y)
-// WIN_SIZE (x,y) / MINIMAP_SIZE (x,y) = (div TILE_SIZE)
 
 // t_img	*init_texture_img(t_mlx *mlx)
 // {
@@ -40,6 +35,12 @@
 // 	return (img);
 // }
 
+/*	Ajuster la taille de la minimap selon la taille de la window:
+
+	WIN_SIZE (x,y) / (div TILE_SIZE) = MINIMAP_SIZE (x,y)
+	WIN_SIZE (x,y) / MINIMAP_SIZE (x,y) = (div TILE_SIZE)
+*/
+// 960x720
 static int	__init_minimap_img(t_mlx *mlx, t_data *data)
 {
 	data->minimap.img_ptr = mlx_new_image(mlx->mlx_ptr, 256, 256);
@@ -94,7 +95,7 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 		exit_game(mlx, mlx->img.img_ptr, FAILURE); // a verifier
 	}
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
-			"Telecubbies");
+			"Telecubbies Horror");
 	if (mlx->win_ptr == NULL)
 	{
 		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur

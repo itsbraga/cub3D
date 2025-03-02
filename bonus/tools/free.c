@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 21:10:13 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 23:28:20 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void	free_tab(char **tab)
 	free_and_set_null((void **)&tab);
 }
 
-void	free_title_screen(t_title_screen *screen)
-{
-	if (screen->bg_img.img_ptr != NULL)
-		del_img(mlx_s(), screen->bg_img.img_ptr);
-	if (screen->start_btn.img.img_ptr != NULL)
-		del_img(mlx_s(), screen->start_btn.img.img_ptr);
-}
+// void	free_title_screen(t_title_screen *screen)
+// {
+// 	if (screen->first_layer_img.img_ptr != NULL)
+// 		del_img(mlx_s(), screen->first_layer_img.img_ptr);
+// 	// if (screen->second_layer.img.img_ptr != NULL)
+// 	// 	del_img(mlx_s(), screen->second_layer.img.img_ptr);
+// 	if (screen->third_layer.img.img_ptr != NULL)
+// 		del_img(mlx_s(), screen->third_layer.img.img_ptr);
+// }

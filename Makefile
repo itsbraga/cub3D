@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/02 19:17:35 by annabrag          #+#    #+#              #
-#    Updated: 2025/03/02 19:19:47 by annabrag         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 #—————————————————————————————————————————————
 #	ANSI
 #—————————————————————————————————————————————
@@ -40,9 +28,11 @@ MLX				:=	$(addprefix $(MLX_DIR), libmlx.a)
 HEADERS			:=	-Iincludes -I/usr/include -I$(MLX_DIR)
 
 CFLAGS			+=	-Wall -Wextra -Werror
-LFLAGS			+=	-L$(LIBFT_DIR) -lft
-MLXFLAGS		+=	-L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 DEPFLAGS		+=	-MMD -MP
+LFLAGS			+=	-L$(LIBFT_DIR) -lft
+MLXFLAGS		+=	-L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11
+MATHFLAGS		+=	-lm
+ADDFLAGS		+=	$(LFLAGS) $(MLXFLAGS) $(MATHFLAGS)
 DEBUG			+=	-O3 -g3 #-0fast
 NO_PRINT_DIR	+=	--no-print-directory
 
@@ -169,7 +159,7 @@ $(NAME): $(OBJS_F) $(LIBFT) $(MLX)
 		@echo "\n\n$(BOLD)=================== $(shell bash rainbow.sh "cub3D") $(BOLD)===================\n"
 		@echo "$(BLINK)$(GREEN)\t\t    READY!$(RESET)\n"
 		@echo "$(BOLD)=============================================\n\n"
-		@cc $(CFLAGS) $(HEADERS) $(OBJS_F) $(LFLAGS) $(MLXFLAGS) -o $(NAME)
+		@cc $(CFLAGS) $(HEADERS) $(OBJS_F) $(ADDFLAGS) -o $(NAME)
 
 init_bonus_display: .bonus_init_done
 
@@ -194,7 +184,7 @@ $(NAME_BONUS): $(BONUS_OBJS_F) $(LIBFT) $(MLX)
 		@echo "\n\n$(BOLD)================ $(RED)Telecubbies3D Horror$(RESET)$(BOLD) ================\n"
 		@echo "$(BLINK)$(GREEN)\t\t     BONUS READY!$(RESET)\n"
 		@echo "$(BOLD)======================================================\n\n";
-		@cc $(CFLAGS) $(HEADERS) $(BONUS_OBJS_F) $(LFLAGS) $(MLXFLAGS) -o $(NAME_BONUS)
+		@cc $(CFLAGS) $(HEADERS) $(BONUS_OBJS_F) $(ADDFLAGS) -o $(NAME_BONUS)
 
 clean:
 		@rm -rf $(OBJS_DIR) $(BONUS_OBJS_DIR)

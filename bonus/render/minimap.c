@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 00:47:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 23:30:05 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 19:37:46 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	draw_minimap(t_data *data, t_map *minimap)
 	data->minimap_pos.y = WIN_HEIGHT - data->minimap.height - 20;
 	clear_img(&data->minimap, data->minimap.width, data->minimap.height,
 			GRAY_PIX);
-	while (tile.y < minimap->MAP_HEIGHT)
+	while (tile.y < minimap->height)
 	{
 		tile.x = 0;
-		while (tile.x < minimap->MAP_WIDTH)
+		while (tile.x < minimap->width)
 		{
 			if (minimap->map2d[(int)tile.y][(int)tile.x] == '1')
 				__draw_tile(tile);

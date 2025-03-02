@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/28 22:54:10 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 21:43:35 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void	update_player_move(t_data *data, t_keys *key)
 {
 	int			i;
 	move_tab	functions[7];
-	t_point	new_player_pos;
+	t_point		new_player_pos;
+	// float		safety_zone;
 	
 	i = 0;
+	// safety_zone = 0.2;
 	init_movetab(functions);
 	while (i < 6)
 	{
