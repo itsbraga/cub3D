@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/02 17:30:20 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 18:02:30 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <limits.h>
 # include <stdbool.h>
 # include <math.h>
 # include <X11/X.h>

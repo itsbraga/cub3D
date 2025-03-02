@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 01:45:00 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 17:35:27 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 18:13:44 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,8 @@
 int	init_title_screen(t_title_screen *screen)
 {
 	/******************** BACKGROUND ********************/
-	printf("Loading background: ./start_img/xpm/teletubbies.xpm\n");
-	if (access("./start_img/xpm/teletubbies.xpm", F_OK) == -1)
-	{
-		err_msg("Title screen", "Background image file not found", 0);
-		return (FAILURE);
-	}
-	screen->bg_img = generate_img("./start_img/xpm/teletubbies.xpm");
+	printf("Loading background: ./bonus/init/start_img/xpm/teletubbies.xpm\n");
+	screen->bg_img = generate_img("./bonus/init/start_img/xpm/teletubbies.xpm");
 	if (screen->bg_img.img_ptr == NULL)
 	{
 		err_msg("Title screen", "Unable to load background image", 0);
@@ -29,14 +24,8 @@ int	init_title_screen(t_title_screen *screen)
 	}
 
 	/******************* START BUTTON *******************/
-	printf("Loading button: ./start_img/xpm/button.xpm\n");	
-	if (access("./start_img/xpm/button.xpm", F_OK) == -1)
-	{
-		err_msg("Title screen", "Button image file not found", 0);
-		del_img(mlx_s(), screen->bg_img.img_ptr);
-		return (FAILURE);
-	}
-	screen->start_btn.img = generate_img("./start_img/xpm/button.xpm");
+	printf("Loading button: ./bonus/init/start_img/xpm/button.xpm\n");	
+	screen->start_btn.img = generate_img("./bonus/init/start_img/xpm/button.xpm");
 	if (screen->start_btn.img.img_ptr == NULL)
 	{
 		del_img(mlx_s(), screen->bg_img.img_ptr);
