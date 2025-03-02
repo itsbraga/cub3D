@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/02/27 18:30:59 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/02 17:43:34 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static void	__free_data(t_data *data)
 {
 	if (data != NULL)
 	{
-		if (data->map_path != NULL)
-			free_and_set_null((void **)&data->map_path);
 		if (data->map != NULL)
 			free_tab(data->map->map2d);
 		// if (data->ray != NULL)

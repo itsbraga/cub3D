@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:33:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 17:37:58 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/02 17:43:15 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_img	generate_img(char *relative_path)
 	if (img.addr == NULL)
 	{
 		err_msg("MinilibX", ERR_ADDR, 0);
-		del_img(mlx_s(), img.img_ptr);
+		del_img(mlx_s());
 		ft_memset(&img, 0, sizeof(t_img));
 	}
 	return (img);
