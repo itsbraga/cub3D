@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/02 19:17:35 by annabrag          #+#    #+#              #
+#    Updated: 2025/03/02 19:19:47 by annabrag         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #—————————————————————————————————————————————
 #	ANSI
 #—————————————————————————————————————————————
@@ -99,7 +111,7 @@ define progress_bar
 	files_total=$$(echo "$(SRCS_F)" | wc -w); \
 	files_compiled=$$(find $(OBJS_DIR) -name "*.o" 2>/dev/null | wc -l); \
 	if [ $$files_total -eq 0 ]; then percent=0; else percent=$$((files_compiled * 100 / files_total)); fi; \
-	bar_len=80; \
+	bar_len=60; \
 	completed=$$((bar_len * files_compiled / files_total)); \
 	remaining=$$((bar_len - completed)); \
 	bar=""; \
@@ -116,7 +128,7 @@ define bonus_progress_bar
 	files_total=$$(echo "$(BONUS_SRCS_F)" | wc -w); \
 	files_compiled=$$(find $(BONUS_OBJS_DIR) -name "*.o" 2>/dev/null | wc -l); \
 	if [ $$files_total -eq 0 ]; then percent=0; else percent=$$((files_compiled * 100 / files_total)); fi; \
-	bar_len=80; \
+	bar_len=60; \
 	completed=$$((bar_len * files_compiled / files_total)); \
 	remaining=$$((bar_len - completed)); \
 	bar=""; \
