@@ -72,7 +72,7 @@ define restore_cursor
 	printf "\033[u"
 endef
 
-define move_to_status_line
+define move_to_bottom
 	printf "\033[$$(tput lines);1H"
 endef
 
@@ -94,7 +94,7 @@ endef
 
 define progress_bar
 	$(save_cursor)
-	$(move_to_status_line)
+	$(move_to_bottom)
 	$(clear_line)
 	files_total=$$(echo "$(SRCS_F)" | wc -w); \
 	files_compiled=$$(find $(OBJS_DIR) -name "*.o" 2>/dev/null | wc -l); \
@@ -111,7 +111,7 @@ endef
 
 define bonus_progress_bar
 	$(save_cursor)
-	$(move_to_status_line)
+	$(move_to_bottom)
 	$(clear_line)
 	files_total=$$(echo "$(BONUS_SRCS_F)" | wc -w); \
 	files_compiled=$$(find $(BONUS_OBJS_DIR) -name "*.o" 2>/dev/null | wc -l); \
@@ -194,6 +194,7 @@ clean:
 fclean: clean
 		@rm -rf $(NAME) $(NAME_BONUS)
 		@rm -rf $(LIBFT) $(MLX)
+		@rm -rf .init_done .bonus_init_done
 		@echo "$(BOLD)$(CYAN)[executables]:\t$(RESET)Removed!\n"
 
 re:	fclean all

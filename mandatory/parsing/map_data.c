@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 18:53:59 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/01 22:58:45 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 17:35:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,4 @@ void    get_map_data(t_data *data)
     int fd;
 
     fd = data->fd_cubfile;
-    
 }
