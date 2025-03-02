@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/01 19:32:25 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/02 17:30:20 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	init_keys(t_keys *key, t_data *data);
 void	init_structs(t_data *data, t_mlx *mlx);
 
 // init_mlx.c
+t_img	*init_texture_img(t_mlx *mlx);
 void	init_mlx(t_mlx *mlx, t_data *data);
 
 // singletons.c
