@@ -179,7 +179,6 @@ $(BONUS_OBJS_DIR)%.o: bonus/%.c
 bonus: init_bonus_display $(NAME_BONUS)
 
 $(NAME_BONUS): $(BONUS_OBJS_F) $(LIBFT) $(MLX)
-		@bash creepy_art.sh
 		@echo "\n\n$(BOLD)================ $(RED)Telecubbies3D Horror$(RESET)$(BOLD) ================\n"
 		@echo "$(BLINK)$(GREEN)\t\t     BONUS READY!$(RESET)\n"
 		@echo "$(BOLD)======================================================\n\n";
