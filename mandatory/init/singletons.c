@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 17:35:30 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/02 17:37:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_data	*data_s(void)
 		secure_malloc(instance->map, true);
 		instance->ray = yama(CREATE, NULL, sizeof(t_raycast));
 		secure_malloc(instance->ray, true);
-		instance->fd_cubfile = -1;
-		ft_bzero(instance->texture, 4);
-		instance->floor_color = NULL;
-		instance->ceiling_color = NULL;
+		instance->fd = -1;
+		instance->texture = NULL;
+		instance->floor_color = 0;
+		instance->ceiling_color = 0;
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
 	}
@@ -55,7 +55,6 @@ t_mlx	*mlx_s(void)
 		instance->img.bits_per_pixel = 0;
 		instance->img.line_len = 0;
 		instance->img.endian = 0;
-		instance->img.name = "Telecubbies";
 	}
 	return (instance);
 }
