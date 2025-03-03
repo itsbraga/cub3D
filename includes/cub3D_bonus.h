@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:58:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/02 19:26:10 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_status);
 void	singletons_cleanup(int exit_status);
 
 // free.c
-void	free_tab(char **tab);
+void	free_array(char **array);
 void	free_title_screen(t_title_screen *screen);
 
 // secure.c
@@ -75,12 +75,12 @@ bool	valid_point(t_point point, size_t win_x, size_t win_y);
 // lst_utils.c
 int		remove_gc_node(t_gc_lst**yama, void *ptr);
 void	add_gc_node(t_gc_lst **yama, t_gc_lst *node);
-void	*new_gc_node(void *ptr, bool is_tab);
+void	*new_gc_node(void *ptr, bool is_array);
  
 // utils.c
 void	*search_ptr(t_gc_lst **yama, void *ptr);
 int		handle_remove(t_gc_lst **yama, void *ptr);
-int		free_gc_tab(t_gc_lst **y, char **tab);
+int		free_gc_array(t_gc_lst **y, char **array);
  
 // garbage_collector.c
 void	*yama(int flag, void *ptr, size_t size);
@@ -124,8 +124,8 @@ void	straf_rightward(t_data *data);
 void	rotate_leftward(t_data *data);
 void	rotate_rightward(t_data *data);
 
-// move_tab.c
-void	init_movetab(move_tab *functions);
+// move_array.c
+void	init_movearray(move_array *functions);
 void	update_player_move(t_data *data, t_keys *key);
 void	reset_var(t_data *data);
 

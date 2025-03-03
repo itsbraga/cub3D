@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/02 20:15:11 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@
 \******************************************************************************/
 
 # define CREATE 0
-# define CREATE_TAB 1
+# define CREATE_array 1
 # define ADD 2
-# define ADD_TAB 3
+# define ADD_array 3
 # define REMOVE -1
 # define CLEAN_ALL -2
 # define SEARCH -4
@@ -89,9 +89,9 @@
 \********************/
 
 // Array of pointers to functions
-typedef void	(*move_tab)(t_data *data);
+typedef void	(*move_array)(t_data *data);
 
-// Move_tab *f() indexes
+// Move_array *f() indexes
 # define W_KEY 0
 # define S_KEY 1
 # define A_KEY 2

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/02 23:45:37 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct s_title_screen
 
 typedef	struct s_keys_event
 {
-	bool	key_tab[6];
+	bool	key_array[6];
 }				t_keys;
 
 typedef struct s_data
@@ -116,7 +116,7 @@ typedef struct s_data
 typedef struct s_gc_lst
 {
 	void			*ptr;
-	bool			is_tab;
+	bool			is_array;
 	struct s_gc_lst	*next;
 }				t_gc_lst;
 
