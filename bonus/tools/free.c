@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 23:28:20 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	free_tab(char **tab)
+void	free_array(char **array)
 {
 	int	i;
 
-	if (tab == NULL)
+	if (array == NULL)
 		return ;
 	i = 0;
-	while (tab[i] != NULL)
+	while (array[i] != NULL)
 	{
-		free_and_set_null((void **)&tab[i]);
+		free_and_set_null((void **)&array[i]);
 		i++;
 	}
-	free_and_set_null((void **)&tab);
+	free_and_set_null((void **)&array);
 }
 
 // void	free_title_screen(t_title_screen *screen)

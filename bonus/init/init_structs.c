@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/02 19:37:46 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_raycast(t_raycast *ray, t_data *data)
 
 void	init_keys(t_keys *k, t_data *data)
 {
-	ft_bzero(k->key_tab, 6);
+	ft_bzero(k->key_array, 6);
 	data->keys = k;
 }
 

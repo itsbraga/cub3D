@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_tab.c                                         :+:      :+:    :+:   */
+/*   move_array.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "cub3D_bonus.h"
 
-void	init_movetab(move_tab *functions)
+void	init_movearray(move_array *functions)
 {
 	functions[0] = move_forward;
 	functions[1] = move_backward; 
@@ -26,16 +26,16 @@ void	init_movetab(move_tab *functions)
 void	update_player_move(t_data *data, t_keys *key)
 {
 	int			i;
-	move_tab	functions[7];
+	move_array	functions[7];
 	t_point		new_player_pos;
 	// float		safety_zone;
 	
 	i = 0;
 	// safety_zone = 0.2;
-	init_movetab(functions);
+	init_movearray(functions);
 	while (i < 6)
 	{
-		if (key->key_tab[i] == 1)
+		if (key->key_array[i] == 1)
 			functions[i](data);
 		i++;
 	}
