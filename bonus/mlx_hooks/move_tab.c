@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move_tab.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/02 21:43:35 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/04 02:17:22 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	init_movetab(move_tab *functions)
+static void	__init_move_tab(move_tab *functions)
 {
 	functions[0] = move_forward;
 	functions[1] = move_backward; 
@@ -28,24 +28,28 @@ void	update_player_move(t_data *data, t_keys *key)
 	int			i;
 	move_tab	functions[7];
 	t_point		new_player_pos;
-	// float		safety_zone;
 	
 	i = 0;
-	// safety_zone = 0.2;
-	init_movetab(functions);
+	__init_move_tab(functions);
+	if (data->game_state != STATE_GAME)
+		return ;
 	while (i < 6)
 	{
 		if (key->key_tab[i] == 1)
 			functions[i](data);
 		i++;
 	}
-	new_player_pos.x = data->player.x;
-	new_player_pos.y = data->player.y;
-	if (avoid_collisions(data, &new_player_pos) == FAILURE)
+	new_player_pos.x = data->player_pos.x;
+	new_player_pos.y = data->player_pos.y;
+	// data->collision.next_player_pos.x = data->player_pos.x;
+	// data->collision.next_player_pos.y = data->player_pos.y;
+	if (handle_collisions(data, &new_player_pos) == FAILURE)
 		return ;
 	// Mise a jour de la position du joueur si pas de collision trouvée
-	data->player.x = roundf(new_player_pos.x);
-	data->player.y = roundf(new_player_pos.y);
+	data->player_pos.x = roundf(new_player_pos.x);
+	data->player_pos.y = roundf(new_player_pos.y);
+	// data->player_pos.x += data->move.x;
+	// data->player_pos.y += data->move.y;
 }
 
 void	reset_var(t_data *data)

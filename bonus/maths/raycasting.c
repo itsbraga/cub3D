@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/02 19:37:46 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:48:02 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 		inv_tan = 0;
 	if (fabs(ray_rad - PI2) < EPS || fabs(ray_rad - PI3) < EPS)
 	{
-		r->h_ray_inter.x = d->player.x;
-		r->h_ray_inter.y = d->player.y;
+		r->h_ray_inter.x = d->player_pos.x;
+		r->h_ray_inter.y = d->player_pos.y;
 		return ;
 	}
 	else if (ray_rad > PI)
 	{
-		r->h_ray_inter.y = floor(d->player.y / TILE_SIZE) * TILE_SIZE - 0.0001;
-		r->h_ray_inter.x =  d->player.x + (d->player.y - r->h_ray_inter.y)
+		r->h_ray_inter.y = floor(d->player_pos.y / TILE_SIZE) * TILE_SIZE - 0.0001;
+		r->h_ray_inter.x =  d->player_pos.x + (d->player_pos.y - r->h_ray_inter.y)
 				* inv_tan;
 		r->h_offset.y = -TILE_SIZE;
 		r->h_offset.x = -(r->h_offset.y) * inv_tan;
@@ -38,9 +38,9 @@ void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 	}
 	else if (ray_rad < PI)
 	{
-		r->h_ray_inter.y = floor(d->player.y / TILE_SIZE) * TILE_SIZE
+		r->h_ray_inter.y = floor(d->player_pos.y / TILE_SIZE) * TILE_SIZE
 				+ TILE_SIZE;
-		r->h_ray_inter.x = d->player.x + (d->player.y - r->h_ray_inter.y)
+		r->h_ray_inter.x = d->player_pos.x + (d->player_pos.y - r->h_ray_inter.y)
 				* inv_tan;
 		r->h_offset.y = TILE_SIZE;
 		r->h_offset.x = -r->h_offset.y * inv_tan;
@@ -79,14 +79,14 @@ void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 	neg_tan = -tan(ray_rad);
 	if (fabs(ray_rad - PI) < EPS || fabs(ray_rad) < EPS)
 	{
-		r->v_ray_inter.x = d->player.x;
-		r->v_ray_inter.y = d->player.y;
+		r->v_ray_inter.x = d->player_pos.x;
+		r->v_ray_inter.y = d->player_pos.y;
 		return ;
 	}
 	else if (ray_rad > PI2 && ray_rad < PI3)
 	{
-		r->v_ray_inter.x = floor(d->player.x / TILE_SIZE) * TILE_SIZE - 0.0001;
-		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) 
+		r->v_ray_inter.x = floor(d->player_pos.x / TILE_SIZE) * TILE_SIZE - 0.0001;
+		r->v_ray_inter.y = d->player_pos.y + (d->player_pos.x - r->v_ray_inter.x) 
 				* neg_tan;
 		r->v_offset.x = -TILE_SIZE;
 		r->v_offset.y = -r->v_offset.x * neg_tan;
@@ -94,9 +94,9 @@ void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 	}
 	else if (ray_rad < PI2 || ray_rad > PI3)
 	{
-		r->v_ray_inter.x = floor(d->player.x / TILE_SIZE) * TILE_SIZE
+		r->v_ray_inter.x = floor(d->player_pos.x / TILE_SIZE) * TILE_SIZE
 				+ TILE_SIZE;
-		r->v_ray_inter.y = d->player.y + (d->player.x - r->v_ray_inter.x) 
+		r->v_ray_inter.y = d->player_pos.y + (d->player_pos.x - r->v_ray_inter.x) 
 				* neg_tan;
 		r->v_offset.x = TILE_SIZE;
 		r->v_offset.y = -r->v_offset.x * neg_tan;
@@ -136,10 +136,10 @@ void	find_closest_intersection(t_data *d, t_raycast *ray, t_point *closest_inter
 	float	dist_h;
 	float	dist_v;
 
-	delta_xh = ray->h_ray_inter.x - d->player.x;
-	delta_yh = ray->h_ray_inter.y - d->player.y;
-	delta_xv = ray->v_ray_inter.x - d->player.x;
-	delta_yv = ray->v_ray_inter.y - d->player.y;
+	delta_xh = ray->h_ray_inter.x - d->player_pos.x;
+	delta_yh = ray->h_ray_inter.y - d->player_pos.y;
+	delta_xv = ray->v_ray_inter.x - d->player_pos.x;
+	delta_yv = ray->v_ray_inter.y - d->player_pos.y;
 	dist_h = (delta_xh * delta_xh) + (delta_yh * delta_yh);
 	dist_v = (delta_xv * delta_xv) + (delta_yv * delta_yv);
 	if (dist_h < dist_v)
@@ -191,7 +191,7 @@ void	raycasting(t_data *data, t_raycast *r)
 	{
 		// printf("ray_drawed rad = %d\n", ray_drawed);
 		// printf("ray_angle rad = %f\n", ray_angle);
-		// printf("player dir = %f\n\n", r->player_rad);
+		// printf("player_pos dir = %f\n\n", r->player_rad);
 		intersection_horizontal_line(data, r, ray_angle);
 		intersection_vertical_line(data, r, ray_angle);
 		find_closest_intersection(data, r, &closest_inter);

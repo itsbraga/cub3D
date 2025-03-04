@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 23:25:20 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/03 20:48:02 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	__fill_triangle(t_point p1, t_point p2, t_point p3, int color)
     }
 }
 
-void	draw_player_pos(t_data *data, t_point player)
+void	draw_player_pos(t_data *data, t_point player_pos)
 {
 	t_point a;
 	t_point b;
@@ -105,12 +105,12 @@ void	draw_player_pos(t_data *data, t_point player)
 	double	h = 1.3 * L;
 	float	theta = get_radian(data->player_dir);
 	
-	a.x = (player.x + cos(theta) * h) / 4;
-	a.y = (player.y + sin(theta) * h) / 4;
-	b.x = (player.x + cos(theta + (PI / 2)) * (L / 2)) / 4;
-	b.y = (player.y + sin(theta + (PI / 2)) * (L / 2)) / 4;
-	c.x = (player.x + cos(theta - (PI / 2)) * (L / 2)) / 4;
-	c.y = (player.y + sin(theta - (PI / 2)) * (L / 2)) / 4;
+	a.x = (player_pos.x + cos(theta) * h) / 4;
+	a.y = (player_pos.y + sin(theta) * h) / 4;
+	b.x = (player_pos.x + cos(theta + (PI / 2)) * (L / 2)) / 4;
+	b.y = (player_pos.y + sin(theta + (PI / 2)) * (L / 2)) / 4;
+	c.x = (player_pos.x + cos(theta - (PI / 2)) * (L / 2)) / 4;
+	c.y = (player_pos.y + sin(theta - (PI / 2)) * (L / 2)) / 4;
 	draw_line(&data->minimap, a, b, RED_PIX);
 	draw_line(&data->minimap, b, c, RED_PIX);
 	draw_line(&data->minimap, c, a, RED_PIX);
