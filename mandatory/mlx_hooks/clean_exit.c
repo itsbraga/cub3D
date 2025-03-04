@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:37:38 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 22:57:57 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 16:29:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	del_img(t_mlx *mlx)
 	exit(FAILURE);
 }
 
-int	exit_game(t_mlx *mlx, int err_status)
+int	clean_exit(t_mlx *mlx, int err_status)
 {
 	ft_printf(STDERR_FILENO, BOLD YELLOW EXIT_PROG RESET);
 	mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);

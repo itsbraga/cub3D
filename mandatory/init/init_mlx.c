@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:26:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 14:49:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:29:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	__init_img(t_mlx *mlx)
 	if (mlx->img.addr == NULL)
 	{
 		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
-		exit_game(mlx, FAILURE); // a verifier
+		clean_exit(mlx, FAILURE); // a verifier
 	}
 }
 
@@ -37,14 +37,14 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 	if (mlx->mlx_ptr == NULL)
 	{
 		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
-		exit_game(mlx, FAILURE); // a verifier
+		clean_exit(mlx, FAILURE); // a verifier
 	}
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
 			"Telecubbies");
 	if (mlx->win_ptr == NULL)
 	{
 		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
-		del_window(mlx); // ou exit_game(mlx) // a verifier
+		del_window(mlx); // ou clean_exit(mlx) // a verifier
 	}
 	__init_img(mlx);
 	data->mlx = mlx;

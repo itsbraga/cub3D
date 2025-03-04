@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:26:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 19:55:20 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:29:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ static int	__init_minimap_img(t_mlx *mlx, t_data *data)
 	{
 		del_img(mlx, data->minimap.img_ptr);
 		err_msg("MinilibX", ERR_MLX, 0);
-		exit_game(mlx, data->minimap.img_ptr, FAILURE); // a verifier, peut-etre supprimer les deux images
+		clean_exit(mlx, FAILURE);
+		 // check si ok pour minimap
+		 // a verifier, peut-etre supprimer les deux images
 	}
 	data->minimap.width = 256;
 	data->minimap.height = 256;
@@ -79,7 +81,8 @@ static int	__init_imgs(t_mlx *mlx, t_data *data)
 	if (mlx->img.addr == NULL)
 	{
 		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
-		exit_game(mlx, mlx->img.img_ptr, FAILURE); // a verifier
+		clean_exit(mlx, FAILURE);
+		// a verifier, peut-etre supprimer les deux images
 	}
 	if (__init_minimap_img(mlx, data) == FAILURE)
 		return (FAILURE);
@@ -92,14 +95,14 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 	if (mlx->mlx_ptr == NULL)
 	{
 		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
-		exit_game(mlx, mlx->img.img_ptr, FAILURE); // a verifier
+		clean_exit(mlx, FAILURE); // a verifier, peut-etre supprimer les deux images
 	}
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
 			"Telecubbies Horror");
 	if (mlx->win_ptr == NULL)
 	{
 		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
-		del_window(mlx); // ou exit_game(mlx)
+		del_window(mlx); // ou clean_exit(mlx)
 	}
 	if (__init_imgs(mlx, data) == FAILURE)
 		return ;

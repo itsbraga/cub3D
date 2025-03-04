@@ -12,7 +12,7 @@
 
 #include "cub3D_bonus.h"
 
-static void	init_move_array(move_array *functions)
+static void	__init_move_array(move_array *functions)
 {
 	functions[0] = move_forward;
 	functions[1] = move_backward; 

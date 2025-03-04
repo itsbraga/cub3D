@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:29:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	__set_keyrelease_flag(int keycode, t_data *d)
 static int	__set_keypress_flag(int keycode, t_data *d)
 {
 	if (keycode == XK_Escape)
-		exit_game(mlx_s(), SUCCESS);
+		clean_exit(mlx_s(), SUCCESS);
 	if (keycode == W)
 		d->keys->key_array[W_KEY] = 1;
 	if (keycode == S)
@@ -55,5 +55,5 @@ void	set_hooks(t_mlx *mlx, t_data *data)
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress_flag, data);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease_flag,
 		data);
-	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
+	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &clean_exit, mlx);
 }
