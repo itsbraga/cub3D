@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/02 18:02:30 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 02:37:34 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ bool	valid_rgb(unsigned int rgb[3]);
 //map_data.c
 void    get_map_data(t_data *data);
 
-
 /******************************************************************************\
  * TOOLS
 \******************************************************************************/
@@ -58,7 +57,7 @@ void	err_msg(char *detail, char *reason, int quotes);
 int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_no);
 
 // cleanup.c
-void	free_tab(char **tab);
+void	free_array(char **array);
 void	clean_structs(int exit_status);
 
 // secure.c
@@ -76,12 +75,12 @@ bool	valid_point(t_point point, size_t win_x, size_t win_y);
 // lst_utils.c
 int		remove_gc_node(t_gc_lst**yama, void *ptr);
 void	add_gc_node(t_gc_lst **yama, t_gc_lst *node);
-void	*new_gc_node(void *ptr, bool is_tab);
+void	*new_gc_node(void *ptr, bool is_array);
  
 // utils.c
 void	*search_ptr(t_gc_lst **yama, void *ptr);
 int		handle_remove(t_gc_lst **yama, void *ptr);
-int		free_gc_tab(t_gc_lst **y, char **tab);
+int		free_gc_array(t_gc_lst **y, char **array);
  
 // garbage_collector.c
 void	*yama(int flag, void *ptr, size_t size);
@@ -94,7 +93,7 @@ void	*yama(int flag, void *ptr, size_t size);
 void	init_data(t_data *data);
 void	init_map(t_map *map, t_data *data);
 void	init_raycast(t_raycast *ray, t_data *data);
-void	init_keys(t_keys *key, t_data *data);
+void	init_keys(t_keys *keys, t_data *data);
 void	init_structs(t_data *data, t_mlx *mlx);
 
 // init_mlx.c
@@ -122,8 +121,8 @@ void	straf_rightward(t_data *data);
 void	rotate_leftward(t_data *data);
 void	rotate_rightward(t_data *data);
 
-// move_tab.c
-void	init_movetab(move_tab *functions);
+// move_array.c
+void	init_movearray(move_array *functions);
 void	update_player_move(t_data *data, t_keys *key);
 void	reset_var(t_data *data);
 

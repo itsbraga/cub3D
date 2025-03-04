@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:30:28 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/27 18:30:59 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	*__create(t_gc_lst **yama, size_t size, bool is_tab)
+static void	*__create(t_gc_lst **yama, size_t size, bool is_array)
 {
 	void		*ptr;
 	t_gc_lst	*node;
@@ -23,7 +23,7 @@ static void	*__create(t_gc_lst **yama, size_t size, bool is_tab)
 		err_msg(NULL, ERR_MALLOC, 0);
 		return (NULL);
 	}
-	node = new_gc_node(ptr, is_tab);
+	node = new_gc_node(ptr, is_array);
 	if (node == NULL)
 	{
 		err_msg(NULL, ERR_MALLOC, 0);
@@ -33,21 +33,21 @@ static void	*__create(t_gc_lst **yama, size_t size, bool is_tab)
 	return (ptr);
 }
 
-static void	*__add_tab(t_gc_lst **yama, void *ptr)
+static void	*__add_array(t_gc_lst **yama, void *ptr)
 {
 	int			i;
-	char		**tab;
+	char		**array;
 	t_gc_lst	*node;
 
 	i = 0;
-	tab = (char **)ptr;
-	node = new_gc_node(tab, true);
+	array = (char **)ptr;
+	node = new_gc_node(array, true);
 	if (node == NULL)
 		return (err_msg(NULL, ERR_MALLOC, 0), NULL);
 	add_gc_node(yama, node);
-	while (tab[i] != NULL)
+	while (array[i] != NULL)
 	{
-		node = new_gc_node(tab[i], false);
+		node = new_gc_node(array[i], false);
 		if (node == NULL)
 			return (err_msg(NULL, ERR_MALLOC, 0), NULL);
 		add_gc_node(yama, node);
@@ -56,13 +56,13 @@ static void	*__add_tab(t_gc_lst **yama, void *ptr)
 	return (ptr);
 }
 
-static void	*__add(t_gc_lst **yama, void *ptr, bool is_tab)
+static void	*__add(t_gc_lst **yama, void *ptr, bool is_array)
 {
 	t_gc_lst	*node;
 
-	if (is_tab == true)
-		return (__add_tab(yama, ptr));
-	node = new_gc_node(ptr, is_tab);
+	if (is_array == true)
+		return (__add_array(yama, ptr));
+	node = new_gc_node(ptr, is_array);
 	if (node == NULL)
 	{
 		err_msg(NULL, ERR_MALLOC, 0);
@@ -97,11 +97,11 @@ void	*yama(int flag, void *ptr, size_t size)
 		return (search_ptr(&yama, ptr));
 	if (flag == CREATE)
 		return (__create(&yama, size, false));
-	else if (flag == CREATE_TAB)
+	else if (flag == CREATE_array)
 		return (__create(&yama, size, true));
 	else if (flag == ADD)
 		return (__add(&yama, ptr, false));
-	else if (flag == ADD_TAB)
+	else if (flag == ADD_array)
 		return (__add(&yama, ptr, true));
 	else if (flag == REMOVE)
 	{

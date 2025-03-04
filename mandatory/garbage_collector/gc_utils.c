@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:33:24 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/27 18:30:59 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ int	handle_remove(t_gc_lst **yama, void *ptr)
 	node = *yama;
 	while (node->ptr != ptr)
 		node = node->next;
-	if (node->is_tab == true)
-		return (free_gc_tab(yama, node->ptr));
+	if (node->is_array == true)
+		return (free_gc_array(yama, node->ptr));
 	else
 		return (remove_gc_node(yama, ptr));
 }
 
-int	free_gc_tab(t_gc_lst **y, char **tab)
+int	free_gc_array(t_gc_lst **y, char **array)
 {
 	int	error;
 	int	i;
 
 	error = 0;
 	i = 0;
-	while (tab[i] != NULL)
+	while (array[i] != NULL)
 	{
-		error = remove_gc_node(y, tab[i]);
+		error = remove_gc_node(y, array[i]);
 		i++;
 	}
-	remove_gc_node(y, tab);
+	remove_gc_node(y, array);
 	return (error);
 }
