@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 10:57:55 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	first_verification(char **map, int rows, t_point *start);
 bool	valid_rgb(unsigned int rgb[3]);
 
 //map_data.c
-void    get_map_data(t_data *data);
+void    get_map_data(t_data *data, char **argv);
 
 
 /******************************************************************************\
