@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 02:36:39 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:28:50 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	init_data(t_data *data)
+void	init_game(t_game *data)
 {
 	data->player_pos.x = 800;
 	data->player_pos.y = 700;
@@ -24,7 +24,7 @@ void	init_data(t_data *data)
 	data->game_state = STATE_TITLE;
 }
 
-void	init_map(t_map *m, t_data *data)
+void	init_map(t_map *m, t_game *data)
 {
 	m->map2d = NULL;
 	m->height = 0;
@@ -32,7 +32,7 @@ void	init_map(t_map *m, t_data *data)
 	data->map = m;
 }
 
-void	init_raycast(t_raycast *ray, t_data *data)
+void	init_raycast(t_raycast *ray, t_game *data)
 {
 	ray->ray_amount = WIN_WIDTH;
 	ray->fov = 45;
@@ -48,15 +48,15 @@ void	init_raycast(t_raycast *ray, t_data *data)
 	data->ray = ray;
 }
 
-void	init_keys(t_keys *keys, t_data *data)
+void	init_keys(t_keys *keys, t_game *data)
 {
 	ft_bzero(keys->key_array, 6);
 	data->keys = keys;
 }
 
-void	init_structs(t_data *data, t_mlx *mlx)
+void	init_structs(t_game *data, t_mlx *mlx)
 {
-	init_data(data);
+	init_game(data);
 	init_mlx(mlx, data);
 	init_title_screen(&data->title_screen);
 	init_map(data->map, data);

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 17:31:53 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:32:02 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 	one instance and provides a global access point
 	to it.
 */
-t_data	*data_s(void)
+t_game	*game_s(void)
 {
-	static t_data	*instance = NULL;
+	static t_game	*instance = NULL;
 
 	if (instance == NULL)
 	{
-		instance = yama(CREATE, NULL, sizeof(t_data));
+		instance = yama(CREATE, NULL, sizeof(t_game));
 		secure_malloc(instance, true);
 		instance->mlx = NULL;
 		instance->map = yama(CREATE, NULL, sizeof(t_map));

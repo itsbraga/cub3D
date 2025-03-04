@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 02:21:52 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:28:50 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static int	__handle_mouse(int x, int y, t_data *data)
+static int	__handle_mouse(int x, int y, t_game *data)
 {
 	static int	last_x = -1;
 	int			delta_x;
@@ -35,7 +35,7 @@ static int	__handle_mouse(int x, int y, t_data *data)
 	return (SUCCESS);
 }
 
-static int	__handle_title_screen_mouse(int button, int x, int y, t_data *data)
+static int	__handle_title_screen_mouse(int button, int x, int y, t_game *data)
 {
 	t_layer	start_button;
 
@@ -53,7 +53,7 @@ static int	__handle_title_screen_mouse(int button, int x, int y, t_data *data)
 	return (SUCCESS);
 }
 
-void	set_mouse_hooks(t_mlx *mlx, t_data *data)
+void	set_mouse_hooks(t_mlx *mlx, t_game *data)
 {
 	mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, &__handle_mouse,
 			data);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/04 02:12:53 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:32:02 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-int	handle_collisions(t_data *data, t_point *new_player_pos)
+int	handle_collisions(t_game *data, t_point *new_player_pos)
 {
 	t_point	cell;
 
@@ -36,14 +36,14 @@ int	handle_collisions(t_data *data, t_point *new_player_pos)
 // 	float	safe_pos_y;
 
 // 	col->safety_radius = 0.4;
-// 	safe_pos_x = col->next_player_pos.x + data_s()->move.x * col->safety_radius;
-// 	safe_pos_y = col->next_player_pos.y + data_s()->move.y * col->safety_radius;
+// 	safe_pos_x = col->next_player_pos.x + game_s()->move.x * col->safety_radius;
+// 	safe_pos_y = col->next_player_pos.y + game_s()->move.y * col->safety_radius;
 	
-// 	col->next_cell.x = (safe_pos_x * data_s()->map->width) / WIN_WIDTH;
-// 	col->next_cell.y = (safe_pos_y * data_s()->map->height) / WIN_HEIGHT;
+// 	col->next_cell.x = (safe_pos_x * game_s()->map->width) / WIN_WIDTH;
+// 	col->next_cell.y = (safe_pos_y * game_s()->map->height) / WIN_HEIGHT;
 // }
 
-// int	handle_collisions(t_data *data, t_collision *col)
+// int	handle_collisions(t_game *data, t_collision *col)
 // {
 // 	__convert_safe_player_pos_into_map_cell(col);
 // 	if (data->map->map2d[(int)col->next_cell.y][(int)col->next_cell.x] == '1')

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 13:26:39 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:04:29 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	first_verification(char **map, int rows, t_point *start);
 bool	valid_rgb(unsigned int rgb[3]);
 
 //map_data.c
-void    get_map_data(t_data *data, char **argv);
+void    get_map_data(t_game *game, char **argv);
 
 
 /******************************************************************************\
@@ -91,44 +91,45 @@ void	*yama(int flag, void *ptr, size_t size);
 \******************************************************************************/
 
 // init_aux_structs.c
-void	init_data(t_data *data);
-void	init_map(t_map *map, t_data *data);
-void	init_raycast(t_raycast *ray, t_data *data);
-void	init_keys(t_keys *keys, t_data *data);
-void	init_structs(t_data *data, t_mlx *mlx);
+void	init_game(t_game *game);
+void	init_map(t_map *map, t_game *game);
+void	init_raycast(t_raycast *ray, t_game *game);
+void	init_keys(t_keys *keys, t_game *game);
+void	init_structs(t_game *game, t_mlx *mlx);
 
 // init_mlx.c
 t_img	*init_texture_img(t_mlx *mlx);
-void	init_mlx(t_mlx *mlx, t_data *data);
+void	init_mlx(t_mlx *mlx, t_game *game);
 
 // singletons.c
+t_game	*game_s(void);
 t_mlx	*mlx_s(void);
 t_data	*data_s(void);
 
-// generate_img.c
-t_img	generate_img(char *path_to_file);
+// img_by_xpm.c
+t_img	img_by_xpm(char *path_to_file);
 
 /******************************************************************************\
  * CONFIGS/MLX_HOOKS
 \******************************************************************************/
 
 // movements.c
-void	move_forward(t_data *data);
-void	move_backward(t_data *data);
-void	straf_leftward(t_data *data);
-void	straf_rightward(t_data *data);
+void	move_forward(t_game *game, t_data *data);
+void	move_backward(t_game *game, t_data *data);
+void	straf_leftward(t_game *game, t_data *data);
+void	straf_rightward(t_game *game, t_data *data);
 
 // camera.c
-void	rotate_leftward(t_data *data);
-void	rotate_rightward(t_data *data);
+void	rotate_leftward(t_game *game, t_data *data);
+void	rotate_rightward(t_game *game, t_data *data);
 
 // move_array.c
 void	init_movearray(move_array *functions);
-void	update_player_move(t_data *data, t_keys *key);
-void	reset_var(t_data *data);
+void	update_player_move(t_game *game, t_keys *key);
+void	reset_var(t_game *game);
 
 // setter.c
-void	set_hooks(t_mlx *mlx, t_data *data);
+void	set_hooks(t_mlx *mlx, t_game *game);
  
 // clean_exit.c
 void	del_window(t_mlx *mlx);
@@ -148,10 +149,10 @@ float	norm_angle(float angle);
 void	draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 // raycasting.c
-void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad);
-void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad);
-void	find_closest_intersection(t_data *d, t_raycast *ray, t_point *closest_inter);
-void	raycasting(t_data *data, t_raycast *r);
+void	intersection_horizontal_line(t_game *d, t_raycast *r, float ray_rad);
+void	intersection_vertical_line(t_game *d, t_raycast *r, float ray_rad);
+void	find_closest_intersection(t_game *d, t_raycast *ray, t_point *closest_inter);
+void	raycasting(t_game *game, t_raycast *r);
 
 /******************************************************************************\
  * RENDER
@@ -162,7 +163,7 @@ void	my_pixel_put_to_img(t_img *img, int color, int x, int y);
 void	clear_img(t_img *img, size_t size_x, size_t size_y, int color);
 
 // render.c
-int		render(t_data *data);
+int		render(t_game *game);
 
 /******************************************************************************\
  * EXEC

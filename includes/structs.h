@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 13:28:14 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:39:13 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,24 +99,29 @@ typedef	struct s_keys_event
 
 typedef struct s_data
 {
-	t_mlx			*mlx;
-	t_state			game_state;
-	t_title_screen	title_screen;
-	t_map			*map;
-	t_raycast		*ray;
 	char			*cubfile_path;
 	int				fd;
 	int				**texture;
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
 	int				player_dir;
+}			t_data;
+
+typedef struct s_game
+{
+	t_mlx			*mlx;
+	t_state			game_state;
+	t_title_screen	title_screen;
+	t_data			*data;
+	t_map			*map;
+	t_raycast		*ray;
 	t_point			player_pos;
 	t_point			move;
 	t_collision		collision;
 	t_keys			*keys;
 	t_img			minimap;
 	t_point			minimap_pos;
-}				t_data;
+}				t_game;
 
 /******************************************************************************\
  * YAMA: Garbage collector

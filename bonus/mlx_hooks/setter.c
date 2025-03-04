@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 02:33:21 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:28:50 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static int	__set_keyrelease_flag(int keycode, t_data *d)
+static int	__set_keyrelease_flag(int keycode, t_game *d)
 {
 	if (keycode == W)
 		d->keys->key_array[W_KEY] = 0;
@@ -29,7 +29,7 @@ static int	__set_keyrelease_flag(int keycode, t_data *d)
 	return (SUCCESS);
 }
 
-static int	__set_keypress_flag(int keycode, t_data *d)
+static int	__set_keypress_flag(int keycode, t_game *d)
 {
 	if (d->game_state == STATE_TITLE)
 	{
@@ -58,7 +58,7 @@ static int	__set_keypress_flag(int keycode, t_data *d)
 	return (SUCCESS);
 }
 
-void	set_hooks(t_mlx *mlx, t_data *data)
+void	set_hooks(t_mlx *mlx, t_game *data)
 {
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress_flag, data);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease_flag,

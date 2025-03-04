@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_img_by_xpm.c                              :+:      :+:    :+:   */
+/*   img_by_xpm_by_xpm.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/02 19:14:12 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:04:11 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cub3D.h"
 #include "cub3D.h"
 
-t_img	generate_img(char *relative_path)
+t_img	img_by_xpm(char *relative_path)
 {
 	t_img	img;
 

@@ -23,7 +23,7 @@ static void	init_move_array(move_array *functions)
 	functions[6] = NULL;
 }
 
-void	update_player_move(t_data *data, t_keys *key)
+void	update_player_move(t_game *data, t_keys *key)
 {
 	int			i;
 	move_array	functions[7];
@@ -52,7 +52,7 @@ void	update_player_move(t_data *data, t_keys *key)
 	// data->player_pos.y += data->move.y;
 }
 
-void	reset_var(t_data *data)
+void	reset_var(t_game *data)
 {
 	data->move.x = 0;
 	data->move.y = 0;
