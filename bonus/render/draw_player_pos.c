@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_pos.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/03 20:48:02 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:32:02 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	__fill_triangle(t_point p1, t_point p2, t_point p3, int color)
             
             if (x1 > x2) { int temp = x1; x1 = x2; x2 = temp; }
             for (int x = x1; x <= x2; x++) {
-                my_pixel_put_to_img(&data_s()->minimap, color, x, y);
+                my_pixel_put_to_img(&game_s()->minimap, color, x, y);
             }
             
             curx1 += slope1;
@@ -87,7 +87,7 @@ static void	__fill_triangle(t_point p1, t_point p2, t_point p3, int color)
             
             if (x1 > x2) { int temp = x1; x1 = x2; x2 = temp; }
             for (int x = x1; x <= x2; x++) {
-                my_pixel_put_to_img(&data_s()->minimap, color, x, y);
+                my_pixel_put_to_img(&game_s()->minimap, color, x, y);
             }
             
             curx1 += slope3;
@@ -96,7 +96,7 @@ static void	__fill_triangle(t_point p1, t_point p2, t_point p3, int color)
     }
 }
 
-void	draw_player_pos(t_data *data, t_point player_pos)
+void	draw_player_pos(t_game *data, t_point player_pos)
 {
 	t_point a;
 	t_point b;

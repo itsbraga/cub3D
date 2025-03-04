@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 18:39:19 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/20 18:40:00 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:43:04 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	rotate_leftward(t_data *data)
+void	rotate_leftward(t_game *game, t_data *data)
 {
 	data->player_dir -= 4;
 	if (data->player_dir < 0)
 		data->player_dir += 360; // (pour rester entre 0 et 2 PI radians)
-	data->ray->player_rad = get_radian(data->player_dir);
+	game->ray->player_rad = get_radian(data->player_dir);
 }
 
-void	rotate_rightward(t_data *data)
+void	rotate_rightward(t_game *game, t_data *data)
 {
 	data->player_dir += 4;
 	if (data->player_dir > 360)
 		data->player_dir = data->player_dir % 360;
-	data->ray->player_rad = get_radian(data->player_dir);
+	game->ray->player_rad = get_radian(data->player_dir);
 }

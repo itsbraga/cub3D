@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:26:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 14:49:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:55:25 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	__init_img(t_mlx *mlx)
 	}
 }
 
-void	init_mlx(t_mlx *mlx, t_data *data)
+void	init_mlx(t_mlx *mlx, t_game *game)
 {
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
@@ -47,5 +47,5 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 		del_window(mlx); // ou exit_game(mlx) // a verifier
 	}
 	__init_img(mlx);
-	data->mlx = mlx;
+	game->mlx = mlx;
 }

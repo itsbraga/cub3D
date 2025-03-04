@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 15:38:25 by pmateo           ###   ########.fr       */
+/*   Created: 2025/03/04 15:20:42 by pmateo            #+#    #+#             */
+/*   Updated: 2025/03/04 15:21:39 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+# include "cub3D.h"
 
-int	render(t_game *game)
+int	rgb_to_int(char *red, char *green, char *blue)
 {
-	clear_img(&mlx_s()->img, WIN_WIDTH, WIN_HEIGHT, BLACK_PIX);
-	get_map_info(game->map);
-	raycasting(game, game->ray);
-	// printf("play.pos.x = %f | play.pos.y = %f\n", game->player_pos.x, game->player_pos.y);
-	mlx_put_image_to_window(mlx_s()->mlx_ptr, mlx_s()->win_ptr,
-			mlx_s()->img.img_ptr, 0, 0);
-	return (SUCCESS);
+	int	r;
+	int	g;
+	int	b;
+	int	result;
+
+	result = 0;
+	r = ft_atoi(red, &result);
+	g = ft_atoi(green, &result);
+	b = ft_atoi(blue, &result);
+	result = (r << 16);
+	result = result | (g << 8);
+	result = result | (b);
+	return (result);
 }

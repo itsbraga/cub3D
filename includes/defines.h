@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 02:34:56 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 16:06:02 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@
 \********************/
 
 // Array of pointers to functions
-typedef void	(*move_array)(t_data *data);
+typedef void	(*move_array)(t_game *game, t_data *data);
 
 // Move_array *f() indexes
 # define W_KEY 0
@@ -112,14 +112,23 @@ typedef void	(*move_array)(t_data *data);
  * MAP SETUP
 \******************************************************************************/
 
-/********************\
- * TEXTURES HELP
-\********************/
+/************************\
+ * PLAYER'S DIRECTION
+\************************/
+
+# define N	0
+# define S 180
+# define W 270
+# define E 90
+
+/************************\
+ * TEXTURE'S ORIENTATION
+\************************/
 
 # define NO	0
-# define SO 180
-# define WE 270
-# define EA 90
+# define SO 1
+# define WE 2
+# define EA 3
 
 /********************\
  * PIXEL COLORS

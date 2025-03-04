@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 00:47:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/03 20:48:02 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:32:02 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	__draw_tile(t_point tile)
 		pixel.x = tile.x * (TILE_SIZE / 4);
 		while (pixel.x < end.x)
 		{
-			my_pixel_put_to_img(&data_s()->minimap, WHITE_PIX,
+			my_pixel_put_to_img(&game_s()->minimap, WHITE_PIX,
 					pixel.x, pixel.y);
 			pixel.x++;
 		}
@@ -34,7 +34,7 @@ static void	__draw_tile(t_point tile)
 	}
 }
 
-void	draw_minimap(t_data *data, t_map *minimap)
+void	draw_minimap(t_game *data, t_map *minimap)
 {
 	t_point	tile;
 

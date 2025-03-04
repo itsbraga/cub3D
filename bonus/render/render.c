@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/02 19:47:59 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:28:50 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-int	render(t_data *data)
+int	render(t_game *data)
 {
 	if (data->game_state == STATE_TITLE)
 		draw_title_screen(data);

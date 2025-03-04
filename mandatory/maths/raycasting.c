@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/03 20:48:02 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:37:09 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
+void	intersection_horizontal_line(t_game *d, t_raycast *r, float ray_rad)
 {
 	float		inv_tan;
 	t_point		curr_tile;
@@ -70,7 +70,7 @@ void	intersection_horizontal_line(t_data *d, t_raycast *r, float ray_rad)
 	}
 }
 
-void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
+void	intersection_vertical_line(t_game *d, t_raycast *r, float ray_rad)
 {
 	float		neg_tan;
 	t_point		curr_tile;
@@ -127,7 +127,7 @@ void	intersection_vertical_line(t_data *d, t_raycast *r, float ray_rad)
 	}
 }
 
-void	find_closest_intersection(t_data *d, t_raycast *ray, t_point *closest_inter)
+void	find_closest_intersection(t_game *d, t_raycast *ray, t_point *closest_inter)
 {
 	float	delta_xh;
 	float	delta_yh;
@@ -179,7 +179,7 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 	draw_line(&mlx_s()->img, start, end, LAVENDER_PIX);
 }
 
-void	raycasting(t_data *data, t_raycast *r)
+void	raycasting(t_game *game, t_raycast *r)
 {
 	unsigned int	ray_drawed;
 	t_point			closest_inter;
@@ -192,9 +192,9 @@ void	raycasting(t_data *data, t_raycast *r)
 		printf("ray_drawed rad = %d\n", ray_drawed);
 		printf("ray_angle rad = %f\n", ray_angle);
 		printf("player_pos dir = %f\n\n", r->player_rad);
-		intersection_horizontal_line(data, r, ray_angle);
-		intersection_vertical_line(data, r, ray_angle);
-		find_closest_intersection(data, r, &closest_inter);
+		intersection_horizontal_line(game, r, ray_angle);
+		intersection_vertical_line(game, r, ray_angle);
+		find_closest_intersection(game, r, &closest_inter);
 		draw_wall(r, ray_angle, ray_drawed);
 		ray_angle += (get_radian(r->fov) / WIN_WIDTH);
 		ray_angle = norm_angle(ray_angle);

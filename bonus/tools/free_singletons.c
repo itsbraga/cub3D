@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/03/03 20:12:52 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:32:02 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	__free_mlx(t_mlx *mlx)
 	// if (full_clean == true);
 }
 
-static void	__free_data(t_data *data)
+static void	__free_data(t_game *data)
 {
 	if (data != NULL)
 	{
@@ -35,8 +35,8 @@ void	singletons_cleanup(int exit_status)
 {
 	if (mlx_s() != NULL)
 		__free_mlx(mlx_s());
-	if (data_s() != NULL)
-		__free_data(data_s());
+	if (game_s() != NULL)
+		__free_data(game_s());
 	// yama(CLEAN_ALL, NULL, 0);
 	exit(exit_status);
 }

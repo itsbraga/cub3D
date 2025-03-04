@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_title_screen.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 01:45:00 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/03 00:07:29 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:28:50 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	init_title_screen(t_title_screen *screen)
 	start_button(screen);
 }
 
-void	draw_title_screen(t_data *data)
+void	draw_title_screen(t_game *data)
 {
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr,
 		data->title_screen.bg_img.img_ptr, 0, 0);
