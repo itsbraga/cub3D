@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_img.c                                     :+:      :+:    :+:   */
+/*   generate_xpm_from_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:33:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 14:46:45 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 15:28:50 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-t_img	generate_img(char *relative_path)
+t_img	xpm_from_img(char *relative_path)
 {
 	t_img	img;
 

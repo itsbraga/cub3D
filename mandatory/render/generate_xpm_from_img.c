@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_img_by_xpm.c                              :+:      :+:    :+:   */
+/*   generate_xpm_from_img.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/02 19:14:12 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/04 18:37:22 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "cub3D.h"
 #include "cub3D.h"
 
-t_img	generate_img(char *relative_path)
+t_img	xpm_from_img(char *relative_path)
 {
 	t_img	img;
 

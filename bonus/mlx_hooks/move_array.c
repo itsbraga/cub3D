@@ -23,7 +23,7 @@ static void	__init_move_array(move_array *functions)
 	functions[6] = NULL;
 }
 
-void	update_player_move(t_data *data, t_keys *key)
+void	update_player_move(t_game *game, t_keys *key)
 {
 	int			i;
 	move_array	functions[7];
@@ -31,29 +31,25 @@ void	update_player_move(t_data *data, t_keys *key)
 	
 	i = 0;
 	__init_move_array(functions);
-	if (data->game_state != STATE_GAME)
+	if (game->game_state != STATE_GAME)
 		return ;
 	while (i < 6)
 	{
 		if (key->key_array[i] == 1)
-			functions[i](data);
+			functions[i](game, data_s());
 		i++;
 	}
-	new_player_pos.x = data->player_pos.x;
-	new_player_pos.y = data->player_pos.y;
-	// data->collision.next_player_pos.x = data->player_pos.x;
-	// data->collision.next_player_pos.y = data->player_pos.y;
-	if (handle_collisions(data, &new_player_pos) == FAILURE)
+	new_player_pos.x = game->player_pos.x;
+	new_player_pos.y = game->player_pos.y;
+	if (handle_collisions(game, &new_player_pos) == FAILURE)
 		return ;
 	// Mise a jour de la position du joueur si pas de collision trouvée
-	data->player_pos.x = roundf(new_player_pos.x);
-	data->player_pos.y = roundf(new_player_pos.y);
-	// data->player_pos.x += data->move.x;
-	// data->player_pos.y += data->move.y;
+	game->player_pos.x = roundf(new_player_pos.x);
+	game->player_pos.y = roundf(new_player_pos.y);
 }
 
-void	reset_var(t_data *data)
+void	reset_var(t_game *game)
 {
-	data->move.x = 0;
-	data->move.y = 0;
+	game->move.x = 0;
+	game->move.y = 0;
 }

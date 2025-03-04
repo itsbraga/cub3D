@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_pos.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/03 20:48:02 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 19:15:16 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	__fill_triangle(t_point p1, t_point p2, t_point p3, int color)
             
             if (x1 > x2) { int temp = x1; x1 = x2; x2 = temp; }
             for (int x = x1; x <= x2; x++) {
-                my_pixel_put_to_img(&data_s()->minimap, color, x, y);
+                my_pixel_put_to_img(&game_s()->minimap, color, x, y);
             }
             
             curx1 += slope1;
@@ -87,7 +87,7 @@ static void	__fill_triangle(t_point p1, t_point p2, t_point p3, int color)
             
             if (x1 > x2) { int temp = x1; x1 = x2; x2 = temp; }
             for (int x = x1; x <= x2; x++) {
-                my_pixel_put_to_img(&data_s()->minimap, color, x, y);
+                my_pixel_put_to_img(&game_s()->minimap, color, x, y);
             }
             
             curx1 += slope3;
@@ -96,14 +96,14 @@ static void	__fill_triangle(t_point p1, t_point p2, t_point p3, int color)
     }
 }
 
-void	draw_player_pos(t_data *data, t_point player_pos)
+void	draw_player_pos(t_game *game, t_point player_pos)
 {
 	t_point a;
 	t_point b;
 	t_point c;
 	int		L = 40; //  augmenter si map tres petite, voir n (window / n)
 	double	h = 1.3 * L;
-	float	theta = get_radian(data->player_dir);
+	float	theta = get_radian(data_s()->player_dir);
 	
 	a.x = (player_pos.x + cos(theta) * h) / 4;
 	a.y = (player_pos.y + sin(theta) * h) / 4;
@@ -111,8 +111,8 @@ void	draw_player_pos(t_data *data, t_point player_pos)
 	b.y = (player_pos.y + sin(theta + (PI / 2)) * (L / 2)) / 4;
 	c.x = (player_pos.x + cos(theta - (PI / 2)) * (L / 2)) / 4;
 	c.y = (player_pos.y + sin(theta - (PI / 2)) * (L / 2)) / 4;
-	draw_line(&data->minimap, a, b, RED_PIX);
-	draw_line(&data->minimap, b, c, RED_PIX);
-	draw_line(&data->minimap, c, a, RED_PIX);
+	draw_line(&game->minimap, a, b, RED_PIX);
+	draw_line(&game->minimap, b, c, RED_PIX);
+	draw_line(&game->minimap, c, a, RED_PIX);
 	__fill_triangle(a, b, c, RED_PIX);
 }

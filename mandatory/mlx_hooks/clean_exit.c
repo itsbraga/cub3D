@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:37:38 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 16:29:01 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:33:31 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int	clean_exit(t_mlx *mlx, int err_status)
 	// free_and_set_null((void **)mlx->mlx_ptr);
 	free(mlx->mlx_ptr);
 	mlx->mlx_ptr = NULL;
-	// clean_structs(err_status);
+	// free_singletons(err_status);
 	exit(err_status);
 }
