@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 02:36:39 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_data(t_data *data)
 {
-	data->player.x = 800;
-	data->player.y = 700;
+	data->player_pos.x = 800;
+	data->player_pos.y = 700;
 	data->player_dir = SO;
 	data->move.x = 0;
 	data->move.y = 0;
@@ -48,10 +48,10 @@ void	init_raycast(t_raycast *ray, t_data *data)
 	data->ray = ray;
 }
 
-void	init_keys(t_keys *k, t_data *data)
+void	init_keys(t_keys *keys, t_data *data)
 {
-	ft_bzero(k->key_array, 6);
-	data->keys = k;
+	ft_bzero(keys->key_array, 6);
+	data->keys = keys;
 }
 
 void	init_structs(t_data *data, t_mlx *mlx)

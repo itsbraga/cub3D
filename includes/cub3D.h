@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 10:57:55 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 13:26:39 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	*yama(int flag, void *ptr, size_t size);
 void	init_data(t_data *data);
 void	init_map(t_map *map, t_data *data);
 void	init_raycast(t_raycast *ray, t_data *data);
-void	init_keys(t_keys *key, t_data *data);
+void	init_keys(t_keys *keys, t_data *data);
 void	init_structs(t_data *data, t_mlx *mlx);
 
 // init_mlx.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 02:34:56 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 # define ERR_RGB "Invalid RGB"
 # define ERR_CONFIG "Bad config file"
 
-# define ERR_START_POS "No starting position found for the player"
+# define ERR_START_POS "No starting position found for the player_pos"
 # define ERR_MULT_POS "Multiple starting positions found"
 
 /******************************************************************************\
@@ -104,6 +104,9 @@ typedef void	(*move_array)(t_data *data);
 # define A 97
 # define S 115
 # define D 100
+
+// Mouse
+# define MOUSE_SENSITIVITY 0.2f
 
 /******************************************************************************\
  * MAP SETUP
