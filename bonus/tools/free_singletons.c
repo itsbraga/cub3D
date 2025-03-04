@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/03/02 17:32:29 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/03 20:12:52 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	__free_data(t_data *data)
 	if (data != NULL)
 	{
 		if (data->map != NULL)
-			free_tab(data->map->map2d);
+			free_array(data->map->map2d);
 		// if (data->ray != NULL)
 			// ?
 	}

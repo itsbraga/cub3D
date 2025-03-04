@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:32:30 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/27 18:30:59 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	*new_gc_node(void *ptr, bool is_tab)
+void	*new_gc_node(void *ptr, bool is_array)
 {
 	t_gc_lst	*node;
 
@@ -20,7 +20,7 @@ void	*new_gc_node(void *ptr, bool is_tab)
 	if (node == NULL)
 		return (err_msg(NULL, ERR_MALLOC, 0), NULL);
 	node->ptr = ptr;
-	node->is_tab = is_tab;
+	node->is_array = is_array;
 	node->next = NULL;
 	return (node);
 }

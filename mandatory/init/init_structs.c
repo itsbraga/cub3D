@@ -6,7 +6,11 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/03 20:48:02 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 02:37:23 by art3mis          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +49,10 @@ void	init_raycast(t_raycast *ray, t_data *data)
 	data->ray = ray;
 }
 
-void	init_keys(t_keys *k, t_data *data)
+void	init_keys(t_keys *keys, t_data *data)
 {
-	ft_bzero(k->key_tab, 6);
-	data->keys = k;
+	ft_bzero(keys->key_array, 6);
+	data->keys = keys;
 }
 
 void	init_structs(t_data *data, t_mlx *mlx)

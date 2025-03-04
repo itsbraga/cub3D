@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/03/02 17:43:34 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:12:52 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ static void	__free_mlx(t_mlx *mlx)
 	// if (full_clean == true);
 }
 
-void	free_tab(char **tab)
+void	free_array(char **array)
 {
 	int	i;
 
-	if (tab == NULL)
+	if (array == NULL)
 		return ;
 	i = 0;
-	while (tab[i] != NULL)
+	while (array[i] != NULL)
 	{
-		free_and_set_null((void **)&tab[i]);
+		free_and_set_null((void **)&array[i]);
 		i++;
 	}
-	free_and_set_null((void **)&tab);
+	free_and_set_null((void **)&array);
 }
 
 static void	__free_data(t_data *data)
@@ -40,7 +40,7 @@ static void	__free_data(t_data *data)
 	if (data != NULL)
 	{
 		if (data->map != NULL)
-			free_tab(data->map->map2d);
+			free_array(data->map->map2d);
 		// if (data->ray != NULL)
 			// ?
 	}
