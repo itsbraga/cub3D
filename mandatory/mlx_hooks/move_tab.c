@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/02/27 20:12:24 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/03 20:48:02 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	update_player_move(t_data *data, t_keys *key)
 			functions[i](data);
 		i++;
 	}
-	data->player.x = roundf(data->player.x + data->move.x);
-	data->player.y = roundf(data->player.y + data->move.y);
+	data->player_pos.x = roundf(data->player_pos.x + data->move.x);
+	data->player_pos.y = roundf(data->player_pos.y + data->move.y);
 }
 
 void	reset_var(t_data *data)

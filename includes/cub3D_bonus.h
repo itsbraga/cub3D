@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:58:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/04 02:36:25 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	*yama(int flag, void *ptr, size_t size);
 void	init_data(t_data *data);
 void	init_map(t_map *map, t_data *data);
 void	init_raycast(t_raycast *ray, t_data *data);
-void	init_keys(t_keys *key, t_data *data);
+void	init_keys(t_keys *keys, t_data *data);
 void	init_structs(t_data *data, t_mlx *mlx);
 
 // init_mlx.c
@@ -128,6 +128,9 @@ void	rotate_rightward(t_data *data);
 void	init_movearray(move_array *functions);
 void	update_player_move(t_data *data, t_keys *key);
 void	reset_var(t_data *data);
+
+// mouse.c
+void	set_mouse_hooks(t_mlx *mlx, t_data *data);
 
 // setter.c
 void	set_hooks(t_mlx *mlx, t_data *data);
@@ -165,7 +168,7 @@ void	my_pixel_put_to_img(t_img *img, int color, int x, int y);
 void	clear_img(t_img *img, size_t size_x, size_t size_y, int color);
 
 // draw_player_pos.c
-void	draw_player_pos(t_data *data, t_point player);
+void	draw_player_pos(t_data *data, t_point player_pos);
 
 // minimap.c
 void	draw_minimap(t_data *data, t_map *minimap);
@@ -181,6 +184,7 @@ int		render(t_data *data);
 void	get_map_info(t_map *m);
 
 // collisions.c
-int		avoid_collisions(t_data *data, t_point *new_player_pos);
+int		handle_collisions(t_data *data, t_point *new_player_pos);
+// int		handle_collisions(t_data *data, t_collision *col);
 
 #endif

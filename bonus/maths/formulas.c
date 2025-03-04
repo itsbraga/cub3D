@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/26 20:35:24 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 02:20:15 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ float	square(float to_square)
 
 float	norm_angle(float angle)
 {
-
 	if (angle < 0)
 		angle += (2 * PI);
 	else if (angle > (2 * PI))

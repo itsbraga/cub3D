@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 00:47:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/02 19:37:46 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:48:02 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void	draw_minimap(t_data *data, t_map *minimap)
 		}
 		tile.y++;
 	}
-	draw_player_pos(data, data->player);
+	draw_player_pos(data, data->player_pos);
 }
