@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:58:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/04 02:36:25 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 16:29:34 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,8 @@ void	set_hooks(t_mlx *mlx, t_data *data);
 // clean_exit.c
 void	del_window(t_mlx *mlx);
 void	del_img(t_mlx *mlx, void *img_ptr);
-int		exit_game(t_mlx *mlx, void *img_ptr, int err_status);
+int		clean_exit(t_mlx *mlx, int err_status);
+// int		clean_exit(t_mlx *mlx, void *img_ptr, int err_status);
 
 /******************************************************************************\
  * MATHS

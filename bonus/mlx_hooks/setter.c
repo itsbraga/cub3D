@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 02:33:21 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 16:29:20 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static int	__set_keypress_flag(int keycode, t_data *d)
 	if (d->game_state == STATE_TITLE)
 	{
 		if (keycode == XK_Escape)
-			exit_game(mlx_s(), d->title_screen.bg_img.img_ptr, SUCCESS); // segfault si fermeture par la croix
+			clean_exit(mlx_s(), SUCCESS); // check si ok pour title_screen
 		else if (keycode == XK_Return)
 			return (d->game_state = STATE_GAME, SUCCESS);
 		else
 			return (FAILURE);
 	}
 	if (keycode == XK_Escape)
-		exit_game(mlx_s(), mlx_s()->img.img_ptr, SUCCESS); // segfault si fermeture par la croix
+		clean_exit(mlx_s(), SUCCESS);
 	if (keycode == W)
 		d->keys->key_array[W_KEY] = 1;
 	if (keycode == S)
@@ -64,5 +64,6 @@ void	set_hooks(t_mlx *mlx, t_data *data)
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease_flag,
 			data);
 	set_mouse_hooks(mlx, data);
-	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx); // clean function
+	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &clean_exit,
+			mlx);
 }
