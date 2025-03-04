@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void	init_movearray(move_array *functions)
+static void	__init_move_array(move_array *functions)
 {
 	functions[0] = move_forward;
 	functions[1] = move_backward; 
@@ -23,25 +23,25 @@ void	init_movearray(move_array *functions)
 	functions[6] = NULL;
 }
 
-void	update_player_move(t_data *data, t_keys *key)
+void	update_player_move(t_game *game, t_keys *key)
 {
 	int			i;
 	move_array	functions[7];
 	
 	i = 0;
-	init_movearray(functions);
+	__init_move_array(functions);
 	while (i < 6)
 	{
 		if (key->key_array[i] == 1)
-			functions[i](data);
+			functions[i](game, data_s());
 		i++;
 	}
-	data->player_pos.x = roundf(data->player_pos.x + data->move.x);
-	data->player_pos.y = roundf(data->player_pos.y + data->move.y);
+	game->player_pos.x = roundf(game->player_pos.x + game->move.x);
+	game->player_pos.y = roundf(game->player_pos.y + game->move.y);
 }
 
-void	reset_var(t_data *data)
+void	reset_var(t_game *game)
 {
-	data->move.x = 0;
-	data->move.y = 0;
+	game->move.x = 0;
+	game->move.y = 0;
 }

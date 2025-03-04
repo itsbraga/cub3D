@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 02:34:56 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/04 19:26:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,26 +84,26 @@
 # define DEL_IMG "\nImage and window successfully destroyed.\n\n"
 # define EXIT_PROG "\nCleaned everything and exited the program.\n\n"
 
-/********************\
+/************************\
  * PLAYER MOVEMENTS
-\********************/
+\************************/
 
 // Array of pointers to functions
-typedef void	(*move_array)(t_data *data);
+typedef void	(*move_array)(t_game *game, t_data *data);
 
 // Move_array *f() indexes
-# define W_KEY 0
-# define S_KEY 1
-# define A_KEY 2
-# define D_KEY 3
-# define LEFT_KEY 4
-# define RIGHT_KEY 5
+# define _W 0
+# define _S 1
+# define _A 2
+# define _D 3
+# define _LEFT 4
+# define _RIGHT 5
 
 // Keyboard
-# define W 119
-# define A 97
-# define S 115
-# define D 100
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
 
 // Mouse
 # define MOUSE_SENSITIVITY 0.2f
@@ -112,18 +112,27 @@ typedef void	(*move_array)(t_data *data);
  * MAP SETUP
 \******************************************************************************/
 
-/********************\
- * TEXTURES HELP
-\********************/
+/**************************\
+ * PLAYER'S DIRECTION
+\**************************/
+
+# define N 0
+# define S 180
+# define W 270
+# define E 90
+
+/**************************\
+ * TEXTURE'S ORIENTATION
+\**************************/
 
 # define NO	0
-# define SO 180
-# define WE 270
-# define EA 90
+# define SO 1
+# define WE 2
+# define EA 3
 
-/********************\
+/**************************\
  * PIXEL COLORS
-\********************/
+\**************************/
 
 # define RED_PIX 0x00FF0000
 # define YELLOW_PIX 0x00FFFF00

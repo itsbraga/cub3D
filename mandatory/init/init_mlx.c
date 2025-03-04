@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:26:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 16:29:01 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:26:28 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ static void	__init_img(t_mlx *mlx)
 	}
 }
 
-void	init_mlx(t_mlx *mlx, t_data *data)
+void	init_mlx(t_mlx *mlx, t_game *game)
 {
+	(void)game;
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
 	{
@@ -47,5 +48,5 @@ void	init_mlx(t_mlx *mlx, t_data *data)
 		del_window(mlx); // ou clean_exit(mlx) // a verifier
 	}
 	__init_img(mlx);
-	data->mlx = mlx;
+	// game->mlx = mlx;
 }
