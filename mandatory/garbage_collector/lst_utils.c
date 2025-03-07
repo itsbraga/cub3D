@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:32:30 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/03 20:15:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/06 17:39:36 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*new_gc_node(void *ptr, bool is_array)
 
 	node = malloc(sizeof(t_gc_lst));
 	if (node == NULL)
-		return (err_msg(NULL, ERR_MALLOC, 0), NULL);
+		return (err_msg(NULL, ERR_MALLOC), NULL);
 	node->ptr = ptr;
 	node->is_array = is_array;
 	node->next = NULL;
@@ -58,8 +58,8 @@ int	remove_gc_node(t_gc_lst **yama, void *ptr)
 	{
 		node = *yama;
 		*yama = (*yama)->next;
-		free_and_set_null((void **)&node->ptr);
-		free_and_set_null((void **)&node);
+		my_free((void **)&node->ptr);
+		my_free((void **)&node);
 		return (SUCCESS);
 	}
 	prev = *yama;
@@ -67,7 +67,7 @@ int	remove_gc_node(t_gc_lst **yama, void *ptr)
 		prev = prev->next;
 	node = prev->next;
 	prev->next = (prev->next)->next;
-	free_and_set_null((void **)&node->ptr);
-	free_and_set_null((void **)&node);
+	my_free((void **)&node->ptr);
+	my_free((void **)&node);
 	return (SUCCESS);
 }

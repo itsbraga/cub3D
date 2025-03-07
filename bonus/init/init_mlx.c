@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:26:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 19:37:51 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:48:47 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@
 // 	img->img_ptr = mlx_new_image(mlx->mlx_ptr, 64, 64);
 // 	if (img->img_ptr == NULL)
 // 	{
-// 		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
+// 		err_msg("minilibX", ERR_IMG);
 // 		return (NULL);
 // 	}
 // 	img->addr = mlx_get_data_addr(img->img_ptr, 
 // 			&img->bits_per_pixel,
-// 			&img->line_len,
+// 			&img->size_line,
 // 			&img->endian);
 // 	if (img->addr == NULL)
 // 	{
 // 		del_img(mlx, img->img_ptr);
-// 		err_msg("MinilibX", ERR_MLX, 0);
+// 		err_msg("minilibX", ERR_ADDR);
 // 		return (NULL);
 // 	}
 // 	return (img);
@@ -45,18 +45,18 @@ static int	__init_minimap_img(t_mlx *mlx, t_game *game)
 	game->minimap.img_ptr = mlx_new_image(mlx->mlx_ptr, 256, 256);
 	if (game->minimap.img_ptr == NULL)
 	{
-		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
+		err_msg("minilibX", ERR_IMG);
 		return (FAILURE);
 	}
 	game->minimap.addr = mlx_get_data_addr(game->minimap.img_ptr, 
 			&game->minimap.bits_per_pixel,
-			&game->minimap.line_len,
+			&game->minimap.size_line,
 			&game->minimap.endian);
 	if (game->minimap.addr == NULL)
 	{
 		del_img(mlx, game->minimap.img_ptr);
-		err_msg("MinilibX", ERR_MLX, 0);
-		clean_exit(mlx, FAILURE);
+		free_mlx(mlx);
+		return (err_msg("minilibX", ERR_ADDR), FAILURE);
 		 // check si ok pour minimap
 		 // a verifier, peut-etre supprimer les deux images
 	}
@@ -70,17 +70,17 @@ static int	__init_imgs(t_mlx *mlx, t_game *game)
 	mlx->img.img_ptr = mlx_new_image(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (mlx->img.img_ptr == NULL)
 	{
-		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
+		err_msg("minilibX", ERR_IMG);
 		return (FAILURE);
 	}
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img_ptr,
 			&mlx->img.bits_per_pixel, 
-			&mlx->img.line_len,
+			&mlx->img.size_line,
 			&mlx->img.endian);
 	if (mlx->img.addr == NULL)
 	{
-		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
-		clean_exit(mlx, FAILURE);
+		free_mlx(mlx);
+		return (err_msg("minilibX", ERR_ADDR), FAILURE);
 		// a verifier, peut-etre supprimer les deux images
 	}
 	if (__init_minimap_img(mlx, game) == FAILURE)
@@ -94,17 +94,15 @@ void	init_mlx(t_mlx *mlx, t_game *game)
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
 	{
-		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
-		clean_exit(mlx, FAILURE); // a verifier, peut-etre supprimer les deux images
+		free_mlx(mlx);
+		return (err_msg("minilibX", ERR_MLX));
 	}
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
-			"Telecubbies Horror");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, W_NAME);
 	if (mlx->win_ptr == NULL)
 	{
-		err_msg("MinilibX", ERR_MLX, 0); // specifier erreur
-		del_window(mlx); // ou clean_exit(mlx)
+		free_mlx(mlx);
+		return (err_msg("minilibX", ERR_WIN));
 	}
 	if (__init_imgs(mlx, game) == FAILURE)
 		return ;
-	// game->mlx = mlx;
 }

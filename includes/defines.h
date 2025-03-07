@@ -3,30 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 19:26:01 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 13:33:29 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define START_SCREEN "./Teletubbies.xpm"
-# define VALID_MAP "01 NSEW"
-
 /******************************************************************************\
  * MATHS
 \******************************************************************************/
 
 # define PI 3.1415926535
-# define PI2 PI/2
-# define PI3 3*PI/2
+# define PI2 (PI / 2)
+# define PI3 ((3 * PI) / 2)
 # define EPS 0.000001
 # define TILE_SIZE 64
-# define FOV 60
-# define PROJ_DISTANCE ((WIN_WIDTH / 2) / tan(get_radian(FOV) / 2))
+# define FOV 45
+# define PROJ_DISTANCE ((WIN_WIDTH / 2) / tan(degree_to_radian(FOV) / 2))
 # define MOVE_SPEED 5
 
 /******************************************************************************\
@@ -34,12 +31,13 @@
 \******************************************************************************/
 
 # define CREATE 0
-# define CREATE_array 1
+# define CREATE_ARRAY 1
 # define ADD 2
-# define ADD_array 3
+# define ADD_ARRAY 3
 # define REMOVE -1
 # define CLEAN_ALL -2
 # define SEARCH -4
+# define INVALID_FLAG "This flag does not exist"
 
 /******************************************************************************\
  * EXIT STATUS
@@ -53,36 +51,42 @@
 \******************************************************************************/
 
 # define ERR_PREFIX "\033[1m\033[31mError: \033[0m"
-# define ERR_MLX "Something went wrong with MinilibX"
-# define ERR_XPM "Unable to put .xpm file to image"
-# define ERR_ADDR "Unable to find image address in memory"
-# define ERR_MALLOC "Memory allocation failed"
 
-# define ERR_PATH "No such file or directory" // catch errno + given path before
-# define ERR_PERM "Permission denied"
-# define ERR_EXT "Bad extension (must be .cub)"
+// minilibX
+# define ERR_MLX "Cannot initialize minilibX"
+# define ERR_WIN "Cannot create new window"
+# define ERR_IMG "Cannot create new image"
+# define ERR_ADDR "Cannot find image address"
+# define ERR_XPM "Cannot convert XPM file into a minilibX image"
+# define ERR_MALLOC "Cannot allocate memory"
 
+// File
+# define ERR_EXT "Invalid extension"
 # define ERR_EMPTY "Oops! This file seems to be empty"
-# define ERR_MAP "Invalid map"
+# define ERR_MAP_BORDERS "Invalid map borders (x axis not closed)"
+# define ERR_MAP "Invalid map grid"
 # define ERR_CHAR "Invalid character in map"
-# define ERR_RGB "Invalid RGB"
-# define ERR_CONFIG "Bad config file"
+# define ERR_RGB "Invalid RGB (should be between 0 and 255)"
+# define ERR_CONFIG "Invalid file configuration"
 
-# define ERR_START_POS "No starting position found for the player_pos"
-# define ERR_MULT_POS "Multiple starting positions found"
+// Player direction
+# define ERR_PLAYER "Map has no player position"
+# define ERR_NB_PLAYER "Map has more than one player"
+
+// Title screen
+# define ERR_BG_IMG "Cannot load background image"
+# define ERR_BUTTON_IMG "Cannot load button image"
 
 /******************************************************************************\
  * MLX
 \******************************************************************************/
 
-# define WIN_WIDTH 1024
-# define WIN_HEIGHT 1024
-// # define WIN_WIDTH 960
-// # define WIN_HEIGHT 720
+# define W_NAME "TeleCubbies3D - by @itsbraga and @k0xdama"
+# define WIN_WIDTH 1024 // 1280
+# define WIN_HEIGHT 1024 // 720
 
-# define DEL_WIN "\nWindow successfully destroyed.\n\n"
-# define DEL_IMG "\nImage and window successfully destroyed.\n\n"
-# define EXIT_PROG "\nCleaned everything and exited the program.\n\n"
+# define DEL_IMG "[minilibX] Image and window destroyed\n"
+# define MLX_EXIT "[minilibX] All elements have been destroyed\n"
 
 /************************\
  * PLAYER MOVEMENTS
@@ -106,20 +110,25 @@ typedef void	(*move_array)(t_game *game, t_data *data);
 # define D_KEY 100
 
 // Mouse
-# define MOUSE_SENSITIVITY 0.2f
+# define MOUSE_SENSITIVITY_X 0.1f
+# define MOUSE_SENSITIVITY_Y 0.05f
+# define MAX_PITCH 45 // designe le max d'inclinaison verticale de la camera
 
 /******************************************************************************\
  * MAP SETUP
 \******************************************************************************/
 
+# define MAP_CHARS "01 NSEW"
+
 /**************************\
  * PLAYER'S DIRECTION
 \**************************/
 
-# define N 0
-# define S 180
-# define W 270
-# define E 90
+# define PLAYER_DIR "NSEW"
+# define N 270
+# define S 90
+# define E 0
+# define W 180
 
 /**************************\
  * TEXTURE'S ORIENTATION

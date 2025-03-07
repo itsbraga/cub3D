@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_xpm_from_img.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/04 18:37:22 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:48:47 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ t_img	xpm_from_img(char *relative_path)
 			&img.height);
 	if (img.img_ptr == NULL)
 	{
-		err_msg("MinilibX", ERR_XPM, 0);
+		err_msg("minilibX", ERR_XPM);
 		return (img);
 	}
 	img.addr = mlx_get_data_addr(img.img_ptr,
 			&img.bits_per_pixel,
-			&img.line_len,
+			&img.size_line,
 			&img.endian);
 	if (img.addr == NULL)
 	{
-		err_msg("MinilibX", ERR_ADDR, 0);
-		del_img(mlx_s());
+		err_msg("minilibX", ERR_ADDR);
+		del_img(mlx_s(), img.img_ptr);
 		ft_memset(&img, 0, sizeof(t_img));
 	}
 	return (img);

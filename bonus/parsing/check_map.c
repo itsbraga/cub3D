@@ -3,73 +3,124 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 19:30:05 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:21:34 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static bool	__has_valid_chars(char **map, int rows)
+/*  La description de la carte sera toujours en dernier
+	dans le fichier, le reste des éléments peut être
+	dans n’importe quel ordre
+*/
+bool	is_empty_line(char *line)
 {
-	int		i;
-	int		j;
-	char	c;
+	while (*line != NULL)
+	{
+		if (ft_isspace(*line) == 0)
+			return (false);
+		line++;
+	}
+	return (true);
+}
+
+bool	is_map_line(char *line)
+{
+	int	i;
 
 	i = 0;
-	while (i < rows)
+	while (line[i] != '\0')
 	{
-		j = 0;
-		while (map[i][j] != '\0')
+		if (line[i] != '\n' && ft_strchr(MAP_CHARS, line[i]) == NULL)
 		{
-			c = map[i][j];
-			if (ft_strchr(VALID_MAP, c) == NULL)
-				return (err_msg(&c, ERR_CHAR, 1), false);
-			j++;
+			err_msg_quoted(line[i], ERR_CHAR);
+			return (false);
 		}
 		i++;
 	}
 	return (true);
 }
 
-static bool	__find_player_start(char **map, int rows, t_point *start_pos)
+size_t	get_longest_line(char **map2d, size_t height)
 {
-	bool	found_start;
-	int		i;
-	int		j;
-	char	c;
+	size_t	i;
+	size_t	max;
+	size_t	len;
 
 	i = 0;
-	while (i < rows)
+	max = 0;
+	while (i < height)
 	{
-		j = 0;
-		while (map[i][j] != '\0')
+		len = ft_strlen(map2d[i]);
+		if (len > max)
+			max = len;
+	}
+	return (max);
+}
+
+bool	has_valid_map_borders(char **map2d, size_t height, size_t width)
+{
+	size_t	i;
+	size_t	j;
+
+	j = 0;
+	while (j < width)
+	{
+		if (map2d[0][i] != '1' || map2d[height - 1][j] != '1')
 		{
-			c = map[i][j];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			err_msg(NULL, ERR_MAP_BORDERS);
+			return (false);
+		}
+		j++;
+	}
+	i = 0;
+	while (i < height)
+	{
+		if (map2d[i][0] != '1' || map2d[i][width - 1] != '1')
+		{
+			err_msg(NULL, ERR_MAP_BORDERS);
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
+char	**normalize_map(char **map2d, size_t height, size_t width)
+{
+	char	**normed_map2d;
+	size_t	i;
+	size_t	j;
+	size_t	line_len;
+
+	normed_map2d = yama(CREATE, NULL, (sizeof(char *) * (height + 1)));
+	secure_malloc(normed_map2d, true);
+	i = 0;
+	while (i < height)
+	{
+		normed_map2d[i] = yama(CREATE, NULL, (width + 1));
+		secure_malloc(normed_map2d[i], true);
+		line_len = ft_strlen(map2d[i]);
+		j = 0;
+		while (j < width)
+		{
+			if (j < line_len)
 			{
-				if (found_start == true)
-					return (err_msg(NULL, ERR_MULT_POS, 0), false);
-				found_start = true;
-				start_pos->x = j;
-				start_pos->y = i;
+				if (map2d[i][j] == ' ')
+					normed_map2d[i][j] = '1';
+				else
+					normed_map2d[i][j] = map2d[i][j];
 			}
+			else
+				normed_map2d[i][j] = '1';
 			j++;
 		}
+		normed_map2d[i][width] = '\0';
 		i++;
 	}
-	if (found_start == false)
-		return (err_msg(NULL, ERR_START_POS, 0), false);
-	return (true);
-}
-
-bool    first_verification(char **map, int rows, t_point *start)
-{
-	if (__has_valid_chars(map, rows) == false)
-		return (false);
-	if (__find_player_start(map, rows, start) == false)
-		return (false);
-	return (true);
+	normed_map2d[height] = NULL;
+	return (normed_map2d);
 }

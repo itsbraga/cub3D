@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 18:41:21 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:49:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
+
+void	free_map(t_map *map)
+{
+	if (map->map2d != NULL)
+		free_array(map->map2d);
+	if (map->file_path != NULL)
+		my_free((void **)map->file_path);
+}
 
 void	free_array(char **array)
 {
@@ -21,16 +29,31 @@ void	free_array(char **array)
 	i = 0;
 	while (array[i] != NULL)
 	{
-		free_and_set_null((void **)&array[i]);
+		my_free((void **)&array[i]);
 		i++;
 	}
-	free_and_set_null((void **)&array);
+	my_free((void **)&array);
 }
 
-// void	free_title_screen(t_title_screen *screen)
-// {
-// 	if (screen->first_layer_img.img_ptr != NULL)
-// 		del_img(mlx_s(), screen->first_layer_img.img_ptr);
-// 	if (screen->second_layer.img.img_ptr != NULL)
-// 		del_img(mlx_s(), screen->second_layer.img.img_ptr);
-// }
+void	free_int_array(int **array)
+{
+	int	i;
+
+	if (array == NULL)
+		return ;
+	i = 0;
+	while (array[i] != NULL)
+	{
+		my_free((void **)&array[i]);
+		i++;
+	}
+	my_free((void **)&array);
+}
+
+void	free_title_screen(t_title_screen *screen)
+{
+	if (screen->first_layer.img_ptr != NULL)
+		del_img(mlx_s(), screen->first_layer.img_ptr);
+	if (screen->second_layer.img.img_ptr != NULL)
+		del_img(mlx_s(), screen->second_layer.img.img_ptr);
+}

@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   secure.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:58:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 19:33:31 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/06 19:04:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	secure_malloc(void *to_secure, bool cleanup)
+void	secure_malloc(void *to_secure, bool full_clean)
 {
 	if (to_secure == NULL)
 	{
-		err_msg("malloc", strerror(errno), 0);
-		if (cleanup == true)
-			free_singletons(FAILURE);
+		err_msg("malloc", strerror(errno));
+		if (full_clean == true)
+			clean_exit(FAILURE);
 	}
 }
 
-void	free_and_set_null(void **to_free)
+void	my_free(void **to_free)
 {
 	if (to_free != NULL && (*to_free) != NULL)
 	{

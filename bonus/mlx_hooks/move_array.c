@@ -23,16 +23,16 @@ static void	__init_move_array(move_array *functions)
 	functions[6] = NULL;
 }
 
-void	update_player_move(t_game *game, t_keys *key)
+void	move_player(t_game *game, t_keys *key)
 {
 	int			i;
 	move_array	functions[7];
 	t_point		new_player_pos;
 	
 	i = 0;
-	__init_move_array(functions);
 	if (game->game_state != STATE_GAME)
 		return ;
+	__init_move_array(functions);
 	while (i < 6)
 	{
 		if (key->key_array[i] == 1)
@@ -50,6 +50,6 @@ void	update_player_move(t_game *game, t_keys *key)
 
 void	reset_var(t_game *game)
 {
-	game->move.x = 0;
-	game->move.y = 0;
+	game->player->move.x = 0;
+	game->player->move.y = 0;
 }
