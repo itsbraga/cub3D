@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 00:49:40 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 20:46:24 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	init_raycast(t_raycast *ray, t_game *game)
 	ray->h_ray_inter.y = 0;
 	ray->v_ray_inter.x = 0;
 	ray->v_ray_inter.y = 0;
+	ray->dist_wall = 0;
+	ray->vertical_hit = false;
 	game->ray = ray;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/06 18:47:54 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 22:02:30 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,18 +148,45 @@ t_point *closest_inter)
 		closest_inter->x = ray->h_ray_inter.x;
 		closest_inter->y = ray->h_ray_inter.y;
 		ray->dist_wall = sqrt(dist_h);
+		ray->vertical_hit = false;
 	}
 	else
 	{
 		closest_inter->x = ray->v_ray_inter.x;
 		closest_inter->y = ray->v_ray_inter.y;
 		ray->dist_wall = sqrt(dist_v);
+		ray->vertical_hit = true;
+	}
+}
+
+void	load_tex_buffer(int **tex_buffer, int orientation)
+{
+	
+}
+
+void	handle_tex_buffer(t_raycast *r, int **tex_buffer)
+{
+	ft_bzero(*tex_buffer, TILE_SIZE * TILE_SIZE);
+	if (r->vertical_hit == false)
+	{
+		if (r->player_rad > 0 && r->player_rad < PI2)
+			load_tex_buffer(tex_buffer, NO);
+		else if (r->player_rad > PI2 && r->player_rad < (2 * PI))
+			load_tex_buffer(tex_buffer, SO);
+	}
+	else if (r->vertical_hit == true)
+	{
+		if (r->player_rad > PI2 && r->player_rad < PI3)
+			load_tex_buffer(tex_buffer, WE);
+		else if (r->player_rad < PI2 || r->player_rad > PI3)
+			load_tex_buffer(tex_buffer, EA);
 	}
 }
 
 void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 {
 	float	wall_h;
+	int		tex_buffer[TILE_SIZE * TILE_SIZE];
 	t_point	start;
 	t_point	end;
 	float	fixed_angle;
@@ -173,6 +200,7 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 	printf(PG "\n--> dist_wall = %f\n--> wall_h = %f\n\n" RESET, ray->dist_wall, wall_h);
 	if (wall_h > WIN_HEIGHT)
 		wall_h = WIN_HEIGHT;
+	handle_tex_buffer(ray, &tex_buffer);
 	start.x = (float)curr_x;
 	start.y = (WIN_HEIGHT / 2) - (wall_h / 2);
 	end.x = (float)curr_x;
