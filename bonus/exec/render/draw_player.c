@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player_pos.c                                  :+:      :+:    :+:   */
+/*   draw_player.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/06 15:43:53 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 20:05:34 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,23 +96,23 @@ static void	__fill_triangle(t_point p1, t_point p2, t_point p3, int color)
     }
 }
 
-void	draw_player_pos(t_game *game, t_point player_pos)
+void	draw_player(t_img *minimap, t_player *player)
 {
 	t_point a;
 	t_point b;
 	t_point c;
 	int		L = 40; //  augmenter si map tres petite, voir n (window / n)
 	double	h = 1.3 * L;
-	float	theta = degree_to_radian(data_s()->player_dir);
+	float	theta = degree_to_radian(player->dir);
 	
-	a.x = (player_pos.x + cos(theta) * h) / 4;
-	a.y = (player_pos.y + sin(theta) * h) / 4;
-	b.x = (player_pos.x + cos(theta + (M_PI / 2)) * (L / 2)) / 4;
-	b.y = (player_pos.y + sin(theta + (M_PI / 2)) * (L / 2)) / 4;
-	c.x = (player_pos.x + cos(theta - (M_PI / 2)) * (L / 2)) / 4;
-	c.y = (player_pos.y + sin(theta - (M_PI / 2)) * (L / 2)) / 4;
-	draw_line(&game->minimap, a, b, RED_PIX);
-	draw_line(&game->minimap, b, c, RED_PIX);
-	draw_line(&game->minimap, c, a, RED_PIX);
+	a.x = (player->pos.x + cos(theta) * h) / 4;
+	a.y = (player->pos.y + sin(theta) * h) / 4;
+	b.x = (player->pos.x + cos(theta + (PI / 2)) * (L / 2)) / 4;
+	b.y = (player->pos.y + sin(theta + (PI / 2)) * (L / 2)) / 4;
+	c.x = (player->pos.x + cos(theta - (PI / 2)) * (L / 2)) / 4;
+	c.y = (player->pos.y + sin(theta - (PI / 2)) * (L / 2)) / 4;
+	draw_line(minimap, a, b, RED_PIX);
+	draw_line(minimap, b, c, RED_PIX);
+	draw_line(minimap, c, a, RED_PIX);
 	__fill_triangle(a, b, c, RED_PIX);
 }

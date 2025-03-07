@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 14:21:34 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 21:55:31 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 bool	is_empty_line(char *line)
 {
-	while (*line != NULL)
+	while (*line != '\0')
 	{
 		if (ft_isspace(*line) == 0)
 			return (false);
@@ -36,7 +36,7 @@ bool	is_map_line(char *line)
 	{
 		if (line[i] != '\n' && ft_strchr(MAP_CHARS, line[i]) == NULL)
 		{
-			err_msg_quoted(line[i], ERR_CHAR);
+			err_msg_quoted(&line[i], ERR_CHAR);
 			return (false);
 		}
 		i++;
@@ -69,7 +69,7 @@ bool	has_valid_map_borders(char **map2d, size_t height, size_t width)
 	j = 0;
 	while (j < width)
 	{
-		if (map2d[0][i] != '1' || map2d[height - 1][j] != '1')
+		if (map2d[0][j] != '1' || map2d[height - 1][j] != '1')
 		{
 			err_msg(NULL, ERR_MAP_BORDERS);
 			return (false);
