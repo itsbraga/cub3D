@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 00:55:15 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 20:37:19 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ t_mlx	*mlx_s(void);
 t_data	*data_s(void);
 
 // generate_xpm_from_img.c
-t_img	xpm_from_img(char *path_to_file);
+t_img	img_from_xpm(char *relative_path);
 
 // title_screen/layers.c
 void	background(t_title_screen *s);

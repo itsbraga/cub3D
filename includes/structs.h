@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 14:04:07 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 20:41:56 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_raycasting
 	t_point			h_offset;
 	t_point			v_offset;
 	float			dist_wall;
+	bool			vertical_hit;
 	unsigned int	fov;
 	float			player_rad;
 }				t_raycast;
@@ -110,7 +111,7 @@ typedef	struct s_keys_event
 typedef struct s_data
 {
 	t_map			*map;
-	int				**texture;
+	t_img			*textures;
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
 	int				player_dir; // a supp

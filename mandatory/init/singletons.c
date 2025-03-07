@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 00:59:10 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 20:35:58 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_data	*data_s(void)
 		secure_malloc(instance, true);
 		instance->map = yama(CREATE, NULL, sizeof(t_map));
 		secure_malloc(instance->map, true);
-		instance->texture = NULL;
 		instance->floor_color = 0;
 		instance->ceiling_color = 0;
 		instance->player_dir = N; // a remplacer par 0 puis set selon pos dans le .cub

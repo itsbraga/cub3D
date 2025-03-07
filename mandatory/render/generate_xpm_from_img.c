@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   generate_xpm_from_img.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/07 11:48:47 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 16:55:13 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-t_img	xpm_from_img(char *relative_path)
+t_img	img_from_xpm(char *relative_path)
 {
 	t_img	img;
 
