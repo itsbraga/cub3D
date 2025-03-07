@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 13:33:29 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 19:53:31 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 \******************************************************************************/
 
 # define ERR_PREFIX "\033[1m\033[31mError: \033[0m"
+# define ERR "\033[1m\033[31mError\n\033[0m"
 
 // minilibX
 # define ERR_MLX "Cannot initialize minilibX"
@@ -66,7 +67,7 @@
 # define ERR_MAP_BORDERS "Invalid map borders (x axis not closed)"
 # define ERR_MAP "Invalid map grid"
 # define ERR_CHAR "Invalid character in map"
-# define ERR_RGB "Invalid RGB (should be between 0 and 255)"
+# define ERR_RGB "Invalid RGB (should be between 0 and 255"
 # define ERR_CONFIG "Invalid file configuration"
 
 // Player direction
@@ -93,7 +94,7 @@
 \************************/
 
 // Array of pointers to functions
-typedef void	(*move_array)(t_game *game, t_data *data);
+typedef void	(*move_array)(t_player *player);
 
 // Move_array *f() indexes
 # define _W 0

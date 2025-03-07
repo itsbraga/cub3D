@@ -18,8 +18,8 @@ static void	__free_data(t_data *data)
 	{
 		if (data->map != NULL)
 			free_map(data->map);
-		if (data->texture != NULL)
-			free_int_array(data->texture);
+		// if (data->texture != NULL)
+		// 	del_img(mlx_s(), data->texture->img_ptr); x4
 	}
 }
 

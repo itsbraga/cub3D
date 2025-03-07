@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/06 18:42:33 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 21:54:26 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	intersection_horizontal_line(t_game *game, t_raycast *r, float ray_rad)
+void	intersection_h_line(t_player *player, t_raycast *r, float ray_rad)
 {
 	float	inv_tan;
 	t_point	curr_tile;
@@ -23,14 +23,14 @@ void	intersection_horizontal_line(t_game *game, t_raycast *r, float ray_rad)
 		inv_tan = 0;
 	if (fabs(ray_rad - PI2) < EPS || fabs(ray_rad - PI3) < EPS)
 	{
-		r->h_ray_inter.x = game->player_pos.x;
-		r->h_ray_inter.y = game->player_pos.y;
+		r->h_ray_inter.x = player->pos.x;
+		r->h_ray_inter.y = player->pos.y;
 		return ;
 	}
 	else if (ray_rad > PI)
 	{
-		r->h_ray_inter.y = floor(game->player_pos.y / TILE_SIZE) * TILE_SIZE - 0.0001;
-		r->h_ray_inter.x =  game->player_pos.x + (game->player_pos.y - r->h_ray_inter.y)
+		r->h_ray_inter.y = floor(player->pos.y / TILE_SIZE) * TILE_SIZE - 0.0001;
+		r->h_ray_inter.x =  player->pos.x + (player->pos.y - r->h_ray_inter.y)
 				* inv_tan;
 		r->h_offset.y = -TILE_SIZE;
 		r->h_offset.x = -(r->h_offset.y) * inv_tan;
@@ -38,9 +38,9 @@ void	intersection_horizontal_line(t_game *game, t_raycast *r, float ray_rad)
 	}
 	else if (ray_rad < PI)
 	{
-		r->h_ray_inter.y = floor(game->player_pos.y / TILE_SIZE) * TILE_SIZE
+		r->h_ray_inter.y = floor(player->pos.y / TILE_SIZE) * TILE_SIZE
 				+ TILE_SIZE;
-		r->h_ray_inter.x = game->player_pos.x + (game->player_pos.y - r->h_ray_inter.y)
+		r->h_ray_inter.x = player->pos.x + (player->pos.y - r->h_ray_inter.y)
 				* inv_tan;
 		r->h_offset.y = TILE_SIZE;
 		r->h_offset.x = -r->h_offset.y * inv_tan;
@@ -70,7 +70,7 @@ void	intersection_horizontal_line(t_game *game, t_raycast *r, float ray_rad)
 	}
 }
 
-void	intersection_vertical_line(t_game *game, t_raycast *r, float ray_rad)
+void	intersection_v_line(t_player *player, t_raycast *r, float ray_rad)
 {
 	float	neg_tan;
 	t_point	curr_tile;
@@ -79,14 +79,14 @@ void	intersection_vertical_line(t_game *game, t_raycast *r, float ray_rad)
 	neg_tan = -tan(ray_rad);
 	if (fabs(ray_rad - PI) < EPS || fabs(ray_rad) < EPS)
 	{
-		r->v_ray_inter.x = game->player_pos.x;
-		r->v_ray_inter.y = game->player_pos.y;
+		r->v_ray_inter.x = player->pos.x;
+		r->v_ray_inter.y = player->pos.y;
 		return ;
 	}
 	else if (ray_rad > PI2 && ray_rad < PI3)
 	{
-		r->v_ray_inter.x = floor(game->player_pos.x / TILE_SIZE) * TILE_SIZE - 0.0001;
-		r->v_ray_inter.y = game->player_pos.y + (game->player_pos.x - r->v_ray_inter.x) 
+		r->v_ray_inter.x = floor(player->pos.x / TILE_SIZE) * TILE_SIZE - 0.0001;
+		r->v_ray_inter.y = player->pos.y + (player->pos.x - r->v_ray_inter.x) 
 				* neg_tan;
 		r->v_offset.x = -TILE_SIZE;
 		r->v_offset.y = -r->v_offset.x * neg_tan;
@@ -94,9 +94,9 @@ void	intersection_vertical_line(t_game *game, t_raycast *r, float ray_rad)
 	}
 	else if (ray_rad < PI2 || ray_rad > PI3)
 	{
-		r->v_ray_inter.x = floor(game->player_pos.x / TILE_SIZE) * TILE_SIZE
+		r->v_ray_inter.x = floor(player->pos.x / TILE_SIZE) * TILE_SIZE
 				+ TILE_SIZE;
-		r->v_ray_inter.y = game->player_pos.y + (game->player_pos.x - r->v_ray_inter.x) 
+		r->v_ray_inter.y = player->pos.y + (player->pos.x - r->v_ray_inter.x) 
 				* neg_tan;
 		r->v_offset.x = TILE_SIZE;
 		r->v_offset.y = -r->v_offset.x * neg_tan;
@@ -127,7 +127,7 @@ void	intersection_vertical_line(t_game *game, t_raycast *r, float ray_rad)
 	}
 }
 
-void	find_closest_intersection(t_game *game, t_raycast *ray,
+void	find_closest_intersection(t_player *player, t_raycast *ray,
 t_point *closest_inter)
 {
 	float	delta_xh;
@@ -137,10 +137,10 @@ t_point *closest_inter)
 	float	dist_h;
 	float	dist_v;
 
-	delta_xh = ray->h_ray_inter.x - game->player_pos.x;
-	delta_yh = ray->h_ray_inter.y - game->player_pos.y;
-	delta_xv = ray->v_ray_inter.x - game->player_pos.x;
-	delta_yv = ray->v_ray_inter.y - game->player_pos.y;
+	delta_xh = ray->h_ray_inter.x - player->pos.x;
+	delta_yh = ray->h_ray_inter.y - player->pos.y;
+	delta_xv = ray->v_ray_inter.x - player->pos.x;
+	delta_yv = ray->v_ray_inter.y - player->pos.y;
 	dist_h = (delta_xh * delta_xh) + (delta_yh * delta_yh);
 	dist_v = (delta_xv * delta_xv) + (delta_yv * delta_yv);
 	if (dist_h < dist_v)
@@ -163,7 +163,6 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 	t_point	start;
 	t_point	end;
 	float	fixed_angle;
-	// int		pitch_offset;
 
 	// Correction du fisheye
 	fixed_angle = ray->player_rad - ray_angle;
@@ -174,22 +173,10 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 	// printf(PG "\n--> dist_wall = %f\n--> wall_h = %f\n\n" RESET, ray->dist_wall, wall_h);
 	if (wall_h > WIN_HEIGHT)
 		wall_h = WIN_HEIGHT;
-
-	// Effet player_pitch (inclinaison verticale)
-	// pitch_offset = (data_s()->player_pitch * (WIN_HEIGHT / 2) / MAX_PITCH);
-
 	start.x = (float)curr_x;
-	// Decaler le mur verticalement en fonction de player_pitch
-	// start.y = ((WIN_HEIGHT / 2) - (wall_h / 2)) - pitch_offset;
 	start.y = (WIN_HEIGHT / 2) - (wall_h / 2);
 	end.x = (float)curr_x;
 	end.y = start.y + wall_h;
-
-	// if (start.y < 0)
-	// 	start.y = 0;
-	// if (end.y >= WIN_HEIGHT)
-	// 	end.y = WIN_HEIGHT - 1;
-	
 	draw_line(&mlx_s()->img, start, end, LAVENDER_PIX);
 }
 
@@ -206,9 +193,9 @@ void	raycasting(t_game *game, t_raycast *r)
 		// printf("ray_drawed rad = %d\n", ray_drawed);
 		// printf("ray_angle rad = %f\n", ray_angle);
 		// printf("player_pos dir = %f\n\n", r->player_rad);
-		intersection_horizontal_line(game, r, ray_angle);
-		intersection_vertical_line(game, r, ray_angle);
-		find_closest_intersection(game, r, &closest_inter);
+		intersection_h_line(game->player, r, ray_angle);
+		intersection_v_line(game->player, r, ray_angle);
+		find_closest_intersection(game->player, r, &closest_inter);
 		draw_wall(r, ray_angle, ray_drawed);
 		ray_angle += (degree_to_radian(r->fov) / WIN_WIDTH);
 		ray_angle = norm_rad_angle(ray_angle);

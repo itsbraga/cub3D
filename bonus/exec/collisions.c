@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/07 00:53:57 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 19:54:51 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-int	handle_collisions(t_game *game, t_point *new_player_pos)
+int	handle_collisions(t_player *player, t_point *new_player_pos)
 {
 	t_point	cell;
 

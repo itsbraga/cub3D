@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_data_struct.c                                 :+:      :+:    :+:   */
+/*   process_file_data.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:15 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 14:28:39 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 20:57:02 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-
-void	process_texture_line(char *line, t_data *data);
-
-void	process_color_line(char *line, t_data *data);
 
 void	add_map_lines(t_map *map, char *line)
 {
@@ -37,10 +33,10 @@ void	add_map_lines(t_map *map, char *line)
 	map->height++;
 }
 
-void	parse_file_data(int fd, t_data *data)
+void	process_file_data(int fd, t_data *data)
 {
 	char	*line;
-	
+
 	while (true)
 	{
 		line = get_next_line(fd, false);
@@ -55,10 +51,10 @@ void	parse_file_data(int fd, t_data *data)
 				|| ft_strncmp(line, "SO", 2) == 0
 				|| ft_strncmp(line, "WE", 2) == 0
 				|| ft_strncmp(line, "EA", 2) == 0)
-				// texture func
+				process_texture_line(line, data);
 			else if (line[0] == 'F' || line[0] == 'C')
-				// rgb func
-			else if (is_map_line(line) == true)
+				process_color_line(line, data);
+			else if (data->feature_filled == 6 && is_map_line(line) == true)
 				add_map_lines(data->map, line);
 			else
 				(err_msg(NULL, ERR_CONFIG), exit(FAILURE));

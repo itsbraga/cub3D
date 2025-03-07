@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 00:20:24 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 19:50:56 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static int	__handle_mouse(int x, int y, t_data *data)
+static int	__handle_mouse(int x, int y, t_game *game)
 {
 	static int	last_x = -1;
 	int			delta_x;
@@ -22,10 +22,10 @@ static int	__handle_mouse(int x, int y, t_data *data)
 		last_x = x;
 	delta_x = x - last_x;
 	// Ajuste l'angle du joueur selon le deplacement horizontal
-	data->player_dir += delta_x * MOUSE_SENSITIVITY_X;
-	data->player_dir = norm_angle_h(data->player_dir);
+	game->player->dir += delta_x * MOUSE_SENSITIVITY_X;
+	game->player->dir = norm_angle_h(game->player->dir);
 	// MAJ de l'angle en radians pour le raycasting
-	game_s()->ray->player_rad = degree_to_radian(data->player_dir); // a changer
+	game->ray->player_rad = degree_to_radian(game->player->dir);
 	last_x = x;
 	return (SUCCESS);
 }
@@ -48,9 +48,9 @@ static int	__title_screen_mouse(int button, int x, int y, t_game *game)
 	return (SUCCESS);
 }
 
-void	set_mouse_hooks(t_mlx *mlx, t_data *data, t_game *game)
+void	set_mouse_hooks(t_mlx *mlx, t_game *game)
 {
 	mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, &__handle_mouse,
-			data);
+			game);
 	mlx_mouse_hook(mlx->win_ptr, &__title_screen_mouse, game);
 }
