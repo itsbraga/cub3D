@@ -23,33 +23,33 @@ static void	__init_move_array(move_array *functions)
 	functions[6] = NULL;
 }
 
-void	move_player(t_game *game, t_keys *key)
+void	move_player(t_player *player, t_keys *key)
 {
 	int			i;
 	move_array	functions[7];
 	t_point		new_player_pos;
 	
 	i = 0;
-	if (game->game_state != STATE_GAME)
+	if (game_s()->game_state != STATE_GAME)
 		return ;
 	__init_move_array(functions);
 	while (i < 6)
 	{
 		if (key->key_array[i] == 1)
-			functions[i](game, data_s());
+			functions[i](player);
 		i++;
 	}
-	new_player_pos.x = game->player_pos.x;
-	new_player_pos.y = game->player_pos.y;
-	if (handle_collisions(game, &new_player_pos) == FAILURE)
+	new_player_pos.x = player->pos.x;
+	new_player_pos.y = player->pos.y;
+	if (handle_collisions(player, &new_player_pos) == FAILURE)
 		return ;
 	// Mise a jour de la position du joueur si pas de collision trouvée
-	game->player_pos.x = roundf(new_player_pos.x);
-	game->player_pos.y = roundf(new_player_pos.y);
+	player->pos.x = roundf(new_player_pos.x);
+	player->pos.y = roundf(new_player_pos.y);
 }
 
-void	reset_var(t_game *game)
+void	reset_var(t_player *player)
 {
-	game->player->move.x = 0;
-	game->player->move.y = 0;
+	player->move.x = 0;
+	player->move.y = 0;
 }

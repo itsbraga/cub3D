@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:24:27 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 13:09:03 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 21:31:12 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-
-// verifier si le fichier existe + permission apres avoir verifier l'extension
-// si cub file est ok a 100% donner le fd du fichier ouvert dans data
 
 static bool	__is_valid_extension(char *filename)
 {
@@ -24,7 +21,7 @@ static bool	__is_valid_extension(char *filename)
 	dot = ft_strrchr(filename, '.');
 	if (dot == NULL)
 		return (false);
-	if (ft_strcmp(dot, ".cub") == 0)
+	if (ft_strncmp(dot, ".cub", 4) == 0)
 		return (true);
 	return (false);
 }
@@ -34,16 +31,13 @@ static int	__is_not_directory(const char *path)
 	int	fd;
 	
 	fd = open(path, __O_DIRECTORY);
-	if (fd >= 0)
+	if (fd > 0)
 	{
 		close(fd);
 		return (FAILURE);
 	}
-	if (errno == EACCES)
-		return (FAILURE);
-	if (errno == ENOTDIR)
+	else
 		return (SUCCESS);
-	return (-1);
 }
 
 static void	__check_open_error(const char *arg)
@@ -59,7 +53,7 @@ static void	__check_open_error(const char *arg)
 	exit(FAILURE);
 }
 
-int	check_file(char *arg)
+int	check_cub_file(char *arg)
 {
 	int	fd;
 

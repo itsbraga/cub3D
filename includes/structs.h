@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 14:04:07 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 21:42:56 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_title_screen
 
 typedef struct s_map
 {
-	char		*file_path;
+	char		*path_to_file;
 	int			fd;
 	char		**map2d;
 	size_t		height;
@@ -76,11 +76,10 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	char		dir;
+	int			dir;
 	t_point		pos;
-	t_point		angle;
 	t_point		move;
-	int			pitch; // garder si mouse_y OK
+	// int			pitch; // garder si mouse_y OK
 }				t_player;
 
 typedef struct s_raycasting
@@ -110,10 +109,10 @@ typedef	struct s_keys_event
 typedef struct s_data
 {
 	t_map			*map;
-	int				**texture;
+	t_img			*texture;
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
-	int				player_dir; // a supp
+	unsigned int	feature_filled;
 }				t_data;
 
 typedef struct s_game
@@ -122,9 +121,8 @@ typedef struct s_game
 	t_title_screen	title_screen;
 	t_player		*player;
 	t_raycast		*ray;
-	t_point			player_pos; // a supp
-	t_collision		collision;
 	t_keys			*keys;
+	t_collision		collision;
 	t_img			minimap;
 	t_point			minimap_pos;
 }				t_game;

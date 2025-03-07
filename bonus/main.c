@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/07 14:11:56 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 20:23:10 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 	t_game	*game;
 	t_mlx	*mlx;
 
-	(void)argv;
 	if (argc != 2)
 	{
 		err_msg(NULL, strerror(EINVAL));
@@ -27,13 +26,13 @@ int	main(int argc, char **argv)
 	data = data_s();
 	game = game_s();
 	mlx = mlx_s();
-	init_structs(data, game, mlx);
-	if (parsing(data, argv[1]) == FAILURE)
+	init_structs(game, mlx);
+	if (parsing(data, argv[1]) != SUCCESS)
 	{
-		// free all structs (clean_exit)
-		exit(FAILURE); // then remove this line
+		ft_printf(STDERR_FILENO, ERR);
+		clean_exit(FAILURE);
 	}
-	set_hooks(mlx, game, data);
+	set_hooks(mlx, game);
 	mlx_loop_hook(mlx->mlx_ptr, &render, game);
 	mlx_loop(mlx->mlx_ptr);
 }

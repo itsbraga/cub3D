@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 14:22:29 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 21:37:50 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@ short	parsing(t_data *data, char *arg)
 	size_t	longest_line;
 	char	**normed_map2d;
 
-	fd = check_file(arg);
-	init_map(data->map, arg, fd);
-	// fonction avec gnl qui assigne les valeurs a NO,SO,WE,EA + F,C + map2d
+	fd = check_cub_file(arg);
+	init_map(data->map, arg, fd, data);
+	process_file_data(fd, data);
 	close(fd);
 	if (data->map->map2d == NULL || data->map->height == 0)
-		(err_msg(NULL, ERR_MAP), exit(FAILURE)); // free t_map & t_data
+	{
+		err_msg(NULL, ERR);
+		clean_exit(FAILURE);
+	}
 	longest_line = get_longest_line(data->map->map2d, data->map->height);
 	normed_map2d = normalize_map(data->map->map2d, data->map->height,
 			longest_line);

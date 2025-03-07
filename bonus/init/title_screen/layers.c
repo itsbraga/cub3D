@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   layers.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 23:15:26 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/07 00:09:37 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 17:28:32 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	background(t_title_screen *s)
 {
-	s->first_layer = xpm_from_img("./title_screen/xpm/background_v2.xpm");
+	s->first_layer = xpm_to_mlx_img("./title_screen/xpm/background_v2.xpm");
 	if (s->first_layer.img_ptr == NULL)
 		return (err_msg("Title screen", ERR_BG_IMG));
 }
 
 void	start_button(t_title_screen *s)
 {
-	s->second_layer.img = xpm_from_img("./title_screen/xpm/start_button.xpm");
+	s->second_layer.img = xpm_to_mlx_img("./title_screen/xpm/start_button.xpm");
 	if (s->second_layer.img.img_ptr == NULL)
 	{
 		del_img(mlx_s(), s->first_layer.img_ptr);
