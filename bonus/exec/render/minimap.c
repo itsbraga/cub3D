@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 00:47:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 19:38:12 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 20:15:24 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void	draw_minimap(t_game *game, t_map *minimap)
 		}
 		tile.y++;
 	}
-	draw_player_pos(game, game->player_pos);
+	draw_player(&game->minimap, game->player);
 }

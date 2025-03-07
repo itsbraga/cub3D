@@ -12,7 +12,7 @@
 
 #include "cub3D_bonus.h"
 
-t_img	xpm_from_img(char *relative_path)
+t_img	xpm_to_mlx_img(char *relative_path)
 {
 	t_img	img;
 

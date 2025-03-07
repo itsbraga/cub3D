@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 00:51:21 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 21:49:05 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ static int	__set_keypress(int keycode, t_game *game)
 		game->keys->key_array[_LEFT] = 1;
 	if (keycode == XK_Right)
 		game->keys->key_array[_RIGHT] = 1;
-	(move_player(game, game->keys), reset_var(game));
+	(move_player(game->player, game->keys), reset_var(game->player));
 	return (SUCCESS);
 }
 
-void	set_hooks(t_mlx *mlx, t_game *game, t_data *data)
+void	set_hooks(t_mlx *mlx, t_game *game)
 {
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress, game);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease, game);
-	set_mouse_hooks(mlx, data, game);
+	set_mouse_hooks(mlx, game);
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
 }

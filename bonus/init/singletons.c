@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 14:08:51 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 21:43:13 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ t_game	*game_s(void)
 		secure_malloc(instance->ray, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
-		instance->minimap_pos.x = 0;
-		instance->minimap_pos.y = 0;
 	}
 	return (instance);
 }
@@ -66,10 +64,11 @@ t_data	*data_s(void)
 		secure_malloc(instance, true);
 		instance->map = yama(CREATE, NULL, sizeof(t_map));
 		secure_malloc(instance->map, true);
-		instance->texture = NULL;
+		instance->texture = yama(CREATE, NULL, sizeof(t_img));
+		secure_malloc(instance->texture, true);
 		instance->floor_color = 0;
 		instance->ceiling_color = 0;
-		instance->player_dir = E; // a remplacer par 0 puis set selon pos dans le .cub
+		instance->feature_filled = 0;
 	}
 	return (instance);
 }

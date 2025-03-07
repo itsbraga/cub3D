@@ -3,31 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 18:39:19 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/07 00:40:38 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/07 20:04:50 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	rotate_leftward(t_game *game, t_data *data)
+void	rotate_leftward(t_player *player)
 {
-	// changer player_dir par angle.x
-	data->player_dir -= 4;
-	// Check pour rester entre 0 et 360° (soit 0 et 2 M_PI radians)
-	if (data->player_dir < 0)
-		data->player_dir += 360;
-	game->ray->player_rad = degree_to_radian(data->player_dir);
+	player->dir -= 4;
+	// Check pour rester entre 0 et 360° (soit 0 et 2 PI radians)
+	if (player->dir < 0)
+		player->dir += 360;
+	game_s()->ray->player_rad = degree_to_radian(player->dir);
 }
 
-void	rotate_rightward(t_game *game, t_data *data)
+void	rotate_rightward(t_player *player)
 {
-	// changer player_dir par angle.x
-	data->player_dir += 4;
-	// Check pour rester entre 0 et 360° (soit 0 et 2 M_PI radians)
-	if (data->player_dir > 360)
-		data->player_dir = data->player_dir % 360;
-	game->ray->player_rad = degree_to_radian(data->player_dir);
+	player->dir += 4;
+	// Check pour rester entre 0 et 360° (soit 0 et 2 PI radians)
+	if (player->dir > 360)
+		player->dir = player->dir % 360;
+	game_s()->ray->player_rad = degree_to_radian(player->dir);
 }
