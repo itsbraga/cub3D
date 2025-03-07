@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 19:23:00 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:04:07 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_img
 	void	*img_ptr;
 	char	*addr;
 	int		bits_per_pixel;
-	int		line_len;
+	int		size_line;
 	int		endian;
 	int		width;
 	int		height;
@@ -38,6 +38,12 @@ typedef struct s_mlx
 /******************************************************************************\
  * CUB3D
 \******************************************************************************/
+
+typedef enum e_state
+{
+	STATE_TITLE = 1,
+	STATE_GAME = 2
+}			t_state;
 
 typedef struct s_point
 {
@@ -55,19 +61,29 @@ typedef struct s_layer
 
 typedef struct s_title_screen
 {
-	t_img		bg_img;
-	t_layer		blood;
-	t_layer		start_button;
+	t_img		first_layer;
+	t_layer		second_layer;
 }				t_title_screen;
 
 typedef struct s_map
 {
+	char		*file_path;
+	int			fd;
 	char		**map2d;
 	size_t		height;
-	size_t		width; 
+	size_t		width;
 }				t_map;
 
-typedef struct s_ray
+typedef struct s_player
+{
+	char		dir;
+	t_point		pos;
+	t_point		angle;
+	t_point		move;
+	int			pitch; // garder si mouse_y OK
+}				t_player;
+
+typedef struct s_raycasting
 {
 	unsigned int	ray_amount;
 	t_point			h_ray_inter;
@@ -83,40 +99,30 @@ typedef struct s_collision
 {
 	t_point		next_player_pos;
 	t_point		next_cell;
-	float		safety_radius;
+	float		safety_radius; // not used yet
 }				t_collision;
 
-typedef enum e_state
-{
-	STATE_TITLE = 1,
-	STATE_GAME = 2
-}			t_state;
-
-typedef	struct _Ss_event
+typedef	struct s_keys_event
 {
 	bool	key_array[6];
 }				t_keys;
 
 typedef struct s_data
 {
-	char			*cubfile_path;
-	int				fd;
+	t_map			*map;
 	int				**texture;
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
-	int				player_dir;
-}			t_data;
+	int				player_dir; // a supp
+}				t_data;
 
 typedef struct s_game
 {
-	// t_mlx			*mlx;
 	t_state			game_state;
 	t_title_screen	title_screen;
-	// t_data			*data;
-	t_map			*map;
+	t_player		*player;
 	t_raycast		*ray;
-	t_point			player_pos;
-	t_point			move;
+	t_point			player_pos; // a supp
 	t_collision		collision;
 	t_keys			*keys;
 	t_img			minimap;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/04 19:27:17 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:59:10 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ t_game	*game_s(void)
 	{
 		instance = yama(CREATE, NULL, sizeof(t_game));
 		secure_malloc(instance, true);
-		// instance->mlx = NULL;
 		instance->game_state = STATE_TITLE;
-		instance->map = yama(CREATE, NULL, sizeof(t_map));
-		secure_malloc(instance->map, true);
+		instance->player = yama(CREATE, NULL, sizeof(t_player));
+		secure_malloc(instance->player, true);
 		instance->ray = yama(CREATE, NULL, sizeof(t_raycast));
 		secure_malloc(instance->ray, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
@@ -49,7 +48,7 @@ t_mlx	*mlx_s(void)
 		instance->img.img_ptr = NULL;
 		instance->img.addr = NULL;
 		instance->img.bits_per_pixel = 0;
-		instance->img.line_len = 0;
+		instance->img.size_line = 0;
 		instance->img.endian = 0;
 	}
 	return (instance);
@@ -63,12 +62,12 @@ t_data	*data_s(void)
 	{
 		instance = yama(CREATE, NULL, sizeof(t_data));
 		secure_malloc(instance, true);
-		instance->cubfile_path = NULL;
-		instance->fd = -1;
+		instance->map = yama(CREATE, NULL, sizeof(t_map));
+		secure_malloc(instance->map, true);
 		instance->texture = NULL;
 		instance->floor_color = 0;
 		instance->ceiling_color = 0;
-		instance->player_dir = S; // a remplacer par 0 puis set selon pos dans le .cub
+		instance->player_dir = N; // a remplacer par 0 puis set selon pos dans le .cub
 	}
 	return (instance);
 }

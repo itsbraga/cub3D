@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 19:35:57 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:55:15 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,37 +42,42 @@
 // utils.c
 int		rgb_to_int(char *red, char *green, char *blue);
 
-// check_map.c
-bool	first_verification(char **map, int rows, t_point *start);
-
-// check_rgb.c
-bool	valid_rgb(unsigned int rgb[3]);
-
 // map_data.c
-void    get_map_data(t_data *data, char **argv);
+void	get_map_data(t_data *data, char **argv);
 
 /******************************************************************************\
  * TOOLS
 \******************************************************************************/
 
 // error.c
-void	err_msg(char *detail, char *reason, int quotes);
-int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_no);
-
-// free.c
-void	free_array(char **array);
-void	free_title_screen(t_title_screen *screen);
-
-// free_singletons.c
-void	free_singletons(int exit_status);
+void	err_msg(char *detail, char *reason);
+void	err_msg_quoted(char *detail, char *reason);
 
 // secure.c
-void	secure_malloc(void *to_secure, bool cleanup);
-void	free_and_set_null(void **to_free);
+void	secure_malloc(void *to_secure, bool full_clean);
+void	my_free(void **to_free);
 
 // draw_tools.c
 void	swap_point(t_point *p0, t_point *p1);
 bool	valid_point(t_point point, size_t win_x, size_t win_y);
+
+/******************************************************************************\
+ * TOOLS/CLEANUP
+\******************************************************************************/
+
+// free.c
+void	free_map(t_map *map);
+void	free_array(char **array);
+void	free_int_array(int **array);
+void	free_title_screen(t_title_screen *screen);
+
+// delete_img.c
+void	del_img(t_mlx *mlx, void *img_ptr);
+
+// cleanup.c
+int		exit_game(t_mlx *mlx, int exit_code);
+void	free_mlx(t_mlx *mlx);
+void	clean_exit(int exit_code);
 
 /******************************************************************************\
  * GARBAGE_COLLECTOR
@@ -100,7 +105,7 @@ void	init_game(t_game *game);
 void	init_map(t_map *map, t_game *game);
 void	init_raycast(t_raycast *ray, t_game *game);
 void	init_keys(t_keys *keys, t_game *game);
-void	init_structs(t_game *game, t_mlx *mlx);
+void	init_structs(t_data *data, t_game *game, t_mlx *mlx);
 
 // init_mlx.c
 t_img	*init_texture_img(t_mlx *mlx);
@@ -115,9 +120,9 @@ t_data	*data_s(void);
 t_img	xpm_from_img(char *path_to_file);
 
 // title_screen/layers.c
-void	background(t_title_screen *screen);
-void	start_button(t_title_screen *screen);
-void	controls_menu(t_title_screen *screen);
+void	background(t_title_screen *s);
+void	start_button(t_title_screen *s);
+void	controls_menu(t_title_screen *s);
 
 // title_screen/init.c
 void	init_title_screen(t_title_screen *screen);
@@ -128,35 +133,30 @@ void	draw_title_screen(t_game *game, t_mlx *mlx);
 \******************************************************************************/
 
 // movements.c
-void	move_forward(t_game *game, t_data *data);
-void	move_backward(t_game *game, t_data *data);
-void	straf_leftward(t_game *game, t_data *data);
-void	straf_rightward(t_game *game, t_data *data);
+void	move_forward(t_game *game, t_data *data); // changer params
+void	move_backward(t_game *game, t_data *data); // changer params
+void	straf_leftward(t_game *game, t_data *data); // changer params
+void	straf_rightward(t_game *game, t_data *data); // changer params
 
 // camera.c
-void	rotate_leftward(t_game *game, t_data *data);
-void	rotate_rightward(t_game *game, t_data *data);
+void	rotate_leftward(t_game *game, t_data *data); // changer params
+void	rotate_rightward(t_game *game, t_data *data); // changer params
 
 // move_array.c
-void	update_player_move(t_game *game, t_keys *key);
-void	reset_var(t_game *game);
+void	move_player(t_game *game, t_keys *key); // changer params
+void	reset_var(t_game *game); // changer params
 
 // setter.c
 void	set_hooks(t_mlx *mlx, t_game *game);
- 
-// clean_exit.c
-void	del_window(t_mlx *mlx);
-void	del_img(t_mlx *mlx);
-int		clean_exit(t_mlx *mlx, int err_status);
 
 /******************************************************************************\
  * MATHS
 \******************************************************************************/
   
 // formulas.c
-float	get_radian(int degree);
+float	degree_to_radian(int degree);
 float	square(float to_square); // pas utilise
-float	norm_angle(float angle);
+float	norm_rad_angle(float angle);
 
 // draw_line.c
 void	draw_line(t_img *img, t_point p0, t_point p1, int color);

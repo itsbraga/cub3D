@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   title_screen_layers.c                              :+:      :+:    :+:   */
+/*   layers.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 23:15:26 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/04 18:06:58 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:09:37 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	background(t_title_screen *screen)
+void	background(t_title_screen *s)
 {
-	screen->bg_img = xpm_from_img("./title_screen/xpm/teletubbies_wblood2.xpm");
-	if (screen->bg_img.img_ptr == NULL)
-		return (err_msg("Title screen", "Unable to load background image", 0));
+	s->first_layer = xpm_from_img("./title_screen/xpm/background_v2.xpm");
+	if (s->first_layer.img_ptr == NULL)
+		return (err_msg("Title screen", ERR_BG_IMG));
 }
 
-void	start_button(t_title_screen *screen)
+void	start_button(t_title_screen *s)
 {
-	screen->start_button.img = xpm_from_img("./title_screen/xpm/button.xpm");
-	if (screen->start_button.img.img_ptr == NULL)
+	s->second_layer.img = xpm_from_img("./title_screen/xpm/start_button.xpm");
+	if (s->second_layer.img.img_ptr == NULL)
 	{
-		del_img(mlx_s(), screen->bg_img.img_ptr);
-		return (err_msg("Title screen", "Unable to load button image", 0));
+		del_img(mlx_s(), s->first_layer.img_ptr);
+		return (err_msg("Title screen", ERR_BUTTON_IMG));
 	}
-	screen->start_button.pos.x = (WIN_WIDTH - screen->start_button.img.width) / 2;
-	screen->start_button.pos.y = WIN_HEIGHT - screen->start_button.img.height - 50;
-	screen->start_button.width = screen->start_button.img.width;
-	screen->start_button.height = screen->start_button.img.height;
+	s->second_layer.pos.x = (WIN_WIDTH - s->second_layer.img.width) / 2;
+	s->second_layer.pos.y = WIN_HEIGHT - s->second_layer.img.height - 40;
+	s->second_layer.width = s->second_layer.img.width;
+	s->second_layer.height = s->second_layer.img.height;
 }
 
-void	controls_menu(t_title_screen *screen);
+void	controls_menu(t_title_screen *s);

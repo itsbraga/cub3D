@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 18:53:59 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 19:35:03 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:59:25 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	get_ceiling_rgb(t_data *data)
 	buffer = NULL;
 	while (true)
 	{
-		buffer = get_next_line(data->fd, false);
+		buffer = get_next_line(data->map->fd, false);
 		if (buffer[0] == 'C')
 		{
 			while (buffer[i] < '0' && buffer[i] > '9')
@@ -85,10 +85,10 @@ void get_floor_rgb(t_data *data)
 	buffer = NULL;
 	while (true)
 	{
-		buffer = get_next_line(data->fd, false);
+		buffer = get_next_line(data->map->fd, false);
 		if (buffer[0] == 'F')
 		{
-			while (buffer[i] < '0' && buffer[i] > '9')
+			while (ft_isdigit(buffer[i]) == 1)
 				i++;
 			floor_str = buffer + i;
 			free(buffer);
@@ -112,43 +112,43 @@ size_t	get_size_map_array(t_data *data)
 	buffer = NULL;
 	while (true)
 	{
-		buffer = get_next_line(data->fd, false);
+		buffer = get_next_line(data->map->fd, false);
 		if (buffer == NULL)
 			break;
 		else if (ft_strchr(buffer, '1') != NULL)
 			i++; 
 	}
-	close(data->fd);
+	close(data->map->fd);
 	return (i);
 }
 
-void	get_map_array(t_data *data)
-{
-	size_t	size_map_array;
+// void	get_map_array(t_data *data)
+// {
+// 	size_t	size_map_array;
 
-	size_map_array = get_size_map_array(data);
-	data->fd = open(data->cubfile_path, O_RDONLY);
-	if (data->fd == -1)
-	{
-		perror(strerror(errno));
-		clean_exit(mlx_s(), FAILURE);
-	}
-	// while (ft_strchr(buffer))
-}
+// 	size_map_array = get_size_map_array(data);
+// 	data->fd = open(data->cubfile_path, O_RDONLY);
+// 	if (data->fd == -1)
+// 	{
+// 		perror(strerror(errno));
+// 		mlx_exit(mlx_s(), FAILURE);
+// 	}
+// 	// while (ft_strchr(buffer))
+// }
 
 void    get_map_data(t_data *data, char **argv)
 {
-	data->cubfile_path = argv[1];
-	data->fd = open(data->cubfile_path, O_RDONLY);
-	if (data->fd == -1)
+	data->map->file_path = argv[1];
+	data->map->fd = open(data->map->file_path, O_RDONLY);
+	if (data->map->fd == -1)
 	{
 		perror(strerror(errno));
-		clean_exit(mlx_s(), FAILURE);
+		mlx_exit(mlx_s(), FAILURE);
 	}
 	// get_textures(data);
 	get_floor_rgb(data);
 	get_ceiling_rgb(data);
-	get_map_array(data);
-	close(data->fd);
+	// get_map_array(data);
+	close(data->map->fd);
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:58:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/04 19:33:31 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:05:46 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,57 @@
  * PARSING
 \******************************************************************************/
 
-// check_map.c
-bool	first_verification(char **map, int rows, t_point *start);
+// check_arg.c
+int		check_file(char *arg);
 
-// check_rgb.c
-bool	valid_rgb(unsigned int rgb[3]);
+// check_file_data.c
+bool	is_empty_line(char *line);
+char	**normalize_map(char **map2d, size_t height, size_t width);
+
+// check_map.c
+bool	is_map_line(char *line);
+size_t	get_longest_line(char **map2d, size_t height);
+bool	has_valid_map_borders(char **map2d, size_t height, size_t width);
+
+// find_player.c
+void	find_player_position(t_map *map, t_player *player);
+
+// parsing.c
+short	parsing(t_data *data, char *arg);
 
 /******************************************************************************\
  * TOOLS
 \******************************************************************************/
 
 // error.c
-void	err_msg(char *detail, char *reason, int quotes);
-int		err_msg_cmd(char *cmd, char *detail, char *reason, int err_status);
-
-// free.c
-void	free_array(char **array);
-void	free_title_screen(t_title_screen *screen);
-
-// free_singletons.c
-void	free_singletons(int exit_status);
+void	err_msg(char *detail, char *reason);
+void	err_msg_quoted(char *detail, char *reason);
 
 // secure.c
-void	secure_malloc(void *to_secure, bool cleanup);
-void	free_and_set_null(void **to_free);
+void	secure_malloc(void *to_secure, bool full_clean);
+void	my_free(void **to_free);
 
 // draw_tools.c
 void	swap_point(t_point *p0, t_point *p1);
 bool	valid_point(t_point point, size_t win_x, size_t win_y);
+
+/******************************************************************************\
+ * TOOLS/CLEANUP
+\******************************************************************************/
+
+// free.c
+void	free_map(t_map *map);
+void	free_array(char **array);
+void	free_int_array(int **array);
+void	free_title_screen(t_title_screen *screen);
+
+// delete_img.c
+void	del_img(t_mlx *mlx, void *img_ptr);
+
+// cleanup.c
+int		exit_game(t_mlx *mlx, int exit_code);
+void	free_mlx(t_mlx *mlx);
+void	clean_exit(int exit_code);
 
 /******************************************************************************\
  * GARBAGE_COLLECTOR
@@ -90,11 +113,8 @@ void	*yama(int flag, void *ptr, size_t size);
 \******************************************************************************/
 
 // init_structs.c
-void	init_game(t_game *game);
-void	init_map(t_map *map, t_game *game);
-void	init_raycast(t_raycast *ray, t_game *game);
-void	init_keys(t_keys *keys, t_game *game);
-void	init_structs(t_game *game, t_mlx *mlx);
+void	init_map(t_map *map, char *file_path, int fd);
+void	init_structs(t_data *data, t_game *game, t_mlx *mlx);
 
 // init_mlx.c
 void	init_mlx(t_mlx *mlx, t_game *game);
@@ -108,9 +128,9 @@ t_data	*data_s(void);;
 t_img	xpm_from_img(char *relative_path);
 
 // title_screen/layers.c
-void	background(t_title_screen *screen);
-void	start_button(t_title_screen *screen);
-void	controls_menu(t_title_screen *screen);
+void	background(t_title_screen *s);
+void	start_button(t_title_screen *s);
+void	controls_menu(t_title_screen *s);
 
 // title_screen/init.c
 void	init_title_screen(t_title_screen *screen);
@@ -121,18 +141,18 @@ void	draw_title_screen(t_game *game, t_mlx *mlx);
 \******************************************************************************/
 
 // movements.c
-void	move_forward(t_game *game, t_data *data);
-void	move_backward(t_game *game, t_data *data);
-void	straf_leftward(t_game *game, t_data *data);
-void	straf_rightward(t_game *game, t_data *data);
+void	move_forward(t_game *game, t_data *data); // changer params
+void	move_backward(t_game *game, t_data *data); // changer params
+void	straf_leftward(t_game *game, t_data *data); // changer params
+void	straf_rightward(t_game *game, t_data *data); // changer params
 
 // camera.c
-void	rotate_leftward(t_game *game, t_data *data);
-void	rotate_rightward(t_game *game, t_data *data);
+void	rotate_leftward(t_game *game, t_data *data); // changer params
+void	rotate_rightward(t_game *game, t_data *data); // changer params
 
 // move_array.c
-void	update_player_move(t_game *game, t_keys *key);
-void	reset_var(t_game *game);
+void	move_player(t_game *game, t_keys *key); // changer params
+void	reset_var(t_game *game); // changer params
 
 // mouse.c
 void	set_mouse_hooks(t_mlx *mlx, t_data *data, t_game *game);
@@ -140,20 +160,18 @@ void	set_mouse_hooks(t_mlx *mlx, t_data *data, t_game *game);
 // setter.c
 void	set_hooks(t_mlx *mlx, t_game *game, t_data *data);
 
-// clean_exit.c
-void	del_window(t_mlx *mlx);
-void	del_img(t_mlx *mlx, void *img_ptr);
-// int		clean_exit(t_mlx *mlx, void *img_ptr, int err_status);
-int		clean_exit(t_mlx *mlx, int err_status);
-
 /******************************************************************************\
  * MATHS
 \******************************************************************************/
 
 // formulas.c
-float	get_radian(int degree);
+float	degree_to_radian(int degree);
 float	square(float to_square); // pas utilise
-float	norm_angle(float angle);
+float	norm_rad_angle(float angle);
+/*********** for mouse.c ***********/
+float	norm_angle_h(float angle);
+float	norm_angle_v(float angle);
+/***********************************/
 
 // draw_line.c
 void	draw_line(t_img *img, t_point p0, t_point p1, int color);

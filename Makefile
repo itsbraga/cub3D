@@ -199,7 +199,7 @@ fclean: clean
 		@echo "$(BOLD)$(CYAN)[executables]:\t$(RESET)Removed!\n"
 
 re:	fclean all
-		@echo "$(BOLD)$(YELLOW)make re: $(RESET)Project successfully rebuilt! ✨ (mandatory only)\n"
+		@echo "$(BOLD)$(YELLOW)[cub3D] $(RESET)Project successfully rebuilt! ✨ (mandatory only)\n"
 
 debug: fclean $(LIBFT) $(MLX)
 		@make $(NO_PRINT_DIR) $(NAME) CFLAGS="$(CFLAGS) $(DEBUG)"

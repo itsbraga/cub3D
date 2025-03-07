@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_pos.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 19:15:16 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:43:53 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ void	draw_player_pos(t_game *game, t_point player_pos)
 	t_point c;
 	int		L = 40; //  augmenter si map tres petite, voir n (window / n)
 	double	h = 1.3 * L;
-	float	theta = get_radian(data_s()->player_dir);
+	float	theta = degree_to_radian(data_s()->player_dir);
 	
 	a.x = (player_pos.x + cos(theta) * h) / 4;
 	a.y = (player_pos.y + sin(theta) * h) / 4;
-	b.x = (player_pos.x + cos(theta + (PI / 2)) * (L / 2)) / 4;
-	b.y = (player_pos.y + sin(theta + (PI / 2)) * (L / 2)) / 4;
-	c.x = (player_pos.x + cos(theta - (PI / 2)) * (L / 2)) / 4;
-	c.y = (player_pos.y + sin(theta - (PI / 2)) * (L / 2)) / 4;
+	b.x = (player_pos.x + cos(theta + (M_PI / 2)) * (L / 2)) / 4;
+	b.y = (player_pos.y + sin(theta + (M_PI / 2)) * (L / 2)) / 4;
+	c.x = (player_pos.x + cos(theta - (M_PI / 2)) * (L / 2)) / 4;
+	c.y = (player_pos.y + sin(theta - (M_PI / 2)) * (L / 2)) / 4;
 	draw_line(&game->minimap, a, b, RED_PIX);
 	draw_line(&game->minimap, b, c, RED_PIX);
 	draw_line(&game->minimap, c, a, RED_PIX);

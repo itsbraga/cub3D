@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/04 18:16:38 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:47:54 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void	intersection_horizontal_line(t_game *game, t_raycast *r, float ray_rad)
 	{
 		curr_tile.x = r->h_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->h_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= game->map->width
-			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= game->map->height)
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= data_s()->map->width
+			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= data_s()->map->height)
     	{
         	printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
-		else if (game->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
+		else if (data_s()->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
 			printf("HIT A WALL !\n");
 			break;
@@ -107,13 +107,13 @@ void	intersection_vertical_line(t_game *game, t_raycast *r, float ray_rad)
 	{
 		curr_tile.x = r->v_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->v_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= game->map->width
-			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= game->map->height)
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= data_s()->map->width
+			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= data_s()->map->height)
     	{
         	printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
         	break;
     	}
-		else if (game->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
+		else if (data_s()->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
 			printf("HIT A WALL\n");
 			break;
@@ -166,7 +166,7 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 
 	// FIX FISHEYE **************************************
 	fixed_angle = ray->player_rad - ray_angle;
-	fixed_angle = norm_angle(fixed_angle);
+	fixed_angle = norm_rad_angle(fixed_angle);
 	ray->dist_wall = ray->dist_wall * cos(fixed_angle);
 	// **************************************************
 	wall_h = (TILE_SIZE * WIN_HEIGHT) / ray->dist_wall;
@@ -187,7 +187,7 @@ void	raycasting(t_game *game, t_raycast *r)
 	float			ray_angle;
 
 	ray_drawed = 0;
-	ray_angle = norm_angle(r->player_rad - (get_radian(r->fov) / 2));
+	ray_angle = norm_rad_angle(r->player_rad - (degree_to_radian(r->fov) / 2));
 	while (ray_drawed < r->ray_amount)
 	{
 		// printf("ray_drawed rad = %d\n", ray_drawed);
@@ -197,8 +197,8 @@ void	raycasting(t_game *game, t_raycast *r)
 		intersection_vertical_line(game, r, ray_angle);
 		find_closest_intersection(game, r, &closest_inter);
 		draw_wall(r, ray_angle, ray_drawed);
-		ray_angle += (get_radian(r->fov) / WIN_WIDTH);
-		ray_angle = norm_angle(ray_angle);
+		ray_angle += (degree_to_radian(r->fov) / WIN_WIDTH);
+		ray_angle = norm_rad_angle(ray_angle);
 		ray_drawed++;
 	}
 }

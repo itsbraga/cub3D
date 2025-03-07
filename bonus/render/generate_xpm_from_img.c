@@ -22,16 +22,16 @@ t_img	xpm_from_img(char *relative_path)
 			&img.height);
 	if (img.img_ptr == NULL)
 	{
-		err_msg("MinilibX", ERR_XPM, 0);
+		err_msg("minilibX", ERR_XPM);
 		return (img);
 	}
 	img.addr = mlx_get_data_addr(img.img_ptr,
 			&img.bits_per_pixel,
-			&img.line_len,
+			&img.size_line,
 			&img.endian);
 	if (img.addr == NULL)
 	{
-		err_msg("MinilibX", ERR_ADDR, 0);
+		err_msg("minilibX", ERR_ADDR);
 		del_img(mlx_s(), img.img_ptr);
 		ft_memset(&img, 0, sizeof(t_img));
 	}
