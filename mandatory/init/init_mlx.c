@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:26:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 11:48:47 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/09 22:57:26 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	__init_img(t_mlx *mlx)
 	{
 		err_msg("minilibX", ERR_ADDR);
 		del_img(mlx, mlx->img.img_ptr);
-		mlx_exit(mlx, FAILURE); // a verifier
+		exit_game(mlx, FAILURE); // a verifier
 	}
 }
 
@@ -36,13 +36,13 @@ void	init_mlx(t_mlx *mlx, t_game *game)
 	if (mlx->mlx_ptr == NULL)
 	{
 		err_msg("minilibX", ERR_MLX);
-		mlx_exit(mlx, FAILURE); // a verifier
+		exit_game(mlx, FAILURE); // a verifier
 	}
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, W_NAME);
 	if (mlx->win_ptr == NULL)
 	{
 		err_msg("minilibX", ERR_WIN);
-		mlx_exit(mlx, FAILURE); // a verifier
+		exit_game(mlx, FAILURE); // a verifier
 	}
 	__init_img(mlx);
 }

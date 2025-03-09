@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 20:35:58 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/09 23:13:19 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ t_data	*data_s(void)
 		instance = yama(CREATE, NULL, sizeof(t_data));
 		secure_malloc(instance, true);
 		instance->map = yama(CREATE, NULL, sizeof(t_map));
+		instance->textures = yama(CREATE, NULL, (sizeof(t_img) * 4));
 		secure_malloc(instance->map, true);
 		instance->floor_color = 0;
-		instance->ceiling_color = 0;
-		instance->player_dir = N; // a remplacer par 0 puis set selon pos dans le .cub
+		instance->ceiling_color = 0; // a remplacer par 0 puis set selon pos dans le .cub
 	}
 	return (instance);
 }

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 20:46:24 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/09 23:01:29 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ void	init_map(t_map *map)
 void	init_game(t_game *game)
 {
 	game->game_state = STATE_TITLE;
-	game->player_pos.x = 800; // a remplacer
-	game->player_pos.y = 700; // a remplacer
+	game->player->pos.x = 800; // a remplacer
+	game->player->pos.y = 700; // a remplacer
+	game->player->dir = N;
 // 	game->move.x = 0;
 // 	game->move.y = 0;
 }
@@ -31,7 +32,7 @@ void	init_raycast(t_raycast *ray, t_game *game)
 {
 	ray->ray_amount = WIN_WIDTH;
 	ray->fov = 45;
-	ray->player_rad = degree_to_radian(data_s()->player_dir);
+	ray->player_rad = degree_to_radian(game->player->dir);
 	ray->h_offset.x = 0;
 	ray->h_offset.y = 0;
 	ray->v_offset.x = 0;
@@ -57,7 +58,7 @@ void	init_structs(t_data *data, t_game *game, t_mlx *mlx)
 	ft_memset(game->player, 0, sizeof(t_player));
 	init_game(game);
 	init_mlx(mlx, game);
-	init_title_screen(&game->title_screen);
+	// init_title_screen(&game->title_screen);
 	init_raycast(game->ray, game);
 	init_keys(game->keys, game);
 }

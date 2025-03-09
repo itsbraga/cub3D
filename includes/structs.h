@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 22:07:19 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/09 19:08:44 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef struct s_img
 {
 	void	*img_ptr;
 	char	*addr;
-	int		bits_per_pixel;
-	int		size_line;
+	int		bits_per_pixel; 
+	int		size_line; // bits per line
 	int		endian;
 	int		width;
 	int		height;

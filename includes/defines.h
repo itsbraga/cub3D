@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 19:53:31 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:54:00 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@
 \************************/
 
 // Array of pointers to functions
-typedef void	(*move_array)(t_player *player);
+typedef void	(*move_array)(t_game *game);
 
 // Move_array *f() indexes
 # define _W 0
