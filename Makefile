@@ -27,7 +27,7 @@ MLX				:=	$(addprefix $(MLX_DIR), libmlx.a)
 
 HEADERS			:=	-Iincludes -I/usr/include -I$(MLX_DIR)
 
-CFLAGS			+=	-Wall -Wextra -Werror
+CFLAGS			+=	-Wall -Wextra -Werror -g
 DEPFLAGS		+=	-MMD -MP
 LFLAGS			+=	-L$(LIBFT_DIR) -lft
 MLXFLAGS		+=	-L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11

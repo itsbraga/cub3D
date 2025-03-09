@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 00:51:21 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/09 22:49:56 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static int	__set_keypress(int keycode, t_game *game)
 	if (game->game_state == STATE_TITLE)
 	{
 		if (keycode == XK_Escape)
-			mlx_exit(mlx_s(), SUCCESS); // check si ok pour title_screen
+			exit_game(mlx_s(), SUCCESS); // check si ok pour title_screen
 		else if (keycode == XK_Return)
 			return (game->game_state = STATE_GAME, SUCCESS);
 		else
 			return (FAILURE);
 	}
 	if (keycode == XK_Escape)
-		mlx_exit(mlx_s(), SUCCESS);
+		exit_game(mlx_s(), SUCCESS);
 	if (keycode == W_KEY)
 		game->keys->key_array[_W] = 1;
 	if (keycode == S_KEY)
@@ -62,5 +62,5 @@ void	set_hooks(t_mlx *mlx, t_game *game)
 {
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress, game);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease, game);
-	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &mlx_exit, game);
+	// mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, game);
 }

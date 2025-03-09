@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 20:37:19 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/09 22:56:47 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	*yama(int flag, void *ptr, size_t size);
 
 // init_aux_structs.c
 void	init_game(t_game *game);
-void	init_map(t_map *map, t_game *game);
+void	init_map(t_map *map);
 void	init_raycast(t_raycast *ray, t_game *game);
 void	init_keys(t_keys *keys, t_game *game);
 void	init_structs(t_data *data, t_game *game, t_mlx *mlx);
@@ -133,14 +133,14 @@ void	draw_title_screen(t_game *game, t_mlx *mlx);
 \******************************************************************************/
 
 // movements.c
-void	move_forward(t_game *game, t_data *data); // changer params
-void	move_backward(t_game *game, t_data *data); // changer params
-void	straf_leftward(t_game *game, t_data *data); // changer params
-void	straf_rightward(t_game *game, t_data *data); // changer params
+void	move_forward(t_game *game); // changer params
+void	move_backward(t_game *game); // changer params
+void	straf_leftward(t_game *game); // changer params
+void	straf_rightward(t_game *game); // changer params
 
 // camera.c
-void	rotate_leftward(t_game *game, t_data *data); // changer params
-void	rotate_rightward(t_game *game, t_data *data); // changer params
+void	rotate_leftward(t_game *game); // changer params
+void	rotate_rightward(t_game *game); // changer params
 
 // move_array.c
 void	move_player(t_game *game, t_keys *key); // changer params
@@ -175,6 +175,9 @@ void	raycasting(t_game *game, t_raycast *r);
 // pixels.c
 void	my_pixel_put_to_img(t_img *img, int color, int x, int y);
 void	clear_img(t_img *img, size_t size_x, size_t size_y, int color);
+
+//draw_texture.c
+void	draw_vline_texture(int x, int start_y, int end_y, int *tex_buffer);
 
 // render.c
 int		render(t_game *game);
