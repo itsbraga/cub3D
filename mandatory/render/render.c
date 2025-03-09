@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 20:39:27 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/09 17:39:02 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static void	get_textures(t_data *data)
 
 int	render(t_game *game)
 {
-	if (game->game_state == STATE_TITLE)
+	if (game->state == TITLE_SCREEN)
 		draw_title_screen(game, mlx_s());
-	else if (game->game_state == STATE_GAME)
+	else if (game->state == GAME)
 	{
 		get_map_info(data_s()->map);
 		get_textures(data_s());

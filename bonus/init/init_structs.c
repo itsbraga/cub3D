@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 20:29:05 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/10 00:30:01 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_player(t_player *player, t_game *game)
 	game->player = player;
 }
 
-void	init_raycast(t_raycast *ray, t_game *game)
+void	init_raycasting(t_raycasting *ray, t_game *game)
 {
 	ray->ray_amount = WIN_WIDTH;
 	ray->fov = 45;
@@ -57,9 +57,10 @@ void	init_keys(t_keys *keys, t_game *game)
 
 void	init_structs(t_game *game, t_mlx *mlx)
 {
+	init_player(game->player, game);
 	init_mlx(mlx, game);
 	init_title_screen(&game->title_screen);
-	init_player(game->player, game);
-	init_raycast(game->ray, game);
+	init_textures(data_s()->textures, data_s());
+	init_raycasting(game->ray, game);
 	init_keys(game->keys, game);
 }

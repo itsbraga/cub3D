@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 22:02:30 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/08 15:00:57 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	intersection_horizontal_line(t_game *game, t_raycast *r, float ray_rad)
+void	intersection_horizontal_line(t_game *game, t_raycasting *r, float ray_rad)
 {
 	float	inv_tan;
 	t_point	curr_tile;
@@ -70,7 +70,7 @@ void	intersection_horizontal_line(t_game *game, t_raycast *r, float ray_rad)
 	}
 }
 
-void	intersection_vertical_line(t_game *game, t_raycast *r, float ray_rad)
+void	intersection_vertical_line(t_game *game, t_raycasting *r, float ray_rad)
 {
 	float	neg_tan;
 	t_point	curr_tile;
@@ -127,7 +127,7 @@ void	intersection_vertical_line(t_game *game, t_raycast *r, float ray_rad)
 	}
 }
 
-void	find_closest_intersection(t_game *game, t_raycast *ray,
+void	find_closest_intersection(t_game *game, t_raycasting *r,
 t_point *closest_inter)
 {
 	float	delta_xh;
@@ -137,25 +137,25 @@ t_point *closest_inter)
 	float	dist_h;
 	float	dist_v;
 
-	delta_xh = ray->h_ray_inter.x - game->player_pos.x;
-	delta_yh = ray->h_ray_inter.y - game->player_pos.y;
-	delta_xv = ray->v_ray_inter.x - game->player_pos.x;
-	delta_yv = ray->v_ray_inter.y - game->player_pos.y;
+	delta_xh = r->h_ray_inter.x - game->player_pos.x;
+	delta_yh = r->h_ray_inter.y - game->player_pos.y;
+	delta_xv = r->v_ray_inter.x - game->player_pos.x;
+	delta_yv = r->v_ray_inter.y - game->player_pos.y;
 	dist_h = (delta_xh * delta_xh) + (delta_yh * delta_yh);
 	dist_v = (delta_xv * delta_xv) + (delta_yv * delta_yv);
 	if (dist_h < dist_v)
 	{
-		closest_inter->x = ray->h_ray_inter.x;
-		closest_inter->y = ray->h_ray_inter.y;
-		ray->dist_wall = sqrt(dist_h);
-		ray->vertical_hit = false;
+		closest_inter->x = r->h_ray_inter.x;
+		closest_inter->y = r->h_ray_inter.y;
+		r->dist_wall = sqrt(dist_h);
+		r->vertical_hit = false;
 	}
 	else
 	{
-		closest_inter->x = ray->v_ray_inter.x;
-		closest_inter->y = ray->v_ray_inter.y;
-		ray->dist_wall = sqrt(dist_v);
-		ray->vertical_hit = true;
+		closest_inter->x = r->v_ray_inter.x;
+		closest_inter->y = r->v_ray_inter.y;
+		r->dist_wall = sqrt(dist_v);
+		r->vertical_hit = true;
 	}
 }
 
@@ -164,7 +164,7 @@ void	load_tex_buffer(int **tex_buffer, int orientation)
 	
 }
 
-void	handle_tex_buffer(t_raycast *r, int **tex_buffer)
+void	handle_tex_buffer(t_raycasting *r, int **tex_buffer)
 {
 	ft_bzero(*tex_buffer, TILE_SIZE * TILE_SIZE);
 	if (r->vertical_hit == false)
@@ -183,7 +183,7 @@ void	handle_tex_buffer(t_raycast *r, int **tex_buffer)
 	}
 }
 
-void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
+void	draw_wall(t_raycasting *r, float ray_angle, unsigned int curr_x)
 {
 	float	wall_h;
 	int		tex_buffer[TILE_SIZE * TILE_SIZE];
@@ -192,15 +192,15 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 	float	fixed_angle;
 
 	// FIX FISHEYE **************************************
-	fixed_angle = ray->player_rad - ray_angle;
+	fixed_angle = r->player_rad - ray_angle;
 	fixed_angle = norm_rad_angle(fixed_angle);
-	ray->dist_wall = ray->dist_wall * cos(fixed_angle);
+	r->dist_wall = r->dist_wall * cos(fixed_angle);
 	// **************************************************
-	wall_h = (TILE_SIZE * WIN_HEIGHT) / ray->dist_wall;
-	printf(PG "\n--> dist_wall = %f\n--> wall_h = %f\n\n" RESET, ray->dist_wall, wall_h);
+	wall_h = (TILE_SIZE * WIN_HEIGHT) / r->dist_wall;
+	printf(PG "\n--> dist_wall = %f\n--> wall_h = %f\n\n" RESET, r->dist_wall, wall_h);
 	if (wall_h > WIN_HEIGHT)
 		wall_h = WIN_HEIGHT;
-	handle_tex_buffer(ray, &tex_buffer);
+	handle_tex_buffer(r, &tex_buffer);
 	start.x = (float)curr_x;
 	start.y = (WIN_HEIGHT / 2) - (wall_h / 2);
 	end.x = (float)curr_x;
@@ -208,7 +208,7 @@ void	draw_wall(t_raycast *ray, float ray_angle, unsigned int curr_x)
 	draw_line(&mlx_s()->img, start, end, LAVENDER_PIX);
 }
 
-void	raycasting(t_game *game, t_raycast *r)
+void	raycasting(t_game *game, t_raycasting *r)
 {
 	unsigned int	ray_drawed;
 	t_point			closest_inter;

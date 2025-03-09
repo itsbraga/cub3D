@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:58:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/07 21:52:06 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/10 00:38:25 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,45 +40,47 @@
 \******************************************************************************/
 
 // utils.c
-int		convert_rgb_into_int(char *red, char *green, char *blue);
+bool			is_empty_line(char *line);
+size_t			get_longest_line(char **map2d, size_t height);
+unsigned int	convert_rgb_into_uint(char *red, char *green, char *blue);
 
 // checks/check_arg.c
 int		check_cub_file(char *arg);
 
 // checks/check_xpm.c
-short	check_xpm_file(char *arg);
+bool	check_xpm_file(char *arg);
 
 // checks/check_map.c
-bool	is_empty_line(char *line);
 bool	is_map_line(char *line);
-size_t	get_longest_line(char **map2d, size_t height);
-bool	has_valid_map_borders(char **map2d, size_t height, size_t width);
-char	**normalize_map(char **map2d, size_t height, size_t width);
+bool	map_fully_enclosed(char **map, size_t height, size_t width,
+	t_point pos);
 
 // checks/find_player.c
-void	find_player_position(t_map *map, t_player *player);
+void	get_player_direction(t_map *map, t_player *player);
 
-// process/textures.c
-void	process_texture_line(char *line, t_data *data);
-bool	textures_are_set(t_data *data);
+// process_file/textures.c
+void	process_texture_lines(char *line, t_textures *tex);
 
-// process/colors.c
-void	process_color_line(char *line, t_data *data);
-bool	colors_are_set(t_data *data);
+// process_file/rgb.c
+void	process_color_lines(char *line, t_data *data);
 
-// process/process_file_data.c
-void	process_file_data(int fd, t_data *data);
+// process_file/map.c
+char	**normalize_map2d(char **map, size_t height, size_t width);
+void	fill_map2d_array(t_map *map, char *line);
+
+// process_file/get_file_data.c
+void	get_file_data(int fd, t_data *data);
 
 // parsing.c
-short	parsing(t_data *data, char *arg);
+short	parsing(char *arg, t_map *map);
 
 /******************************************************************************\
  * TOOLS
 \******************************************************************************/
 
 // error.c
-void	err_msg(char *detail, char *reason);
-void	err_msg_quoted(char *detail, char *reason);
+void	err_msg(char *context, char *reason);
+void	err_msg_quoted(char *context, char *reason);
 
 // secure.c
 void	secure_malloc(void *to_secure, bool full_clean);
@@ -123,17 +125,22 @@ void	*yama(int flag, void *ptr, size_t size);
  * INIT
 \******************************************************************************/
 
-// init_structs.c
-void	init_map(t_map *map, char *path_to_file, int fd, t_data *data);
-void	init_structs(t_game *game, t_mlx *mlx);
+// singletons.c
+t_mlx	*mlx_s(void);
+t_game	*game_s(void);
+t_data	*data_s(void);
 
 // init_mlx.c
 void	init_mlx(t_mlx *mlx, t_game *game);
 
-// singletons.c
-t_mlx	*mlx_s(void);
-t_game	*game_s(void);
-t_data	*data_s(void);;
+// init_textures.c
+void	init_textures(t_textures *tex, t_data *data);
+void	fill_textures_paths(char *line, t_textures *tex);
+short	check_textures_paths(t_textures *tex);
+
+// init_structs.c
+void	init_map(t_map *map, char *path_to_file, int fd, t_data *data);
+void	init_structs(t_game *game, t_mlx *mlx);
 
 // title_screen/layers.c
 void	background(t_title_screen *s);
@@ -149,7 +156,7 @@ void	draw_title_screen(t_game *game, t_mlx *mlx);
 \******************************************************************************/
 
 // collisions.c
-int		handle_collisions(t_player *player, t_point *new_player_pos);
+short	handle_collisions(t_player *player, t_point *new_player_pos);
 
 // maths/formulas.c
 float	degree_to_radian(int degree);
@@ -162,11 +169,11 @@ float	norm_angle_v(float angle); // for mouse cursor_y ---> UNUSED yet
 void	draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 // maths/raycasting.c
-void	intersection_h_line(t_player *player, t_raycast *r, float ray_rad);
-void	intersection_v_line(t_player *player, t_raycast *r, float ray_rad);
-void	find_closest_intersection(t_player *player, t_raycast *ray, 
+void	intersection_h_line(t_player *player, t_raycasting *r, float ray_rad);
+void	intersection_v_line(t_player *player, t_raycasting *r, float ray_rad);
+void	find_closest_intersection(t_player *player, t_raycasting *r, 
 	t_point *closest_inter);
-void	raycasting(t_game *game, t_raycast *r);
+void	raycasting(t_game *game, t_raycasting *r);
 
 // mlx_hooks/movements.c
 void	move_forward(t_player *player);

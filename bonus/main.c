@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/07 20:23:10 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/10 00:23:40 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		err_msg(NULL, strerror(EINVAL));
+		ft_printf(STDERR_FILENO, ERR_USAGE);
 		exit(FAILURE);
 	}
 	data = data_s();
 	game = game_s();
 	mlx = mlx_s();
 	init_structs(game, mlx);
-	if (parsing(data, argv[1]) != SUCCESS)
+	if (parsing(argv[1], data->map) == FAILURE)
 	{
 		ft_printf(STDERR_FILENO, ERR);
 		clean_exit(FAILURE);

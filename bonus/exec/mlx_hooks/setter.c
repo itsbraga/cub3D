@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 21:49:05 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:39:02 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static int	__set_keyrelease(int keycode, t_game *game)
 
 static int	__set_keypress(int keycode, t_game *game)
 {
-	if (game->game_state == STATE_TITLE)
+	if (game->state == TITLE_SCREEN)
 	{
 		if (keycode == XK_Escape)
 			exit_game(mlx_s(), SUCCESS);
 		else if (keycode == XK_Return)
-			return (game->game_state = STATE_GAME, SUCCESS);
+			return (game->state = GAME, SUCCESS);
 		else
 			return (FAILURE);
 	}

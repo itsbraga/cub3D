@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 21:55:31 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/10 00:43:55 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
-
-/*  La description de la carte sera toujours en dernier
-	dans le fichier, le reste des éléments peut être
-	dans n’importe quel ordre
-*/
-bool	is_empty_line(char *line)
-{
-	while (*line != '\0')
-	{
-		if (ft_isspace(*line) == 0)
-			return (false);
-		line++;
-	}
-	return (true);
-}
 
 bool	is_map_line(char *line)
 {
@@ -44,83 +29,53 @@ bool	is_map_line(char *line)
 	return (true);
 }
 
-size_t	get_longest_line(char **map2d, size_t height)
+static bool	__flood_fill(char **map, int x, int y, size_t height, size_t width)
 {
-	size_t	i;
-	size_t	max;
-	size_t	len;
-
-	i = 0;
-	max = 0;
-	while (i < height)
+	if (x < 0 || y < 0 || (size_t)x >= height || (size_t)y >= width)
 	{
-		len = ft_strlen(map2d[i]);
-		if (len > max)
-			max = len;
+		err_msg(NULL, ERR_MAP_BORDERS);
+		return (false);
 	}
-	return (max);
-}
-
-bool	has_valid_map_borders(char **map2d, size_t height, size_t width)
-{
-	size_t	i;
-	size_t	j;
-
-	j = 0;
-	while (j < width)
-	{
-		if (map2d[0][j] != '1' || map2d[height - 1][j] != '1')
-		{
-			err_msg(NULL, ERR_MAP_BORDERS);
-			return (false);
-		}
-		j++;
-	}
-	i = 0;
-	while (i < height)
-	{
-		if (map2d[i][0] != '1' || map2d[i][width - 1] != '1')
-		{
-			err_msg(NULL, ERR_MAP_BORDERS);
-			return (false);
-		}
-		i++;
-	}
+	if (map[x][y] == '1' || map[x][y] == 'F')
+		return (true);
+	map[x][y] = 'F';
+	if (!__flood_fill(map, x - 1, y, height, width))
+		return (false);
+	if (!__flood_fill(map, x + 1, y, height, width))
+		return (false);
+	if (!__flood_fill(map, x, y - 1, height, width))
+		return (false);
+	if (!__flood_fill(map, x, y + 1, height, width))
+		return (false);
 	return (true);
 }
 
-char	**normalize_map(char **map2d, size_t height, size_t width)
+static char	**__dup_map(char **map, size_t height)
 {
-	char	**normed_map2d;
+	char	**dup;
 	size_t	i;
-	size_t	j;
-	size_t	line_len;
-
-	normed_map2d = yama(CREATE, NULL, (sizeof(char *) * (height + 1)));
-	secure_malloc(normed_map2d, true);
+	
+	dup = malloc(sizeof(char *) * (height + 1));
+	secure_malloc(dup, true); // ou false ?
 	i = 0;
 	while (i < height)
 	{
-		normed_map2d[i] = yama(CREATE, NULL, (width + 1));
-		secure_malloc(normed_map2d[i], true);
-		line_len = ft_strlen(map2d[i]);
-		j = 0;
-		while (j < width)
-		{
-			if (j < line_len)
-			{
-				if (map2d[i][j] == ' ')
-					normed_map2d[i][j] = '1';
-				else
-					normed_map2d[i][j] = map2d[i][j];
-			}
-			else
-				normed_map2d[i][j] = '1';
-			j++;
-		}
-		normed_map2d[i][width] = '\0';
+		dup[i] = ft_strdup(map[i]);
+		secure_malloc(dup[i], true);
 		i++;
 	}
-	normed_map2d[height] = NULL;
-	return (normed_map2d);
+	dup[height] = NULL;
+	return (dup);
+}
+
+bool	map_fully_enclosed(char **map, size_t height, size_t width, t_point pos)
+{
+	char	**copy;
+	bool	result;
+
+	copy = __dup_map(map, height);
+	secure_malloc(copy, true);
+	result = __flood_fill(copy, (int)pos.x, (int)pos.y, height, width);
+	free_array(copy);
+	return (result);
 }

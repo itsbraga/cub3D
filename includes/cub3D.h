@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 20:37:19 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/09 23:49:08 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	get_map_data(t_data *data, char **argv);
 \******************************************************************************/
 
 // error.c
-void	err_msg(char *detail, char *reason);
-void	err_msg_quoted(char *detail, char *reason);
+void	err_msg(char *context, char *reason);
+void	err_msg_quoted(char *context, char *reason);
 
 // secure.c
 void	secure_malloc(void *to_secure, bool full_clean);
@@ -103,7 +103,7 @@ void	*yama(int flag, void *ptr, size_t size);
 // init_aux_structs.c
 void	init_game(t_game *game);
 void	init_map(t_map *map, t_game *game);
-void	init_raycast(t_raycast *ray, t_game *game);
+void	init_raycasting(t_raycasting *ray, t_game *game);
 void	init_keys(t_keys *keys, t_game *game);
 void	init_structs(t_data *data, t_game *game, t_mlx *mlx);
 
@@ -162,11 +162,11 @@ float	norm_rad_angle(float angle);
 void	draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 // raycasting.c
-void	intersection_horizontal_line(t_game *d, t_raycast *r, float ray_rad);
-void	intersection_vertical_line(t_game *d, t_raycast *r, float ray_rad);
-void	find_closest_intersection(t_game *d, t_raycast *ray,
+void	intersection_horizontal_line(t_game *d, t_raycasting *r, float ray_rad);
+void	intersection_vertical_line(t_game *d, t_raycasting *r, float ray_rad);
+void	find_closest_intersection(t_game *d, t_raycasting *r,
 	t_point *closest_inter);
-void	raycasting(t_game *game, t_raycast *r);
+void	raycasting(t_game *game, t_raycasting *r);
 
 /******************************************************************************\
  * RENDER

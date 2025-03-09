@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 19:50:56 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:39:02 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static int	__title_screen_mouse(int button, int x, int y, t_game *game)
 	t_layer	start_button;
 
 	start_button = game->title_screen.second_layer;
-	if (game->game_state == STATE_TITLE && button == Button1) // Clic gauche
+	if (game->state == TITLE_SCREEN && button == Button1) // Clic gauche
 	{
 		if ((x >= start_button.pos.x && x <= start_button.pos.x
 				+ start_button.width)
 			&& (y >= start_button.pos.y && y <= start_button.pos.y
 				+ start_button.height))
 		{
-			game->game_state = STATE_GAME;
+			game->state = GAME;
 		}
 	}
 	return (SUCCESS);
