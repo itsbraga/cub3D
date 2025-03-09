@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 20:35:58 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/09 17:38:43 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_game	*game_s(void)
 	{
 		instance = yama(CREATE, NULL, sizeof(t_game));
 		secure_malloc(instance, true);
-		instance->game_state = STATE_TITLE;
+		instance->game_state = TITLE_SCREEN;
 		instance->player = yama(CREATE, NULL, sizeof(t_player));
 		secure_malloc(instance->player, true);
-		instance->ray = yama(CREATE, NULL, sizeof(t_raycast));
+		instance->ray = yama(CREATE, NULL, sizeof(t_raycasting));
 		secure_malloc(instance->ray, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);

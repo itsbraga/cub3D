@@ -6,26 +6,26 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 13:43:32 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/09 20:09:35 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	find_player_position(t_map *map, t_player *player)
+void	get_player_direction(t_map *map, t_player *player)
 {
 	size_t	i;
 	size_t	j;
-	size_t	line_len;
+	size_t	line_size;
 	int		player_count;
 
 	i = 0;
 	player_count = 0;
 	while (i < map->height)
 	{
-		line_len = ft_strlen(map->map2d[i]);
+		line_size = ft_strlen(map->map2d[i]);
 		j = 0;
-		while (j < line_len)
+		while (j < line_size)
 		{
 			if (ft_strchr(PLAYER_DIR, map->map2d[i][j]) != NULL)
 			{
@@ -43,3 +43,4 @@ void	find_player_position(t_map *map, t_player *player)
 	if (player_count > 1)
 		return (err_msg(NULL, ERR_NB_PLAYER));
 }
+// check aussi si la position donnee est valide

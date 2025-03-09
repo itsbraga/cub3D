@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/07 20:31:45 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/10 00:38:34 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	render(t_game *game)
 {
-	if (game->game_state == STATE_TITLE)
+	if (game->state == TITLE_SCREEN)
 		draw_title_screen(game, mlx_s());
-	else if (game->game_state == STATE_GAME)
+	else if (game->state == GAME)
 	{
 		clear_img(&mlx_s()->img, WIN_WIDTH, WIN_HEIGHT, BLACK_PIX);
 		raycasting(game, game->ray);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 22:07:19 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/09 19:30:22 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ typedef struct s_mlx
  * CUB3D
 \******************************************************************************/
 
-typedef enum e_state
+typedef enum e_game_state
 {
-	STATE_TITLE = 1,
-	STATE_GAME = 2
-}			t_state;
+	TITLE_SCREEN = 1,
+	GAME = 2
+}			t_game_state;
 
 typedef struct s_point
 {
@@ -93,7 +93,7 @@ typedef struct s_raycasting
 	bool			vertical_hit;
 	unsigned int	fov;
 	float			player_rad;
-}				t_raycast;
+}				t_raycasting;
 
 typedef struct s_collision
 {
@@ -107,10 +107,19 @@ typedef	struct s_keys_event
 	bool	key_array[6];
 }				t_keys;
 
+typedef struct s_textures
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	t_img	*imgs;
+}				t_textures;
+
 typedef struct s_data
 {
 	t_map			*map;
-	t_img			*textures;
+	t_textures		*textures;
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
 	unsigned int	feature_filled;
@@ -118,10 +127,10 @@ typedef struct s_data
 
 typedef struct s_game
 {
-	t_state			game_state;
+	t_game_state	state;
 	t_title_screen	title_screen;
 	t_player		*player;
-	t_raycast		*ray;
+	t_raycasting	*ray;
 	t_keys			*keys;
 	t_collision		collision;
 	t_img			minimap;

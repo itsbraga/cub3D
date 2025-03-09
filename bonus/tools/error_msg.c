@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:25:59 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/07 00:35:17 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 00:31:16 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static char	*__append_strs(char *s1, char *s2)
 	return (s1);
 }
 
-void	err_msg(char *detail, char *reason)
+void	err_msg(char *context, char *reason)
 {
 	char	*msg;
 
 	msg = NULL;
-	if (detail != NULL)
+	if (context != NULL)
 	{
-		msg = __append_strs(__append_strs(NULL, ERR_PREFIX), detail);
+		msg = __append_strs(__append_strs(NULL, ERR_PREFIX), context);
 		msg = __append_strs(msg, ": ");
 		msg = __append_strs(msg, reason);
 	}
@@ -44,15 +44,15 @@ void	err_msg(char *detail, char *reason)
 	yama(REMOVE, msg, 0);
 }
 
-void	err_msg_quoted(char *detail, char *reason)
+void	err_msg_quoted(char *context, char *reason)
 {
 	char	*msg;
 
 	msg = NULL;
-	if (detail != NULL)
+	if (context != NULL)
 	{
 		msg = __append_strs(__append_strs(NULL, ERR_PREFIX), "‘");
-		msg = __append_strs(__append_strs(msg, detail), "’");
+		msg = __append_strs(__append_strs(msg, context), "’");
 		msg = __append_strs(msg, ": ");
 		msg = __append_strs(msg, reason);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:24:27 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 21:31:12 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/09 21:20:02 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static bool	__is_valid_extension(char *filename)
 {
-	char	*dot;
+	size_t	len;
 
 	if (filename == NULL)
 		return (false);
-	dot = ft_strrchr(filename, '.');
-	if (dot == NULL)
+	len = ft_strlen(filename);
+	if (len < 4)
 		return (false);
-	if (ft_strncmp(dot, ".cub", 4) == 0)
-		return (true);
-	return (false);
+	if (ft_strncmp(filename + (len - 4), ".cub", len) != 0)
+		return (false);
+	return (true);
 }
 
 static int	__is_not_directory(const char *path)
@@ -59,7 +59,7 @@ int	check_cub_file(char *arg)
 
 	if (__is_valid_extension(arg) == false)
 	{
-		err_msg(NULL, ERR_EXT);
+		err_msg(NULL, ERR_CUB_EXT);
 		exit(FAILURE);
 	}
 	fd = open(arg, O_RDONLY);

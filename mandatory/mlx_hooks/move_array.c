@@ -29,7 +29,7 @@ void	move_player(t_game *game, t_keys *key)
 	move_array	functions[7];
 	
 	i = 0;
-	if (game->game_state != STATE_GAME)
+	if (game->state != GAME)
 		return ;
 	__init_move_array(functions);
 	while (i < 6)

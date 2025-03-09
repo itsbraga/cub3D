@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/07 21:43:13 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/10 00:30:27 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_game	*game_s(void)
 	{
 		instance = yama(CREATE, NULL, sizeof(t_game));
 		secure_malloc(instance, true);
-		instance->game_state = STATE_TITLE;
+		instance->state = TITLE_SCREEN;
 		instance->player = yama(CREATE, NULL, sizeof(t_player));
 		secure_malloc(instance->player, true);
-		instance->ray = yama(CREATE, NULL, sizeof(t_raycast));
+		instance->ray = yama(CREATE, NULL, sizeof(t_raycasting));
 		secure_malloc(instance->ray, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
@@ -64,8 +64,8 @@ t_data	*data_s(void)
 		secure_malloc(instance, true);
 		instance->map = yama(CREATE, NULL, sizeof(t_map));
 		secure_malloc(instance->map, true);
-		instance->texture = yama(CREATE, NULL, sizeof(t_img));
-		secure_malloc(instance->texture, true);
+		instance->textures = yama(CREATE, NULL, sizeof(t_textures));
+		secure_malloc(instance->textures, true);
 		instance->floor_color = 0;
 		instance->ceiling_color = 0;
 		instance->feature_filled = 0;
