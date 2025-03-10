@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixels.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:35:26 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/06 15:02:19 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/09 19:08:12 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_pixel_put_to_img(t_img *img, int color, int x, int y)
 {
 	int	pixel;
 
-	pixel = (y * img->size_line) + (x * 4);
+	pixel = (y * img->size_line) + (x * img->bits_per_pixel);
 	if (img->endian == 0)
 	{
 		img->addr[pixel] = (color) & 0xFF;

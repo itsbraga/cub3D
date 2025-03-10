@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/09 17:38:43 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 01:00:04 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_game	*game_s(void)
 	{
 		instance = yama(CREATE, NULL, sizeof(t_game));
 		secure_malloc(instance, true);
-		instance->game_state = TITLE_SCREEN;
+		instance->state = TITLE_SCREEN;
 		instance->player = yama(CREATE, NULL, sizeof(t_player));
 		secure_malloc(instance->player, true);
 		instance->ray = yama(CREATE, NULL, sizeof(t_raycasting));
@@ -63,10 +63,11 @@ t_data	*data_s(void)
 		instance = yama(CREATE, NULL, sizeof(t_data));
 		secure_malloc(instance, true);
 		instance->map = yama(CREATE, NULL, sizeof(t_map));
-		secure_malloc(instance->map, true);
+		instance->textures = yama(CREATE, NULL, sizeof(t_textures));
+		secure_malloc(instance->textures, true);
 		instance->floor_color = 0;
 		instance->ceiling_color = 0;
-		instance->player_dir = N; // a remplacer par 0 puis set selon pos dans le .cub
+		instance->feature_filled = 0;
 	}
 	return (instance);
 }

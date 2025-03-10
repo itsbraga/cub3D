@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/06 18:49:10 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/09 22:59:07 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	free_map(t_map *map)
 {
 	if (map->map2d != NULL)
 		free_array(map->map2d);
-	if (map->file_path != NULL)
-		my_free((void **)map->file_path);
+	// if (map->file_path != NULL)
+	// 	my_free((void **)map->file_path);
 }
 
 void	free_array(char **array)

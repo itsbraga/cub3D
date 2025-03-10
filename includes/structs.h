@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/09 19:30:22 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 00:47:57 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef struct s_img
 {
 	void	*img_ptr;
 	char	*addr;
-	int		bits_per_pixel;
-	int		size_line;
+	int		bits_per_pixel; 
+	int		size_line; // bits per line
 	int		endian;
 	int		width;
 	int		height;
