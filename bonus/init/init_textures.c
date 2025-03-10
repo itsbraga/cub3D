@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:02:38 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/10 00:30:14 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 19:27:54 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,23 @@ void	fill_textures_paths(char *line, t_textures *tex)
 	if (ft_strncmp(line, "NO", 2) == 0 && tex->north == NULL)
 	{
 		tex->north = __get_texture_path(line);
-		printf(BOLD BLUE "texture path NORTH: %s\n" RESET, tex->north);
+		printf(BOLD PB "NORTH: " RESET "[%s]\n", tex->north);
 	}
 	else if (ft_strncmp(line, "SO", 2) == 0 && tex->south == NULL)
 	{
 		tex->south = __get_texture_path(line);
-		printf(BOLD BLUE "texture path SOUTH: %s\n" RESET, tex->south);
+		printf(BOLD PB "SOUTH: " RESET "[%s]\n", tex->south);
 	}
 	else if (ft_strncmp(line, "WE", 2) == 0 && tex->west == NULL)
 	{
 		tex->west = __get_texture_path(line);
-		printf(BOLD BLUE "texture path WEST: %s\n" RESET, tex->west);
+		printf(BOLD PB "WEST: " RESET "[%s]\n", tex->west);
 	}
 	else if (ft_strncmp(line, "EA", 2) == 0 && tex->east == NULL)
 	{
 		tex->east = __get_texture_path(line);
-		printf(BOLD BLUE "texture path EAST: %s\n" RESET, tex->east);
+		printf(BOLD PB "EAST: " RESET "[%s]\n", tex->east);
 	}
 	else
 		return ;
-}
-
-short	check_textures_paths(t_textures *tex)
-{
-	if (check_xpm_file(tex->north) == FAILURE
-		|| check_xpm_file(tex->south) == FAILURE
-		|| check_xpm_file(tex->west) == FAILURE
-		|| check_xpm_file(tex->east) == FAILURE)
-		return (FAILURE);
-	else
-		return (SUCCESS);
 }

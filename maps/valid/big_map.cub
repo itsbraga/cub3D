@@ -1,10 +1,10 @@
-NO ../bonus/configs/textures/SandstoneskullsD.gif
-SO ../bonus/configs/textures/Stone1D.gif
-WE ../bonus/configs/textures/StoneUWHitlerL.gif
-EA ../bonus/configs/textures/SteelwallL.gif
+NO ./textures/xpm/walls/BRICK_3D.xpm
+SO ./textures/xpm/walls/CONSOLE_1B.xpm
+WE ./textures/xpm/walls/StoneUWHitlerL.xpm
+EA ./textures/xpm/walls/BRICK_6D.xpm
 
-F 128,128,128
-C 102,51,0
+F 65,65,65
+C 42,42,42
 
 		1111111111111111111111111
 		1000000000110000000000001

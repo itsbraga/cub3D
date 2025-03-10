@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/10 00:43:55 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 20:33:33 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,35 @@ bool	is_map_line(char *line)
 	return (true);
 }
 
-static bool	__flood_fill(char **map, int x, int y, size_t height, size_t width)
+static bool	__flood_fill(char **map, int y, int x, size_t height, size_t width)
 {
-	if (x < 0 || y < 0 || (size_t)x >= height || (size_t)y >= width)
+	if (x < 0 || y < 0 || (size_t)x >= width || (size_t)y >= height
+		|| map[y][x] == '\0')
 	{
 		err_msg(NULL, ERR_MAP_BORDERS);
 		return (false);
 	}
-	if (map[x][y] == '1' || map[x][y] == 'F')
+	if (map[y][x] == '1' || map[y][x] == 'F')
 		return (true);
-	map[x][y] = 'F';
-	if (!__flood_fill(map, x - 1, y, height, width))
+	map[y][x] = 'F';
+	if (__flood_fill(map, y - 1, x, height, width) == false)
 		return (false);
-	if (!__flood_fill(map, x + 1, y, height, width))
+	if (__flood_fill(map, y + 1, x, height, width) == false)
 		return (false);
-	if (!__flood_fill(map, x, y - 1, height, width))
+	if (__flood_fill(map, y, x - 1, height, width) == false)
 		return (false);
-	if (!__flood_fill(map, x, y + 1, height, width))
+	if (__flood_fill(map, y, x + 1, height, width) == false)
 		return (false);
 	return (true);
 }
 
-static char	**__dup_map(char **map, size_t height)
+static char	**__duplicate_map(char **map, size_t height)
 {
 	char	**dup;
 	size_t	i;
 	
 	dup = malloc(sizeof(char *) * (height + 1));
-	secure_malloc(dup, true); // ou false ?
+	secure_malloc(dup, true);
 	i = 0;
 	while (i < height)
 	{
@@ -68,14 +69,14 @@ static char	**__dup_map(char **map, size_t height)
 	return (dup);
 }
 
-bool	map_fully_enclosed(char **map, size_t height, size_t width, t_point pos)
+bool	map_fully_enclosed(char **map, size_t height, size_t width, t_point *pos)
 {
 	char	**copy;
 	bool	result;
 
-	copy = __dup_map(map, height);
+	copy = __duplicate_map(map, height);
 	secure_malloc(copy, true);
-	result = __flood_fill(copy, (int)pos.x, (int)pos.y, height, width);
+	result = __flood_fill(copy, (int)pos->y, (int)pos->x, height, width);
 	free_array(copy);
 	return (result);
 }

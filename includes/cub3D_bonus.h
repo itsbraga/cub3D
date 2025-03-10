@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:58:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/10 00:38:25 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 20:32:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,18 @@ unsigned int	convert_rgb_into_uint(char *red, char *green, char *blue);
 int		check_cub_file(char *arg);
 
 // checks/check_xpm.c
-bool	check_xpm_file(char *arg);
+short	check_textures_paths(t_textures *tex);
 
 // checks/check_map.c
 bool	is_map_line(char *line);
 bool	map_fully_enclosed(char **map, size_t height, size_t width,
-	t_point pos);
+	t_point *pos);
 
-// checks/find_player.c
+// checks/player_dir.c
 void	get_player_direction(t_map *map, t_player *player);
 
 // process_file/textures.c
+short	check_textures_paths(t_textures *tex);
 void	process_texture_lines(char *line, t_textures *tex);
 
 // process_file/rgb.c
@@ -136,7 +137,6 @@ void	init_mlx(t_mlx *mlx, t_game *game);
 // init_textures.c
 void	init_textures(t_textures *tex, t_data *data);
 void	fill_textures_paths(char *line, t_textures *tex);
-short	check_textures_paths(t_textures *tex);
 
 // init_structs.c
 void	init_map(t_map *map, char *path_to_file, int fd, t_data *data);

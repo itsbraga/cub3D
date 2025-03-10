@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/10 00:37:48 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 21:00:54 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ short	parsing(char *arg, t_map *map)
 	if (map->map2d == NULL || map->height == 0)
 	{
 		err_msg(NULL, ERR);
-		clean_exit(FAILURE);
+		return (FAILURE);
 	}
 	longest_line = get_longest_line(map->map2d, map->height);
 	normed_map2d = normalize_map2d(map->map2d, map->height,
-			longest_line);
+			longest_line); // pb ici je pense
 	secure_malloc(normed_map2d, true);
 	free(map->map2d);
 	map->map2d = normed_map2d;
 	map->width = longest_line;
 	get_player_direction(map, game_s()->player);
 	if (map_fully_enclosed(map->map2d, map->height, map->width,
-		game_s()->player->pos) == false)
+		&game_s()->player->pos) == false)
 		return (FAILURE);
 	return (SUCCESS);
 }
