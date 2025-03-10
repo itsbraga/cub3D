@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/02/28 22:55:11 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/09 21:50:14 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,5 @@ void	draw_line(t_img *img, t_point p0, t_point p1, int color)
 		__draw_horizontal_line(img, p0, p1, color);
 	else
 		__draw_vertical_line(img, p0, p1, color);
+	return ;
 }

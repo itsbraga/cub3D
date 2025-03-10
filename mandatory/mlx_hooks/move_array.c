@@ -35,11 +35,11 @@ void	move_player(t_game *game, t_keys *key)
 	while (i < 6)
 	{
 		if (key->key_array[i] == 1)
-			functions[i](game, data_s());
+			functions[i](game);
 		i++;
 	}
-	game->player_pos.x = roundf(game->player_pos.x + game->player->move.x);
-	game->player_pos.y = roundf(game->player_pos.y + game->player->move.y);
+	game->player->pos.x = roundf(game->player->pos.x + game->player->move.x);
+	game->player->pos.y = roundf(game->player->pos.y + game->player->move.y);
 }
 
 void	reset_var(t_game *game)

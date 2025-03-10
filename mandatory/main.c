@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/06 18:50:39 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/09 23:00:16 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	game = game_s();
 	mlx = mlx_s();
 	// parsing(argv);
-	get_map_data(data, argv);
+	// get_map_data(data, argv);
 	init_structs(data, game, mlx);
 	set_hooks(mlx, game);
 	mlx_loop_hook(mlx->mlx_ptr, &render, game);
