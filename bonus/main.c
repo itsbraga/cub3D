@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/10 00:23:40 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:42:39 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		err_msg(NULL, strerror(EINVAL));
-		ft_printf(STDERR_FILENO, ERR_USAGE);
+		ft_printf(STDERR_FILENO, BOLD PY ERR_USAGE RESET);
 		exit(FAILURE);
 	}
 	data = data_s();
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	init_structs(game, mlx);
 	if (parsing(argv[1], data->map) == FAILURE)
 	{
-		ft_printf(STDERR_FILENO, ERR);
+		ft_printf(STDERR_FILENO, BOLD RED ERR RESET);
 		clean_exit(FAILURE);
 	}
 	set_hooks(mlx, game);

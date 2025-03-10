@@ -36,7 +36,7 @@ static void	__free_game(t_game *game)
 
 void	free_mlx(t_mlx *mlx)
 {
-	ft_printf(STDERR_FILENO, BOLD YELLOW MLX_EXIT RESET);
+	ft_printf(STDERR_FILENO, BOLD PY MLX_EXIT RESET);
 	if (mlx != NULL)
 	{
 		if (mlx->img.img_ptr != NULL)

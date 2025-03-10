@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:24:27 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/09 21:20:02 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 19:17:17 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	__is_valid_extension(char *filename)
 	len = ft_strlen(filename);
 	if (len < 4)
 		return (false);
-	if (ft_strncmp(filename + (len - 4), ".cub", len) != 0)
+	if (ft_strncmp(filename + (len - 4), ".cub", 4) != 0)
 		return (false);
 	return (true);
 }

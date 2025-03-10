@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_xpm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:26:18 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/09 21:25:57 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 20:32:07 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static bool	__is_valid_extension(char *filename)
 {
-	size_t	len;
+    size_t len;
 
-	if (filename == NULL)
-		return (false);
-	len = ft_strlen(filename);
-	if (len < 4)
-		return (false);
-	if (ft_strncmp(filename + (len - 4), ".xpm", 4) != 0)
-		return (false);
-	return (true);
+    if (filename == NULL)
+        return (false);
+    len = ft_strlen(filename);
+    if (len < 4)
+        return (false);
+    if (ft_strncmp(filename + (len - 4), ".xpm", 4) != 0)
+        return (false);
+    return (true);
 }
 
 static bool __is_not_directory(const char *path)
@@ -52,7 +52,7 @@ static void	__check_open_error(const char *arg)
 		err_msg(NULL, strerror(errno));
 }
 
-bool	check_xpm_file(char *arg)
+static short	__check_xpm_file(char *arg)
 {
 	int	fd;
 
@@ -65,7 +65,19 @@ bool	check_xpm_file(char *arg)
 	if (fd < 0)
 	{
 		__check_open_error(arg);
-		return (false);
+		return (FAILURE);
 	}
-	return (true);
+	close(fd);
+	return (SUCCESS);
+}
+
+short	check_textures_paths(t_textures *tex)
+{
+	if (__check_xpm_file(tex->north) == SUCCESS
+		|| __check_xpm_file(tex->south) == SUCCESS
+		|| __check_xpm_file(tex->west) == SUCCESS
+		|| __check_xpm_file(tex->east) == SUCCESS)
+		return (SUCCESS);
+	else
+		return (FAILURE);
 }

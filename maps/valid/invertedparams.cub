@@ -1,10 +1,13 @@
-NO ./maps/valid/textures/LAB_2B.xpm
-SO ./maps/valid/textures/TECH_4E.xpm
-WE ./maps/valid/textures/PIPES_1A.xpm
 EA ./maps/valid/textures/CONSOLE_1B.xpm
 
-F 128,128,128
+
+SO ./maps/valid/textures/TECH_4E.xpm
+
+NO ./maps/valid/textures/LAB_2B.xpm
+WE ./maps/valid/textures/PIPES_1A.xpm
+
 C 0,0,0
+F 128,128,128
 
 1111111111111111111
 1000000000000000001

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_player.c                                      :+:      :+:    :+:   */
+/*   player_dir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/09 20:09:35 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 20:12:06 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	get_player_direction(t_map *map, t_player *player)
 		{
 			if (ft_strchr(PLAYER_DIR, map->map2d[i][j]) != NULL)
 			{
-				player->pos.x = (float)j;
-				player->pos.y = (float)i;
+				player->pos.x = (float)j + 0.5; // 0.5: decaler legerement (collisions)
+				player->pos.y = (float)i + 0.5;
 				player->dir = map->map2d[i][j];
 				player_count++;
 			}
@@ -39,8 +39,8 @@ void	get_player_direction(t_map *map, t_player *player)
 		i++;
 	}
 	if (player_count == 0)
-		return (err_msg(NULL, ERR_PLAYER));
+		return (err_msg(NULL, ERR_PLAYER), clean_exit(FAILURE));
 	if (player_count > 1)
-		return (err_msg(NULL, ERR_NB_PLAYER));
+		return (err_msg(NULL, ERR_NB_PLAYER), clean_exit(FAILURE));
 }
 // check aussi si la position donnee est valide

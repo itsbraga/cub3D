@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/10 00:47:18 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/10 20:43:45 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@
 
 # define ERR "\033[1m\033[31mError\n\033[0m"
 # define ERR_PREFIX "\033[1m\033[31mError: \033[0m"
-# define ERR_USAGE "Usage: ./cub3D <path_to_map.cub>"
-# define ERR_USAGE_B "Usage: ./cub3D_bonus <path_to_map.cub>"
+# define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
+# define ERR_USAGE_B "Usage: ./cub3D_bonus <path/to/map.cub>"
 
 // minilibX
 # define ERR_MLX "Cannot initialize minilibX"
@@ -70,7 +70,7 @@
 # define ERR_MAP_BORDERS "Invalid map (not fully closed)"
 # define ERR_MAP "Invalid map grid"
 # define ERR_CHAR "Invalid character in map"
-# define ERR_RGB "Invalid RGB (must be in the range of 0-255)"
+# define ERR_RGB "Invalid RGB (range 0-255)"
 # define ERR_CONFIG "Invalid file configuration"
 
 // Player direction
@@ -97,7 +97,7 @@
 \************************/
 
 // Array of pointers to functions
-typedef void	(*move_array)(t_game *game);
+typedef void	(*move_array)(t_player *player);
 
 // Move_array *f() indexes
 # define _W 0
