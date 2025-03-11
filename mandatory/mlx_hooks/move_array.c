@@ -35,7 +35,7 @@ void	move_player(t_game *game, t_keys *key)
 	while (i < 6)
 	{
 		if (key->key_array[i] == 1)
-			functions[i](game);
+			functions[i](game->player);
 		i++;
 	}
 	game->player->pos.x = roundf(game->player->pos.x + game->player->move.x);
