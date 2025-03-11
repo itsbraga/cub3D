@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/10 00:47:34 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/11 16:01:47 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,14 @@ void	draw_title_screen(t_game *game, t_mlx *mlx);
 \******************************************************************************/
 
 // movements.c
-void	move_forward(t_game *game); // changer params
-void	move_backward(t_game *game); // changer params
-void	straf_leftward(t_game *game); // changer params
-void	straf_rightward(t_game *game); // changer params
+void	move_forward(t_player *player); // changer params
+void	move_backward(t_player *player); // changer params
+void	straf_leftward(t_player *player); // changer params
+void	straf_rightward(t_player *player); // changer params
 
 // camera.c
-void	rotate_leftward(t_game *game); // changer params
-void	rotate_rightward(t_game *game); // changer params
+void	rotate_leftward(t_player *player); // changer params
+void	rotate_rightward(t_player *player); // changer params
 
 // move_array.c
 void	move_player(t_game *game, t_keys *key); // changer params
