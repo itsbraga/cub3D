@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 21:24:45 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/11 15:53:23 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/11 19:08:06 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3D.h"
+#include "cub3D.h"
 
 void	draw_vline_texture(int x, int start_y, int end_y, int *tex_buffer)
 {
