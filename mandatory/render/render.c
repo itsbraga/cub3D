@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/11 16:25:14 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/11 19:08:41 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	init_textures(t_textures *tex, t_data *data)
 static void	get_textures(t_data *data)
 {
 	init_textures(data->textures, data);
-	data->textures->imgs[NO] = img_from_xpm("./maps/mandat_valid_test/textures/LAB_2B.xpm");
-	data->textures->imgs[SO] = img_from_xpm("./maps/mandat_valid_test/textures/TECH_4E.xpm");
-	data->textures->imgs[WE] = img_from_xpm("./maps/mandat_valid_test/textures/PIPES_1A.xpm");
-	data->textures->imgs[EA] = img_from_xpm("./maps/mandat_valid_test/textures/CONSOLE_1B.xpm");
+	data->textures->imgs[NO] = img_from_xpm("./maps/valid/textures/LAB_2B.xpm");
+	data->textures->imgs[SO] = img_from_xpm("./maps/valid/textures/TECH_4E.xpm");
+	data->textures->imgs[WE] = img_from_xpm("./maps/valid/textures/PIPES_1A.xpm");
+	data->textures->imgs[EA] = img_from_xpm("./maps/valid/textures/CONSOLE_1B.xpm");
 }
 
 int	render(t_game *game)

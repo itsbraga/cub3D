@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/10 20:43:45 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/11 19:39:03 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,12 @@
 typedef void	(*move_array)(t_player *player);
 
 // Move_array *f() indexes
-# define _W 0
-# define _S 1
-# define _A 2
-# define _D 3
-# define _LEFT 4
-# define _RIGHT 5
-
-// Keyboard
-# define W_KEY 119
-# define A_KEY 97
-# define S_KEY 115
-# define D_KEY 100
+# define W_KEY 0
+# define S_KEY 1
+# define A_KEY 2
+# define D_KEY 3
+# define LEFT_KEY 4
+# define RIGHT_KEY 5
 
 // Mouse
 # define MOUSE_SENSITIVITY_X 0.1f

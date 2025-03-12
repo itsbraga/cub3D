@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/10 00:50:23 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/11 19:39:03 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static int	__set_keyrelease(int keycode, t_game *game)
 {
-	if (keycode == W_KEY)
-		game->keys->key_array[_W] = 0;
-	if (keycode == S_KEY)
-		game->keys->key_array[_S] = 0;
-	if (keycode == A_KEY)
-		game->keys->key_array[_A] = 0;
-	if (keycode == D_KEY)
-		game->keys->key_array[_D] = 0;
+	if (keycode == XK_w)
+		game->keys->key_array[W_KEY] = 0;
+	if (keycode == XK_s)
+		game->keys->key_array[S_KEY] = 0;
+	if (keycode == XK_a)
+		game->keys->key_array[A_KEY] = 0;
+	if (keycode == XK_d)
+		game->keys->key_array[D_KEY] = 0;
 	if (keycode == XK_Left)
-		game->keys->key_array[_LEFT] = 0;
+		game->keys->key_array[LEFT_KEY] = 0;
 	if (keycode == XK_Right)
-		game->keys->key_array[_RIGHT] = 0;
+		game->keys->key_array[RIGHT_KEY] = 0;
 	return (SUCCESS);
 }
 
@@ -42,18 +42,18 @@ static int	__set_keypress(int keycode, t_game *game)
 	}
 	if (keycode == XK_Escape)
 		exit_game(mlx_s(), SUCCESS);
-	if (keycode == W_KEY)
-		game->keys->key_array[_W] = 1;
-	if (keycode == S_KEY)
-		game->keys->key_array[_S] = 1;
-	if (keycode == A_KEY)
-		game->keys->key_array[_A] = 1;
-	if (keycode == D_KEY)
-		game->keys->key_array[_D] = 1;
+	if (keycode == XK_w)
+		game->keys->key_array[W_KEY] = 1;
+	if (keycode == XK_s)
+		game->keys->key_array[S_KEY] = 1;
+	if (keycode == XK_a)
+		game->keys->key_array[A_KEY] = 1;
+	if (keycode == XK_d)
+		game->keys->key_array[D_KEY] = 1;
 	if (keycode == XK_Left)
-		game->keys->key_array[_LEFT] = 1;
+		game->keys->key_array[LEFT_KEY] = 1;
 	if (keycode == XK_Right)
-		game->keys->key_array[_RIGHT] = 1;
+		game->keys->key_array[RIGHT_KEY] = 1;
 	(move_player(game, game->keys), reset_var(game));
 	return (SUCCESS);
 }
