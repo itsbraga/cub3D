@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/31 23:17:07 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/01 19:09:32 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 \**************************/
 
 # define PI 3.1415926535
-# define PI2 (PI / 2)
-# define PI3 ((3 * PI) / 2)
+# define PI2 (PI / 2) // valeur en dur
+# define PI3 ((3 * PI) / 2) // valeur en dur
 # define EPS 0.000001
 # define TILE_SIZE 64
 # define VISIBILITY_DIST_MAX 450
@@ -107,8 +107,8 @@ Cannot initialize minilibX cache"
 \**************************/
 
 #if BONUS
-# define MOVE_SPEED 8
-# define ROTATION_SPEED 7
+# define MOVE_SPEED 5
+# define ROTATION_SPEED 4
 #else
 # define MOVE_SPEED 3
 # define ROTATION_SPEED 2
