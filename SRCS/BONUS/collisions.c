@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/27 23:58:52 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:34:01 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int cell_y)
 	int		i;
 
 	// The larger the buffer, the further the player is from the wall
-	buffer = TILE_SIZE / 5;
+	buffer = TILE_SIZE / 32;
 	corners[0] = (t_point){new_ppos->x - buffer, new_ppos->y - buffer};
 	corners[1] = (t_point){new_ppos->x + buffer, new_ppos->y - buffer};
 	corners[2] = (t_point){new_ppos->x - buffer, new_ppos->y + buffer};
