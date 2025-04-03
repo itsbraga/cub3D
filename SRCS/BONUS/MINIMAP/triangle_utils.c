@@ -97,7 +97,7 @@ int color)
 {
 	int	x1;
 	int	x2;
-	int	temp;
+	int	tmp;
 
 	while (start_y < end_y)
 	{
@@ -105,9 +105,9 @@ int color)
 		x2 = (int)round(tr->curr_x2);
 		if (x1 > x2)
 		{
-			temp = x1;
+			tmp = x1;
 			x1 = x2;
-			x2 = temp;
+			x2 = tmp;
 		}
 		while (x1 <= x2)
 		{

@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/31 21:39:39 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/02 23:16:23 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ static int	__set_keypress(int keycode, t_game *game)
 		game->keys->key_array[_RIGHT] = 1;
 	if (keycode == SPACE_KEY)
 		game->keys->key_array[_SPACE] = 1;
-	#if BONUS
-		set_minimap_zoom_factor_keys(keycode, game); // pas encore implementé
-	#endif
 	return (SUCCESS);
 }
 

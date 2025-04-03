@@ -26,6 +26,7 @@ void	print_map_debug(t_map *map, const char *name)
 		printf("%s\n", map->map2d[i]);
 		i++;
 	}
+	printf("\n");
 }
 
 int	main(int argc, char **argv)

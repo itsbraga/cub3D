@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:07:23 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/31 23:15:23 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/03 02:31:48 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 /*
 	Precalculates trigonometric values needed for floor and ceiling rendering
-	@param ray_rad: Current ray angle in radians
-
-	Variables:
-	- fixed_angle: Normalized angle between player direction and ray direction
-	- ray_cos/sin: Cosine and sine of the ray angle
-	- fixed_angle_cos: Cosine of the fixed angle for perspective correction
 
 	The function:
 	- Normalizes the angle between player direction and ray
-	- Calculates and stores trigonometric values for efficient rendering
+	- Calculates and stores trigonometric values for efficient rendering and
+	  perspective correction
 */
 void	fc_precalculations(t_raycasting *r, float ray_rad)
 {
@@ -41,17 +36,17 @@ void	fc_precalculations(t_raycasting *r, float ray_rad)
 	@param tex_buffer: Array containing the floor texture data
 
 	Variables:
-	- floor: Point struct for the current floor position in game space
+	- floor: Point struct for the current floor position in world space
 	- shadow_factor: Factor to apply for distance-based shadowing
 	- img: Pointer to the MLX image structure for drawing
 	- dy: Vertical distance from screen center
-	- row_dist: Distance to the current row in game space
+	- row_dist: Distance to the current row in world space
 	- tex_x/y: Texture coordinates for sampling
 	- color: Final color to draw
 
 	The function:
 	- Calculates the distance to the current row
-	- Determines the game position for texture sampling
+	- Determines the world position for texture sampling
 	- Applies distance-based shadowing
 	- Samples and draws the texture at the current position
 */
@@ -111,17 +106,17 @@ void draw_floor_texture(t_raycasting *r)
 	@param tex_buffer: Array containing the ceiling texture data
 
 	Variables:
-	- ceiling: Point struct for the current ceiling position in game space
+	- ceiling: Point struct for the current ceiling position in world space
 	- shadow_factor: Factor to apply for distance-based shadowing
 	- img: Pointer to the MLX image structure for drawing
 	- dy: Vertical distance from screen center
-	- row_dist: Distance to the current row in game space
+	- row_dist: Distance to the current row in world space
 	- tex_x/y: Texture coordinates for sampling
 	- color: Final color to draw
 
 	The function:
 	- Calculates the distance to the current row
-	- Determines the game position for texture sampling
+	- Determines the world position for texture sampling
 	- Applies distance-based shadowing
 	- Samples and draws the texture at the current position
 */

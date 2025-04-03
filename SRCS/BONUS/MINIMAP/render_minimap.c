@@ -6,42 +6,72 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:39:37 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/28 01:07:10 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/03 02:45:01 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 /*
-	Draws a single tile (wall) in the minimap with borders
-	@param tile: position of the tile in the viewport coordinates
-	The function creates a bordered tile where:
-	- The border is 1/8th of the tile size
-	- The border is drawn in gray
-	- The inside of the tile is white
+	Calculates the world coordinates corresponding to a minimap pixel
 */
-static void	__draw_tile(t_minimap *mmap, t_point tile, int color)
+static t_point	__get_world_coords(t_minimap *mmap, t_point pixel)
+{
+	t_point	world_pos;
+	t_point	center_draw;
+	float	scale_f;
+
+	center_draw.x = mmap->vp.offset_x + mmap->vp.pixel_width / 2.0f;
+	center_draw.y = mmap->vp.offset_y + mmap->vp.pixel_height / 2.0f;
+	scale_f = mmap->vp.scale_factor;
+	world_pos.x = mmap->vp.player_pos.x + (pixel.x - center_draw.x) * scale_f;
+	world_pos.y = mmap->vp.player_pos.y + (pixel.y - center_draw.y) * scale_f;
+	return (world_pos);
+}
+
+/*
+	Processes a single pixel of the minimap: determines its color based
+	on the corresponding map tile and world position, then draws it
+*/
+static void	__process_mmap_pixel(t_minimap *mmap, t_map *map, t_point pixel)
+{
+	t_point	world_pos;
+	int		map_x;
+	int		map_y;
+	int		color;
+	char	tile_type;
+
+	world_pos = __get_world_coords(mmap, pixel);
+	map_x = floor(world_pos.x / TILE_SIZE);
+	map_y = floor(world_pos.y / TILE_SIZE);
+	if (is_within_map_bounds(map_x, map_y, map) == true)
+	{
+		tile_type = map->map2d[map_y][map_x];
+		if (tile_type == '1' || tile_type == '2')
+			color = set_mmap_pixel_color(world_pos, tile_type);
+		else
+			color = mmap->bg_color;
+	}
+	else
+		color = mmap->bg_color;
+	if (is_valid_point(pixel, mmap->width, mmap->height) == true)
+		my_pixel_put_to_img(&mmap->img, color, pixel.x, pixel.y);
+}
+
+/*
+	Draws the visible map tiles (walls, doors, background) pixel by pixel
+*/
+static void __draw_tiles(t_minimap *mmap, t_map *map)
 {
 	t_point	pixel;
-	size_t	x_end;
-	size_t	y_end;
-	int		wall_border;
 
-	wall_border = mmap->tile_size / 8;
-	pixel.x = mmap->vp.offset_x + (tile.x * mmap->tile_size);
-	pixel.y = mmap->vp.offset_y + (tile.y * mmap->tile_size);
-	x_end = pixel.x + mmap->tile_size - wall_border;
-	y_end = pixel.y + mmap->tile_size - wall_border;
-	while (pixel.y < y_end)
+	pixel.y = mmap->vp.offset_y;
+	while (pixel.y < mmap->vp.offset_y + mmap->vp.pixel_height)
 	{
-		pixel.x = mmap->vp.offset_x + (tile.x * mmap->tile_size);
-		while (pixel.x < x_end)
+		pixel.x = mmap->vp.offset_x;
+		while (pixel.x < mmap->vp.offset_x + mmap->vp.pixel_width)
 		{
-			if (pixel.x == mmap->vp.offset_x + (tile.x * mmap->tile_size) ||
-				pixel.y == mmap->vp.offset_y + (tile.y * mmap->tile_size))
-				my_pixel_put_to_img(&mmap->img, GRAY_PIX, pixel.x, pixel.y);
-			else
-				my_pixel_put_to_img(&mmap->img, color, pixel.x, pixel.y);
+			__process_mmap_pixel(mmap, map, pixel);
 			pixel.x++;
 		}
 		pixel.y++;
@@ -49,59 +79,21 @@ static void	__draw_tile(t_minimap *mmap, t_point tile, int color)
 }
 
 /*
-	Determines and draws all visible walls around the player
-	The function:
-	- Centers the view on the player's position
-	- Checks a square area of (2 * perimeter + 1) tiles around the player
-	- Draws only walls ('1') or doors ('2') that are within map boundaries
+	Core function to draw the entire minimap content (tiles, player, frame)
 */
-static void	__draw_visible_tiles(t_minimap *mmap, t_map *map)
-{
-	t_point	tile_in_viewport;
-	int		x;
-	int		y;
-	int		center_x;
-	int		center_y;
-
-	center_x = (int)(s_game()->player->pos.x / TILE_SIZE);
-	center_y = (int)(s_game()->player->pos.y / TILE_SIZE);
-	y = center_y - mmap->vp.perimeter - 1;
-	while (++y <= center_y + mmap->vp.perimeter)
-	{
-		x = center_x - mmap->vp.perimeter - 1;
-		while (++x <= center_x + mmap->vp.perimeter)
-		{
-			if (is_within_map_bounds(x, y, map) == false)
-				break;
-			if (map->map2d[y][x] == '1' || map->map2d[y][x] == '2')
-			{
-				mmap->color = set_mmap_tile_color(map->map2d[y][x]);
-				tile_in_viewport.x = x - (center_x - mmap->vp.perimeter);
-				tile_in_viewport.y = y - (center_y - mmap->vp.perimeter);
-				__draw_tile(mmap, tile_in_viewport, mmap->color);
-			}
-		}
-	}
-}
-
-static void	__draw_minimap(t_minimap *mmap, t_map *map)
+static void	__draw_minimap(t_game *game, t_minimap *mmap, t_map *map)
 {
 	mmap->vp = compute_viewport(mmap);
-	__draw_visible_tiles(mmap, map);
-	draw_player_in_viewport(s_game(), mmap);
+	mmap->vp.player_pos = game->player->pos;
+	__draw_tiles(mmap, map);
+	draw_centered_player(game, mmap);
 	draw_minimap_frame(mmap);
 }
 
 void	render_minimap(t_game *game, t_minimap *mmap)
 {
-	t_img	*temp;
-
-	clear_img(&mmap->cache, mmap->width, mmap->height, GRAY_PIX);
-	__draw_minimap(mmap, game->data->map);
-	draw_player_in_viewport(game, mmap);
+	clear_img(&mmap->img, mmap->width, mmap->height, mmap->bg_color);
+	__draw_minimap(game, mmap, game->data->map);
 	mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
-		mmap->cache.img_ptr, mmap->pos.x, mmap->pos.y);
-	temp = &mmap->img;
-	mmap->img = mmap->cache;
-	mmap->cache = *temp;
+		mmap->img.img_ptr, mmap->pos.x, mmap->pos.y);
 }
