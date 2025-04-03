@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/31 22:19:37 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/03 02:44:54 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ bool		is_within_map_bounds(int x, int y, t_map *map);
 bool		is_door(t_data *data, t_point *p);
 
 // minimap_utils.c
-int			set_mmap_tile_color(char c);
+int			set_mmap_pixel_color(t_point world, char type);
 void		draw_minimap_frame(t_minimap *mmap);
 
 // draw_line.c
@@ -280,13 +280,10 @@ void		draw_player(t_minimap *mmap, t_player *player);
 
 // viewport.c
 t_viewport	compute_viewport(t_minimap *mmap);
-void		draw_player_in_viewport(t_game *game, t_minimap *mmap);
+void		draw_centered_player(t_game *game, t_minimap *mmap);
 
 // render_minimap.c
 void		render_minimap(t_game *game, t_minimap *mmap);
-
-// zoom_handler.c
-int			set_minimap_zoom_factor_keys(int keycode, t_game *game);
 
 /**********************\
  *	MOUSE

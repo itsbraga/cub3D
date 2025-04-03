@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:38:24 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 19:50:47 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/03 02:36:28 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,40 +49,16 @@ static int	__init_minimap_img(t_mlx *mlx, t_minimap *mmap)
 	return (SUCCESS);
 }
 
-static int	__init_minimap_cache(t_mlx *mlx, t_minimap *mmap)
-{
-	mmap->cache.img_ptr = mlx_new_image(mlx->mlx_ptr, mmap->width,
-		mmap->height);
-	if (mmap->cache.img_ptr == NULL)
-	{
-		err_msg("minilibX", ERR_IMG);
-		return (FAILURE);
-	}
-	mmap->cache.addr = mlx_get_data_addr(mmap->cache.img_ptr,
-		&mmap->cache.bits_per_pixel,
-		&mmap->cache.size_line,
-		&mmap->cache.endian);
-	if (mmap->cache.addr == NULL)
-	{
-		del_img(mlx, mmap->cache.img_ptr);
-		err_msg("minilibX", ERR_ADDR);
-		return (FAILURE);
-	}
-	return (SUCCESS);
-}
-
 void	init_minimap(t_minimap *mmap, t_game *game)
 {
 	ft_bzero(mmap, sizeof(t_minimap));
 	ft_bzero(&mmap->vp, sizeof(t_viewport));
-	mmap->vp.zoom_factor = 1.0f; // zoom_factor not implemented yet
-	mmap->vp.perimeter = 4 * mmap->vp.zoom_factor; // zoom_factor not implemented yet
 	ft_bzero(&mmap->img, sizeof(t_img));
 	ft_bzero(&mmap->pos, sizeof(t_point));
-	mmap->ratio = 0.15; // 15% de la window
+	mmap->vp.perimeter = 4;
+	mmap->ratio = 0.15;
+	mmap->bg_color = GRAY_PIX;
 	if (__init_minimap_img(game->mlx, mmap) == FAILURE)
 		return (err_msg("minilibX", ERR_INIT_MMAP_IMG));
-	if (__init_minimap_cache(game->mlx, mmap) == FAILURE)
-		return (err_msg("minilibX", ERR_INIT_MMAP_CACHE));
 	game->mmap = mmap;
 }

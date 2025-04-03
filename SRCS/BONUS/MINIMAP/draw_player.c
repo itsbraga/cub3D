@@ -12,24 +12,19 @@
 
 #include "cub3D.h"
 
-/*
-	Updates the trigonometric values for the player's direction
-	- Calculates cosine and sine values for the player's direction
-	- Calculates cosine and sine values for the player's direction + 90 degrees
-	- Calculates cosine and sine values for the player's direction - 90 degrees
-*/
 static void	__compute_player_trigonometry(float theta, t_trigo *trig)
 {
 	trig->cos_theta = cos(theta);
 	trig->sin_theta = sin(theta);
-	trig->cos_theta_plus_pi2 = cos(theta + (PI / 2));
-	trig->sin_theta_plus_pi2 = sin(theta + (PI / 2));
-	trig->cos_theta_minus_pi2 = cos(theta - (PI / 2));
-	trig->sin_theta_minus_pi2 = sin(theta - (PI / 2));
+	trig->cos_theta_plus_pi2 = cos(theta + PI2); // + 90 degrees
+	trig->sin_theta_plus_pi2 = sin(theta + PI2);
+	trig->cos_theta_minus_pi2 = cos(theta - PI2); // - 90 degrees
+	trig->sin_theta_minus_pi2 = sin(theta - PI2);
 }
 
 /*
 	Draws the player as a directional triangle on the minimap
+	
 	The function:
 	- Calculates triangle dimensions based on tile size
 	- Computes triangle points using player's position and direction

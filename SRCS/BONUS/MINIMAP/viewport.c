@@ -3,33 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   viewport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 02:36:56 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 19:07:45 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/03 02:38:25 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 /*
-	Computes the viewport parameters for the minimap display
+	Computes the viewport parameters for the minimap display.
+
 	The function:
-	- Sets the view perimeter (4 tiles in each direction)
-	- Calculates tile size to fit the minimap dimensions
-	- Ensures tiles are square by using the minimum of width/height ratios
-	- Centers the viewport by computing offsets
-	- Total visible area is (2 * perimeter + 1) tiles square
+	- Sets the view perimeter (4 tiles in each direction).
+	- Calculates the total number of tiles visible horizontally/vertically.
+	- Calculates 'tile_size' using integer division based on minimap
+	  dimensions and the number of visible tiles, ensuring tiles are
+	  square by using the minimum constraint (width or height).
+	- Calculates 'scale_factor' relating world size to minimap tile size
+	- Calculates the viewport dimensions in pixels ('pixel_width/height')
+	- Calculates the offsets required to center the viewport drawing area
+	  within the minimap's total dimensions
 */
 t_viewport	compute_viewport(t_minimap *mmap)
 {
 	t_viewport	vp;
 	int			visible_tiles;
+	size_t		tile_size_w;
+	size_t		tile_size_h;
 
 	vp.perimeter = 4;
 	visible_tiles = (vp.perimeter * 2) + 1;
-	mmap->tile_size = fmin((float)mmap->width / visible_tiles,
-							(float)mmap->height / visible_tiles);
+	if (visible_tiles > 0) 
+	{
+		tile_size_w = mmap->width / visible_tiles;
+		tile_size_h = mmap->height / visible_tiles;
+		if (tile_size_w < tile_size_h)
+			mmap->tile_size = tile_size_w;
+		else
+			mmap->tile_size = tile_size_h;
+	}
+	if (mmap->tile_size > 0)
+		vp.scale_factor = (float)TILE_SIZE / mmap->tile_size;
+	else
+		vp.scale_factor = 1.0;
 	vp.pixel_width = visible_tiles * mmap->tile_size;
 	vp.pixel_height = visible_tiles * mmap->tile_size;
 	vp.offset_x = (mmap->width - vp.pixel_width) / 2;
@@ -37,23 +55,14 @@ t_viewport	compute_viewport(t_minimap *mmap)
 	return (vp);
 }
 
-void	draw_player_in_viewport(t_game *game, t_minimap *mmap)
+void	draw_centered_player(t_game *game, t_minimap *mmap)
 {
 	t_player	player_copy;
 	t_point		center;
-	t_point		player_offset;
-	t_point		precise_pos;
 
 	player_copy = *(game->player);
-	center.x = mmap->vp.offset_x + (mmap->vp.pixel_width / 2);
-	center.y = mmap->vp.offset_y + (mmap->vp.pixel_height / 2);
-	precise_pos.x = player_copy.pos.x / TILE_SIZE;
-	precise_pos.y = player_copy.pos.y / TILE_SIZE;
-	// Calculate the offset from the center based on the player's real position
-	player_offset.x = (precise_pos.x - (int)(precise_pos.x)) * mmap->tile_size;
-	player_offset.y = (precise_pos.y - (int)(precise_pos.y)) * mmap->tile_size;
-	// Adjust the player's position to account for the offset within the tile
-	player_copy.pos.x = center.x + player_offset.x - (mmap->tile_size / 2);
-	player_copy.pos.y = center.y + player_offset.y - (mmap->tile_size / 2);
+	center.x = mmap->width / 2;
+	center.y = mmap->height / 2;
+	player_copy.pos = center;
 	draw_player(mmap, &player_copy);
 }

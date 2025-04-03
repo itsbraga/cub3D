@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/01 19:09:32 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/03 01:37:11 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 \**************************/
 
 # define PI 3.1415926535
-# define PI2 (PI / 2) // valeur en dur
-# define PI3 ((3 * PI) / 2) // valeur en dur
+# define PI2 1.57079633	// (PI / 2)
+# define PI3 4.71238898	// ((3 * PI) / 2)
 # define EPS 0.000001
 # define TILE_SIZE 64
 # define VISIBILITY_DIST_MAX 450
@@ -64,8 +64,6 @@
 # define ERR_INIT_IMG "Cannot initialize minilibX image"
 # define ERR_INIT_MMAP_IMG "\033[38;2;211;211;255m[minimap]\033[0m \
 Cannot initialize minilibX image"
-# define ERR_INIT_MMAP_CACHE "\033[38;2;211;211;255m[minimap]\033[0m \
-Cannot initialize minilibX cache"
 # define ERR_WIN "Cannot create new window"
 # define ERR_IMG "Cannot create new image"
 # define ERR_ADDR "Cannot find image address"

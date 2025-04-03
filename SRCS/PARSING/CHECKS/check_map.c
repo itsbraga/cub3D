@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 03:04:45 by marvin           ###   ########.fr       */
+/*   Updated: 2025/04/03 03:26:07 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@
 	@param x: current x coordinate being checked
 	@param height: total height of the map
 	@param width: total width of the map
-	@return: true if the map is properly enclosed, false if there are holes
+	@return: true if the map is properly enclosed,
+			 false if there are holes or if it reaches map boundaries
 
 	The function:
 	- Marks visited spaces with 'F' (Filled)
 	- Checks all four adjacent cells recursively
 	- Stops at walls ('1') or previously filled cells ('F')
-	- Returns false if it reaches map boundaries or empty spaces
-	- Used to verify that the map is completely enclosed by walls
 */
 bool	flood_fill(char **map, int y, int x, size_t height, size_t width)
 {
