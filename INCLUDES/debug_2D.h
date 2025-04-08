@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   debug_2D.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,45 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#ifndef DEBUG_2D_H
+# define DEBUG_2D_H
 
 # include "cub3D.h"
 
 /**********************\
- *	DEBUG
+ *	DEBUG_2D
 \**********************/
 
 // raycasting.c
-void		inter_hline(t_data *d, t_player *player, t_raycasting *r,
-	float ray_rad);
-void		inter_vline(t_data *d, t_player *player, t_raycasting *r,
-	float ray_rad);
-void		find_closest_inter(t_player *player, t_raycasting *r,
-	t_point *closest_inter);
+void	inter_hline(t_data *d, t_player *player, t_raycasting *r,
+			float ray_rad);
+void	inter_vline(t_data *d, t_player *player, t_raycasting *r,
+			float ray_rad);
+void	find_closest_inter(t_player *player, t_raycasting *r,
+			t_point *closest_inter);
 
 // draw_grid.c
-void		draw_grid(t_mlx *mlx, float scale, t_map *map);
+void	draw_grid(t_mlx *mlx, float scale, t_map *map);
 
 // triangle_utils.c
-void		draw_hline_2d(t_mlx *mlx, t_triangle *tr, int start_y, int end_y,
-int color);
+void	draw_hline_2d(t_mlx *mlx, t_triangle *tr, int start_y, int end_y);
 
 // draw_triangle.c
-void		fill_triangle_2d(t_mlx *mlx, t_point a, t_point b, t_point c,
-	int color);
-void		init_triangle_2d(t_triangle *tr, t_point a, t_point b, t_point c);
+void	fill_triangle_2d(t_mlx *mlx, t_point a, t_point b, t_point c);
+void	init_triangle_2d(t_triangle *tr, t_point a, t_point b, t_point c);
 
 // draw_player_2d.c
-void		draw_player_2d(t_mlx *mlx, t_player *player);
+void	draw_player_2d(t_mlx *mlx, t_player *player);
 
 // raycasting_2d.c
-float		compute_scale_factor(t_map *map);
-t_point		scale_point(t_point p, float scale);
-void		raycasting_2d(t_data *d, t_player *player, t_raycasting *r,
-	float scale);
+float	compute_scale_factor(t_map *map);
+t_point	scale_point(t_point p, float scale);
+void	raycasting_2d(t_data *d, t_player *player, t_raycasting *r,
+			float scale);
 
 // render_2d.c
-int			render_2d(t_game *game);
+int		render_2d(t_game *game);
 
 #endif

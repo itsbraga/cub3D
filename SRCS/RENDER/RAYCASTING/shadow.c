@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 22:32:39 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/21 22:50:28 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:34:25 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 float	calculate_shadow_factor(float distance)
 {
 	float	shadow_factor;
-	
+
 	shadow_factor = 1.0f - (distance / VISIBILITY_DIST_MAX);
 	if (shadow_factor < 0.1f)
 		shadow_factor = 0.1f;
@@ -24,7 +24,7 @@ float	calculate_shadow_factor(float distance)
 
 int	apply_shadow_factor(int color, float shadow_factor)
 {
-	int color_shadowed;
+	int	color_shadowed;
 	int	r;
 	int	g;
 	int	b;

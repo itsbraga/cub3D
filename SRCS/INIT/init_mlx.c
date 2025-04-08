@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:07:04 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 19:14:11 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/08 21:50:50 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	__init_mlx_img(t_mlx *mlx)
 		return (FAILURE);
 	}
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img_ptr,
-			&mlx->img.bits_per_pixel, 
+			&mlx->img.bits_per_pixel,
 			&mlx->img.size_line,
 			&mlx->img.endian);
 	if (mlx->img.addr == NULL)
@@ -33,20 +33,21 @@ static int	__init_mlx_img(t_mlx *mlx)
 	return (SUCCESS);
 }
 
+// free_mlx ou clean_structs
 void	init_mlx(t_mlx *mlx, t_game *game)
 {
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
 	{
-		free_mlx(mlx); // ou clean
 		err_msg("minilibX", ERR_MLX);
+		clean_exit(FAILURE);
 		return ;
 	}
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, W_NAME);
 	if (mlx->win_ptr == NULL)
 	{
-		free_mlx(mlx);
 		err_msg("minilibX", ERR_WIN);
+		clean_exit(FAILURE);
 		return ;
 	}
 	if (__init_mlx_img(mlx) == FAILURE)

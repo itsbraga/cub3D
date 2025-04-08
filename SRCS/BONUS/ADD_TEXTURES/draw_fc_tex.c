@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_fc_tex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:07:23 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/08 01:59:21 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 18:54:44 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 static void	__calculate_floor_scanline(t_fc_render *fc, t_player *player)
 {
 	float	curr_dist_from_horizon;
-	float   delta_ray_dir_x;
-	float   delta_ray_dir_y;
+	float	delta_ray_dir_x;
+	float	delta_ray_dir_y;
 
 	curr_dist_from_horizon = fc->y - fc->horizon_line;
 	fc->row_dist = (fc->v_scale_factor * TILE_SIZE) / curr_dist_from_horizon;
@@ -83,8 +83,8 @@ void	draw_floor_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
 static void	__calculate_ceil_scanline(t_fc_render *fc, t_player *player)
 {
 	float	curr_dist_from_horizon;
-	float   delta_ray_dir_x;
-	float   delta_ray_dir_y;
+	float	delta_ray_dir_x;
+	float	delta_ray_dir_y;
 
 	curr_dist_from_horizon = fc->horizon_line - fc->y;
 	fc->row_dist = (fc->v_scale_factor * TILE_SIZE) / curr_dist_from_horizon;
@@ -110,7 +110,7 @@ static void	__calculate_ceil_scanline(t_fc_render *fc, t_player *player)
 	- Calls 'draw_hline_pixels' to draw the pixels for that row
 */
 void	draw_ceil_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
-	t_player *player)
+t_player *player)
 {
 	t_fc_render	fc;
 	int			tex_buffer[TILE_SIZE * TILE_SIZE];
@@ -148,7 +148,7 @@ void	draw_ceil_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
 	  - Logic: For a given screen row 'y', calculate the real-world distance
 	    ('row_dist') to the floor/ceiling plane. Determine the world
 		coordinates ('start_x', 'start_y') corresponding to the start of the
-	    scanline ('x=0').
+	    scanline ('x = 0').
 	    Then, calculate steps ('step_x', 'step_y') to interpolate the world
 	    coordinates ('curr_world_x/y') while scanning horizontally ('x++')
 		across the screen row. These world coordinates provide the texture

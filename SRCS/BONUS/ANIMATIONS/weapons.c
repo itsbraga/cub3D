@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapons.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:58:18 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/31 21:54:49 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:44:04 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,15 @@ void	get_weapons(t_weapon *w)
 
 	i = 0;
 	w->id = 1;
-	// w->sprites[0] = xpm_to_mlx_img("./SPRITES/SPRITES_ARMORY/MP40/MP40_idle.xpm");
-	// w->sprites[1] = xpm_to_mlx_img("./SPRITES/SPRITES_ARMORY/MP40/MP40_recoil1.xpm");
-	// w->sprites[2] = xpm_to_mlx_img("./SPRITES/SPRITES_ARMORY/MP40/MP40_fire.xpm");
-	// w->sprites[3] = xpm_to_mlx_img("./SPRITES/SPRITES_ARMORY/MP40/MP40_recoil2.xpm");
-	tmp_sprites[0] = xpm_to_mlx_img("./SPRITES/SPRITES_ARMORY/MP40/MP40_idle.xpm");
-	tmp_sprites[1] = xpm_to_mlx_img("./SPRITES/SPRITES_ARMORY/MP40/MP40_recoil1.xpm");
-	tmp_sprites[2] = xpm_to_mlx_img("./SPRITES/SPRITES_ARMORY/MP40/MP40_fire.xpm");
-	tmp_sprites[3] = xpm_to_mlx_img("./SPRITES/SPRITES_ARMORY/MP40/MP40_recoil2.xpm");
+	tmp_sprites[0] = xpm_to_mlx_img("./SPRITES/ARMORY/MP40/MP40_idle.xpm");
+	tmp_sprites[1] = xpm_to_mlx_img("./SPRITES/ARMORY/MP40/MP40_recoil1.xpm");
+	tmp_sprites[2] = xpm_to_mlx_img("./SPRITES/ARMORY/MP40/MP40_fire.xpm");
+	tmp_sprites[3] = xpm_to_mlx_img("./SPRITES/ARMORY/MP40/MP40_recoil2.xpm");
 	while (i < 4)
 	{
 		scale_factor = (WIN_HEIGHT * 0.35) / tmp_sprites[i].height;
 		w->sprites[i] = resize_img(scale_factor, &tmp_sprites[i]);
-		i++;	
+		i++;
 	}
 	w->pos.x = (int)WIN_WIDTH / 3;
 	w->pos.y = (int)WIN_HEIGHT / 1.50;
@@ -54,7 +50,7 @@ void	get_weapons(t_weapon *w)
 void	draw_weapon(int state, t_weapon *w, t_game *game)
 {
 	t_mlx	*mlx;
-	
+
 	mlx = game->mlx;
 	my_put_img_to_window(&w->sprites[state], &mlx->img, w->pos.x, w->pos.y);
 }
@@ -80,7 +76,7 @@ void	render_weapon(t_game *game, t_weapon *w)
 			w->frame_counter_started = false;
 		}
 		else if (w->state == SHOOTING && w->frame == (FBS * 4 + 1))
-			w->frame = (FBS * 2 - 1);		
+			w->frame = (FBS * 2 - 1);
 	}
 	if (w->frame_counter_started == true)
 		w->frame++;

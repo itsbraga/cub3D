@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:26:18 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/21 20:02:54 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:24:54 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 static bool	__is_valid_extension(char *filename)
 {
-    size_t len;
+	size_t	len;
 
-    if (filename == NULL)
-        return (false);
-    len = ft_strlen(filename);
-    if (len < 4)
-        return (false);
-    if (ft_strncmp(filename + (len - 4), ".xpm", 4) != 0)
-        return (false);
-    return (true);
+	if (filename == NULL)
+		return (false);
+	len = ft_strlen(filename);
+	if (len < 4)
+		return (false);
+	if (ft_strncmp(filename + (len - 4), ".xpm", 4) != 0)
+		return (false);
+	return (true);
 }
 
-static bool __is_not_directory(const char *path)
+static bool	__is_not_directory(const char *path)
 {
 	int	fd;
-	
+
 	fd = open(path, __O_DIRECTORY);
 	if (fd > 0)
 	{

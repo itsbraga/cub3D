@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 16:21:02 by art3mis           #+#    #+#             */
-/*   Updated: 2025/02/28 21:55:38 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:07:28 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define CYAN			"\033[36m"
 # define WHITE			"\033[37m"
 
-# define LIGHT_GRAY     	"\033[38;2;173;165;165m"
-# define LIGHT_GRAY2     	"\033[38;2;211;211;211m"
+# define LIGHT_GRAY     "\033[38;2;173;165;165m"
+# define LIGHT_GRAY2     "\033[38;2;211;211;211m"
 
 // Pastel colors
 # define PG			"\033[38;2;173;235;179m" // green

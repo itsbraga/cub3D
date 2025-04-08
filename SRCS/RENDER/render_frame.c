@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/07 21:51:00 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:32:55 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ int	render_frame(t_game *game)
 		raycasting(game->data, game->player, game->ray);
 		mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
 			game->mlx->img.img_ptr, 0, 0);
-		#if BONUS
+		if (BONUS)
+		{
 			render_minimap(game, game->mmap);
 			render_weapon(game, game->data->weapon);
-		#endif
+		}
 	}
 	return (SUCCESS);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
+#include "debug_2D.h"
 
 /*
 	Draws the first (top) part of the triangle
@@ -19,7 +19,7 @@
 	- Updates x-coordinates using slope calculations
 	- Draws horizontal lines to fill the upper part
 */
-static void	__draw_first_part(t_mlx *mlx, t_triangle *tr, int color)
+static void	__draw_first_part(t_mlx *mlx, t_triangle *tr)
 {
 	int	start_y;
 	int	end_y;
@@ -30,7 +30,7 @@ static void	__draw_first_part(t_mlx *mlx, t_triangle *tr, int color)
 	{
 		tr->curr_x1 += tr->slope1 * (start_y - tr->a.y);
 		tr->curr_x2 += tr->slope2 * (start_y - tr->a.y);
-		draw_hline_2d(mlx, tr, start_y, end_y, color);
+		draw_hline_2d(mlx, tr, start_y, end_y);
 	}
 }
 
@@ -41,7 +41,7 @@ static void	__draw_first_part(t_mlx *mlx, t_triangle *tr, int color)
 	- Updates x-coordinates using new slope calculations
 	- Draws horizontal lines to fill the lower part
 */
-static void	__draw_second_part(t_mlx *mlx, t_triangle *tr, int color)
+static void	__draw_second_part(t_mlx *mlx, t_triangle *tr)
 {
 	int	start_y;
 	int	end_y;
@@ -54,16 +54,15 @@ static void	__draw_second_part(t_mlx *mlx, t_triangle *tr, int color)
 		tr->curr_x2 = tr->a.x + tr->slope2 * (start_y - tr->a.y);
 		tr->curr_slope1 = tr->slope3;
 		tr->curr_slope2 = tr->slope2;
-		draw_hline_2d(mlx, tr, start_y, end_y, color);
+		draw_hline_2d(mlx, tr, start_y, end_y);
 	}
 }
 
-void	fill_triangle_2d(t_mlx *mlx, t_point a, t_point b, t_point c,
-int color)
+void	fill_triangle_2d(t_mlx *mlx, t_point a, t_point b, t_point c)
 {
 	t_triangle	tr;
 
 	init_triangle_2d(&tr, a, b, c);
-	__draw_first_part(mlx, &tr, color);
-	__draw_second_part(mlx, &tr, color);
+	__draw_first_part(mlx, &tr);
+	__draw_second_part(mlx, &tr);
 }

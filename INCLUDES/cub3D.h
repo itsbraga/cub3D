@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 02:01:09 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:10:07 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # include "structs.h"
 # include "defines.h"
 # include "colors.h"
-# include "debug.h"
+# include "debug_2D.h"
 
 /**********************\
  *	INIT
@@ -49,11 +49,6 @@ t_mlx	*s_mlx(void);
 // init_mlx.c
 void	init_mlx(t_mlx *mlx, t_game *game);
 
-// init_textures.c
-void	init_textures(t_textures *tex, t_data *data);
-void	fill_textures_paths(char *line, t_textures *tex);
-void	fill_bonus_textures_paths(char *line, t_textures *tex);
-
 // init_structs.c
 void	init_map(t_map *map, char *path_to_file, int fd, t_data *data);
 void	init_structs(t_data *data, t_game *game, t_mlx *mlx);
@@ -61,11 +56,6 @@ void	init_structs(t_data *data, t_game *game, t_mlx *mlx);
 /**********************\
  *	PARSING
 \**********************/
-
-// utils.c
-bool		is_empty_line(char *line);
-size_t		get_longest_line(char **map2d, size_t height);
-uint32_t	convert_rgb_into_uint(char *red, char *green, char *blue);
 
 // CHECKS/check_arg.c
 int		check_cub_file(char *arg);
@@ -78,8 +68,8 @@ int		check_textures_paths(t_textures *tex);
 int		check_bonus_textures_paths(t_textures *tex);
 
 // CHECKS/check_map.c
-bool	flood_fill(char **map, int y, int x, size_t height, size_t width);
-char	**normalize_map_for_flood(char **map, size_t height, size_t width);
+bool	flood_fill(char **map, int y, int x, t_size size);
+char	**normalize_map_for_flood(char **map, t_size size);
 
 // CHECKS/check_player.c
 void	get_player_direction(t_map *map, t_player *player);
@@ -89,6 +79,10 @@ char	*skip_spaces(char *line);
 bool	is_wall_texture_line(char *trimmed);
 bool	is_map_line(char *line);
 bool	is_bonus_map_line(char *line);
+
+// PROCESS_FILE/fill_textures.c
+void	fill_textures_paths(char *line, t_textures *tex);
+void	fill_bonus_textures_paths(char *line, t_textures *tex);
 
 // PROCESS_FILE/textures.c
 void	process_texture_lines(char *line, t_textures *tex);
@@ -119,6 +113,11 @@ void	err_msg_quoted(char *context, char *reason);
 void	secure_malloc(void *to_secure, bool full_clean);
 void	my_free(void **to_free);
 
+// parsing_utils.c
+bool	is_empty_line(char *line);
+size_t	get_longest_line(char **map2d, size_t height);
+uint32_t	convert_rgb_into_uint(char *red, char *green, char *blue);
+
 // draw_utils.c
 void	swap_point(t_point *p0, t_point *p1);
 bool	is_valid_point(t_point point, size_t win_width, size_t win_height);
@@ -138,7 +137,7 @@ t_img	xpm_to_mlx_img(char *relative_path);
 
 // mlx_utils.c
 void	blit_transparent_img(t_img *src, t_img *dest, int img_pos_x,
-	int img_pos_y);
+			int img_pos_y);
 void	my_pixel_put_to_img(t_img *img, int color, int x, int y);
 void	my_put_img_to_window(t_img *src, t_img *dest, int pos_x, int pos_y);
 void	clear_img(t_img *img, size_t size_x, size_t size_y, int color);
@@ -166,17 +165,17 @@ void	clean_exit(int exit_code);
 /**********************\
  *	GARBAGE
 \**********************/
- 
+
 // lst_utils.c
 int		remove_gc_node(t_gc_lst**yama, void *ptr);
 void	add_gc_node(t_gc_lst **yama, t_gc_lst *node);
 void	*new_gc_node(void *ptr, bool is_array);
- 
+
 // utils.c
 void	*search_ptr(t_gc_lst **yama, void *ptr);
 int		handle_remove(t_gc_lst **yama, void *ptr);
 int		free_gc_array(t_gc_lst **y, char **array);
- 
+
 // garbage_collector.c
 void	*yama(int flag, void *ptr, size_t size);
 
@@ -267,12 +266,10 @@ void	init_minimap(t_minimap *mmap, t_game *game);
 
 // triangle_utils.c
 void	init_triangle(t_triangle *tr, t_point a, t_point b, t_point c);
-void	draw_hline(t_minimap *mmap, t_triangle *tr, int start_y, int end_y,
-	int color);
+void	draw_hline(t_minimap *mmap, t_triangle *tr, int start_y, int end_y);
 
 // draw_triangle.c
-void	fill_triangle(t_minimap *mmap, t_point a, t_point b, t_point c,
-	int color);
+void	fill_triangle(t_minimap *mmap, t_point a, t_point b, t_point c);
 
 // draw_player.c
 void	draw_centered_player(t_game *game, t_minimap *mmap);
@@ -310,9 +307,9 @@ void	init_fc_render(t_fc_render *fc, t_raycasting *r, int (*wall_limits)[2]);
 void	draw_hline_pixels(t_fc_render *fc);
 
 // draw_fc_tex.c
-void 	draw_floor_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
-	t_player *player);
+void	draw_floor_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
+			t_player *player);
 void	draw_ceil_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
-	t_player *player);
+			t_player *player);
 
 #endif

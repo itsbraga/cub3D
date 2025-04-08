@@ -12,13 +12,17 @@
 
 #include "cub3D.h"
 
+/*
+	theta + PI2 -> +90 degrees
+	theta - PI2 -> -90 degrees
+*/
 static void	__calculate_player_trigonometry(float theta, t_trigo *trig)
 {
 	trig->cos_theta = cos(theta);
 	trig->sin_theta = sin(theta);
-	trig->cos_theta_plus_pi2 = cos(theta + PI2); // + 90 degrees
+	trig->cos_theta_plus_pi2 = cos(theta + PI2);
 	trig->sin_theta_plus_pi2 = sin(theta + PI2);
-	trig->cos_theta_minus_pi2 = cos(theta - PI2); // - 90 degrees
+	trig->cos_theta_minus_pi2 = cos(theta - PI2);
 	trig->sin_theta_minus_pi2 = sin(theta - PI2);
 }
 
@@ -34,9 +38,9 @@ static void	__calculate_player_trigonometry(float theta, t_trigo *trig)
 */
 static void	__draw_player(t_minimap *mmap, t_player *player)
 {
-	const int		L = (int)(mmap->tile_size * 0.6);
-	const float		h = L * 1.3;
-	const float		offset_dist = L * 0.5;
+	const int		width = (int)(mmap->tile_size * 0.6);
+	const float		height = width * 1.3;
+	const float		offset_dist = width * 0.5;
 	t_triangle		triangle;
 	t_point			new_pos;
 
@@ -45,8 +49,8 @@ static void	__draw_player(t_minimap *mmap, t_player *player)
 	__calculate_player_trigonometry(triangle.theta, &triangle.trig);
 	new_pos.x = player->pos.x - triangle.trig.cos_theta * offset_dist;
 	new_pos.y = player->pos.y - triangle.trig.sin_theta * offset_dist;
-	triangle.a.x = new_pos.x + triangle.trig.cos_theta * h;
-	triangle.a.y = new_pos.y + triangle.trig.sin_theta * h;
+	triangle.a.x = new_pos.x + triangle.trig.cos_theta * height;
+	triangle.a.y = new_pos.y + triangle.trig.sin_theta * height;
 	triangle.b.x = new_pos.x + triangle.trig.cos_theta_plus_pi2 * offset_dist;
 	triangle.b.y = new_pos.y + triangle.trig.sin_theta_plus_pi2 * offset_dist;
 	triangle.c.x = new_pos.x + triangle.trig.cos_theta_minus_pi2 * offset_dist;
@@ -54,7 +58,7 @@ static void	__draw_player(t_minimap *mmap, t_player *player)
 	draw_line(&mmap->img, triangle.a, triangle.b, RED_PIX);
 	draw_line(&mmap->img, triangle.b, triangle.c, RED_PIX);
 	draw_line(&mmap->img, triangle.c, triangle.a, RED_PIX);
-	fill_triangle(mmap, triangle.a, triangle.b, triangle.c, RED_PIX);
+	fill_triangle(mmap, triangle.a, triangle.b, triangle.c);
 }
 
 void	draw_centered_player(t_game *game, t_minimap *mmap)

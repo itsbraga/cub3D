@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 00:10:06 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:58:58 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,23 @@ t_data	*s_data(void)
 	{
 		instance = yama(CREATE, NULL, sizeof(t_data));
 		secure_malloc(instance, true);
+		ft_bzero(instance, sizeof(t_data));
 		instance->map = yama(CREATE, NULL, sizeof(t_map));
 		secure_malloc(instance->map, true);
 		instance->textures = yama(CREATE, NULL, sizeof(t_textures));
 		secure_malloc(instance->textures, true);
-		#if !BONUS
+		if (!BONUS)
+		{
 			instance->weapon = NULL;
 			instance->ennemy = NULL;
-		#else
+		}
+		else
+		{
 			instance->weapon = yama(CREATE, NULL, sizeof(t_weapon));
 			secure_malloc(instance->weapon, true);
 			instance->ennemy = yama(CREATE, NULL, sizeof(t_ennemy));
 			secure_malloc(instance->ennemy, true);
-		#endif
-		instance->floor_color = 0;
-		instance->ceiling_color = 0;
-		instance->feature_filled = 0;
+		}
 	}
 	return (instance);
 }
@@ -60,12 +61,13 @@ t_game	*s_game(void)
 		secure_malloc(instance->ray, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
-		#if !BONUS
+		if (!BONUS)
 			instance->mmap = NULL;
-		#else
+		else
+		{
 			instance->mmap = yama(CREATE, NULL, sizeof(t_minimap));
 			secure_malloc(instance->mmap, true);
-		#endif
+		}
 		instance->mlx = NULL;
 		instance->data = NULL;
 	}
@@ -75,7 +77,7 @@ t_game	*s_game(void)
 t_mlx	*s_mlx(void)
 {
 	static t_mlx	*instance = NULL;
-	
+
 	if (instance == NULL)
 	{
 		instance = yama(CREATE, NULL, sizeof(t_mlx));

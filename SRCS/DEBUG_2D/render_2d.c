@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 00:10:05 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/27 23:08:50 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
+#include "debug_2D.h"
 
 static void	__draw_tile(t_mlx *mlx, t_point tile, float scale)
 {
@@ -37,12 +37,12 @@ static void	__draw_tile(t_mlx *mlx, t_point tile, float scale)
 static void	__draw_map2d(t_mlx *mlx, t_map *map, float scale)
 {
 	t_point	tile;
-	
+
 	tile.y = 0;
-	while (tile.y < map->height)
+	while (tile.y < map->size.height)
 	{
 		tile.x = 0;
-		while (tile.x < map->width)
+		while (tile.x < map->size.width)
 		{
 			if (map->map2d[(int)tile.y][(int)tile.x] == '1')
 				__draw_tile(mlx, tile, scale);

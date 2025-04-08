@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 01:02:36 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	inter_hline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 	{
 		curr_tile.x = r->h_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->h_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
-			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->size.width
+			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->size.height)
 			break;
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1'
 				|| d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '2')
@@ -105,8 +105,8 @@ void	inter_vline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 	{
 		curr_tile.x = r->v_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->v_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
-			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->size.width
+			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->size.height)
 			break;
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1'
 				|| d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '2')
@@ -175,15 +175,13 @@ void	raycasting(t_data *d, t_player *p, t_raycasting *r)
 		draw_wall_tex(r, ray_rad);
 		wall_limits[r->curr_ray][0] = r->wall_start_y;
 		wall_limits[r->curr_ray][1] = r->wall_end_y;
-		#if !BONUS
+		if (!BONUS)
 			(draw_floor_color(r, d), draw_ceil_color(r, d));
-		#endif
 		ray_rad += (degree_to_radian(r->fov) / WIN_WIDTH);
 		ray_rad = norm_rad_angle(ray_rad);
 		r->curr_ray++;
 	}
-	#if BONUS
+	if (BONUS)
 		(draw_floor_tex(r, wall_limits, p), draw_ceil_tex(r, wall_limits, p));
-	#endif
 }
  

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_exit.c                                          :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/03/06 19:03:27 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:26:25 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void	clean_exit(int exit_code)
 		__free_data(s_data());
 	if (s_game() != NULL)
 		__free_game(s_game());
-	// yama(CLEAN_ALL, NULL, 0);
+	yama(CLEAN_ALL, NULL, 0);
 	exit_game(s_mlx(), exit_code);
 }

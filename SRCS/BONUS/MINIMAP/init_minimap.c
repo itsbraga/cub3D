@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:38:24 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/03 02:36:28 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 18:25:35 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	__check_mmap_size(t_minimap *mmap)
 		mmap->height = 128;
 }
 
+// peut-etre supprimer les deux images (mmap + mlx) --> free_mlx
 static int	__init_minimap_img(t_mlx *mlx, t_minimap *mmap)
 {
 	mmap->width = (int)(WIN_WIDTH * mmap->ratio);
@@ -31,14 +32,14 @@ static int	__init_minimap_img(t_mlx *mlx, t_minimap *mmap)
 		err_msg("minilibX", ERR_IMG);
 		return (FAILURE);
 	}
-	mmap->img.addr = mlx_get_data_addr(mmap->img.img_ptr, 
-		&mmap->img.bits_per_pixel,
-		&mmap->img.size_line,
-		&mmap->img.endian);
+	mmap->img.addr = mlx_get_data_addr(mmap->img.img_ptr,
+			&mmap->img.bits_per_pixel,
+			&mmap->img.size_line,
+			&mmap->img.endian);
 	if (mmap->img.addr == NULL)
 	{
 		del_img(mlx, mmap->img.img_ptr);
-		free_mlx(mlx); // peut-etre supprimer les deux images (mmap + mlx)
+		free_mlx(mlx);
 		err_msg("minilibX", ERR_ADDR);
 		return (FAILURE);
 	}

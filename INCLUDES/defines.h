@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 00:54:12 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:27:41 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-#ifndef BONUS
-# define BONUS 1
-#endif
+# ifndef BONUS
+#  define BONUS 1
+# endif
 
 # define VALID_MAP "01 NSEW"
 # define VALID_BONUS_MAP "012 NSEW"
@@ -104,20 +104,20 @@ Cannot initialize minilibX image"
  * PLAYER MOVEMENTS
 \**************************/
 
-#if !BONUS
-# define MOVE_SPEED 3
-# define ROTATION_SPEED 2
-#else
-# define MOVE_SPEED 5
-# define ROTATION_SPEED 4
-#endif
+# if !BONUS
+#  define MOVE_SPEED 3
+#  define ROTATION_SPEED 3
+# else
+#  define MOVE_SPEED 4
+#  define ROTATION_SPEED 4
+# endif
 
 # define COLLISION_WARN "/!\\ Collision detected /!\\\n"
 
 // Array of pointers to functions
-typedef void	(*move_array)(t_game *game);
+typedef void	(*t_move_array)(t_game *game);
 
-// Move_array *f() indexes
+// t_move_array *f() indexes
 # define _W 0
 # define _S 1
 # define _A 2

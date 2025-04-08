@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:55 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 00:11:06 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:25:17 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,19 @@
 
 static void	__process_line(char *line, char *trimmed, t_data *data)
 {
-	if (is_wall_texture_line(trimmed) == true)
+	if (is_wall_texture_line(trimmed))
 		process_texture_lines(trimmed, data->textures);
 	else if (trimmed[0] == 'F' || trimmed[0] == 'C' || trimmed[0] == 'D')
 	{
-		#if !BONUS
+		if (!BONUS)
 			process_color_lines(trimmed, data);
-		#else
+		else
 			process_bonus_texture_lines(trimmed, data->textures);
-		#endif
 	}
-	#if !BONUS
-		else if (data->feature_filled == 6 && is_map_line(line))
-			fill_map2d_array(data->map, line);
-	#else
-		else if (data->feature_filled == 7 && is_bonus_map_line(line))
-			fill_map2d_array(data->map, line);
-	#endif
-	else
-	{
-		err_msg(NULL, ERR_CONFIG);
-		free(line);
-		clean_exit(FAILURE);
-	}
+	else if (!BONUS && data->feature_filled == 6 && is_map_line(line))
+		fill_map2d_array(data->map, line);
+	else if (BONUS && data->feature_filled == 7 && is_bonus_map_line(line))
+		fill_map2d_array(data->map, line);
 }
 
 void	get_file_data(int fd, t_data *data)
@@ -51,7 +41,7 @@ void	get_file_data(int fd, t_data *data)
 		{
 			free(line);
 			line = get_next_line(fd, false);
-			continue;
+			continue ;
 		}
 		trimmed = skip_spaces(line);
 		__process_line(line, trimmed, data);

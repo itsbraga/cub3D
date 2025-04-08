@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/07 21:51:04 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	print_map_debug(t_map *map, const char *name)
 
 	i = 0;
 	printf(BOLD PINK "\n%s: " RESET, name);
-	printf("[height = %zu, width = %zu]\n", map->height, map->width);
+	printf("[height = %zu, width = %zu]\n", map->size.height, map->size.width);
 	printf(BOLD PG "Player position: [%f, %f]\n\n" RESET, \
 		s_game()->player->pos.x, s_game()->player->pos.y);
-	while (i < map->height)
+	while (i < map->size.height)
 	{
 		printf("%s\n", map->map2d[i]);
 		i++;
@@ -51,10 +51,9 @@ int	main(int argc, char **argv)
 		clean_exit(FAILURE);
 	}
 	print_map_debug(data->map, argv[1]);
-	#if BONUS
+	if (BONUS)
 		get_weapons(data->weapon);
-	#endif
 	set_hooks(mlx, game);
-	mlx_loop_hook(mlx->mlx_ptr, &render_frame, game); // ou  &render_2d, game
+	mlx_loop_hook(mlx->mlx_ptr, &render_frame, game);
 	mlx_loop(mlx->mlx_ptr);
 }

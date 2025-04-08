@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/03 03:26:07 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:04:11 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 	- Checks all four adjacent cells recursively
 	- Stops at walls ('1') or previously filled cells ('F')
 */
-bool	flood_fill(char **map, int y, int x, size_t height, size_t width)
+bool	flood_fill(char **map, int y, int x, t_size size)
 {
-	if (x < 0 || y < 0 || (size_t)x >= width || (size_t)y >= height
+	if (x < 0 || y < 0 || (size_t)x >= size.width || (size_t)y >= size.height
 		|| map[y][x] == '\0')
 	{
 		err_msg(NULL, ERR_MAP_BORDERS);
@@ -37,13 +37,13 @@ bool	flood_fill(char **map, int y, int x, size_t height, size_t width)
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return (true);
 	map[y][x] = 'F';
-	if (flood_fill(map, y - 1, x, height, width) == false)
+	if (flood_fill(map, y - 1, x, size) == false)
 		return (false);
-	if (flood_fill(map, y + 1, x, height, width) == false)
+	if (flood_fill(map, y + 1, x, size) == false)
 		return (false);
-	if (flood_fill(map, y, x - 1, height, width) == false)
+	if (flood_fill(map, y, x - 1, size) == false)
 		return (false);
-	if (flood_fill(map, y, x + 1, height, width) == false)
+	if (flood_fill(map, y, x + 1, size) == false)
 		return (false);
 	return (true);
 }
@@ -53,7 +53,7 @@ static char	*__normalize_line_for_flood(char *line, size_t width)
 	char	*normed_line;
 	size_t	line_len;
 	size_t	j;
-	
+
 	normed_line = malloc(width + 1);
 	secure_malloc(normed_line, true);
 	line_len = ft_strlen(line);
@@ -77,19 +77,19 @@ static char	*__normalize_line_for_flood(char *line, size_t width)
 	return (normed_line);
 }
 
-char	**normalize_map_for_flood(char **map, size_t height, size_t width)
+char	**normalize_map_for_flood(char **map, t_size size)
 {
 	char	**normed;
 	size_t	i;
 
-	normed = malloc(sizeof(char *) * (height + 1));
+	normed = malloc(sizeof(char *) * (size.height + 1));
 	secure_malloc(normed, true);
 	i = 0;
-	while (i < height)
+	while (i < size.height)
 	{
-		normed[i] = __normalize_line_for_flood(map[i], width);
+		normed[i] = __normalize_line_for_flood(map[i], size.width);
 		i++;
 	}
-	normed[height] = NULL;
+	normed[size.height] = NULL;
 	return (normed);
 }

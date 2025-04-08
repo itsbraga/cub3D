@@ -92,8 +92,7 @@ static void	__calculate_slopes(t_triangle *tr)
 	- Updates intersection points for next Y level using pre-calculated slopes
 	This creates a filled triangle one horizontal line at a time
 */
-void	draw_hline(t_minimap *mmap, t_triangle *tr, int start_y, int end_y,
-int color)
+void	draw_hline(t_minimap *mmap, t_triangle *tr, int start_y, int end_y)
 {
 	int	x1;
 	int	x2;
@@ -111,7 +110,7 @@ int color)
 		}
 		while (x1 <= x2)
 		{
-			my_pixel_put_to_img(&mmap->img, color, x1, start_y);
+			my_pixel_put_to_img(&mmap->img, RED_PIX, x1, start_y);
 			x1++;
 		}
 		tr->curr_x1 += tr->curr_slope1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 00:09:05 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 21:58:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@ void	init_map(t_map *map, char *path_to_file, int fd, t_data *data)
 static void	__init_textures(t_textures *tex, t_data *data)
 {
 	ft_bzero(tex, sizeof(t_textures));
-	#if !BONUS
+	if (!BONUS)
+	{
 		tex->imgs = yama(CREATE, NULL, sizeof(t_img) * 4);
 		secure_malloc(tex->imgs, true);
-	#else
+	}
+	else
+	{
 		tex->imgs = yama(CREATE, NULL, sizeof(t_img) * 7);
 		secure_malloc(tex->imgs, true);
-	#endif
+	}
 	data->textures = tex;
 }
 
@@ -54,8 +57,9 @@ void	init_structs(t_data *data, t_game *game, t_mlx *mlx)
 	__init_textures(data->textures, data);
 	__init_raycasting(game->ray, game);
 	__init_keys(game->keys, game);
-	#if BONUS
+	if (BONUS)
+	{
 		init_minimap(game->mmap, game);
 		init_weapon(data->weapon, data);
-	#endif
+	}
 }

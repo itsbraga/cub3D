@@ -40,7 +40,7 @@ void	process_texture_lines(char *line, t_textures *tex)
 		tex->imgs[EA] = xpm_to_mlx_img(tex->east);
 		s_data()->feature_filled++;
 	}
-	if (__has_all_textures(tex) == true && check_textures_paths(tex) == FAILURE)
+	if (__has_all_textures(tex) && check_textures_paths(tex) == 1)
 		clean_exit(FAILURE);
 }
 
@@ -67,7 +67,6 @@ void	process_bonus_texture_lines(char *line, t_textures *tex)
 		tex->imgs[D] = xpm_to_mlx_img(tex->door);
 		s_data()->feature_filled++;
 	}
-	if (__has_all_bonus_textures(tex) == true
-		&& check_bonus_textures_paths(tex) == FAILURE)
+	if (__has_all_bonus_textures(tex) && check_bonus_textures_paths(tex) == 1)
 		clean_exit(FAILURE);
 }

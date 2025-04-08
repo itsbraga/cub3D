@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:24:27 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/12 18:57:53 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:23:23 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool	__is_valid_extension(char *filename)
 static int	__is_not_directory(const char *path)
 {
 	int	fd;
-	
+
 	fd = open(path, __O_DIRECTORY);
 	if (fd > 0)
 	{

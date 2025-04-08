@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 23:15:26 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/17 23:12:38 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:55:39 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	start_button(t_title_screen *s)
 	}
 	s->second_layer.pos.x = (WIN_WIDTH - s->second_layer.img.width) / 2;
 	s->second_layer.pos.y = WIN_HEIGHT - s->second_layer.img.height - 40;
-	s->second_layer.width = s->second_layer.img.width;
-	s->second_layer.height = s->second_layer.img.height;
+	s->second_layer.size.width = s->second_layer.img.width;
+	s->second_layer.size.height = s->second_layer.img.height;
 }
 
 void	controls_menu(t_title_screen *s);
