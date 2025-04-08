@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/27 23:35:39 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 01:02:36 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,32 +158,32 @@ t_point *closest_inter)
 	}
 }
 
-// One ray == one x
-// With ray_rad, we start with the leftmost ray
-void	raycasting(t_data *d, t_player *player, t_raycasting *r)
+// With ray_rad, we start with the leftmost ray (one ray per x)
+void	raycasting(t_data *d, t_player *p, t_raycasting *r)
 {
 	t_point	closest_inter;
 	float	ray_rad;
+	int		wall_limits[WIN_WIDTH][2];
 
 	r->curr_ray = 0;
-	r->player_rad = degree_to_radian(player->dir);
+	r->player_rad = degree_to_radian(p->dir);
 	ray_rad = norm_rad_angle(r->player_rad - (degree_to_radian(r->fov) / 2));
 	while (r->curr_ray < WIN_WIDTH)
 	{
-		inter_hline(d, player, r, ray_rad);
-		inter_vline(d, player, r, ray_rad);
-		find_closest_inter(player, r, &closest_inter);
-		draw_wall(r, ray_rad);
-		#if BONUS
-			fc_precalculations(r, ray_rad);
-			draw_floor_texture(r);
-			draw_ceiling_texture(r);
-		#else
-			draw_floor_color(r, d);
-			draw_ceiling_color(r, d);
+		(inter_hline(d, p, r, ray_rad), inter_vline(d, p, r, ray_rad));
+		find_closest_inter(p, r, &closest_inter);
+		draw_wall_tex(r, ray_rad);
+		wall_limits[r->curr_ray][0] = r->wall_start_y;
+		wall_limits[r->curr_ray][1] = r->wall_end_y;
+		#if !BONUS
+			(draw_floor_color(r, d), draw_ceil_color(r, d));
 		#endif
 		ray_rad += (degree_to_radian(r->fov) / WIN_WIDTH);
 		ray_rad = norm_rad_angle(ray_rad);
 		r->curr_ray++;
 	}
+	#if BONUS
+		(draw_floor_tex(r, wall_limits, p), draw_ceil_tex(r, wall_limits, p));
+	#endif
 }
+ 

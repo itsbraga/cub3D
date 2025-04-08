@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/20 00:26:40 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/08 00:10:06 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ t_data	*s_data(void)
 		secure_malloc(instance->map, true);
 		instance->textures = yama(CREATE, NULL, sizeof(t_textures));
 		secure_malloc(instance->textures, true);
-		#if BONUS
+		#if !BONUS
+			instance->weapon = NULL;
+			instance->ennemy = NULL;
+		#else
 			instance->weapon = yama(CREATE, NULL, sizeof(t_weapon));
 			secure_malloc(instance->weapon, true);
 			instance->ennemy = yama(CREATE, NULL, sizeof(t_ennemy));
 			secure_malloc(instance->ennemy, true);
-		#else
-			instance->weapon = NULL;
-			instance->ennemy = NULL;
 		#endif
 		instance->floor_color = 0;
 		instance->ceiling_color = 0;
@@ -60,11 +60,11 @@ t_game	*s_game(void)
 		secure_malloc(instance->ray, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
-		#if BONUS
+		#if !BONUS
+			instance->mmap = NULL;
+		#else
 			instance->mmap = yama(CREATE, NULL, sizeof(t_minimap));
 			secure_malloc(instance->mmap, true);
-		#else
-			instance->mmap = NULL;
 		#endif
 		instance->mlx = NULL;
 		instance->data = NULL;

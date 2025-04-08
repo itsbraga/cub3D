@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compute_n_draw_player.c                          	:+:      :+:    :+:   */
+/*   draw_player.c                          			:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void	__compute_player_trigonometry(float theta, t_trigo *trig)
+static void	__calculate_player_trigonometry(float theta, t_trigo *trig)
 {
 	trig->cos_theta = cos(theta);
 	trig->sin_theta = sin(theta);
@@ -32,7 +32,7 @@ static void	__compute_player_trigonometry(float theta, t_trigo *trig)
 	- Draws both outline and filled triangle in red
 	Note: Triangle size is slightly smaller than tile size (60% of it)
 */
-void	draw_player(t_minimap *mmap, t_player *player)
+static void	__draw_player(t_minimap *mmap, t_player *player)
 {
 	const int		L = (int)(mmap->tile_size * 0.6);
 	const float		h = L * 1.3;
@@ -42,7 +42,7 @@ void	draw_player(t_minimap *mmap, t_player *player)
 
 	ft_bzero(&triangle, sizeof(t_triangle));
 	triangle.theta = degree_to_radian(player->dir);
-	__compute_player_trigonometry(triangle.theta, &triangle.trig);
+	__calculate_player_trigonometry(triangle.theta, &triangle.trig);
 	new_pos.x = player->pos.x - triangle.trig.cos_theta * offset_dist;
 	new_pos.y = player->pos.y - triangle.trig.sin_theta * offset_dist;
 	triangle.a.x = new_pos.x + triangle.trig.cos_theta * h;
@@ -55,4 +55,16 @@ void	draw_player(t_minimap *mmap, t_player *player)
 	draw_line(&mmap->img, triangle.b, triangle.c, RED_PIX);
 	draw_line(&mmap->img, triangle.c, triangle.a, RED_PIX);
 	fill_triangle(mmap, triangle.a, triangle.b, triangle.c, RED_PIX);
+}
+
+void	draw_centered_player(t_game *game, t_minimap *mmap)
+{
+	t_player	player_copy;
+	t_point		center;
+
+	player_copy = *(game->player);
+	center.x = mmap->width / 2;
+	center.y = mmap->height / 2;
+	player_copy.pos = center;
+	__draw_player(mmap, &player_copy);
 }

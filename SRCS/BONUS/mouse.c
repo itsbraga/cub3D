@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_bonus.c                                      :+:      :+:    :+:   */
+/*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 19:44:44 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/08 01:32:21 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	toggle_mouse_visibility(t_mlx *mlx, t_game_state state)
 		mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 }
 
-static int	__handle_mouse_boundaries(int x, int *prev_x, t_mlx *mlx)
+static int	__manage_mouse_wrapping(int x, int *prev_x, t_mlx *mlx)
 {
 	int	center_x;
 	int	center_y;
@@ -45,13 +45,13 @@ int	mouse_motion(int x, int y, t_game *game)
 
 	if (prev_x == -1)
 		prev_x = x;
-	if (__handle_mouse_boundaries(x, &prev_x, game->mlx) == 1)
+	if (__manage_mouse_wrapping(x, &prev_x, game->mlx) == 1)
 		return (recentered = true, SUCCESS);
 	if (recentered == true)
-    {
-        recentered = false;
-        prev_x = x;
-    }
+	{
+		recentered = false;
+		prev_x = x;
+	}
 	delta_x = x - prev_x;
 	if (delta_x != 0)
 	{

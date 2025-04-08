@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:55 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/27 23:57:54 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 00:11:06 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ static void	__process_line(char *line, char *trimmed, t_data *data)
 		process_texture_lines(trimmed, data->textures);
 	else if (trimmed[0] == 'F' || trimmed[0] == 'C' || trimmed[0] == 'D')
 	{
-		#if BONUS
-			process_bonus_texture_lines(trimmed, data->textures);
-		#else
+		#if !BONUS
 			process_color_lines(trimmed, data);
+		#else
+			process_bonus_texture_lines(trimmed, data->textures);
 		#endif
 	}
-	#if BONUS
-		else if (data->feature_filled == 7 && is_bonus_map_line(line))
+	#if !BONUS
+		else if (data->feature_filled == 6 && is_map_line(line))
 			fill_map2d_array(data->map, line);
 	#else
-		else if (data->feature_filled == 6 && is_map_line(line))
+		else if (data->feature_filled == 7 && is_bonus_map_line(line))
 			fill_map2d_array(data->map, line);
 	#endif
 	else
