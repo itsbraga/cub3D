@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/03 02:36:54 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 01:19:08 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,6 @@ typedef struct s_raycasting
 	float		player_rad;
 	uint32_t	fov;
 	uint32_t	curr_ray;
-	float		ray_cos;
-	float		ray_sin;
-	float		fixed_angle_cos;
 }				t_raycasting;
 
 typedef	struct s_keys_event
@@ -141,15 +138,27 @@ typedef	struct s_keys_event
 	bool	key_array[7];
 }				t_keys;
 
-typedef struct s_fc_core
+typedef struct s_fc_render
 {
-	int		curr_y;
-	float	vdist;
-	float	row_dist;
-	int		tex_x;
-	int		tex_y;
-	int		color;
-}				t_fc_core;
+	t_img			*img;
+	int				(*wall_limits)[2];
+	int				*tex_buffer;
+	float			leftmost_ray_dir_x;
+	float			leftmost_ray_dir_y;
+	float			rightmost_ray_dir_x;
+	float			rightmost_ray_dir_y;
+	int				horizon_line;
+	float			v_scale_factor;
+
+	int				y;
+	float			row_dist;
+	float			step_x;
+	float			step_y;
+	float			start_x;
+	float			start_y;
+	int				color;
+	float			shadow_factor;
+}			t_fc_render;
 
 typedef struct s_textures
 {

@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/02 21:02:56 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 00:10:37 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,6 @@ static void	__init_move_array(move_array *functions)
 	functions[7] = NULL;
 }
 
-void	bonus_player_moves(t_data *data, t_player *player)
-{
-	t_point	new_ppos;
-
-	new_ppos = (t_point){player->pos.x, player->pos.y};
-	if (handle_collisions(data, player, &new_ppos) == FAILURE)
-		return ;
-	player->pos.x = roundf(new_ppos.x);
-	player->pos.y = roundf(new_ppos.y);
-}
-
 void	mandatory_player_moves(t_data *data, t_player *player)
 {
 	t_point	new_ppos;
@@ -50,6 +39,17 @@ void	mandatory_player_moves(t_data *data, t_player *player)
 	player->pos.y = new_ppos.y;
 }
 
+void	bonus_player_moves(t_data *data, t_player *player)
+{
+	t_point	new_ppos;
+
+	new_ppos = (t_point){player->pos.x, player->pos.y};
+	if (handle_collisions(data, player, &new_ppos) == FAILURE)
+		return ;
+	player->pos.x = roundf(new_ppos.x);
+	player->pos.y = roundf(new_ppos.y);
+}
+
 void	move_player(t_game *game, t_keys *key)
 {
 	int			i;
@@ -61,15 +61,14 @@ void	move_player(t_game *game, t_keys *key)
 	i = 0;
 	while (i < 7)
 	{
-		// printf("key->key_array[%d] = %d\n", i, key->key_array[i]);
 		if (key->key_array[i] == 1)
 			functions[i](game);
 		i++;
 	}
-	#if BONUS
-		bonus_player_moves(game->data, player);
-	#else
+	#if !BONUS
 		mandatory_player_moves(game->data, player);
+	#else
+		bonus_player_moves(game->data, player);
 	#endif
 }
 

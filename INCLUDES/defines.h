@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/03 01:37:11 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 00:54:12 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,12 @@ Cannot initialize minilibX image"
  * PLAYER MOVEMENTS
 \**************************/
 
-#if BONUS
-# define MOVE_SPEED 5
-# define ROTATION_SPEED 4
-#else
+#if !BONUS
 # define MOVE_SPEED 3
 # define ROTATION_SPEED 2
+#else
+# define MOVE_SPEED 5
+# define ROTATION_SPEED 4
 #endif
 
 # define COLLISION_WARN "/!\\ Collision detected /!\\\n"

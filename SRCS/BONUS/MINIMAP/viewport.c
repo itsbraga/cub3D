@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 02:36:56 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/03 02:38:25 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 01:24:38 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,4 @@ t_viewport	compute_viewport(t_minimap *mmap)
 	vp.offset_x = (mmap->width - vp.pixel_width) / 2;
 	vp.offset_y = (mmap->height - vp.pixel_height) / 2;
 	return (vp);
-}
-
-void	draw_centered_player(t_game *game, t_minimap *mmap)
-{
-	t_player	player_copy;
-	t_point		center;
-
-	player_copy = *(game->player);
-	center.x = mmap->width / 2;
-	center.y = mmap->height / 2;
-	player_copy.pos = center;
-	draw_player(mmap, &player_copy);
 }

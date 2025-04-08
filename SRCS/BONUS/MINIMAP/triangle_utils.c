@@ -58,7 +58,7 @@ static void	__sort_points_by_y(t_triangle *tr)
 	- slope3: middle to bottom point (b to c)
 	Each slope = dx/dy (change in x divided by change in y)
 */
-static void	__compute_slopes(t_triangle *tr)
+static void	__calculate_slopes(t_triangle *tr)
 {
 	double	dx;
 	double	dy;
@@ -126,7 +126,7 @@ void	init_triangle(t_triangle *tr, t_point a, t_point b, t_point c)
 	tr->b = b;
 	tr->c = c;
 	__sort_points_by_y(tr);
-	__compute_slopes(tr);
+	__calculate_slopes(tr);
 	tr->curr_x1 = tr->a.x;
 	tr->curr_x2 = tr->a.x;
 	tr->curr_slope1 = tr->slope1;
