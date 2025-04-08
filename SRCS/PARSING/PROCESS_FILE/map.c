@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/27 23:08:50 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*__normalize_line_for_storage(char *line, size_t width)
 	size_t	line_len;
 	int		j;
 	size_t	k;
-	
+
 	normed_line = malloc(width + 1);
 	secure_malloc(normed_line, true);
 	line_len = ft_strlen(line);
@@ -78,18 +78,18 @@ void	fill_map2d_array(t_map *map, char *line)
 	char	**tmp;
 	size_t	i;
 
-	tmp = malloc(sizeof(char *) * (map->height + 2));
+	tmp = malloc(sizeof(char *) * (map->size.height + 2));
 	secure_malloc(tmp, true);
 	i = 0;
-	while (i < map->height)
+	while (i < map->size.height)
 	{
 		tmp[i] = map->map2d[i];
 		i++;
 	}
-	tmp[map->height] = ft_strdup(line);
-	secure_malloc(tmp[map->height], true);
-	tmp[map->height + 1] = NULL;
+	tmp[map->size.height] = ft_strdup(line);
+	secure_malloc(tmp[map->size.height], true);
+	tmp[map->size.height + 1] = NULL;
 	free(map->map2d);
 	map->map2d = tmp;
-	map->height++;
+	map->size.height++;
 }

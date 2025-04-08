@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/27 23:08:50 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static int	__find_player_in_line(char *line, t_player *player, size_t i)
 
 static bool	__is_valid_player_pos(t_map *map, t_point pos)
 {
-	if (pos.x < 0 || pos.y < 0 || (size_t)pos.y >= map->height
-		|| (size_t)pos.x >= map->width
+	if (pos.x < 0 || pos.y < 0 || (size_t)pos.y >= map->size.height
+		|| (size_t)pos.x >= map->size.width
 		|| map->map2d[(int)pos.y][(int)pos.x] == '1'
 		|| map->map2d[(int)pos.y][(int)pos.x] == ' '
 		|| map->map2d[(int)pos.y][(int)pos.x] == '\t')
@@ -73,7 +73,7 @@ void	get_player_direction(t_map *map, t_player *player)
 
 	player_count = 0;
 	i = 0;
-	while (i < map->height)
+	while (i < map->size.height)
 	{
 		player_count += __find_player_in_line(map->map2d[i], player, i);
 		i++;

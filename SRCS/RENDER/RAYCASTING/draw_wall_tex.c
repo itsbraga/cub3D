@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_wall_tex_tex.c                                    :+:      :+:    :+:   */
+/*   draw_wall_tex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 21:24:45 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 00:40:39 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:36:31 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	__draw_vline_pixels(int start_y, int end_y, int *tex_buffer,
 t_raycasting *r)
 {
-	int 	y;
-	int 	tex_y;
+	int		y;
+	int		tex_y;
 	float	accumulator_tex_y;
-	int 	color;
+	int		color;
 	t_img	*img;
 
 	y = start_y;
@@ -34,7 +34,7 @@ t_raycasting *r)
 		my_pixel_put_to_img(img, color, r->curr_ray, y);
 		y++;
 	}
-	return ; 
+	return ;
 }
 
 void	draw_wall_tex(t_raycasting *r, float ray_rad)

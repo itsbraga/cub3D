@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   viewport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 02:36:56 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 01:24:38 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 18:31:16 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_viewport	compute_viewport(t_minimap *mmap)
 
 	vp.perimeter = 4;
 	visible_tiles = (vp.perimeter * 2) + 1;
-	if (visible_tiles > 0) 
+	if (visible_tiles > 0)
 	{
 		tile_size_w = mmap->width / visible_tiles;
 		tile_size_h = mmap->height / visible_tiles;

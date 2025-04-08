@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
+#include "debug_2D.h"
 
 /*
 	Updates the trigonometric values for the player's direction
@@ -39,9 +39,9 @@ static void	__compute_player_trigonometry(float theta, t_trigo *trig)
 */
 void	draw_player_2d(t_mlx *mlx, t_player *player)
 {
-	const int		L = 10;
-	const float		h = L * 1.3;
-	const float		offset_dist = L * 0.5;
+	const int		width = 10;
+	const float		height = width * 1.3;
+	const float		offset_dist = width * 0.5;
 	t_triangle		triangle;
 	t_point			new_pos;
 
@@ -50,8 +50,8 @@ void	draw_player_2d(t_mlx *mlx, t_player *player)
 	__compute_player_trigonometry(triangle.theta, &triangle.trig);
 	new_pos.x = player->pos.x - triangle.trig.cos_theta * offset_dist;
 	new_pos.y = player->pos.y - triangle.trig.sin_theta * offset_dist;
-	triangle.a.x = new_pos.x + triangle.trig.cos_theta * h;
-	triangle.a.y = new_pos.y + triangle.trig.sin_theta * h;
+	triangle.a.x = new_pos.x + triangle.trig.cos_theta * height;
+	triangle.a.y = new_pos.y + triangle.trig.sin_theta * height;
 	triangle.b.x = new_pos.x + triangle.trig.cos_theta_plus_pi2 * offset_dist;
 	triangle.b.y = new_pos.y + triangle.trig.sin_theta_plus_pi2 * offset_dist;
 	triangle.c.x = new_pos.x + triangle.trig.cos_theta_minus_pi2 * offset_dist;
@@ -59,5 +59,5 @@ void	draw_player_2d(t_mlx *mlx, t_player *player)
 	draw_line(&mlx->img, triangle.a, triangle.b, RED_PIX);
 	draw_line(&mlx->img, triangle.b, triangle.c, RED_PIX);
 	draw_line(&mlx->img, triangle.c, triangle.a, RED_PIX);
-	fill_triangle_2d(mlx, triangle.a, triangle.b, triangle.c, RED_PIX);
+	fill_triangle_2d(mlx, triangle.a, triangle.b, triangle.c);
 }

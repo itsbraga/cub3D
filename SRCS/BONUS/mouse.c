@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 01:32:21 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:16:09 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ static int	__manage_mouse_wrapping(int x, int *prev_x, t_mlx *mlx)
 
 int	mouse_motion(int x, int y, t_game *game)
 {
-	(void)y;
 	static int	prev_x = -1;
 	static bool	recentered = false;
 	int			delta_x;
 
+	(void)y;
 	if (prev_x == -1)
 		prev_x = x;
 	if (__manage_mouse_wrapping(x, &prev_x, game->mlx) == 1)
 		return (recentered = true, SUCCESS);
-	if (recentered == true)
+	if (recentered)
 	{
 		recentered = false;
 		prev_x = x;

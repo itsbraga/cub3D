@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tex_buffer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 00:16:54 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/27 23:44:07 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:33:59 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	load_tex_buffer(int orientation, int *tex_buffer)
 	{
 		while (x < TILE_SIZE)
 		{
-			pixel_addr = tex_img->addr  + ((y * tex_img->size_line) + (x * 4));
+			pixel_addr = tex_img->addr + ((y * tex_img->size_line) + (x * 4));
 			tex_buffer[y * TILE_SIZE + x] = *(int *)pixel_addr;
 			x++;
 		}
@@ -39,7 +39,7 @@ void	load_tex_buffer(int orientation, int *tex_buffer)
 void	handle_tex_buffer(int *tex_buffer, t_raycasting *r, float ray_rad)
 {
 	ft_bzero(tex_buffer, TILE_SIZE * TILE_SIZE);
-	if (r->is_door == true)
+	if (r->is_door)
 	{
 		load_tex_buffer(D, tex_buffer);
 		return ;

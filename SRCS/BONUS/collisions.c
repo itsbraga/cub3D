@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/01 18:34:01 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static bool	__collision_detected(t_data *data, int cell_x, int cell_y)
 {
-	if (cell_x < 0 || cell_x >= (int)data->map->width
-		|| cell_y < 0 || cell_y >= (int)data->map->height)
+	if (cell_x < 0 || cell_x >= (int)data->map->size.width
+		|| cell_y < 0 || cell_y >= (int)data->map->size.height)
 		return (false);
 	if (data->map->map2d[cell_y][cell_x] == '1')
 	{
@@ -35,15 +35,17 @@ static bool	__collision_detected(t_data *data, int cell_x, int cell_y)
 	[1] Top-right corner
 	[2] Bottom-left corner
 	[3] Bottom-right corner
+
+	Variable:
+	- buffer: The larger the buffer, the further the player is from the wall
 */
 static int	__check_corners(t_data *data, t_point *new_ppos, int cell_x,
 int cell_y)
 {
-	t_point corners[4];
+	t_point	corners[4];
 	float	buffer;
 	int		i;
 
-	// The larger the buffer, the further the player is from the wall
 	buffer = TILE_SIZE / 32;
 	corners[0] = (t_point){new_ppos->x - buffer, new_ppos->y - buffer};
 	corners[1] = (t_point){new_ppos->x + buffer, new_ppos->y - buffer};
@@ -54,7 +56,7 @@ int cell_y)
 	{
 		cell_x = (int)(corners[i].x / TILE_SIZE);
 		cell_y = (int)(corners[i].y / TILE_SIZE);
-		if (__collision_detected(data, cell_x, cell_y) == true)
+		if (__collision_detected(data, cell_x, cell_y))
 			return (FAILURE);
 		i++;
 	}
@@ -70,7 +72,7 @@ int	handle_collisions(t_data *data, t_player *player, t_point *new_ppos)
 	new_ppos->y = player->pos.y + player->move.y;
 	cell_x = (int)(new_ppos->x / TILE_SIZE);
 	cell_y = (int)(new_ppos->y / TILE_SIZE);
-	if (__collision_detected(data, cell_x, cell_y) == true)
+	if (__collision_detected(data, cell_x, cell_y))
 		return (FAILURE);
 	if (__check_corners(data, new_ppos, cell_x, cell_y) == FAILURE)
 		return (FAILURE);

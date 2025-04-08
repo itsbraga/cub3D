@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/02 23:16:23 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:33:00 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ void	set_hooks(t_mlx *mlx, t_game *game)
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress, game);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease, game);
-	#if BONUS
+	if (BONUS)
+	{
 		toggle_mouse_visibility(mlx, game->state);
-		mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, &mouse_motion,
+		mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, &mouse_motion, \
 			game);
-	#endif
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 01:19:08 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:54:25 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_img
 {
 	void	*img_ptr;
 	char	*addr;
-	int		bits_per_pixel; 
-	int		size_line;		// bits per line
+	int		bits_per_pixel;
+	int		size_line;	// bits per line
 	int		endian;
 	int		width;
 	int		height;
@@ -62,54 +62,57 @@ typedef struct s_point
 	float	y;
 }				t_point;
 
+typedef struct s_size
+{
+	size_t	width;
+	size_t	height;
+}				t_size;
+
 typedef struct s_layer
 {
-	t_point		pos;
-	t_img		img;
-	size_t		width;
-	size_t		height;
+	t_point	pos;
+	t_img	img;
+	t_size	size;
 }				t_layer;
 
 typedef struct s_title_screen
 {
-	t_img		first_layer;
-	t_layer		second_layer;
+	t_img	first_layer;
+	t_layer	second_layer;
 }				t_title_screen;
 
 typedef struct s_map
 {
-	char		*path_to_file;
-	int			fd;
-	char		**map2d;
-	size_t		height;
-	size_t		width;
+	char	*path_to_file;
+	int		fd;
+	char	**map2d;
+	t_size	size;
 }				t_map;
 
 typedef struct s_weapon
 {
-	int			id;
-	int			xpm_nb;
-	t_img		*sprites;
-	int			state;
-	bool		still_shooting;
-	int			frame;		// frame_counter
-	bool		frame_counter_started;
-	t_point		pos;
+	int		id;
+	int		xpm_nb;
+	t_img	*sprites;
+	int		state;
+	bool	still_shooting;
+	int		frame;		// frame_counter
+	bool	frame_counter_started;
+	t_point	pos;
 }				t_weapon;
 
-typedef	struct s_ennemy
+typedef struct s_ennemy
 {
-	int 	id;
+	int		id;
 	t_img	*sprites;
 	float	hp;
-	// behaviour struct
 }				t_ennemy;
 
 typedef struct s_player
 {
-	int			dir;
-	t_point		pos;
-	t_point		move;
+	int		dir;
+	t_point	pos;
+	t_point	move;
 }				t_player;
 
 typedef struct s_raycasting
@@ -133,31 +136,30 @@ typedef struct s_raycasting
 	uint32_t	curr_ray;
 }				t_raycasting;
 
-typedef	struct s_keys_event
+typedef struct s_keys_event
 {
 	bool	key_array[7];
 }				t_keys;
 
 typedef struct s_fc_render
 {
-	t_img			*img;
-	int				(*wall_limits)[2];
-	int				*tex_buffer;
-	float			leftmost_ray_dir_x;
-	float			leftmost_ray_dir_y;
-	float			rightmost_ray_dir_x;
-	float			rightmost_ray_dir_y;
-	int				horizon_line;
-	float			v_scale_factor;
-
-	int				y;
-	float			row_dist;
-	float			step_x;
-	float			step_y;
-	float			start_x;
-	float			start_y;
-	int				color;
-	float			shadow_factor;
+	t_img	*img;
+	int		(*wall_limits)[2];
+	int		*tex_buffer;
+	float	leftmost_ray_dir_x;
+	float	leftmost_ray_dir_y;
+	float	rightmost_ray_dir_x;
+	float	rightmost_ray_dir_y;
+	int		horizon_line;
+	float	v_scale_factor;
+	int		y;
+	float	row_dist;
+	float	step_x;
+	float	step_y;
+	float	start_x;
+	float	start_y;
+	int		color;
+	float	shadow_factor;
 }			t_fc_render;
 
 typedef struct s_textures
@@ -195,18 +197,18 @@ typedef struct s_trigo
 
 typedef struct s_triangle
 {
-	t_point		a;
-	t_point		b;
-	t_point		c;
-	float		theta;		// line angle
-	double		slope1;		// line slope
-	double		slope2;
-	double		slope3;
-	double		curr_x1;	// coordinates of point 1
-	double		curr_x2;	// coordinates of point 2
-	double		curr_slope1;
-	double		curr_slope2;
-	t_trigo		trig;
+	t_point	a;
+	t_point	b;
+	t_point	c;
+	float	theta;		// line angle
+	double	slope1;		// line slope
+	double	slope2;
+	double	slope3;
+	double	curr_x1;	// coordinates of point 1
+	double	curr_x2;	// coordinates of point 2
+	double	curr_slope1;
+	double	curr_slope2;
+	t_trigo	trig;
 }				t_triangle;
 
 typedef struct s_viewport

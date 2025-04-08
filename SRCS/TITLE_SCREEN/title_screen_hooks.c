@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 19:03:47 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/21 19:15:31 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:56:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	title_screen_mouse(int button, int x, int y, t_game *game)
 	t_layer	start_button;
 
 	start_button = game->title_screen.second_layer;
-	if (game->state == TITLE_SCREEN && button == Button1) // Clic gauche
+	if (game->state == TITLE_SCREEN && button == Button1)
 	{
 		if ((x >= start_button.pos.x && x <= start_button.pos.x
-				+ start_button.width)
+				+ start_button.size.width)
 			&& (y >= start_button.pos.y && y <= start_button.pos.y
-				+ start_button.height))
+				+ start_button.size.height))
 		{
 			game->state = GAME;
 			toggle_mouse_visibility(game->mlx, game->state);

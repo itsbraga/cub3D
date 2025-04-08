@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:30:28 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/12 19:04:20 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:16:15 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	*__add(t_gc_lst **yama, void *ptr, bool is_tab)
 {
 	t_gc_lst	*node;
 
-	if (is_tab == true)
+	if (is_tab)
 		return (__add_tab(yama, ptr));
 	node = new_gc_node(ptr, is_tab);
 	if (node == NULL)

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   move_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/08 00:10:37 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	__init_move_array(move_array *functions)
+static void	__init_move_array(t_move_array *functions)
 {
 	functions[0] = move_forward;
-	functions[1] = move_backward; 
-	functions[2] = straf_leftward; 
-	functions[3] = straf_rightward; 
+	functions[1] = move_backward;
+	functions[2] = straf_leftward;
+	functions[3] = straf_rightward;
 	functions[4] = rotate_leftward;
 	functions[5] = rotate_rightward;
 	functions[6] = shoot;
@@ -32,8 +32,8 @@ void	mandatory_player_moves(t_data *data, t_player *player)
 	map = data->map;
 	new_ppos.x = roundf(player->pos.x + player->move.x);
 	new_ppos.y = roundf(player->pos.y + player->move.y);
-	if (new_ppos.x < 0 || new_ppos.x >= map->width * TILE_SIZE
-		|| new_ppos.y < 0 || new_ppos.y >= map->height * TILE_SIZE)
+	if (new_ppos.x < 0 || new_ppos.x >= map->size.width * TILE_SIZE
+		|| new_ppos.y < 0 || new_ppos.y >= map->size.height * TILE_SIZE)
 		return ;
 	player->pos.x = new_ppos.x;
 	player->pos.y = new_ppos.y;
@@ -52,10 +52,10 @@ void	bonus_player_moves(t_data *data, t_player *player)
 
 void	move_player(t_game *game, t_keys *key)
 {
-	int			i;
-	move_array	functions[8];
-	t_player	*player;
-	
+	int				i;
+	t_move_array	functions[8];
+	t_player		*player;
+
 	player = game->player;
 	__init_move_array(functions);
 	i = 0;
@@ -65,11 +65,10 @@ void	move_player(t_game *game, t_keys *key)
 			functions[i](game);
 		i++;
 	}
-	#if !BONUS
+	if (!BONUS)
 		mandatory_player_moves(game->data, player);
-	#else
+	else
 		bonus_player_moves(game->data, player);
-	#endif
 }
 
 void	reset_move(t_player *player)

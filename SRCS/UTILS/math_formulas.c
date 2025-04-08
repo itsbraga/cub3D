@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_formulas.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/31 21:45:22 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/08 22:28:35 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ float	degree_to_radian(int degree)
 
 float	square(float to_square)
 {
-	float result;
+	float	result;
 
 	result = to_square * to_square;
 	return (result);

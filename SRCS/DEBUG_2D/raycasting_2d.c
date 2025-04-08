@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
+#include "debug_2D.h"
 
 float	compute_scale_factor(t_map *map)
 {
@@ -19,8 +19,8 @@ float	compute_scale_factor(t_map *map)
 	float	total_width;
 	float	total_height;
 
-	total_width = map->width * TILE_SIZE;
-	total_height = map->height * TILE_SIZE;
+	total_width = map->size.width * TILE_SIZE;
+	total_height = map->size.height * TILE_SIZE;
 	scale_x = (float)WIN_WIDTH / total_width;
 	scale_y = (float)WIN_HEIGHT / total_height;
 	if (scale_x < scale_y)
@@ -30,7 +30,7 @@ float	compute_scale_factor(t_map *map)
 
 t_point	scale_point(t_point p, float scale)
 {
-	t_point scaled;
+	t_point	scaled;
 
 	scaled.x = p.x * scale;
 	scaled.y = p.y * scale;
