@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 21:27:41 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/11 06:13:00 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,19 +134,23 @@ typedef void	(*t_move_array)(t_game *game);
 # define SPACE_KEY 32
 
 // Mouse
-# define MOUSE_SENSITIVITY_X 0.1f
+# define MOUSE_SENSITIVITY_X 0.05f
 # define MOUSE_SENSITIVITY_Y 0.05f
-# define MAX_PITCH 45 // designe le max d'inclinaison verticale de la camera
+// Inclinaison verticale max de la camera
+# define MAX_PITCH 45
 
 /**************************\
  * WEAPON
 \**************************/
 
+# define ARMORY "-- ARMORY --"
+# define MAX_SPRITES 15
 # define IDLE 0
 # define PREFIRE 1
 # define SHOOTING 2
 # define POSTFIRE 3
-# define FBS 3 // frame number by sprite
+// Frame number by sprite
+# define FBS 3
 
 /**************************\
  * PLAYER'S DIRECTION
@@ -159,16 +163,20 @@ typedef void	(*t_move_array)(t_game *game);
 # define W 180
 
 /**************************\
- * TEXTURE'S ORIENTATION
+ * TEXTURE
 \**************************/
 
+// Wall orientations
 # define NO	0
 # define SO 1
 # define WE 2
 # define EA 3
+
+// Other keywords
 # define F 4
 # define C 5
 # define D 6
+// # define M [x] // M for Monsters -> keyword for ennemies
 
 /**************************\
  * PIXEL COLORS

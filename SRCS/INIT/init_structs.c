@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 21:58:30 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/11 03:35:47 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,21 @@ static void	__init_textures(t_textures *tex, t_data *data)
 	ft_bzero(tex, sizeof(t_textures));
 	if (!BONUS)
 	{
+		tex->path = yama(CREATE, NULL, sizeof(char *) * 4);
+		secure_malloc(tex->path, true);
+		ft_bzero(tex->path, sizeof(char *) * 4);
 		tex->imgs = yama(CREATE, NULL, sizeof(t_img) * 4);
 		secure_malloc(tex->imgs, true);
 	}
 	else
 	{
+		tex->path = yama(CREATE, NULL, sizeof(char *) * 7);
+		secure_malloc(tex->path, true);
+		ft_bzero(tex->path, sizeof(char *) * 7);
 		tex->imgs = yama(CREATE, NULL, sizeof(t_img) * 7);
 		secure_malloc(tex->imgs, true);
 	}
-	data->textures = tex;
+	data->decor_tex = tex;
 }
 
 static void	__init_raycasting(t_raycasting *r, t_game *game)
@@ -54,12 +60,9 @@ void	init_structs(t_data *data, t_game *game, t_mlx *mlx)
 {
 	init_mlx(mlx, game);
 	init_title_screen(&game->title_screen);
-	__init_textures(data->textures, data);
+	__init_textures(data->decor_tex, data);
 	__init_raycasting(game->ray, game);
 	__init_keys(game->keys, game);
 	if (BONUS)
-	{
 		init_minimap(game->mmap, game);
-		init_weapon(data->weapon, data);
-	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 22:54:25 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/11 03:31:39 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_img
 	void	*img_ptr;
 	char	*addr;
 	int		bits_per_pixel;
-	int		size_line;	// bits per line
+	int		size_line;			// bits per line
 	int		endian;
 	int		width;
 	int		height;
@@ -88,25 +88,6 @@ typedef struct s_map
 	char	**map2d;
 	t_size	size;
 }				t_map;
-
-typedef struct s_weapon
-{
-	int		id;
-	int		xpm_nb;
-	t_img	*sprites;
-	int		state;
-	bool	still_shooting;
-	int		frame;		// frame_counter
-	bool	frame_counter_started;
-	t_point	pos;
-}				t_weapon;
-
-typedef struct s_ennemy
-{
-	int		id;
-	t_img	*sprites;
-	float	hp;
-}				t_ennemy;
 
 typedef struct s_player
 {
@@ -164,24 +145,41 @@ typedef struct s_fc_render
 
 typedef struct s_textures
 {
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-	char	*floor;
-	char	*ceiling;
-	char	*door;
+	char	**path;
 	t_img	*imgs;
 }				t_textures;
+
+typedef struct s_weapon
+{
+	char		*name;
+	int			id;
+	int			xpm_count;
+	t_textures	sprites;
+	int			state;
+	bool		still_shooting;
+	bool		frame_counter_started;
+	int			frame;			// frame_counter
+	t_point		pos;
+}				t_weapon;
+
+typedef struct s_ennemy
+{
+	int		id;
+	t_img	*sprites;
+	float	hp;
+}				t_ennemy;
 
 typedef struct s_data
 {
 	t_map		*map;
-	t_textures	*textures;
+	t_textures	*decor_tex;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	uint32_t	feature_filled;
-	t_weapon	*weapon;
+	t_weapon	**weapons;
+	int			weapon_count;
+	int			weapon_capacity;
+	int			curr_weapon_idx;
 	t_ennemy	*ennemy;
 }				t_data;
 
@@ -200,12 +198,12 @@ typedef struct s_triangle
 	t_point	a;
 	t_point	b;
 	t_point	c;
-	float	theta;		// line angle
-	double	slope1;		// line slope
+	float	theta;				// line angle
+	double	slope1;				// line slope
 	double	slope2;
 	double	slope3;
-	double	curr_x1;	// coordinates of point 1
-	double	curr_x2;	// coordinates of point 2
+	double	curr_x1;			// coordinates of point 1
+	double	curr_x2;			// coordinates of point 2
 	double	curr_slope1;
 	double	curr_slope2;
 	t_trigo	trig;
@@ -213,13 +211,13 @@ typedef struct s_triangle
 
 typedef struct s_viewport
 {
-	int		pixel_width;	// window width
+	int		pixel_width;		// window width
 	int		pixel_height;
-	int		offset_x;		// offset to center the minimap
+	int		offset_x;			// offset to center the minimap
 	int		offset_y;
-	int		perimeter;		// visible area on minimap
-	t_point	player_pos;		// player's precise world position (x, y)
-	float	scale_factor;	// ratio of world TILE_SIZE to minimap tile_size
+	int		perimeter;			// visible area on minimap
+	t_point	player_pos;			// player's precise world position (x, y)
+	float	scale_factor;		// ratio of world TILE_SIZE to minimap tile_size
 }				t_viewport;
 
 typedef struct s_minimap
@@ -227,7 +225,7 @@ typedef struct s_minimap
 	t_viewport	vp;
 	t_img		img;
 	t_point		pos;
-	float		ratio;		// ratio of minimap to window (%)
+	float		ratio;			// ratio of minimap to window (%)
 	int			width;
 	int			height;
 	size_t		tile_size;

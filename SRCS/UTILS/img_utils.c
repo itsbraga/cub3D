@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:33:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 22:30:09 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:23:50 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_img	resize_img(float scale_factor, t_img *to_resize)
 	return (resized);
 }
 
-t_img	xpm_to_mlx_img(char *relative_path)
+t_img	xpm_to_img(char *relative_path)
 {
 	t_img	img;
 

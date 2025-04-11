@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup.c                                          :+:      :+:    :+:   */
+/*   free_singletons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/04/08 22:26:25 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:59:59 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	__free_data(t_data *data)
+void	free_data(t_data *data)
 {
 	if (data != NULL)
 	{
@@ -23,7 +23,7 @@ static void	__free_data(t_data *data)
 	}
 }
 
-static void	__free_game(t_game *game)
+void	free_game(t_game *game)
 {
 	if (game != NULL)
 	{
@@ -50,21 +50,4 @@ void	free_mlx(t_mlx *mlx)
 			mlx->mlx_ptr = NULL;
 		}
 	}
-}
-
-int	exit_game(t_mlx *mlx, int exit_code)
-{
-	free_mlx(mlx);
-	exit(exit_code);
-}
-
-void	clean_exit(int exit_code)
-{
-	free_title_screen(&s_game()->title_screen);
-	if (s_data() != NULL)
-		__free_data(s_data());
-	if (s_game() != NULL)
-		__free_game(s_game());
-	yama(CLEAN_ALL, NULL, 0);
-	exit_game(s_mlx(), exit_code);
 }

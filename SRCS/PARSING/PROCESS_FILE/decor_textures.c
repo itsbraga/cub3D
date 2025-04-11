@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures.c                                   :+:      :+:    :+:   */
+/*   visual_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,59 +14,60 @@
 
 static bool	__has_all_textures(t_textures *tex)
 {
-	return (tex->north && tex->south && tex->west && tex->east);
+	return (tex->path[NO] && tex->path[SO] && tex->path[WE] && tex->path[EA]);
 }
 
-void	process_texture_lines(char *line, t_textures *tex)
+void	process_mandatory_tex_lines(char *line, t_textures *tex)
 {
-	fill_textures_paths(line, tex);
+	fill_tex_paths(line, tex);
+	if (__has_all_textures(tex) && check_mandatory_tex_paths(tex) == 1)
+		clean_exit(FAILURE);
 	if (ft_strncmp(line, "NO", 2) == 0)
 	{
-		tex->imgs[NO] = xpm_to_mlx_img(tex->north);
+		tex->imgs[NO] = xpm_to_img(tex->path[NO]);
 		s_data()->feature_filled++;
 	}
 	else if (ft_strncmp(line, "SO", 2) == 0)
 	{
-		tex->imgs[SO] = xpm_to_mlx_img(tex->south);
+		tex->imgs[SO] = xpm_to_img(tex->path[SO]);
 		s_data()->feature_filled++;
 	}
 	else if (ft_strncmp(line, "WE", 2) == 0)
 	{
-		tex->imgs[WE] = xpm_to_mlx_img(tex->west);
+		tex->imgs[WE] = xpm_to_img(tex->path[WE]);
 		s_data()->feature_filled++;
 	}
 	else
 	{
-		tex->imgs[EA] = xpm_to_mlx_img(tex->east);
+		tex->imgs[EA] = xpm_to_img(tex->path[EA]);
 		s_data()->feature_filled++;
 	}
-	if (__has_all_textures(tex) && check_textures_paths(tex) == 1)
-		clean_exit(FAILURE);
 }
 
 static bool	__has_all_bonus_textures(t_textures *tex)
 {
-	return (tex->floor && tex->ceiling && tex->door);
+	return (tex->path[F] && tex->path[C] && tex->path[D]);
 }
 
-void	process_bonus_texture_lines(char *line, t_textures *tex)
+void	process_bonus_tex_lines(char *line, t_textures *tex)
 {
-	fill_bonus_textures_paths(line, tex);
+	fill_bonus_tex_paths(line, tex);
+	if (__has_all_bonus_textures(tex)
+		&& check_bonus_tex_paths(tex) == FAILURE)
+		clean_exit(FAILURE);
 	if (line[0] == 'F')
 	{
-		tex->imgs[F] = xpm_to_mlx_img(tex->floor);
+		tex->imgs[F] = xpm_to_img(tex->path[F]);
 		s_data()->feature_filled++;
 	}
 	else if (line[0] == 'C')
 	{
-		tex->imgs[C] = xpm_to_mlx_img(tex->ceiling);
+		tex->imgs[C] = xpm_to_img(tex->path[C]);
 		s_data()->feature_filled++;
 	}
 	else if (line[0] == 'D')
 	{
-		tex->imgs[D] = xpm_to_mlx_img(tex->door);
+		tex->imgs[D] = xpm_to_img(tex->path[D]);
 		s_data()->feature_filled++;
 	}
-	if (__has_all_bonus_textures(tex) && check_bonus_textures_paths(tex) == 1)
-		clean_exit(FAILURE);
 }
