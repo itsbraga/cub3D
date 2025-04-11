@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   file_processing_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 23:50:46 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/27 23:57:19 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/11 04:01:37 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,48 +19,38 @@ char	*skip_spaces(char *line)
 	return (line);
 }
 
-bool	is_wall_texture_line(char *trimmed)
+bool	is_empty_line(char *line)
 {
-	if (ft_strncmp(trimmed, "NO", 2) == 0
-		|| ft_strncmp(trimmed, "SO", 2) == 0
-		|| ft_strncmp(trimmed, "WE", 2) == 0
-		|| ft_strncmp(trimmed, "EA", 2) == 0)
+	while (*line != '\0')
+	{
+		if (ft_isspace(*line) == 0)
+			return (false);
+		line++;
+	}
+	return (true);
+}
+
+bool	is_wall_tex_line(char *line)
+{
+	if (ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
+		|| ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0)
 		return (true);
 	return (false);
 }
 
-bool	is_map_line(char *line)
+bool	is_weapon_typename(char *line)
 {
-	int	i;
-
-	i = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] != '\n' && line[i] != '\t'
-			&& ft_strchr(VALID_MAP, line[i]) == NULL)
-		{
-			err_msg_quoted(&line[i], ERR_CHAR);
-			return (false);
-		}
-		i++;
-	}
-	return (true);
+	return (set_weapon_id(line) != -1);
 }
 
-bool	is_bonus_map_line(char *line)
+bool	is_sprite_line(char *line)
 {
-	int	i;
+	char	*trimmed;
 
-	i = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] != '\n' && line[i] != '\t'
-			&& ft_strchr(VALID_BONUS_MAP, line[i]) == NULL)
-		{
-			err_msg_quoted(&line[i], ERR_CHAR);
-			return (false);
-		}
-		i++;
-	}
-	return (true);
+	if (line == NULL || is_empty_line(line) || line[0] == '%')
+		return (false);
+	trimmed = skip_spaces(line);
+	if (ft_strncmp(trimmed, "./", 2) == 0)
+		return (true);
+	return (false);
 }

@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 15:20:42 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 22:26:53 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/11 02:12:21 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-bool	is_empty_line(char *line)
-{
-	while (*line != '\0')
-	{
-		if (ft_isspace(*line) == 0)
-			return (false);
-		line++;
-	}
-	return (true);
-}
 
 size_t	get_longest_line(char **map2d, size_t height)
 {
@@ -42,25 +31,38 @@ size_t	get_longest_line(char **map2d, size_t height)
 	return (max);
 }
 
-uint32_t	convert_rgb_into_uint(char *red, char *green, char *blue)
+bool	is_map_line(char *line)
 {
-	int	result;
-	int	r;
-	int	g;
-	int	b;
+	int	i;
 
-	result = 0;
-	r = ft_atoi(red, &result);
-	if (r < 0 || r > 255)
-		(err_msg(NULL, ERR_RGB), clean_exit(FAILURE));
-	g = ft_atoi(green, &result);
-	if (g < 0 || g > 255)
-		(err_msg(NULL, ERR_RGB), clean_exit(FAILURE));
-	b = ft_atoi(blue, &result);
-	if (b < 0 || b > 255)
-		(err_msg(NULL, ERR_RGB), clean_exit(FAILURE));
-	result = (r << 16);
-	result = result | (g << 8);
-	result = result | (b);
-	return ((uint32_t)result);
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] != '\n' && line[i] != '\t'
+			&& ft_strchr(VALID_MAP, line[i]) == NULL)
+		{
+			err_msg_quoted(&line[i], ERR_CHAR);
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
+bool	is_bonus_map_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] != '\n' && line[i] != '\t'
+			&& ft_strchr(VALID_BONUS_MAP, line[i]) == NULL)
+		{
+			err_msg_quoted(&line[i], ERR_CHAR);
+			return (false);
+		}
+		i++;
+	}
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 00:16:54 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/08 22:33:59 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:03:19 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	load_tex_buffer(int orientation, int *tex_buffer)
 
 	x = 0;
 	y = 0;
-	tex_img = &s_data()->textures->imgs[orientation];
+	tex_img = &s_data()->decor_tex->imgs[orientation];
 	pixel_addr = NULL;
 	while (y < TILE_SIZE)
 	{

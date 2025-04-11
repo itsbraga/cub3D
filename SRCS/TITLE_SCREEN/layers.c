@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 23:15:26 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/08 22:55:39 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:23:50 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	background(t_title_screen *s)
 {
-	s->first_layer = xpm_to_mlx_img("./TITLE_SCREEN/XPM/background_v2.xpm");
+	s->first_layer = xpm_to_img("./TITLE_SCREEN/XPM/background_v2.xpm");
 	if (s->first_layer.img_ptr == NULL)
 		return (err_msg("Title screen", ERR_BG_IMG));
 }
 
 void	start_button(t_title_screen *s)
 {
-	s->second_layer.img = xpm_to_mlx_img("./TITLE_SCREEN/XPM/start_button.xpm");
+	s->second_layer.img = xpm_to_img("./TITLE_SCREEN/XPM/start_button.xpm");
 	if (s->second_layer.img.img_ptr == NULL)
 	{
 		del_img(s_mlx(), s->first_layer.img_ptr);

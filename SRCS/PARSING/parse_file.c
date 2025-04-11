@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 23:05:57 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/10 11:24:39 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	__replace_by_final_map(t_data *data, size_t longest_line)
 	data->map->size.width = longest_line;
 }
 
-int	parsing(char *arg, t_data *data, t_game *game)
+int	parse_file(char *arg, t_data *data, t_game *game)
 {
 	int		fd;
 	t_map	*map;
