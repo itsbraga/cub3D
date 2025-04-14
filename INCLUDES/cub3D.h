@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/11 06:18:17 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/14 23:15:27 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,7 +270,7 @@ int		render_frame(t_game *game);
 \**********************/
 
 // collisions.c
-int		handle_collisions(t_data *data, t_player *player, t_point *new_ppos);
+bool	is_position_colliding(t_data *data, t_point pos);
 
 /**********************\
  *	MINIMAP

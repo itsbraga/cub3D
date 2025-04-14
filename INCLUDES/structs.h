@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/11 03:31:39 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/11 06:32:12 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ typedef struct s_weapon
 	int			xpm_count;
 	t_textures	sprites;
 	int			state;
-	bool		still_shooting;
+	// bool		still_shooting;
 	bool		frame_counter_started;
 	int			frame;			// frame_counter
 	t_point		pos;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/14 23:16:39 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,20 @@ void	mandatory_player_moves(t_data *data, t_player *player)
 
 void	bonus_player_moves(t_data *data, t_player *player)
 {
-	t_point	new_ppos;
+	t_point	check_pos_x;
+	t_point	check_pos_y;
 
-	new_ppos = (t_point){player->pos.x, player->pos.y};
-	if (handle_collisions(data, player, &new_ppos) == FAILURE)
-		return ;
-	player->pos.x = roundf(new_ppos.x);
-	player->pos.y = roundf(new_ppos.y);
+	// Calculate potential position if only moving along X
+	check_pos_x.x = player->pos.x + player->move.x;
+	check_pos_x.y = player->pos.y;
+	if (is_position_colliding(data, check_pos_x) == false)
+		player->pos.x = roundf(check_pos_x.x);
+	// Calculate potential position if only moving along Y
+	// Use the potentially updated player->pos.x
+	check_pos_y.x = player->pos.x;
+	check_pos_y.y = player->pos.y + player->move.y;
+	if (is_position_colliding(data, check_pos_y) == false)
+		player->pos.y = roundf(check_pos_y.y);
 }
 
 void	move_player(t_game *game, t_keys *key)
