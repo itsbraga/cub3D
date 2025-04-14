@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:33:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/09 18:23:50 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/15 00:36:21 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_img	xpm_to_img(char *relative_path)
 	if (img.addr == NULL)
 	{
 		err_msg("minilibX", ERR_ADDR);
-		del_img(s_mlx(), img.img_ptr);
+		mlx_destroy_image(s_mlx()->mlx_ptr, img.img_ptr);
 		ft_bzero(&img, sizeof(t_img));
 	}
 	return (img);

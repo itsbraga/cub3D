@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/15 00:16:21 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	inter_hline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 {
 	float	inv_tan;
 	t_point	curr_tile;
+	
+	inv_tan = 0.0f;
+	curr_tile = (t_point){0.0f, 0.0f};
 	
 	if (tan(ray_rad) != 0)
 		inv_tan = -1 / tan(ray_rad);
@@ -73,6 +76,9 @@ void	inter_vline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 {
 	float	neg_tan;
 	t_point	curr_tile;
+	
+	neg_tan = 0.0f;
+	curr_tile = (t_point){0.0f, 0.0f};
 	
 	// printf("%s\n", __func__);
 	neg_tan = -tan(ray_rad);
@@ -164,7 +170,17 @@ void	raycasting(t_data *d, t_player *p, t_raycasting *r)
 	t_point	closest_inter;
 	float	ray_rad;
 	int		wall_limits[WIN_WIDTH][2];
+	int		i;
 
+	closest_inter = (t_point){0.0f, 0.0f};
+	ray_rad = 0.0f;
+	i = 0;
+	while (i < WIN_WIDTH)
+	{
+		wall_limits[i][0] = 0;
+		wall_limits[i][1] = 0;
+		i++;
+	}
 	r->curr_ray = 0;
 	r->player_rad = degree_to_radian(p->dir);
 	ray_rad = norm_rad_angle(r->player_rad - (degree_to_radian(r->fov) / 2));

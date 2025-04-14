@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/10 15:21:55 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/15 00:29:46 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,43 @@ void	free_map(t_map *map)
 		my_free((void **)map->path_to_file);
 }
 
-void	free_weapons(t_weapon *w)
+void	free_textures(t_textures *tex)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (tex->imgs[i].img_ptr != NULL)
+			mlx_destroy_image(s_mlx()->mlx_ptr, tex->imgs[i].img_ptr);
+		if (tex->path[i] != NULL)
+			my_free((void **)tex->path[i]);
+		i++;
+	}
+	free(tex->imgs);
+	free(tex->path);
+	free(tex);
+}
+
+void	free_bonus_textures(t_textures *tex)
+{
+	int	i;
+
+	i = 0;
+	while (i < 7)
+	{
+		if (tex->imgs[i].img_ptr != NULL)
+			mlx_destroy_image(s_mlx()->mlx_ptr, tex->imgs[i].img_ptr);
+		if (tex->path[i] != NULL)
+			my_free((void **)tex->path[i]);
+		i++;
+	}
+	free(tex->imgs);
+	free(tex->path);
+	free(tex);
+}
+
+void	free_weapon(t_weapon *w)
 {
 	int	i;
 

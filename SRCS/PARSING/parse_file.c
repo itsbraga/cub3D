@@ -3,18 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/10 11:24:39 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/15 00:14:13 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+static void	__init_map(t_map *map, char *path_to_file, int fd, t_data *data)
+{
+	ft_bzero(map, sizeof(t_map));
+	map->path_to_file = yama(ADD, ft_strdup(path_to_file), 0);
+	secure_malloc(map->path_to_file, true);
+	map->fd = fd;
+	data->map = map;
+}
+
 static bool	__process_map_data(t_map *map, t_data *data, char *arg, int fd)
 {
-	init_map(map, arg, fd, data);
+	__init_map(map, arg, fd, data);
 	get_file_data(fd, data);
 	close(fd);
 	if (map->map2d == NULL || map->size.height == 0)
@@ -24,10 +33,12 @@ static bool	__process_map_data(t_map *map, t_data *data, char *arg, int fd)
 
 static bool	__validate_map(char **flood_map, t_size size, t_player *player)
 {
-	t_point	pos;
+	int	pos_x;
+	int	pos_y;
 
-	pos = (t_point){player->pos.x, player->pos.y};
-	if (flood_fill(flood_map, pos.y, pos.x, size) == false)
+	pos_x = (int)(player->pos.x / TILE_SIZE);
+	pos_y = (int)(player->pos.y / TILE_SIZE);
+	if (flood_fill(flood_map, pos_y, pos_x, size) == false)
 	{
 		free_array(flood_map);
 		return (false);

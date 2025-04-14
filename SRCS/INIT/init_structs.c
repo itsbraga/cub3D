@@ -6,19 +6,16 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/11 03:35:47 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 00:22:28 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_map(t_map *map, char *path_to_file, int fd, t_data *data)
+static void	__init_player(t_player *player, t_game *game)
 {
-	ft_bzero(map, sizeof(t_map));
-	map->path_to_file = yama(ADD, ft_strdup(path_to_file), 0);
-	secure_malloc(map->path_to_file, true);
-	map->fd = fd;
-	data->map = map;
+	ft_bzero(player, sizeof(t_player));
+	game->player = player;
 }
 
 static void	__init_textures(t_textures *tex, t_data *data)
@@ -52,7 +49,7 @@ static void	__init_raycasting(t_raycasting *r, t_game *game)
 
 static void	__init_keys(t_keys *keys, t_game *game)
 {
-	ft_bzero(keys->key_array, 6);
+	ft_bzero(keys->key_array, 7);
 	game->keys = keys;
 }
 
@@ -60,6 +57,7 @@ void	init_structs(t_data *data, t_game *game, t_mlx *mlx)
 {
 	init_mlx(mlx, game);
 	init_title_screen(&game->title_screen);
+	__init_player(game->player, game);
 	__init_textures(data->decor_tex, data);
 	__init_raycasting(game->ray, game);
 	__init_keys(game->keys, game);
