@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_singletons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/04/10 14:59:59 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/15 00:32:36 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,28 @@
 
 void	free_data(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	if (data != NULL)
 	{
 		if (data->map != NULL)
 			free_map(data->map);
-		// if (data->texture != NULL)
-		// 	del_img(s_mlx(), data->texture->img_ptr); x4
+		if (!BONUS && data->decor_tex != NULL)
+			free_textures(data->decor_tex);
+		if (BONUS && data->decor_tex != NULL)
+			free_bonus_textures(data->decor_tex);
+		if (data->weapons != NULL)
+		{
+			while (i < data->weapon_count)
+			{
+				if (data->weapons[i] != NULL)
+					free_weapon(data->weapons[i]);
+				i++;
+			}
+		}
 	}
+	// free(data);
 }
 
 void	free_game(t_game *game)
@@ -28,10 +43,19 @@ void	free_game(t_game *game)
 	if (game != NULL)
 	{
 		// if (game->player != NULL)
-		//
+		// 	my_free((void **)&game->player);
+		// if (game->ray != NULL)
+		// 	my_free((void **)&game->ray);
 		// if (game->keys != NULL)
-		// 	// free_keys func
+		// 	my_free((void **)&game->keys);
+		if (game->mmap != NULL)
+		{
+			if (game->mmap->img.img_ptr != NULL)
+				mlx_destroy_image(game->mlx->mlx_ptr, game->mmap->img.img_ptr);
+			my_free((void **)&game->mmap);
+		}
 	}
+	// free(game);
 }
 
 void	free_mlx(t_mlx *mlx)
@@ -40,9 +64,15 @@ void	free_mlx(t_mlx *mlx)
 	if (mlx != NULL)
 	{
 		if (mlx->img.img_ptr != NULL)
+		{
 			mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);
+			mlx->img.img_ptr = NULL;
+		}
 		if (mlx->win_ptr != NULL)
+		{
 			mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+			mlx->win_ptr = NULL;
+		}
 		if (mlx->mlx_ptr != NULL)
 		{
 			mlx_destroy_display(mlx->mlx_ptr);

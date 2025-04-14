@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/14 23:09:14 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/14 23:26:48 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static bool	__collision_detected(t_data *data, int cell_x, int cell_y)
 */
 static bool	__check_corners_collision(t_data *data, t_point pos)
 {
-	t_point	corners[4];
-	float	buffer;
-	int		i;
-	int		cell_x;
-	int		cell_y;
+	t_point	corners[4] = {{0, 0}, {0, 0}, {0, 0}, {0, 0}};
+	float	buffer = 0.0f;
+	int		i = 0;
+	int		cell_x = 0;
+	int		cell_y = 0;
 
 	buffer = TILE_SIZE / 32;
 	corners[0] = (t_point){pos.x - buffer, pos.y - buffer};
@@ -66,8 +66,8 @@ static bool	__check_corners_collision(t_data *data, t_point pos)
 
 bool	is_position_colliding(t_data *data, t_point pos)
 {
-	int	cell_x;
-	int	cell_y;
+	int	cell_x = 0;
+	int	cell_y = 0;
 
 	if (pos.x < 0 || pos.x >= data->map->size.width * TILE_SIZE
 		|| pos.y < 0 || pos.y >= data->map->size.height * TILE_SIZE)

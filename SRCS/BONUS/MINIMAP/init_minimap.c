@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:38:24 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 18:25:35 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/15 00:35:40 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	__init_minimap_img(t_mlx *mlx, t_minimap *mmap)
 			&mmap->img.endian);
 	if (mmap->img.addr == NULL)
 	{
-		del_img(mlx, mmap->img.img_ptr);
+		mlx_destroy_image(mlx->mlx_ptr, mmap->img.img_ptr);
 		free_mlx(mlx);
 		err_msg("minilibX", ERR_ADDR);
 		return (FAILURE);

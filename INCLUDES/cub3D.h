@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/14 23:15:27 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 00:14:26 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_mlx	*s_mlx(void);
 void	init_mlx(t_mlx *mlx, t_game *game);
 
 // init_structs.c
-void	init_map(t_map *map, char *path_to_file, int fd, t_data *data);
 void	init_structs(t_data *data, t_game *game, t_mlx *mlx);
 
 /**********************\
@@ -166,7 +165,9 @@ void	free_int_array(int **array);
 // CLEANUP/free_structs.c
 void	free_title_screen(t_title_screen *screen);
 void	free_map(t_map *map);
-void	free_weapons(t_weapon *w);
+void	free_textures(t_textures *tex);
+void	free_bonus_textures(t_textures *tex);
+void	free_weapon(t_weapon *w);
 
 // CLEANUP/free_singletons.c
 void	free_data(t_data *data);

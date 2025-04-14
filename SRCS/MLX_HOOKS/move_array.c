@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/14 23:16:39 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 00:18:54 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	bonus_player_moves(t_data *data, t_player *player)
 	t_point	check_pos_x;
 	t_point	check_pos_y;
 
-	// Calculate potential position if only moving along X
+	// Calculate potential position if only moving x
 	check_pos_x.x = player->pos.x + player->move.x;
 	check_pos_x.y = player->pos.y;
 	if (is_position_colliding(data, check_pos_x) == false)
 		player->pos.x = roundf(check_pos_x.x);
-	// Calculate potential position if only moving along Y
+	// Calculate potential position if only moving y
 	// Use the potentially updated player->pos.x
 	check_pos_y.x = player->pos.x;
 	check_pos_y.y = player->pos.y + player->move.y;
