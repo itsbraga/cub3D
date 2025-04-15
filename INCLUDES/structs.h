@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/15 00:42:17 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 21:29:40 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,18 +158,10 @@ typedef struct s_weapon
 	int			xpm_count;
 	t_textures	sprites;
 	int			state;
-	// bool		still_shooting;
 	bool		frame_counter_started;
 	int			frame;			// frame_counter
 	t_point		pos;
 }				t_weapon;
-
-typedef struct s_ennemy
-{
-	int		id;
-	t_img	*sprites;
-	float	hp;
-}				t_ennemy;
 
 typedef struct s_data
 {
@@ -182,7 +174,6 @@ typedef struct s_data
 	int			weapon_count;
 	int			weapon_capacity;
 	int			curr_weapon_idx;
-	t_ennemy	*ennemy;
 }				t_data;
 
 typedef struct s_trigo

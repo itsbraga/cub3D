@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 02:12:03 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/11 06:20:33 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 23:13:49 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ int	read_sprite_paths(int fd, char **tmp_paths, int max_sprites)
 {
 	char	*line;
 	char	*path;
+	char	*trimmed;
 	int		count;
 
 	count = 0;
 	line = get_next_line(fd, false);
 	while (line != NULL)
 	{
-		if (line[0] == '%')
-		{
-			free(line);
-			return (count);
-		}
+		trimmed = skip_spaces(line);
+		if (trimmed[0] == '%' && (trimmed[1] == '\0' || trimmed[1] == '\n'))
+			return (free(line), count);
+		if (trimmed[0] == '%')
+			return (free(line), -1);
 		if (is_sprite_line(line))
 		{
 			if (count >= max_sprites)
 				return (free(line), -1);
 			path = get_texture_path(line);
-			tmp_paths[count] = path;
-			count++;
+			tmp_paths[count++] = path;
 		}
 		free(line);
 		line = get_next_line(fd, false);
@@ -113,6 +113,9 @@ void	load_and_resize_sprites(t_weapon *w)
 		w->sprites.imgs[i] = resize_img(scale_factor, &original_img);
 		i++;
 	}
-	w->pos.x = (int)WIN_WIDTH / 3;
+	if (w->id == 0)
+		w->pos.x = (int)WIN_WIDTH / 3;
+	else if (w->id == 1)
+		w->pos.x = (int)WIN_WIDTH / 2 + 20;
 	w->pos.y = (int)WIN_HEIGHT / 1.50;
 }

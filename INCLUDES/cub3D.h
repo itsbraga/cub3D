@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/15 00:14:26 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 19:24:02 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ int		title_screen_mouse(int button, int x, int y, t_game *game);
 // layers.c
 void	background(t_title_screen *s);
 void	start_button(t_title_screen *s);
-void	controls_menu(t_title_screen *s);
+// void	controls_menu(t_title_screen *s);
 
 // init.c
 void	init_title_screen(t_title_screen *screen);
@@ -316,9 +316,17 @@ int		mouse_motion(int x, int y, t_game *game);
 int			set_weapon_id(char *name);
 t_weapon	*new_weapon(char *name);
 
-// render_weapon.c
+// draw_weapon.c
 void		draw_weapon(int state, t_weapon *w, t_game *game);
-void		render_weapon(t_game *game, t_weapon *w);
+
+// mp40.c
+void		render_mp40(t_game *game, t_weapon *w);
+
+// enforcer_pistol.c
+void		render_enforcer_pistol(t_game *game, t_weapon *w);
+
+// weapon_array.c
+void		render_curr_weapon(t_game *game);
 
 // shoot.c
 void		shoot(t_game *game);

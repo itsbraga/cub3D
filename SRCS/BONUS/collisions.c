@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/14 23:26:48 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 23:19:42 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static bool	__collision_detected(t_data *data, int cell_x, int cell_y)
 */
 static bool	__check_corners_collision(t_data *data, t_point pos)
 {
-	t_point	corners[4] = {{0, 0}, {0, 0}, {0, 0}, {0, 0}};
+	t_point	corners[4];
 	float	buffer = 0.0f;
 	int		i = 0;
 	int		cell_x = 0;
 	int		cell_y = 0;
 
-	buffer = TILE_SIZE / 32;
+	buffer = TILE_SIZE / 10;
 	corners[0] = (t_point){pos.x - buffer, pos.y - buffer};
 	corners[1] = (t_point){pos.x + buffer, pos.y - buffer};
 	corners[2] = (t_point){pos.x - buffer, pos.y + buffer};

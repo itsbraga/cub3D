@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:38:24 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/15 00:35:40 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 23:10:45 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static int	__init_minimap_img(t_mlx *mlx, t_minimap *mmap)
 	mmap->img.width = mmap->width;
 	mmap->img.height = mmap->height;
 	mmap->pos.x = WIN_WIDTH - mmap->width - 20;
-	mmap->pos.y = WIN_HEIGHT - mmap->height - 20;
+	// mmap->pos.y = WIN_HEIGHT - mmap->height - 20;
+	mmap->pos.y = 20;
 	return (SUCCESS);
 }
 

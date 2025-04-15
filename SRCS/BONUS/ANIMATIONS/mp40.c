@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_weapon.c                                    :+:      :+:    :+:   */
+/*   render_mp40.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:58:18 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/11 04:28:38 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 17:18:50 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	draw_weapon(int state, t_weapon *w, t_game *game)
-{
-	t_mlx	*mlx;
-
-	mlx = game->mlx;
-	my_put_img_to_window(&w->sprites.imgs[state], &mlx->img,
-		w->pos.x, w->pos.y);
-}
-
-void	render_weapon(t_game *game, t_weapon *w)
+void	render_mp40(t_game *game, t_weapon *w)
 {
 	if (w->state == SHOOTING && w->frame == 0)
 		w->frame_counter_started = true;

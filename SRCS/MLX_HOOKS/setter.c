@@ -6,11 +6,21 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 22:33:00 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:23:16 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	__weapon_selection(int keycode, t_data *data)
+{
+	if (keycode == EXCLAMATION_KEY)
+		data->curr_weapon_idx = 0; // MP40
+	else if (keycode == AT_KEY)
+		data->curr_weapon_idx = 1; // Enforcer Pistol
+	// else if (keycode == HASH_KEY)
+	// 	data->curr_weapon_idx = 2; // ?
+}
 
 static int	__set_keyrelease(int keycode, t_game *game)
 {
@@ -51,6 +61,8 @@ static int	__set_keypress(int keycode, t_game *game)
 		game->keys->key_array[_RIGHT] = 1;
 	if (keycode == SPACE_KEY)
 		game->keys->key_array[_SPACE] = 1;
+	if (BONUS)
+		__weapon_selection(keycode, game->data);
 	return (SUCCESS);
 }
 
@@ -64,7 +76,7 @@ void	set_hooks(t_mlx *mlx, t_game *game)
 	if (BONUS)
 	{
 		toggle_mouse_visibility(mlx, game->state);
-		mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, &mouse_motion, \
+		mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, &mouse_motion,
 			game);
 	}
 }
