@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_weapon.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:51:48 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/11 05:15:18 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 19:23:03 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 int	set_weapon_id(char *name)
 {
 	int			i;
-	const char	*weapon_types[] = {
-		"MP40", "GUN", "FLAMETHROWER", "FLASHLIGHT", "FIVE", "SIX",
-		"SEVEN", "EIGHT", "NINE", "TEN", NULL};
+	const char	*typename[] = {"MP40", "ENFORCER_PISTOL", "FLAMETHROWER", NULL};
 
 	i = 0;
-	while (weapon_types[i] != NULL)
+	while (typename[i] != NULL)
 	{
-		if (ft_strncmp(name, weapon_types[i], ft_strlen(weapon_types[i])) == 0)
+		if (ft_strncmp(name, typename[i], ft_strlen(typename[i])) == 0)
 			return (i);
 		i++;
 	}
