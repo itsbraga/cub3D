@@ -3,26 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   create_weapon.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:51:48 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/11 05:15:18 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 02:12:29 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 int	set_weapon_id(char *name)
 {
 	int			i;
-	const char	*weapon_types[] = {
-		"MP40", "GUN", "FLAMETHROWER", "FLASHLIGHT", "FIVE", "SIX",
-		"SEVEN", "EIGHT", "NINE", "TEN", NULL};
+	const char	*typename[] = {"MP40", "GLOCK21", "FLAMETHROWER", NULL};
 
 	i = 0;
-	while (weapon_types[i] != NULL)
+	while (typename[i] != NULL)
 	{
-		if (ft_strncmp(name, weapon_types[i], ft_strlen(weapon_types[i])) == 0)
+		if (ft_strncmp(name, typename[i], ft_strlen(typename[i])) == 0)
 			return (i);
 		i++;
 	}
@@ -32,11 +30,14 @@ int	set_weapon_id(char *name)
 t_weapon	*new_weapon(char *name)
 {
 	t_weapon	*new;
+	char		*trimmed_name;
 
 	new = yama(CREATE, NULL, sizeof(t_weapon));
 	secure_malloc(new, true);
 	ft_bzero(new, sizeof(t_weapon));
-	new->name = yama(ADD, ft_strdup(ft_strtrim(name, "\n")), 0);
+	trimmed_name = ft_strtrim(name, "\n");
+	new->name = yama(ADD, ft_strdup(trimmed_name), 0);
+	free_and_set_null((void **)&trimmed_name);
 	new->id = set_weapon_id(name);
 	printf("DEBUG WEAPON: new->name = %s\n", new->name);
 	printf("DEBUG WEAPON: new->id = %d\n", new->id);

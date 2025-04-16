@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fc_render_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 23:14:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 01:45:58 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 01:40:45 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 /*
 	Calculates the direction vectors for the rays at the left and right

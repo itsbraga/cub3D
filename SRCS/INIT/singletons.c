@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/15 00:25:09 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/15 21:30:09 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ t_data	*s_data(void)
 		secure_malloc(instance->map, true);
 		instance->decor_tex = yama(CREATE, NULL, sizeof(t_textures));
 		secure_malloc(instance->decor_tex, true);
-		if (BONUS)
-		{
-			instance->ennemy = yama(CREATE, NULL, sizeof(t_ennemy));
-			secure_malloc(instance->ennemy, true);
-		}
 	}
 	return (instance);
 }

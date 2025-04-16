@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:33:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/15 00:36:21 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 01:59:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	build_resized_img(float scale_factor, t_img *src, t_img *dest)
 			src_px_pos.x = (int)(dest_px_pos.x / scale_factor);
 			src_px_pos.y = (int)(dest_px_pos.y / scale_factor);
 			src_pixel = (src_px_pos.y * src->size_line) + (src_px_pos.x * 4);
-			dest_pixel = (dest_px_pos.y * dest->size_line) \
-			+ (dest_px_pos.x * 4);
+			dest_pixel = (dest_px_pos.y * dest->size_line)
+				+ (dest_px_pos.x * 4);
 			// if ((uint32_t)*(int *)(src->addr + src_pixel) != 0xFF000000)
 			*(int *)(dest->addr + dest_pixel) = *(int *)(src->addr + src_pixel);
 			dest_px_pos.x++;
@@ -47,8 +47,18 @@ t_img	resize_img(float scale_factor, t_img *to_resize)
 	new_width = to_resize->width * scale_factor;
 	new_height = to_resize->height * scale_factor;
 	resized.img_ptr = mlx_new_image(s_mlx()->mlx_ptr, new_width, new_height);
-	resized.addr = mlx_get_data_addr(resized.img_ptr, &resized.bits_per_pixel,
-			&resized.size_line, &resized.endian);
+	if (resized.img_ptr == NULL)
+		return (err_msg("minilibX", ERR_IMG), resized);
+	resized.addr = mlx_get_data_addr(resized.img_ptr,
+			&resized.bits_per_pixel,
+			&resized.size_line,
+			&resized.endian);
+	if (resized.addr == NULL)
+	{
+		err_msg("minilibX", ERR_ADDR); // free_mlx(s_mlx());
+		mlx_destroy_image(s_mlx()->mlx_ptr, resized.img_ptr);
+		return (resized);
+	}
 	resized.width = new_width;
 	resized.height = new_height;
 	build_resized_img(scale_factor, to_resize, &resized);
@@ -77,7 +87,7 @@ t_img	xpm_to_img(char *relative_path)
 	{
 		err_msg("minilibX", ERR_ADDR);
 		mlx_destroy_image(s_mlx()->mlx_ptr, img.img_ptr);
-		ft_bzero(&img, sizeof(t_img));
+		return (img);
 	}
 	return (img);
 }

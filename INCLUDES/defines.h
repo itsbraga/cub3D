@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 03:59:16 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 05:00:53 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ Cannot initialize minilibX image"
 // Array of pointers to functions
 typedef void	(*t_move_array)(t_game *game);
 
-// t_move_array *f() indexes
+// key_array indexes
 # define _W 0
 # define _S 1
 # define _A 2
@@ -134,6 +134,9 @@ typedef void	(*t_move_array)(t_game *game);
 # define D_KEY 100
 # define SPACE_KEY 32
 # define E_KEY 101
+# define EXCLAMATION_KEY 49
+# define AT_KEY 50
+# define HASH_KEY 51
 
 // Mouse
 # define MOUSE_SENSITIVITY_X 0.05f
@@ -145,12 +148,18 @@ typedef void	(*t_move_array)(t_game *game);
  * WEAPON
 \**************************/
 
+// Array of pointers to functions
+typedef void	(*t_weapon_array)(t_game *game, t_weapon *w);
+
 # define ARMORY "-- ARMORY --"
-# define MAX_SPRITES 15
+# define MAX_SPRITES 35
+
+// Weapon states
 # define IDLE 0
 # define PREFIRE 1
 # define SHOOTING 2
 # define POSTFIRE 3
+
 // Frame number by sprite
 # define FBS 3
 
@@ -187,7 +196,6 @@ typedef void	(*t_move_array)(t_game *game);
 # define F 4
 # define C 5
 # define D 6
-// # define M [x] // M for Monsters -> keyword for ennemies
 
 /**************************\
  * PIXEL COLORS

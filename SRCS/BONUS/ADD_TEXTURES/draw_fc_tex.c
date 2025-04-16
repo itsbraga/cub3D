@@ -6,11 +6,11 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:07:23 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/08 18:54:44 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 01:40:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 /*
 	Calculates the necessary parameters to draw a horizontal scanline

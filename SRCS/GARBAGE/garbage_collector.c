@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:30:28 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 22:16:15 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 01:34:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	__clean_all(t_gc_lst **yama)
 	{
 		tmp = (*yama)->next;
 		(*yama)->next = NULL;
-		my_free((void **)&(*yama)->ptr);
+		free_and_set_null((void **)&(*yama)->ptr);
 		free((*yama));
 		(*yama) = tmp;
 	}
