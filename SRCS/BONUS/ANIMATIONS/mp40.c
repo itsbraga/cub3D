@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mp40.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:58:18 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 01:40:32 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:25:33 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	render_mp40(t_game *game, t_weapon *w)
 	else if (w->frame >= (FBS * 3 + 2) && w->frame < (FBS * 4 + 2))
 	{
 		draw_weapon(POSTFIRE, w, game);
-		if (game->keys->key_array[_SPACE] == 0)
+		if (game->keys->key_array[_SPACE] == 0 && game->keys->mouse_btn[0] == 0)
 			w->state = IDLE;
 		if (w->state == IDLE && w->frame == (FBS * 4 + 1))
 		{

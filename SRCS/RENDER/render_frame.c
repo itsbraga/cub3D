@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 05:04:12 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 15:12:41 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	render_frame(t_game *game)
 			mlx->img.img_ptr, 0, 0);
 		if (BONUS)
 		{
-			handle_doors(data->doors_nb, data->doors);
+			handle_doors(data->door_nb, data->doors);
 			render_minimap(game, game->mmap);
 			if (data->weapon_count > 0)
 				render_curr_weapon(game);

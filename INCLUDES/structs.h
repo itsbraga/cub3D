@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 05:01:30 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 15:20:24 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ typedef struct s_raycasting
 typedef struct s_keys_event
 {
 	bool	key_array[7];
-	bool	mouse_buttons[3];
+	bool	mouse_btn[3];
 }				t_keys;
 
 typedef struct s_fc_render
@@ -181,7 +181,7 @@ typedef struct s_data
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	uint32_t	feature_filled;
-	int			doors_nb;
+	int			door_nb;
 	int			door_index;
 	t_door		*doors;
 	t_weapon	**weapons;
