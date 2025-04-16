@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 02:33:39 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 18:35:59 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	raycasting(t_data *d, t_player *p, t_raycasting *r)
 	__init_wall_limits(wall_limits);
 	r->curr_ray = 0;
 	r->player_rad = degree_to_radian(p->dir);
+	printf("player_rad = %f\n", r->player_rad);
 	ray_rad = norm_rad_angle(r->player_rad - (degree_to_radian(r->fov) / 2));
 	while (r->curr_ray < WIN_WIDTH)
 	{
