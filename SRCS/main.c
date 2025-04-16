@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 04:11:50 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 14:16:56 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 		ft_printf(STDERR_FILENO, BOLD RED ERR RESET);
 		clean_exit(FAILURE);
 	}
-	// print_map_debug(data->map, argv[1]);
+	print_map_debug(data->map, argv[1]);
 	init_doors(data);
 	set_hooks(mlx, game);
 	mlx_loop_hook(mlx->mlx_ptr, &render_frame, game);

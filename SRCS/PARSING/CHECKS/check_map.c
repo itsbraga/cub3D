@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 23:04:11 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:57:13 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*__normalize_line_for_flood(char *line, size_t width)
 		if (j < line_len)
 		{
 			if (line[j] == ' ' || line[j] == '\t')
-				normed_line[j] = '1';
+				normed_line[j] = ' ';
 			else
 				normed_line[j] = line[j];
 		}

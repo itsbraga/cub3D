@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_inter_v.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 19:27:28 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 04:14:18 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 13:46:37 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-bool static	__ray_is_horizontal(float ray_rad, t_player *p, t_raycasting *r)
+static bool	__ray_is_horizontal(float ray_rad, t_player *p, t_raycasting *r)
 {
 	if (fabs(ray_rad - PI) < EPS || fabs(ray_rad) < EPS)
 	{
@@ -24,7 +24,7 @@ bool static	__ray_is_horizontal(float ray_rad, t_player *p, t_raycasting *r)
 		return (false);
 }
 
-void static	__define_v_offset(float ray_rad, float neg_tan, t_raycasting *r)
+static void	__define_v_offset(float ray_rad, float neg_tan, t_raycasting *r)
 {
 	if (ray_rad > PI2 && ray_rad < PI3)
 		r->v_offset.x = -TILE_SIZE;
@@ -65,10 +65,8 @@ static void	__ray_travel_loop(t_raycasting *r, t_data *d)
 void	inter_vline(t_data *d, t_player *p, t_raycasting *r, float ray_rad)
 {
 	float	neg_tan;
-	t_point	curr_tile;
 
 	neg_tan = -tan(ray_rad);
-	curr_tile = (t_point){0.0f, 0.0f};
 	if (__ray_is_horizontal(ray_rad, p, r) == true)
 		return ;
 	else if (ray_rad > PI2 && ray_rad < PI3)

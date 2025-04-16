@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_weapon.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:51:48 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 02:12:29 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:05:41 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ t_weapon	*new_weapon(char *name)
 	new->name = yama(ADD, ft_strdup(trimmed_name), 0);
 	free_and_set_null((void **)&trimmed_name);
 	new->id = set_weapon_id(name);
-	printf("DEBUG WEAPON: new->name = %s\n", new->name);
-	printf("DEBUG WEAPON: new->id = %d\n", new->id);
 	new->state = IDLE;
 	return (new);
 }
