@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/15 00:22:28 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 04:09:47 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,8 @@ void	init_structs(t_data *data, t_game *game, t_mlx *mlx)
 	__init_raycasting(game->ray, game);
 	__init_keys(game->keys, game);
 	if (BONUS)
+	{
+		
 		init_minimap(game->mmap, game);
+	}
 }

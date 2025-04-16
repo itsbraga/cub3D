@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/11 06:13:00 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 03:59:16 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define EPS 0.000001
 # define TILE_SIZE 64
 # define VISIBILITY_DIST_MAX 450
+# define DOOR_SBF 0.02 // DOOR STEP BY FRAME
 
 /**************************\
  * YAMA FLAGS
@@ -132,6 +133,7 @@ typedef void	(*t_move_array)(t_game *game);
 # define S_KEY 115
 # define D_KEY 100
 # define SPACE_KEY 32
+# define E_KEY 101
 
 // Mouse
 # define MOUSE_SENSITIVITY_X 0.05f
@@ -151,6 +153,15 @@ typedef void	(*t_move_array)(t_game *game);
 # define POSTFIRE 3
 // Frame number by sprite
 # define FBS 3
+
+/**************************\
+ * DOORS
+\**************************/
+
+# define CLOSED 0
+# define OPEN 1
+# define CLOSING 2
+# define OPENING 3
 
 /**************************\
  * PLAYER'S DIRECTION

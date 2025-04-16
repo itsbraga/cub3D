@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:22:58 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/15 00:12:54 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 02:21:26 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ bool	is_within_map_bounds(int x, int y, t_map *map)
 	return (true);
 }
 
-bool	is_door(t_data *data, t_point *p)
+bool	is_door(t_data *data, t_point p)
 {
 	int	cell_x;
 	int	cell_y;
 
-	cell_x = (int)(p->x / TILE_SIZE);
-	cell_y = (int)(p->y / TILE_SIZE);
+	cell_x = (int)(p.x / TILE_SIZE);
+	cell_y = (int)(p.y / TILE_SIZE);
 	if (cell_x < 0 || cell_x >= (int)data->map->size.width
 		|| cell_y < 0 || cell_y >= (int)data->map->size.height)
 		return (false);
