@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:32:30 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/12 19:04:20 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 01:34:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	remove_gc_node(t_gc_lst **yama, void *ptr)
 	{
 		node = *yama;
 		*yama = (*yama)->next;
-		my_free((void **)&node->ptr);
-		my_free((void **)&node);
+		free_and_set_null((void **)&node->ptr);
+		free_and_set_null((void **)&node);
 		return (SUCCESS);
 	}
 	prev = *yama;
@@ -67,7 +67,7 @@ int	remove_gc_node(t_gc_lst **yama, void *ptr)
 		prev = prev->next;
 	node = prev->next;
 	prev->next = (prev->next)->next;
-	my_free((void **)&node->ptr);
-	my_free((void **)&node);
+	free_and_set_null((void **)&node->ptr);
+	free_and_set_null((void **)&node);
 	return (SUCCESS);
 }

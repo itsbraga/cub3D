@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:58:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 22:17:31 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 01:35:00 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	secure_malloc(void *to_secure, bool full_clean)
 	}
 }
 
-void	my_free(void **to_free)
+void	free_and_set_null(void **to_free)
 {
 	if (to_free != NULL && (*to_free) != NULL)
 	{

@@ -6,16 +6,16 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:31:17 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/15 19:24:12 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 02:25:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static void	__init_weapon_array(t_weapon_array *functions)
 {
 	functions[0] = render_mp40;
-	functions[1] = render_enforcer_pistol;
+	functions[1] = render_glock21;
 	functions[2] = NULL;
 }
 

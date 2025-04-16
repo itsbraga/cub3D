@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:59:06 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/10 14:59:12 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 01:34:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	free_array(char **array)
 	i = 0;
 	while (array[i] != NULL)
 	{
-		my_free((void **)&array[i]);
+		free_and_set_null((void **)&array[i]);
 		i++;
 	}
-	my_free((void **)&array);
+	free_and_set_null((void **)&array);
 }
 
 void	free_int_array(int **array)
@@ -36,8 +36,8 @@ void	free_int_array(int **array)
 	i = 0;
 	while (array[i] != NULL)
 	{
-		my_free((void **)&array[i]);
+		free_and_set_null((void **)&array[i]);
 		i++;
 	}
-	my_free((void **)&array);
+	free_and_set_null((void **)&array);
 }

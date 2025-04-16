@@ -6,11 +6,11 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/15 23:19:42 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 01:41:14 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static bool	__collision_detected(t_data *data, int cell_x, int cell_y)
 {
