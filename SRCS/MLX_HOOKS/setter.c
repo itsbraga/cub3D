@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 22:33:00 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 04:16:37 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ static int	__set_keypress(int keycode, t_game *game)
 		game->keys->key_array[_RIGHT] = 1;
 	if (keycode == SPACE_KEY)
 		game->keys->key_array[_SPACE] = 1;
+	if (BONUS)
+	{
+		if (keycode == E_KEY)
+			trigger_door(game);	
+	}
 	return (SUCCESS);
 }
 

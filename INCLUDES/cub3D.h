@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/15 00:14:26 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 03:58:17 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	my_free(void **to_free);
 void	swap_point(t_point *p0, t_point *p1);
 bool	is_valid_point(t_point point, size_t win_width, size_t win_height);
 bool	is_within_map_bounds(int x, int y, t_map *map);
-bool	is_door(t_data *data, t_point *p);
+bool	is_door(t_data *data, t_point p);
 
 // draw_line.c
 void	draw_line(t_img *img, t_point p0, t_point p1, int color);
@@ -219,6 +219,9 @@ void	draw_title_screen(t_game *game, t_mlx *mlx);
  *	MLX_HOOKS
 \**********************/
 
+//trigger_door.c
+void	trigger_door(t_game *game);
+
 // movements.c
 void	move_forward(t_game *game);
 void	move_backward(t_game *game);
@@ -240,24 +243,30 @@ void	set_hooks(t_mlx *mlx, t_game *game);
  *	RENDER
 \**********************/
 
-// RAYCASTING/shadow.c
+// DRAW/shadow.c
 float	calculate_shadow_factor(float distance);
 int		apply_shadow_factor(int color, float shadow_factor);
 
-// RAYCASTING/tex_buffer.c
+// DRAW/tex_buffer.c
 void	load_tex_buffer(int orientation, int *tex_buffer);
 void	handle_tex_buffer(int *tex_buffer, t_raycasting *r, float ray_rad);
 void	handle_fc_tex_buffer(int orientation, int *tex_buffer);
 
-// draw_wall_tex_tex.c
+// DRAW/draw_wall_tex.c
 void	draw_wall_tex(t_raycasting *r, float ray_rad);
 
-// RAYCASTING/draw_fc_colors.c
+// DRAW/draw_fc_colors.c
 void	draw_floor_color(t_raycasting *r, t_data *d);
 void	draw_ceil_color(t_raycasting *r, t_data *d);
 
-// RAYCASTING/raycasting.c
+// RAYCASTING/raycast_loop.c
 void	raycasting(t_data *d, t_player *p, t_raycasting *r);
+// RAYCASTING/raycast_inter_h.c
+void	inter_hline(t_data *d, t_player *p, t_raycasting *r, float ray_rad);
+// RAYCASTING/raycast_inter_v.c
+void	inter_vline(t_data *d, t_player *p, t_raycasting *r, float ray_rad);
+// RAYCASTING/raycast_utils.c
+void	get_draw_info(t_data *data, t_player *player, t_raycasting *r);
 
 // render_frame.c
 int		render_frame(t_game *game);
@@ -299,6 +308,20 @@ t_viewport	compute_viewport(t_minimap *mmap);
 
 // render_minimap.c
 void	render_minimap(t_game *game, t_minimap *mmap);
+
+/**********************\
+ *	DOORS
+\**********************/
+
+// init_doors.c
+void	init_doors(t_data *data);
+// movement_doors.c
+bool	can_vray_pass_door(t_point ray, t_data *d);
+bool	can_hray_pass_door(t_point ray, t_data *d);
+void 	handle_doors(int doors_nb, t_door *doors);
+// utils_doors.c
+void	reset_door_ray(t_raycasting *r);
+void	get_door_index(t_point pos, t_data *d);
 
 /**********************\
  *	MOUSE

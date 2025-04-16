@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/15 00:42:17 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 03:29:01 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,19 @@ typedef struct s_player
 	t_point	move;
 }				t_player;
 
+typedef struct s_door
+{
+	t_point		pos;
+	int 		state;
+	float 		ratio;
+}	t_door;
+
 typedef struct s_raycasting
 {
+	t_point		closest_inter;
 	t_point		h_ray_inter;
 	t_point		v_ray_inter;
+	t_point		door_ray;
 	t_point		h_offset;
 	t_point		v_offset;
 	float		dist_wall;
@@ -109,6 +118,7 @@ typedef struct s_raycasting
 	int			wall_end_y;
 	float		wall_h;
 	int			tex_x;
+	int			door_tex_offset;
 	float		step_tex_y;
 	float		offset_tex_y;
 	float		shadow_factor;
@@ -178,6 +188,9 @@ typedef struct s_data
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	uint32_t	feature_filled;
+	int			doors_nb;
+	int			door_index;
+	t_door		*doors;
 	t_weapon	**weapons;
 	int			weapon_count;
 	int			weapon_capacity;
