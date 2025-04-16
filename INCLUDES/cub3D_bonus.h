@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 01:37:13 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 04:05:34 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:12:41 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,25 @@ int			mouse_motion(int x, int y, t_game *game);
 
 // mouse_setter.c
 void		set_mouse_hooks(t_mlx *mlx, t_game *game);
+
+/**********************\
+ *	DOORS
+\**********************/
+
+// door_utils.c
+void		reset_door_ray(t_raycasting *r);
+void		get_door_index(t_point pos, t_data *d);
+
+// init_doors.c
+void		init_doors(t_data *data);
+
+// move_doors.c
+bool		can_vray_pass_door(t_point ray, t_data *d);
+bool		can_hray_pass_door(t_point ray, t_data *d);
+void 		handle_doors(int door_nb, t_door *doors);
+
+// trigger_door.c
+void		trigger_door(t_game *game);
 
 /**************************\
  *	ANIMATIONS

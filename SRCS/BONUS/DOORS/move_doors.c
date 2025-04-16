@@ -10,37 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 bool	can_vray_pass_door(t_point ray, t_data *d)
 {
-	int	tile_y;
-	float	normalized_pos_y;
+	int		tile_y;
+	float	normed_pos_y;
 
 	get_door_index(ray, d);
 	tile_y = (int)ray.y / TILE_SIZE;
-	normalized_pos_y = (ray.y - (tile_y * TILE_SIZE)) / TILE_SIZE;
-	if (normalized_pos_y > (1.0f - d->doors[d->door_index].ratio))
+	normed_pos_y = (ray.y - (tile_y * TILE_SIZE)) / TILE_SIZE;
+	if (normed_pos_y > (1.0f - d->doors[d->door_index].ratio))
 		return (true);
-	else
-		return (false);
+	return (false);
 }
 
 bool	can_hray_pass_door(t_point ray, t_data *d)
 {
-	int	tile_x;
-	float	normalized_pos_x;
+	int		tile_x;
+	float	normed_pos_x;
 
 	get_door_index(ray, d);
 	tile_x = (int)ray.x / TILE_SIZE;
-	normalized_pos_x = (ray.x - (tile_x * TILE_SIZE)) / TILE_SIZE;
-	if (normalized_pos_x > (1.0f - d->doors[d->door_index].ratio))
+	normed_pos_x = (ray.x - (tile_x * TILE_SIZE)) / TILE_SIZE;
+	if (normed_pos_x > (1.0f - d->doors[d->door_index].ratio))
 		return (true);
-	else
-		return (false);
+	return (false);
 }
 
-void open_door(t_door *door)
+static void	__open_door(t_door *door)
 {
 	if (door->ratio < 1)
 		door->ratio += DOOR_SBF;
@@ -51,7 +49,7 @@ void open_door(t_door *door)
 	}
 }
 
-void close_door(t_door *door)
+static void	__close_door(t_door *door)
 {
 	if (door->ratio > 0)
 		door->ratio -= DOOR_SBF;
@@ -62,25 +60,19 @@ void close_door(t_door *door)
 	}
 }
 
-void	reset_door_ray(t_raycasting *r)
-{
-	r->door_ray.x = 0.0f;
-	r->door_ray.y = 0.0f;
-}
-
-void handle_doors(int doors_nb, t_door *doors)
+void handle_doors(int door_nb, t_door *doors)
 {
 	int i;
 
 	i = 0;
-	if (doors_nb == -1)
+	if (door_nb == -1)
 		return ;
-	while (i < doors_nb)
+	while (i < door_nb)
 	{
 		if (doors[i].state == OPENING)
-			open_door(&doors[i]);
+			__open_door(&doors[i]);
 		else if (doors[i].state == CLOSING)
-			close_door(&doors[i]);
+			__close_door(&doors[i]);
 		// printf("door[%d].ratio = %f\n", i, doors[i].ratio);
 		i++;
 	}

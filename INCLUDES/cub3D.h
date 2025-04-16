@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 13:44:49 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 15:08:03 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,9 +215,6 @@ void	draw_title_screen(t_game *game, t_mlx *mlx);
  *	MLX_HOOKS
 \**********************/
 
-// trigger_door.c
-void	trigger_door(t_game *game);
-
 // movements.c
 void	move_forward(t_game *game);
 void	move_backward(t_game *game);
@@ -257,30 +254,17 @@ void	draw_ceil_color(t_raycasting *r, t_data *d);
 
 // RAYCASTING/raycast_loop.c
 void	raycasting(t_data *d, t_player *p, t_raycasting *r);
+
 // RAYCASTING/raycast_inter_h.c
 void	inter_hline(t_data *d, t_player *p, t_raycasting *r, float ray_rad);
+
 // RAYCASTING/raycast_inter_v.c
 void	inter_vline(t_data *d, t_player *p, t_raycasting *r, float ray_rad);
+
 // RAYCASTING/raycast_utils.c
 void	get_draw_info(t_data *data, t_player *player, t_raycasting *r);
 
 // render_frame.c
 int		render_frame(t_game *game);
-
-/**********************\
- *	DOORS
-\**********************/
-
-// init_doors.c
-void	init_doors(t_data *data);
-
-// movement_doors.c
-bool	can_vray_pass_door(t_point ray, t_data *d);
-bool	can_hray_pass_door(t_point ray, t_data *d);
-void 	handle_doors(int doors_nb, t_door *doors);
-
-// utils_doors.c
-void	reset_door_ray(t_raycasting *r);
-void	get_door_index(t_point pos, t_data *d);
 
 #endif
