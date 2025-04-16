@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/15 16:40:50 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 15:37:46 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ void	move_player(t_game *game, t_keys *key)
 	if (!BONUS)
 		mandatory_player_moves(game->data, player);
 	else
+	{
 		bonus_player_moves(game->data, player);
+		if (key->mouse_btn[0] == 1)
+			shoot(game);
+	}
 }
 
 void	reset_move(t_player *player)

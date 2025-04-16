@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 05:03:12 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 15:20:24 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	__init_raycasting(t_raycasting *r, t_game *game)
 static void	__init_keys(t_keys *keys, t_game *game)
 {
 	ft_bzero(keys->key_array, 7);
-	ft_bzero(keys->mouse_buttons, 3);
+	ft_bzero(keys->mouse_btn, 3);
 	game->keys = keys;
 }
 

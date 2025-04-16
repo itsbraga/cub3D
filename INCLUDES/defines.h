@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 05:00:53 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 15:50:26 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ Cannot initialize minilibX image"
 # define ERR_MAP_BORDERS "Invalid map (not fully closed)"
 # define ERR_MAP "Invalid map grid"
 # define ERR_CHAR "Invalid character in map"
+# define ERR_MAP_NOT_CLOSED "Map is not closed by walls"
+# define ERR_MAP_CONTAINS_SPACE "Map contains invalid empty space"
 # define ERR_RGB "Invalid RGB (range 0-255)"
 # define ERR_CONFIG "Invalid file configuration"
 

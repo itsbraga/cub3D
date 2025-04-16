@@ -6,17 +6,17 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:31:09 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 18:55:36 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:42:23 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void	trigger_door(t_game *game)
 {
-	t_data 	*d;
-	t_raycasting *r;
-	int	door_index;
+	t_data			*d;
+	t_raycasting	*r;
+	int				door_index;
 
 	r = game->ray;
 	d = game->data;
