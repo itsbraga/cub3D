@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 01:47:44 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:09:08 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char	**normalize_final_map(char **map, size_t height, size_t width)
 	return (normed);
 }
 
-// AJOUTER MALLOC A YAMA?
 void	fill_map2d_array(t_map *map, char *line)
 {
 	char	**tmp;
