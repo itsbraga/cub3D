@@ -16,11 +16,12 @@ bool	can_vray_pass_door(t_point ray, t_data *d)
 {
 	int	tile_y;
 	float	normalized_pos_y;
+	int	door_index;
 
-	get_door_index(ray, d);
+	door_index = get_door_index(ray, d);
 	tile_y = (int)ray.y / TILE_SIZE;
 	normalized_pos_y = (ray.y - (tile_y * TILE_SIZE)) / TILE_SIZE;
-	if (normalized_pos_y > (1.0f - d->doors[d->door_index].ratio))
+	if (normalized_pos_y > (1.0f - d->doors[door_index].ratio))
 		return (true);
 	else
 		return (false);
@@ -30,11 +31,12 @@ bool	can_hray_pass_door(t_point ray, t_data *d)
 {
 	int	tile_x;
 	float	normalized_pos_x;
+	int	door_index;
 
-	get_door_index(ray, d);
+	door_index = get_door_index(ray, d);
 	tile_x = (int)ray.x / TILE_SIZE;
 	normalized_pos_x = (ray.x - (tile_x * TILE_SIZE)) / TILE_SIZE;
-	if (normalized_pos_x > (1.0f - d->doors[d->door_index].ratio))
+	if (normalized_pos_x > (1.0f - d->doors[door_index].ratio))
 		return (true);
 	else
 		return (false);

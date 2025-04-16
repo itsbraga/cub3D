@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 18:20:32 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 04:03:04 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 18:53:38 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ static void	__find_closest_inter(float dist_h, float dist_v, t_raycasting *r)
 
 static void	__get_door_info(t_data *data, t_raycasting *r)
 {
+	int	door_tex_offset;
+	int	door_index;
+	
+	door_tex_offset = 0;
+	door_index = 0;
 	if (r->curr_ray == (WIN_HEIGHT / 2))
 	{
 		r->door_ray.x = r->closest_inter.x;
@@ -55,8 +60,9 @@ static void	__get_door_info(t_data *data, t_raycasting *r)
 	r->is_door = is_door(data, r->closest_inter);
 	if (r->is_door == true)
 	{
-		r->door_tex_offset = data->doors[data->door_index].ratio * TILE_SIZE;
-		r->tex_x = (r->tex_x + r->door_tex_offset) & (TILE_SIZE - 1);
+		door_index = get_door_index(r->closest_inter, data);
+		door_tex_offset = data->doors[door_index].ratio * TILE_SIZE;
+		r->tex_x = (r->tex_x + door_tex_offset) & (TILE_SIZE - 1);
 	}
 }
 

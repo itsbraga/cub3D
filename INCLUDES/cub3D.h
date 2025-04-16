@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 05:00:14 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 18:48:10 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,6 @@ void 	handle_doors(int doors_nb, t_door *doors);
 
 // utils_doors.c
 void	reset_door_ray(t_raycasting *r);
-void	get_door_index(t_point pos, t_data *d);
+int		get_door_index(t_point pos, t_data *d);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:52:25 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/14 03:08:15 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 18:44:57 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cub3D.h"
 
-void	get_door_index(t_point pos, t_data *d)
+int	get_door_index(t_point pos, t_data *d)
 {
 	int i;
 	int	pos_x;
@@ -28,12 +28,8 @@ void	get_door_index(t_point pos, t_data *d)
 		door_x = (int)d->doors[i].pos.x;
 		door_y = (int)d->doors[i].pos.y;
 		if (pos_x == door_x && pos_y == door_y)
-		{
-			d->door_index = i;
-			return ;
-		}
+			return (i);
 		i++;
 	}
-	d->door_index = -1;
-	return ;
+	return (-1);
 }

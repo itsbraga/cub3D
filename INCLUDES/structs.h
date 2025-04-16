@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 05:01:30 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 18:43:58 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ typedef struct s_raycasting
 	int			wall_end_y;
 	float		wall_h;
 	int			tex_x;
-	int			door_tex_offset;
+	// int			door_tex_offset;
 	float		step_tex_y;
 	float		offset_tex_y;
 	float		shadow_factor;
@@ -182,7 +182,7 @@ typedef struct s_data
 	uint32_t	ceiling_color;
 	uint32_t	feature_filled;
 	int			doors_nb;
-	int			door_index;
+	// int			door_index;
 	t_door		*doors;
 	t_weapon	**weapons;
 	int			weapon_count;
