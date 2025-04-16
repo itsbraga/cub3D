@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 14:57:13 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:53:34 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 /*
 	Recursive flood fill algorithm to check map boundaries and enclosed spaces
-	@param y: current y coordinate being checked
-	@param x: current x coordinate being checked
-	@param height: total height of the map
-	@param width: total width of the map
-	@return: true if the map is properly enclosed,
-			 false if there are holes or if it reaches map boundaries
-
+    Operates on a temporary map padded with spaces
+	@param map: The temporary 2D map array (normalized, padded with spaces).
+	@param y: current y coordinate being checked.
+	@param x: current x coordinate being checked.
+	@param size: total height and width of the map.
+	@return: true if the path is enclosed, false if it hits a space or boundary.
+	
 	The function:
-	- Marks visited spaces with 'F' (Filled)
-	- Checks all four adjacent cells recursively
-	- Stops at walls ('1') or previously filled cells ('F')
+    - Marks visited spaces with 'F' (Filled)
+    - Checks all four adjacent cells recursively
+    - Stops at walls ('1') or previously filled cells ('F')
+    - Fails if it goes out of bounds or encounters a space ' '
 */
 bool	flood_fill(char **map, int y, int x, t_size size)
 {
 	if (x < 0 || y < 0 || (size_t)x >= size.width || (size_t)y >= size.height
-		|| map[y][x] == '\0')
+		|| map[y][x] == ' ')
 	{
 		err_msg(NULL, ERR_MAP_BORDERS);
 		return (false);
@@ -37,13 +38,10 @@ bool	flood_fill(char **map, int y, int x, t_size size)
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return (true);
 	map[y][x] = 'F';
-	if (flood_fill(map, y - 1, x, size) == false)
-		return (false);
-	if (flood_fill(map, y + 1, x, size) == false)
-		return (false);
-	if (flood_fill(map, y, x - 1, size) == false)
-		return (false);
-	if (flood_fill(map, y, x + 1, size) == false)
+	if (flood_fill(map, y - 1, x, size) == false
+		|| flood_fill(map, y + 1, x, size) == false
+		|| flood_fill(map, y, x - 1, size) == false
+		|| flood_fill(map, y, x + 1, size) == false)
 		return (false);
 	return (true);
 }
@@ -65,12 +63,12 @@ static char	*__normalize_line_for_flood(char *line, size_t width)
 		if (j < line_len)
 		{
 			if (line[j] == ' ' || line[j] == '\t')
-				normed_line[j] = ' ';
+				normed_line[j] = '1';
 			else
 				normed_line[j] = line[j];
 		}
 		else
-			normed_line[j] = '1';
+			normed_line[j] = ' ';
 		j++;
 	}
 	normed_line[width] = '\0';

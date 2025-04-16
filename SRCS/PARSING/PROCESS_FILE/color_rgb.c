@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 20:57:10 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/11 02:18:57 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 17:13:28 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,22 @@
 
 static char	**__rgb_to_convert(char *line, char **to_convert)
 {
-	while (ft_isdigit(*line) != 1)
+	int	count;
+
+	count = 0;
+	while (*line && ft_isdigit(*line) != 1)
 		line++;
+	if (*line == '\0' || *line == '\n')
+		return (NULL);
 	to_convert = ft_split(line, ',');
 	secure_malloc(to_convert, true);
+    while (to_convert[count] != NULL)
+        count++;
+    if (count != 3)
+    {
+        free_array(to_convert);
+    	return (NULL);
+    }
 	return (to_convert);
 }
 
@@ -52,6 +64,8 @@ void	process_color_lines(char *line)
 	if (line[0] == 'F')
 	{
 		rgb_array = __rgb_to_convert(line, rgb_array);
+		if (rgb_array == NULL)
+			return ;
 		s_data()->floor_color = __convert_rgb_to_uint(rgb_array[0],
 				rgb_array[1], rgb_array[2]);
 		s_data()->feature_filled++;
@@ -59,6 +73,8 @@ void	process_color_lines(char *line)
 	else
 	{
 		rgb_array = __rgb_to_convert(line, rgb_array);
+		if (rgb_array == NULL)
+			return ;
 		s_data()->ceiling_color = __convert_rgb_to_uint(rgb_array[0],
 				rgb_array[1], rgb_array[2]);
 		s_data()->feature_filled++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 22:52:43 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:45:14 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	get_player_direction(t_map *map, t_player *player)
 	}
 	if (__is_valid_player_pos(map, player->pos) == false)
 		clean_exit(FAILURE);
-	player->pos.x = player->pos.x * TILE_SIZE;
-	player->pos.y = player->pos.y * TILE_SIZE;
+	player->pos.x *= TILE_SIZE;
+	player->pos.y *= TILE_SIZE;
 	s_game()->player = player;
 }

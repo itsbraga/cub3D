@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 15:08:03 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 17:11:41 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ bool	is_sprite_line(char *line);
 
 // PROCESS_FILE/fill_tex_paths.c
 char	*get_texture_path(char *line);
-void	fill_tex_paths(char *line, t_textures *tex);
-void	fill_bonus_tex_paths(char *line, t_textures *tex);
+int		fill_tex_paths(char *line, t_textures *tex);
+int		fill_bonus_tex_paths(char *line, t_textures *tex);
 
 // PROCESS_FILE/decor_textures.c
 void	process_mandatory_tex_lines(char *line, t_textures *tex);
