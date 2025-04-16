@@ -6,11 +6,11 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 02:36:56 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 18:31:16 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 01:41:10 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 /*
 	Computes the viewport parameters for the minimap display.

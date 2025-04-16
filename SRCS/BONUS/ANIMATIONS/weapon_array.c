@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shoot.c                                            :+:      :+:    :+:   */
+/*   weapon_array.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 04:57:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 04:04:47 by annabrag         ###   ########.fr       */
+/*   Created: 2025/04/15 16:31:17 by annabrag          #+#    #+#             */
+/*   Updated: 2025/04/16 02:25:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	shoot(t_game *game)
+static void	__init_weapon_array(t_weapon_array *functions)
 {
-	t_data		*data;
-	t_weapon	*curr_weapon;
+	functions[0] = render_mp40;
+	functions[1] = render_glock21;
+	functions[2] = NULL;
+}
+
+void	render_curr_weapon(t_game *game)
+{
+	t_weapon_array	functions[3];
+	t_data			*data;
+	int				curr_weapon;
 
 	data = game->data;
 	if (data->weapon_count == 0)
 		return ;
-	printf("Mouse button 0 state: %d\n", game->keys->mouse_buttons[0]);
-	curr_weapon = data->weapons[data->curr_weapon_idx];
-	if (game->keys->key_array[_SPACE] == 1 || game->keys->mouse_buttons[0] == 1)
-	{
-		curr_weapon->state = SHOOTING;
-		printf("Shooting triggered!\n");
-	}
+	curr_weapon = data->curr_weapon_idx;
+	__init_weapon_array(functions);
+	functions[curr_weapon](game, data->weapons[curr_weapon]);
 }

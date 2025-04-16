@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 03:47:47 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 05:04:12 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	render_frame(t_game *game)
 			handle_doors(data->doors_nb, data->doors);
 			render_minimap(game, game->mmap);
 			if (data->weapon_count > 0)
-				render_weapon(game, data->weapons[0]);
+				render_curr_weapon(game);
 		}
 	}
 	return (SUCCESS);

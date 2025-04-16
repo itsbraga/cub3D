@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 03:58:17 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 05:00:14 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include "structs.h"
 # include "defines.h"
 # include "colors.h"
+# include "cub3D_bonus.h"
 # include "debug_2D.h"
 
 /**********************\
@@ -130,7 +131,7 @@ void	err_msg_quoted(char *context, char *reason);
 
 // secure.c
 void	secure_malloc(void *to_secure, bool full_clean);
-void	my_free(void **to_free);
+void	free_and_set_null(void **to_free);
 
 // draw_utils.c
 void	swap_point(t_point *p0, t_point *p1);
@@ -202,14 +203,10 @@ void	*yama(int flag, void *ptr, size_t size);
  *	TITLE_SCREEN
 \**********************/
 
-// title_screen_hooks.c
-int		set_title_screen_keys(int keycode, t_game *game);
-int		title_screen_mouse(int button, int x, int y, t_game *game);
-
 // layers.c
 void	background(t_title_screen *s);
 void	start_button(t_title_screen *s);
-void	controls_menu(t_title_screen *s);
+// void	controls_menu(t_title_screen *s);
 
 // init.c
 void	init_title_screen(t_title_screen *screen);
@@ -219,7 +216,7 @@ void	draw_title_screen(t_game *game, t_mlx *mlx);
  *	MLX_HOOKS
 \**********************/
 
-//trigger_door.c
+// trigger_door.c
 void	trigger_door(t_game *game);
 
 // movements.c
@@ -271,93 +268,20 @@ void	get_draw_info(t_data *data, t_player *player, t_raycasting *r);
 // render_frame.c
 int		render_frame(t_game *game);
 
-/*************************************************************\
- *	BONUS
-\*************************************************************/
-
-/**********************\
- *	COLLISIONS
-\**********************/
-
-// collisions.c
-bool	is_position_colliding(t_data *data, t_point pos);
-
-/**********************\
- *	MINIMAP
-\**********************/
-
-// minimap_utils.c
-int		set_mmap_pixel_color(t_point world, char type);
-void	draw_minimap_frame(t_minimap *mmap);
-
-// init.c
-void	init_minimap(t_minimap *mmap, t_game *game);
-
-// triangle_utils.c
-void	init_triangle(t_triangle *tr, t_point a, t_point b, t_point c);
-void	draw_hline(t_minimap *mmap, t_triangle *tr, int start_y, int end_y);
-
-// draw_triangle.c
-void	fill_triangle(t_minimap *mmap, t_point a, t_point b, t_point c);
-
-// draw_player.c
-void	draw_centered_player(t_game *game, t_minimap *mmap);
-
-// viewport.c
-t_viewport	compute_viewport(t_minimap *mmap);
-
-// render_minimap.c
-void	render_minimap(t_game *game, t_minimap *mmap);
-
 /**********************\
  *	DOORS
 \**********************/
 
 // init_doors.c
 void	init_doors(t_data *data);
+
 // movement_doors.c
 bool	can_vray_pass_door(t_point ray, t_data *d);
 bool	can_hray_pass_door(t_point ray, t_data *d);
 void 	handle_doors(int doors_nb, t_door *doors);
+
 // utils_doors.c
 void	reset_door_ray(t_raycasting *r);
 void	get_door_index(t_point pos, t_data *d);
-
-/**********************\
- *	MOUSE
-\**********************/
-
-// mouse.c
-void	toggle_mouse_visibility(t_mlx *mlx, t_game_state state);
-int		mouse_motion(int x, int y, t_game *game);
-
-/**********************\
- *	ANIMATIONS
-\**********************/
-
-// create_weapon.c
-int			set_weapon_id(char *name);
-t_weapon	*new_weapon(char *name);
-
-// render_weapon.c
-void		draw_weapon(int state, t_weapon *w, t_game *game);
-void		render_weapon(t_game *game, t_weapon *w);
-
-// shoot.c
-void		shoot(t_game *game);
-
-/**********************\
- *	ADD_TEXTURES
-\**********************/
-
-// fc_render_utils.c
-void	init_fc_render(t_fc_render *fc, t_raycasting *r, int (*wall_limits)[2]);
-void	draw_hline_pixels(t_fc_render *fc);
-
-// draw_fc_tex.c
-void	draw_floor_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
-			t_player *player);
-void	draw_ceil_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
-			t_player *player);
 
 #endif

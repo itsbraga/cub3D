@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   secure.c                                           :+:      :+:    :+:   */
+/*   draw_weapon.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 18:58:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 01:35:00 by annabrag         ###   ########.fr       */
+/*   Created: 2025/04/15 17:13:45 by annabrag          #+#    #+#             */
+/*   Updated: 2025/04/16 01:40:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-void	secure_malloc(void *to_secure, bool full_clean)
+void	draw_weapon(int state, t_weapon *w, t_game *game)
 {
-	if (to_secure == NULL)
-	{
-		err_msg("malloc", strerror(errno));
-		if (full_clean)
-			clean_exit(FAILURE);
-	}
-}
+	t_mlx	*mlx;
 
-void	free_and_set_null(void **to_free)
-{
-	if (to_free != NULL && (*to_free) != NULL)
-	{
-		free(*to_free);
-		*to_free = NULL;
-	}
+	mlx = game->mlx;
+	my_put_img_to_window(&w->sprites.imgs[state], &mlx->img,
+		w->pos.x, w->pos.y);
 }

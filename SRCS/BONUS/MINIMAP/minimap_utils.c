@@ -6,11 +6,11 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 03:38:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 22:17:22 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 01:40:58 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 /*
 	Checks if a world coordinate falls on the border zone of its tile
