@@ -19,8 +19,9 @@ static bool	__has_all_textures(t_textures *tex)
 
 void	process_mandatory_tex_lines(char *line, t_textures *tex)
 {
-	fill_tex_paths(line, tex);
-	if (__has_all_textures(tex) && check_mandatory_tex_paths(tex) == 1)
+	if (fill_tex_paths(line, tex) == FAILURE)
+		return ;
+	if (__has_all_textures(tex) && check_mandatory_tex_paths(tex) == FAILURE)
 		clean_exit(FAILURE);
 	if (ft_strncmp(line, "NO", 2) == 0)
 	{
@@ -51,9 +52,9 @@ static bool	__has_all_bonus_textures(t_textures *tex)
 
 void	process_bonus_tex_lines(char *line, t_textures *tex)
 {
-	fill_bonus_tex_paths(line, tex);
-	if (__has_all_bonus_textures(tex)
-		&& check_bonus_tex_paths(tex) == FAILURE)
+	if (fill_bonus_tex_paths(line, tex) == FAILURE)
+		return ;
+	if (__has_all_bonus_textures(tex) && check_bonus_tex_paths(tex) == FAILURE)
 		clean_exit(FAILURE);
 	if (line[0] == 'F')
 	{

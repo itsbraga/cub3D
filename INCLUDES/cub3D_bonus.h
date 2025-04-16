@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 01:37:13 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 04:05:34 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 19:41:04 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,25 @@ t_viewport	compute_viewport(t_minimap *mmap);
 
 // render_minimap.c
 void		render_minimap(t_game *game, t_minimap *mmap);
+
+/**********************\
+ *	DOORS
+\**********************/
+
+// door_utils.c
+void		reset_door_ray(t_raycasting *r);
+int			get_door_index(t_point pos, t_data *d);
+
+// init_door.c
+void		init_doors(t_data *data);
+
+// door_movements.c
+bool		can_vray_pass_door(t_point ray, t_data *d);
+bool		can_hray_pass_door(t_point ray, t_data *d);
+void 		handle_doors(int door_nb, t_door *doors);
+
+// trigger_door.c
+void		trigger_door(t_game *game);
 
 /**************************\
  *	MOUSE

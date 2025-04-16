@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_doors.c                                       :+:      :+:    :+:   */
+/*   init_door.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:26:51 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/13 04:50:38 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:39:23 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-static int		_get_doors_nb(char **map)
+static int	_get_door_nb(char **map)
 {
 	int nb;
 	int	x;
@@ -36,7 +36,7 @@ static int		_get_doors_nb(char **map)
 
 static void	_get_door_pos(t_door *door, char **map, int door_index)
 {
-	int x;
+	int	x;
 	int y;
 	int	curr_door;
 
@@ -66,16 +66,16 @@ static void	_get_door_pos(t_door *door, char **map, int door_index)
 void	init_doors(t_data *d)
 {
 	int i;
-	int doors_nb;
+	int door_nb;
 	
 	i = 0;
-	doors_nb = _get_doors_nb(d->map->map2d);
-	if (doors_nb == 0)
+	door_nb = _get_door_nb(d->map->map2d);
+	if (door_nb == 0)
 		return ;
-	d->doors_nb = doors_nb;
-	d->doors = malloc(doors_nb * sizeof(t_door));
+	d->door_nb = door_nb;
+	d->doors = malloc(door_nb * sizeof(t_door));
 	secure_malloc(d->doors, true);
-	while (i < doors_nb)
+	while (i < door_nb)
 	{
 		_get_door_pos(&d->doors[i], d->map->map2d, i);
 		printf("door[%d] = x(%d), y(%d)\n", i, (int)d->doors[i].pos.x, (int)d->doors[i].pos.y);
@@ -85,4 +85,3 @@ void	init_doors(t_data *d)
 	}
 	return ;
 }
-

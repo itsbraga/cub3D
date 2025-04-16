@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/15 00:14:13 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:54:24 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,38 @@ static bool	__process_map_data(t_map *map, t_data *data, char *arg, int fd)
 	return (true);
 }
 
-static bool	__validate_map(char **flood_map, t_size size, t_player *player)
+/*
+    Validates the map closure by iterating through the map and running
+    flood_fill from every walkable ('0', 'N', 'S', 'E', 'W', '2') cell
+    that hasn't been visited yet ('F').
+    Operates on the temporary, space-padded map.
+*/
+static bool	__validate_map_closure(char **flood_map, t_size size)
 {
-	int	pos_x;
-	int	pos_y;
-
-	pos_x = (int)(player->pos.x / TILE_SIZE);
-	pos_y = (int)(player->pos.y / TILE_SIZE);
-	if (flood_fill(flood_map, pos_y, pos_x, size) == false)
+	size_t		y;
+	size_t		x;
+	const char	*walkable_chars;
+	
+	if (!BONUS)
+		walkable_chars = VALID_MAP;
+	else
+		walkable_chars = VALID_BONUS_MAP;
+	y = 0;
+	while (y < size.height)
 	{
-		free_array(flood_map);
-		return (false);
+		x = 0;
+		while (x < size.width)
+		{
+			if (ft_strchr(walkable_chars, flood_map[y][x]) != NULL 
+				&& flood_map[y][x] != 'F')
+			{
+				if (flood_fill(flood_map, (int)y, (int)x, size) == false)
+					return (false);
+			}
+			x++;
+		}
+		y++;
 	}
-	free_array(flood_map);
 	return (true);
 }
 
@@ -75,8 +94,9 @@ int	parse_file(char *arg, t_data *data, t_game *game)
 	size = (t_size){longest_line, map->size.height};
 	flood_map = normalize_map_for_flood(map->map2d, size);
 	secure_malloc(flood_map, true);
-	if (__validate_map(flood_map, size, game->player) == false)
-		return (FAILURE);
+	if (__validate_map_closure(flood_map, size) == false)
+		return (free_array(flood_map), FAILURE);
+	free_array(flood_map);
 	__replace_by_final_map(data, longest_line);
 	get_player_direction(map, game->player);
 	game->data = data;

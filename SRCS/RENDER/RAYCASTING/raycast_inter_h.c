@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_inter_h.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 18:20:43 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 04:15:07 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 13:46:07 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-bool static	__ray_is_vertical(float ray_rad, t_player *p, t_raycasting *r)
+static bool	__ray_is_vertical(float ray_rad, t_player *p, t_raycasting *r)
 {
 	if (fabs(ray_rad - PI2) < EPS || fabs(ray_rad - PI3) < EPS)
 	{
@@ -24,7 +24,7 @@ bool static	__ray_is_vertical(float ray_rad, t_player *p, t_raycasting *r)
 		return (false);
 }
 
-void static	__define_h_offset(float ray_rad, float inv_tan, t_raycasting *r)
+static void	__define_h_offset(float ray_rad, float inv_tan, t_raycasting *r)
 {
 	if (ray_rad > PI)
 		r->h_offset.y = -TILE_SIZE;
