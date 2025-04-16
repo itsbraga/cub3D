@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/15 21:29:40 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 03:24:54 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_raycasting
 typedef struct s_keys_event
 {
 	bool	key_array[7];
+	bool	mouse_buttons[3];
 }				t_keys;
 
 typedef struct s_fc_render

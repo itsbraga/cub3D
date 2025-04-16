@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 02:12:03 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/15 23:13:49 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 03:13:46 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,6 @@ void	load_and_resize_sprites(t_weapon *w)
 	if (w->id == 0)
 		w->pos.x = (int)WIN_WIDTH / 3;
 	else if (w->id == 1)
-		w->pos.x = (int)WIN_WIDTH / 2 + 20;
+		w->pos.x = (int)WIN_WIDTH / 2 + 40;
 	w->pos.y = (int)WIN_HEIGHT / 1.50;
 }

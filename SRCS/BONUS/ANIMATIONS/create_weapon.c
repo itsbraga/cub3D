@@ -6,16 +6,16 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:51:48 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/15 19:23:03 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 02:12:29 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 int	set_weapon_id(char *name)
 {
 	int			i;
-	const char	*typename[] = {"MP40", "ENFORCER_PISTOL", "FLAMETHROWER", NULL};
+	const char	*typename[] = {"MP40", "GLOCK21", "FLAMETHROWER", NULL};
 
 	i = 0;
 	while (typename[i] != NULL)
@@ -30,11 +30,14 @@ int	set_weapon_id(char *name)
 t_weapon	*new_weapon(char *name)
 {
 	t_weapon	*new;
+	char		*trimmed_name;
 
 	new = yama(CREATE, NULL, sizeof(t_weapon));
 	secure_malloc(new, true);
 	ft_bzero(new, sizeof(t_weapon));
-	new->name = yama(ADD, ft_strdup(ft_strtrim(name, "\n")), 0);
+	trimmed_name = ft_strtrim(name, "\n");
+	new->name = yama(ADD, ft_strdup(trimmed_name), 0);
+	free_and_set_null((void **)&trimmed_name);
 	new->id = set_weapon_id(name);
 	printf("DEBUG WEAPON: new->name = %s\n", new->name);
 	printf("DEBUG WEAPON: new->id = %d\n", new->id);

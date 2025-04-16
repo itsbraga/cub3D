@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_singletons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/04/15 00:32:36 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 01:34:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ void	free_game(t_game *game)
 	if (game != NULL)
 	{
 		// if (game->player != NULL)
-		// 	my_free((void **)&game->player);
+		// 	free_and_set_null((void **)&game->player);
 		// if (game->ray != NULL)
-		// 	my_free((void **)&game->ray);
+		// 	free_and_set_null((void **)&game->ray);
 		// if (game->keys != NULL)
-		// 	my_free((void **)&game->keys);
+		// 	free_and_set_null((void **)&game->keys);
 		if (game->mmap != NULL)
 		{
 			if (game->mmap->img.img_ptr != NULL)
 				mlx_destroy_image(game->mlx->mlx_ptr, game->mmap->img.img_ptr);
-			my_free((void **)&game->mmap);
+			free_and_set_null((void **)&game->mmap);
 		}
 	}
 	// free(game);

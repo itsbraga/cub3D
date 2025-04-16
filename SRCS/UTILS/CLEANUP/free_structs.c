@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/15 00:29:46 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 01:34:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_map(t_map *map)
 	if (map->map2d != NULL)
 		free_array(map->map2d);
 	if (map->path_to_file != NULL)
-		my_free((void **)map->path_to_file);
+		free_and_set_null((void **)&map->path_to_file);
 }
 
 void	free_textures(t_textures *tex)
@@ -38,12 +38,12 @@ void	free_textures(t_textures *tex)
 		if (tex->imgs[i].img_ptr != NULL)
 			mlx_destroy_image(s_mlx()->mlx_ptr, tex->imgs[i].img_ptr);
 		if (tex->path[i] != NULL)
-			my_free((void **)tex->path[i]);
+			free_and_set_null((void **)&tex->path[i]);
 		i++;
 	}
-	free(tex->imgs);
-	free(tex->path);
-	free(tex);
+	free_and_set_null((void **)&tex->imgs);
+	free_and_set_null((void **)&tex->path);
+	free_and_set_null((void **)&tex);
 }
 
 void	free_bonus_textures(t_textures *tex)
@@ -56,12 +56,12 @@ void	free_bonus_textures(t_textures *tex)
 		if (tex->imgs[i].img_ptr != NULL)
 			mlx_destroy_image(s_mlx()->mlx_ptr, tex->imgs[i].img_ptr);
 		if (tex->path[i] != NULL)
-			my_free((void **)tex->path[i]);
+			free_and_set_null((void **)&tex->path[i]);
 		i++;
 	}
-	free(tex->imgs);
-	free(tex->path);
-	free(tex);
+	free_and_set_null((void **)&tex->imgs);
+	free_and_set_null((void **)&tex->path);
+	free_and_set_null((void **)&tex);
 }
 
 void	free_weapon(t_weapon *w)
@@ -71,11 +71,11 @@ void	free_weapon(t_weapon *w)
 	i = 0;
 	while (i < w->xpm_count)
    {
-		free(w->sprites.path[i]);
+		free_and_set_null((void **)&w->sprites.path[i]);
 		i++;
     }
-    free(w->sprites.path);
+    free_and_set_null((void **)&w->sprites.path);
     // free(w->sprites.imgs); // Libérer le tableau des images
-    free(w->name);
-    free(w);
+    free_and_set_null((void **)&w->name);
+    free_and_set_null((void **)&w);
 }
