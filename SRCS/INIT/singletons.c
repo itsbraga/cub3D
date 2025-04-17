@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/15 21:30:09 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/17 01:26:52 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_mlx	*s_mlx(void)
 
 	if (instance == NULL)
 	{
-		instance = yama(CREATE, NULL, sizeof(t_mlx));
+		instance = malloc(sizeof(t_mlx));
 		secure_malloc(instance, true);
 		ft_bzero(instance, sizeof(t_mlx));
 		ft_bzero(&instance->img, sizeof(t_img));

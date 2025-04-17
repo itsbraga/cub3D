@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:52:25 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 19:42:09 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 22:38:11 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,4 @@ int	get_door_index(t_point pos, t_data *d)
 		i++;
 	}
 	return (-1);
-}
-
-void	reset_door_ray(t_raycasting *r)
-{
-	r->door_ray.x = 0.0f;
-	r->door_ray.y = 0.0f;
 }

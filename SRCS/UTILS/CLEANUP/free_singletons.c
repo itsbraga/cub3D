@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_singletons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/04/16 01:34:30 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/17 00:43:15 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void	free_game(t_game *game)
 {
 	if (game != NULL)
 	{
-		// if (game->player != NULL)
-		// 	free_and_set_null((void **)&game->player);
-		// if (game->ray != NULL)
-		// 	free_and_set_null((void **)&game->ray);
-		// if (game->keys != NULL)
-		// 	free_and_set_null((void **)&game->keys);
+		if (game->player != NULL)
+			free_and_set_null((void **)&game->player);
+		if (game->ray != NULL)
+			free_and_set_null((void **)&game->ray);
+		if (game->keys != NULL)
+			free_and_set_null((void **)&game->keys);
 		if (game->mmap != NULL)
 		{
 			if (game->mmap->img.img_ptr != NULL)
