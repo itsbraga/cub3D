@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 19:40:27 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 03:15:19 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,10 @@ int		check_bonus_tex_paths(t_textures *tex);
 int		check_weapon_sprites_paths(t_weapon *w);
 
 // CHECKS/check_map.c
-bool	flood_fill(char **map, int y, int x, t_size size);
-char	**normalize_map_for_flood(char **map, t_size size);
+int		check_map(char **map);
 
 // CHECKS/check_player.c
-void	get_player_direction(t_map *map, t_player *player);
+void	find_player_start_pos(t_map *map, t_player *player);
 
 // PROCESS_FILE/file_processing_utils.c
 char	*skip_spaces(char *line);
@@ -105,14 +104,15 @@ void	process_armory_section(int fd, t_data *d);
 // PROCESS_FILE/color_rgb.c
 void	process_color_lines(char *line);
 
-// PROCESS_FILE/map.c
-char	**normalize_final_map(char **map, size_t height, size_t width);
+// PROCESS_FILE/normalize_map.c
+char	**normalize_map(char **map, size_t height, size_t width);
 void	fill_map2d_array(t_map *map, char *line);
 
 // PROCESS_FILE/map_utils.c
+size_t	get_longest_line(char **map2d, size_t height);
 bool	is_map_line(char *line);
 bool	is_bonus_map_line(char *line);
-size_t	get_longest_line(char **map2d, size_t height);
+bool	c_in_str(char *str, char c);
 
 // PROCESS_FILE/get_file_data.c
 void	get_file_data(int fd, t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:55 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 16:18:27 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 03:32:21 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	__process_line(char *line, char *trimmed, t_data *data)
 {
-	if (is_wall_tex_line(trimmed))
+	if (is_wall_tex_line(trimmed) == true)
 		process_mandatory_tex_lines(trimmed, data->decor_tex);
 	else if (trimmed[0] == 'F' || trimmed[0] == 'C' || trimmed[0] == 'D')
 	{
@@ -23,9 +23,14 @@ static void	__process_line(char *line, char *trimmed, t_data *data)
 		else
 			process_bonus_tex_lines(trimmed, data->decor_tex);
 	}
-	else if (!BONUS && data->feature_filled == 6 && is_map_line(line))
-		fill_map2d_array(data->map, line);
-	else if (BONUS && data->feature_filled == 7 && is_bonus_map_line(line))
+	else if ((!BONUS && data->features < 6 && is_map_line(trimmed))
+		|| (BONUS && data->features < 7 && is_bonus_map_line(trimmed)))
+	{
+		err_msg(NULL, ERR_MAP_NOT_LAST);
+		clean_exit(FAILURE);
+	}
+	else if ((!BONUS && data->features == 6 && is_map_line(trimmed))
+		|| (BONUS && data->features == 7 && is_bonus_map_line(trimmed)))
 		fill_map2d_array(data->map, line);
 }
 

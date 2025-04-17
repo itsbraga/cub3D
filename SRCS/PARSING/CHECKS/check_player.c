@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 16:45:14 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 00:51:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,70 +26,51 @@ static int	__set_player_direction(char c, t_player *player)
 
 static void	__set_player_pos(t_player *player, size_t j, size_t i, char dir)
 {
-	player->pos.x = (float)j + 0.4;
-	player->pos.y = (float)i + 0.4;
+	player->pos.x = (float)j + 0.5;
+	player->pos.y = (float)i + 0.5;
 	player->dir = __set_player_direction(dir, player);
 }
 
-static int	__find_player_in_line(char *line, t_player *player, size_t i)
+static bool	__found_player(char *line, t_player *player, size_t i)
 {
 	size_t	line_len;
 	size_t	j;
-	int		found;
 
 	line_len = ft_strlen(line);
-	found = 0;
 	j = 0;
 	while (j < line_len)
 	{
-		if (ft_strchr(PLAYER_DIR, line[j]) != NULL)
+		if (ft_strchr("NSEW", line[j]) != NULL)
 		{
 			__set_player_pos(player, j, i, line[j]);
-			found++;
+			return (true);
 		}
 		j++;
 	}
-	return (found);
+	return (false);
 }
 
-static bool	__is_valid_player_pos(t_map *map, t_point pos)
-{
-	if (pos.x < 0 || pos.y < 0 || (size_t)pos.y >= map->size.height
-		|| (size_t)pos.x >= map->size.width
-		|| map->map2d[(int)pos.y][(int)pos.x] == '1'
-		|| map->map2d[(int)pos.y][(int)pos.x] == ' '
-		|| map->map2d[(int)pos.y][(int)pos.x] == '\t')
-	{
-		err_msg(NULL, ERR_PLAYER_POS);
-		return (false);
-	}
-	return (true);
-}
-
-void	get_player_direction(t_map *map, t_player *player)
+void	find_player_start_pos(t_map *map, t_player *player)
 {
 	size_t	i;
-	int		player_count;
+	bool	player_found;
 
-	player_count = 0;
+	player_found = false;
 	i = 0;
 	while (i < map->size.height)
 	{
-		player_count += __find_player_in_line(map->map2d[i], player, i);
+		if (__found_player(map->map2d[i], player, i) == true)
+		{
+			player_found = true;
+			break ;
+		}
 		i++;
 	}
-	if (player_count == 0)
+	if (player_found == false)
 	{
-		err_msg(NULL, ERR_PLAYER);
+		err_msg(NULL, ERR_NO_PLAYER);
 		clean_exit(FAILURE);
 	}
-	if (player_count > 1)
-	{
-		err_msg(NULL, ERR_NB_PLAYER);
-		clean_exit(FAILURE);
-	}
-	if (__is_valid_player_pos(map, player->pos) == false)
-		clean_exit(FAILURE);
 	player->pos.x *= TILE_SIZE;
 	player->pos.y *= TILE_SIZE;
 	s_game()->player = player;

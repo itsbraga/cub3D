@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 14:16:56 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 03:08:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ int	main(int argc, char **argv)
 	mlx = s_mlx();
 	init_structs(data, game, mlx);
 	if (parse_file(argv[1], data, game) == FAILURE)
-	{
-		ft_printf(STDERR_FILENO, BOLD RED ERR RESET);
 		clean_exit(FAILURE);
-	}
 	print_map_debug(data->map, argv[1]);
 	init_doors(data);
 	set_hooks(mlx, game);
