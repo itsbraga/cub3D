@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 15:50:26 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 01:17:39 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ Cannot initialize minilibX image"
 # define WIN_WIDTH 1024 // 1280
 # define WIN_HEIGHT 1024 // 720
 
-# define DEL_IMG "[minilibX] Image and window destroyed\n"
+# define DEL_IMG "[minilibX] Image destroyed\n"
 # define MLX_EXIT "[minilibX] All elements have been destroyed\n"
 
 /**************************\

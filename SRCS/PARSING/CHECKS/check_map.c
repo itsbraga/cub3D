@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 16:53:34 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 20:11:03 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char	*__normalize_line_for_flood(char *line, size_t width)
 				normed_line[j] = line[j];
 		}
 		else
-			normed_line[j] = ' ';
+			normed_line[j] = '1';
 		j++;
 	}
 	normed_line[width] = '\0';

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_inter_h.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 18:20:43 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 13:46:07 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 23:04:19 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+// static void	__set_h_door_inter(t_raycasting *r)
+// {
+// 	if (r->curr_ray == (WIN_WIDTH / 2))
+// 	{
+// 		r->h_door_inter.x = r->h_ray_inter.x;
+// 		r->h_door_inter.y = r->h_ray_inter.y;
+// 	}
+// }
 
 static bool	__ray_is_vertical(float ray_rad, t_player *p, t_raycasting *r)
 {
@@ -42,8 +51,7 @@ static void	__ray_travel_loop(t_raycasting *r, t_data *d)
 	{
 		curr_tile.x = r->h_ray_inter.x / TILE_SIZE;
 		curr_tile.y = r->h_ray_inter.y / TILE_SIZE;
-		if ((int)curr_tile.x < 0
-			|| (size_t)curr_tile.x >= d->map->size.width
+		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->size.width
 			|| (int)curr_tile.y < 0
 			|| (size_t)curr_tile.y >= d->map->size.height)
 			break ;
@@ -53,6 +61,7 @@ static void	__ray_travel_loop(t_raycasting *r, t_data *d)
 		{
 			if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '2')
 			{
+				// __set_h_door_inter(r);
 				if (can_hray_pass_door(r->h_ray_inter, d) == false)
 					break ;
 			}
