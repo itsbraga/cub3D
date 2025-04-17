@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:07:04 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/15 00:25:30 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 18:40:52 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	init_mlx(t_mlx *mlx, t_game *game)
 	if (mlx->mlx_ptr == NULL)
 	{
 		err_msg("minilibX", ERR_MLX);
-		clean_exit(FAILURE);
+		exit_game(mlx, FAILURE);
 	}
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, W_NAME);
 	if (mlx->win_ptr == NULL)
 	{
 		err_msg("minilibX", ERR_WIN);
-		clean_exit(FAILURE);
+		exit_game(mlx, FAILURE);
 	}
 	if (__init_mlx_img(mlx) == FAILURE)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err_msg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:25:59 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/12 19:04:54 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 18:39:17 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static char	*__append_strs(char *s1, char *s2)
 	if (s2 == NULL)
 		return (s1);
 	if (s1 == NULL)
-		return (yama(ADD, ft_strdup(s2), 0));
+		return (ft_strdup(s2));
 	tmp = s1;
 	s1 = ft_strjoin(tmp, s2);
 	secure_malloc(s1, true);
-	(void)yama(ADD, s1, 0);
+	// (void)yama(ADD, s1, 0);
 	return (s1);
 }
 
@@ -41,7 +41,8 @@ void	err_msg(char *context, char *reason)
 	else
 		msg = __append_strs(__append_strs(NULL, ERR_PREFIX), reason);
 	ft_putendl_fd(msg, STDERR_FILENO);
-	yama(REMOVE, msg, 0);
+	free_and_set_null((void **)&msg);
+	// yama(REMOVE, msg, 0);
 }
 
 void	err_msg_quoted(char *context, char *reason)
@@ -59,5 +60,6 @@ void	err_msg_quoted(char *context, char *reason)
 	else
 		msg = __append_strs(__append_strs(NULL, ERR_PREFIX), reason);
 	ft_putendl_fd(msg, STDERR_FILENO);
-	yama(REMOVE, msg, 0);
+	free_and_set_null((void **)&msg);
+	// yama(REMOVE, msg, 0);
 }

@@ -22,7 +22,7 @@ void	process_mandatory_tex_lines(char *line, t_textures *tex)
 	if (fill_tex_paths(line, tex) == FAILURE)
 		return ;
 	if (__has_all_textures(tex) && check_mandatory_tex_paths(tex) == FAILURE)
-		clean_exit(FAILURE);
+		exit_game(s_mlx(), FAILURE);
 	if (ft_strncmp(line, "NO", 2) == 0)
 	{
 		tex->imgs[NO] = xpm_to_img(tex->path[NO]);
@@ -58,7 +58,7 @@ void	process_bonus_tex_lines(char *line, t_textures *tex)
 	if (fill_bonus_tex_paths(line, tex) == FAILURE)
 		return ;
 	if (__has_all_bonus_textures(tex) && check_bonus_tex_paths(tex) == FAILURE)
-		clean_exit(FAILURE);
+		exit_game(s_mlx(), FAILURE);
 	if (id == 'F')
 	{
 		tex->imgs[F] = xpm_to_img(tex->path[F]);

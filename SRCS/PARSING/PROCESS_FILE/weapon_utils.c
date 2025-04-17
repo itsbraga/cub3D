@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 02:12:03 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 20:54:22 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:55:27 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ bool	allocate_and_copy_paths(t_weapon *w, char **tmp_paths, int count)
 	int	i;
 
 	w->xpm_count = count;
-	w->sprites.path = yama(CREATE, NULL, sizeof(char *) * count);
+	w->sprites.path = malloc(sizeof(char *) * count);
 	secure_malloc(w->sprites.path, true);
-	w->sprites.imgs = yama(CREATE, NULL, sizeof(t_img) * count);
+	w->sprites.imgs = malloc(sizeof(t_img) * count);
 	secure_malloc(w->sprites.imgs, true);
 	ft_bzero(w->sprites.imgs, sizeof(t_img) * count);
 	i = 0;
@@ -69,7 +69,7 @@ static void	__reallocate_weapons_array(t_data *d)
 	int			i;
 
 	new_capacity = d->weapon_capacity + 1;
-	new_array = yama(CREATE, NULL, sizeof(t_weapon *) * new_capacity);
+	new_array = malloc(sizeof(t_weapon *) * new_capacity);
 	secure_malloc(new_array, true);
 	i = 0;
 	while (i < d->weapon_count)
@@ -77,7 +77,8 @@ static void	__reallocate_weapons_array(t_data *d)
 		new_array[i] = d->weapons[i];
 		i++;
 	}
-	yama(REMOVE, d->weapons, 0);
+	free_and_set_null((void **)&d->weapons);
+	// yama(REMOVE, d->weapons, 0);
 	d->weapons = new_array;
 	d->weapon_capacity = new_capacity;
 }
@@ -90,7 +91,7 @@ void	expand_weapons_array(t_data *d)
 	if (d->weapons == NULL)
 	{
 		initial_capacity = 1;
-		new_array = yama(CREATE, NULL, sizeof(t_weapon *) * initial_capacity);
+		new_array = malloc(sizeof(t_weapon *) * initial_capacity);
 		secure_malloc(new_array, true);
 		d->weapons = new_array;
 		d->weapon_capacity = initial_capacity;

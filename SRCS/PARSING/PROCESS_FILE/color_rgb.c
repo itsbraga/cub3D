@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 20:57:10 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/17 02:58:41 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:43:28 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ static uint32_t	__convert_rgb_to_uint(char *red, char *green, char *blue)
 	result = 0;
 	r = ft_atoi(red, &result);
 	if (r < 0 || r > 255)
-		(err_msg(NULL, ERR_RGB_RANGE), clean_exit(FAILURE));
+		(err_msg(NULL, ERR_RGB_RANGE), exit_game(s_mlx(), FAILURE));
 	g = ft_atoi(green, &result);
 	if (g < 0 || g > 255)
-		(err_msg(NULL, ERR_RGB_RANGE), clean_exit(FAILURE));
+		(err_msg(NULL, ERR_RGB_RANGE), exit_game(s_mlx(), FAILURE));
 	b = ft_atoi(blue, &result);
 	if (b < 0 || b > 255)
-		(err_msg(NULL, ERR_RGB_RANGE), clean_exit(FAILURE));
+		(err_msg(NULL, ERR_RGB_RANGE), exit_game(s_mlx(), FAILURE));
 	result = (r << 16);
 	result = result | (g << 8);
 	result = result | (b);
@@ -94,7 +94,7 @@ void	process_color_lines(char *line)
 	id = line[0];
 	rgb_array = __rgb_to_convert(line);
 	if (rgb_array == NULL)
-		(err_msg(NULL, ERR_RGB), clean_exit(FAILURE));
+		(err_msg(NULL, ERR_RGB), exit_game(s_mlx(), FAILURE));
 	color = __convert_rgb_to_uint(rgb_array[0], rgb_array[1], rgb_array[2]);
 	if (id == 'F')
 	{

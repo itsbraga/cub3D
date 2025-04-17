@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 01:22:51 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:35:25 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	__init_map(t_map *map, char *path_to_file, int fd, t_data *data)
 {
 	ft_bzero(map, sizeof(t_map));
-	map->path_to_file = yama(ADD, ft_strdup(path_to_file), 0);
+	map->path_to_file = ft_strdup(path_to_file);
 	secure_malloc(map->path_to_file, true);
 	map->fd = fd;
 	data->map = map;

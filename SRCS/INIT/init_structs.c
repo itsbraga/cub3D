@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 15:20:24 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 18:35:12 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ static void	__init_textures(t_textures *tex, t_data *data)
 	ft_bzero(tex, sizeof(t_textures));
 	if (!BONUS)
 	{
-		tex->path = yama(CREATE, NULL, sizeof(char *) * 4);
+		tex->path = malloc(sizeof(char *) * 4);
 		secure_malloc(tex->path, true);
 		ft_bzero(tex->path, sizeof(char *) * 4);
-		tex->imgs = yama(CREATE, NULL, sizeof(t_img) * 4);
+		tex->imgs = malloc(sizeof(t_img) * 4);
 		secure_malloc(tex->imgs, true);
 	}
 	else
 	{
-		tex->path = yama(CREATE, NULL, sizeof(char *) * 7);
+		tex->path = malloc(sizeof(char *) * 7);
 		secure_malloc(tex->path, true);
 		ft_bzero(tex->path, sizeof(char *) * 7);
-		tex->imgs = yama(CREATE, NULL, sizeof(t_img) * 7);
+		tex->imgs = malloc(sizeof(t_img) * 7);
 		secure_malloc(tex->imgs, true);
 	}
 	data->decor_tex = tex;
