@@ -26,22 +26,22 @@ void	process_mandatory_tex_lines(char *line, t_textures *tex)
 	if (ft_strncmp(line, "NO", 2) == 0)
 	{
 		tex->imgs[NO] = xpm_to_img(tex->path[NO]);
-		s_data()->feature_filled++;
+		s_data()->features++;
 	}
 	else if (ft_strncmp(line, "SO", 2) == 0)
 	{
 		tex->imgs[SO] = xpm_to_img(tex->path[SO]);
-		s_data()->feature_filled++;
+		s_data()->features++;
 	}
 	else if (ft_strncmp(line, "WE", 2) == 0)
 	{
 		tex->imgs[WE] = xpm_to_img(tex->path[WE]);
-		s_data()->feature_filled++;
+		s_data()->features++;
 	}
 	else
 	{
 		tex->imgs[EA] = xpm_to_img(tex->path[EA]);
-		s_data()->feature_filled++;
+		s_data()->features++;
 	}
 }
 
@@ -52,23 +52,26 @@ static bool	__has_all_bonus_textures(t_textures *tex)
 
 void	process_bonus_tex_lines(char *line, t_textures *tex)
 {
+	char	id;
+
+	id = line[0];
 	if (fill_bonus_tex_paths(line, tex) == FAILURE)
 		return ;
 	if (__has_all_bonus_textures(tex) && check_bonus_tex_paths(tex) == FAILURE)
 		clean_exit(FAILURE);
-	if (line[0] == 'F')
+	if (id == 'F')
 	{
 		tex->imgs[F] = xpm_to_img(tex->path[F]);
-		s_data()->feature_filled++;
+		s_data()->features++;
 	}
-	else if (line[0] == 'C')
+	else if (id == 'C')
 	{
 		tex->imgs[C] = xpm_to_img(tex->path[C]);
-		s_data()->feature_filled++;
+		s_data()->features++;
 	}
-	else if (line[0] == 'D')
+	else if (id == 'D')
 	{
 		tex->imgs[D] = xpm_to_img(tex->path[D]);
-		s_data()->feature_filled++;
+		s_data()->features++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 01:37:13 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 19:41:04 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:54:34 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 # include "cub3D.h"
 
-/**************************\
+/*****************************\
  *	COLLISIONS
-\**************************/
+\*****************************/
 
 // collisions.c
 bool		is_position_colliding(t_data *data, t_point pos);
 
-/**************************\
+/*****************************\
  *	MINIMAP
-\**************************/
+\*****************************/
 
 // minimap_utils.c
 int			set_mmap_pixel_color(t_point world, char type);
@@ -68,20 +68,9 @@ void 		handle_doors(int door_nb, t_door *doors);
 // trigger_door.c
 void		trigger_door(t_game *game);
 
-/**************************\
- *	MOUSE
-\**************************/
-
-// mouse.c
-void		toggle_mouse_visibility(t_mlx *mlx, t_game_state state);
-int			mouse_motion(int x, int y, t_game *game);
-
-// mouse_setter.c
-void		set_mouse_hooks(t_mlx *mlx, t_game *game);
-
-/**************************\
+/*****************************\
  *	ANIMATIONS
-\**************************/
+\*****************************/
 
 // create_weapon.c
 int			set_weapon_id(char *name);
@@ -102,9 +91,20 @@ void		render_curr_weapon(t_game *game);
 // shoot.c
 void		shoot(t_game *game);
 
-/**************************\
- *	ADDITIONAL_TEXTURES
-\**************************/
+/*****************************\
+ *	MOUSE
+\*****************************/
+
+// mouse.c
+void		toggle_mouse_visibility(t_mlx *mlx, t_game_state state);
+int			mouse_motion(int x, int y, t_game *game);
+
+// mouse_setter.c
+void		set_mouse_hooks(t_mlx *mlx, t_game *game);
+
+/*****************************\
+ *	FLOOR_CEILING_TEXTURES
+\*****************************/
 
 // fc_render_utils.c
 void		init_fc_render(t_fc_render *fc, t_raycasting *r,

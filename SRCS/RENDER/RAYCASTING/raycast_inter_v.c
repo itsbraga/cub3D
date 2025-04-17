@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_inter_v.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 19:27:28 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 13:46:37 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 20:54:42 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static bool	__ray_is_horizontal(float ray_rad, t_player *p, t_raycasting *r)
 		r->v_ray_inter.y = p->pos.y;
 		return (true);
 	}
-	else
-		return (false);
+	return (false);
 }
 
 static void	__define_v_offset(float ray_rad, float neg_tan, t_raycasting *r)

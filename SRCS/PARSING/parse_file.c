@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 16:54:24 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 01:22:51 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	__init_map(t_map *map, char *path_to_file, int fd, t_data *data)
 	data->map = map;
 }
 
-static bool	__process_map_data(t_map *map, t_data *data, char *arg, int fd)
+static bool	__process_file(t_map *map, t_data *data, char *arg, int fd)
 {
 	__init_map(map, arg, fd, data);
 	get_file_data(fd, data);
@@ -31,74 +31,35 @@ static bool	__process_map_data(t_map *map, t_data *data, char *arg, int fd)
 	return (true);
 }
 
-/*
-    Validates the map closure by iterating through the map and running
-    flood_fill from every walkable ('0', 'N', 'S', 'E', 'W', '2') cell
-    that hasn't been visited yet ('F').
-    Operates on the temporary, space-padded map.
-*/
-static bool	__validate_map_closure(char **flood_map, t_size size)
+static void	__replace_by_normed_map(t_map *map)
 {
-	size_t		y;
-	size_t		x;
-	const char	*walkable_chars;
-	
-	if (!BONUS)
-		walkable_chars = VALID_MAP;
-	else
-		walkable_chars = VALID_BONUS_MAP;
-	y = 0;
-	while (y < size.height)
-	{
-		x = 0;
-		while (x < size.width)
-		{
-			if (ft_strchr(walkable_chars, flood_map[y][x]) != NULL 
-				&& flood_map[y][x] != 'F')
-			{
-				if (flood_fill(flood_map, (int)y, (int)x, size) == false)
-					return (false);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (true);
-}
+    char	**normed_map;
+    size_t	longest_line;
 
-static void	__replace_by_final_map(t_data *data, size_t longest_line)
-{
-	char	**final_map;
-
-	final_map = normalize_final_map(data->map->map2d, data->map->size.height,
-			longest_line);
-	secure_malloc(final_map, true);
-	free_array(data->map->map2d);
-	data->map->map2d = final_map;
-	data->map->size.width = longest_line;
+    longest_line = get_longest_line(map->map2d, map->size.height);
+    normed_map = normalize_map(map->map2d, map->size.height,
+            longest_line);
+    secure_malloc(normed_map, true);
+    free_array(map->map2d);
+    map->map2d = normed_map;
+    map->size.width = longest_line;
 }
 
 int	parse_file(char *arg, t_data *data, t_game *game)
 {
 	int		fd;
 	t_map	*map;
-	size_t	longest_line;
-	char	**flood_map;
-	t_size	size;
 
 	fd = check_cub_file(arg);
-	map = data->map;
-	if (__process_map_data(map, data, arg, fd) == false)
+	if (fd < 0)
 		return (FAILURE);
-	longest_line = get_longest_line(map->map2d, map->size.height);
-	size = (t_size){longest_line, map->size.height};
-	flood_map = normalize_map_for_flood(map->map2d, size);
-	secure_malloc(flood_map, true);
-	if (__validate_map_closure(flood_map, size) == false)
-		return (free_array(flood_map), FAILURE);
-	free_array(flood_map);
-	__replace_by_final_map(data, longest_line);
-	get_player_direction(map, game->player);
+	map = data->map;
+	if (__process_file(map, data, arg, fd) == false)
+		return (FAILURE);
+	__replace_by_normed_map(map);
+	if (check_map(map->map2d) == FAILURE)
+		return (FAILURE);
+	find_player_start_pos(map, game->player);
 	game->data = data;
 	return (SUCCESS);
 }

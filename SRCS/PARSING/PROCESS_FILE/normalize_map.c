@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   normalize_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 16:24:43 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 01:18:13 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static size_t	__handle_tab(char *normed_line, size_t k, size_t width)
 	return (spaces);
 }
 
-static char	*__normalize_line_for_storage(char *line, size_t width)
+static char	*__normalize_line(char *line, size_t width)
 {
 	char	*normed_line;
 	size_t	line_len;
@@ -55,7 +55,7 @@ static char	*__normalize_line_for_storage(char *line, size_t width)
 	return (normed_line);
 }
 
-char	**normalize_final_map(char **map, size_t height, size_t width)
+char	**normalize_map(char **map, size_t height, size_t width)
 {
 	char	**normed;
 	size_t	i;
@@ -65,7 +65,7 @@ char	**normalize_final_map(char **map, size_t height, size_t width)
 	i = 0;
 	while (i < height)
 	{
-		normed[i] = __normalize_line_for_storage(map[i], width);
+		normed[i] = __normalize_line(map[i], width);
 		i++;
 	}
 	normed[height] = NULL;
