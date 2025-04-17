@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:39:37 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 01:41:03 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:49:45 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	__process_mmap_pixel(t_minimap *mmap, t_map *map, t_point pixel)
 	world_pos = __get_world_coords(mmap, pixel);
 	map_x = floor(world_pos.x / TILE_SIZE);
 	map_y = floor(world_pos.y / TILE_SIZE);
-	if (is_within_map_bounds(map_x, map_y, map))
+	if (is_within_map_bounds(map_x, map_y, map) == true)
 	{
 		tile_type = map->map2d[map_y][map_x];
 		if (tile_type == '1' || tile_type == '2')
@@ -54,7 +54,7 @@ static void	__process_mmap_pixel(t_minimap *mmap, t_map *map, t_point pixel)
 	}
 	else
 		color = mmap->bg_color;
-	if (is_valid_point(pixel, mmap->width, mmap->height))
+	if (is_valid_point(pixel, mmap->width, mmap->height) == true)
 		my_pixel_put_to_img(&mmap->img, color, pixel.x, pixel.y);
 }
 

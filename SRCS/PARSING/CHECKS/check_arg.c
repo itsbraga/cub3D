@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:24:27 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/08 22:23:23 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:52:03 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	__is_valid_extension(char *filename)
 	return (true);
 }
 
-static int	__is_not_directory(const char *path)
+static bool	__is_not_directory(const char *path)
 {
 	int	fd;
 
@@ -34,15 +34,14 @@ static int	__is_not_directory(const char *path)
 	if (fd > 0)
 	{
 		close(fd);
-		return (FAILURE);
+		return (false);
 	}
-	else
-		return (SUCCESS);
+	return (true);
 }
 
 static void	__check_open_error(const char *arg)
 {
-	if (__is_not_directory(arg) != SUCCESS)
+	if (__is_not_directory(arg) == false)
 		err_msg(NULL, strerror(EISDIR));
 	else if (errno == EACCES)
 		err_msg(NULL, strerror(EACCES));

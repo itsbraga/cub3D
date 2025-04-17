@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 00:16:54 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/09 15:03:19 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:54:32 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	load_tex_buffer(int orientation, int *tex_buffer)
 void	handle_tex_buffer(int *tex_buffer, t_raycasting *r, float ray_rad)
 {
 	ft_bzero(tex_buffer, TILE_SIZE * TILE_SIZE);
-	if (r->is_door)
+	if (r->is_door == true)
 	{
 		load_tex_buffer(D, tex_buffer);
 		return ;

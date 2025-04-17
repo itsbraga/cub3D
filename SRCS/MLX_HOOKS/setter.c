@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 13:45:20 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 02:02:13 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	__weapon_selection(int keycode, t_data *data)
 		data->curr_weapon_idx = 0;
 	else if (keycode == AT_KEY)
 		data->curr_weapon_idx = 1;
-	else if (keycode == HASH_KEY)
-		data->curr_weapon_idx = 2;
+	// else if (keycode == HASH_KEY)
+	// 	data->curr_weapon_idx = 2;
 }
 
 static int	__set_keypress(int keycode, t_game *game)

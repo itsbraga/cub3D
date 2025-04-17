@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:33:24 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 22:16:21 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:50:04 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	handle_remove(t_gc_lst **yama, void *ptr)
 	node = *yama;
 	while (node->ptr != ptr)
 		node = node->next;
-	if (node->is_array)
+	if (node->is_array == true)
 		return (free_gc_array(yama, node->ptr));
 	else
 		return (remove_gc_node(yama, ptr));

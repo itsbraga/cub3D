@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 19:42:46 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/16 21:45:57 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ typedef struct s_data
 	t_textures	*decor_tex;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
-	uint32_t	feature_filled;
+	uint32_t	features;
 	int			door_nb;
 	t_door		*doors;
 	t_weapon	**weapons;

@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 03:38:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 01:40:58 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:49:34 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static bool	__is_border_pixel(t_point world)
 
 int	set_mmap_pixel_color(t_point world, char type)
 {
-	if (__is_border_pixel(world))
+	if (__is_border_pixel(world) == true)
 		return (GRAY_PIX);
 	if (type == '1')
 		return (WHITE_PIX);

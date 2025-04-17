@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 15:50:26 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 03:31:11 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # ifndef BONUS
 #  define BONUS 1
 # endif
-
-# define VALID_MAP "01 NSEW"
-# define VALID_BONUS_MAP "012 NSEW"
 
 /**************************\
  * MATHS
@@ -63,34 +60,28 @@
 // minilibX
 # define ERR_MLX "Cannot initialize minilibX"
 # define ERR_INIT_IMG "Cannot initialize minilibX image"
-# define ERR_INIT_MMAP_IMG "\033[38;2;211;211;255m[minimap]\033[0m \
-Cannot initialize minilibX image"
+# define ERR_INIT_MMAP_IMG "[minimap] Cannot initialize minilibX image"
 # define ERR_WIN "Cannot create new window"
 # define ERR_IMG "Cannot create new image"
 # define ERR_ADDR "Cannot find image address"
 # define ERR_XPM "Cannot convert XPM file into a minilibX image"
 # define ERR_MALLOC "Cannot allocate memory"
 
-// File
-# define ERR_CUB_EXT "Invalid extension (expected: .cub)"
-# define ERR_XPM_EXT "Invalid extension (expected: .xpm)"
-# define ERR_EMPTY "Oops! This file seems to be empty"
-# define ERR_MAP_BORDERS "Invalid map (not fully closed)"
-# define ERR_MAP "Invalid map grid"
-# define ERR_CHAR "Invalid character in map"
-# define ERR_MAP_NOT_CLOSED "Map is not closed by walls"
-# define ERR_MAP_CONTAINS_SPACE "Map contains invalid empty space"
-# define ERR_RGB "Invalid RGB (range 0-255)"
-# define ERR_CONFIG "Invalid file configuration"
-
-// Player direction
-# define ERR_PLAYER "Map has no player position"
-# define ERR_NB_PLAYER "Map has more than one player"
-# define ERR_PLAYER_POS "Invalid player position"
-
 // Title screen
 # define ERR_BG_IMG "Cannot load background image"
 # define ERR_BUTTON_IMG "Cannot load button image"
+
+// File
+# define ERR_CUB_EXT "Invalid extension (expected: .cub)"
+# define ERR_XPM_EXT "Invalid extension (expected: .xpm)"
+# define ERR_MISSING_TEX "Missing texture path"
+# define ERR_RGB "Invalid RGB"
+# define ERR_RGB_RANGE "RGB is out of range (expected: 0-255)"
+# define ERR_MAP_NOT_LAST "Invalid file: map is not the last element in file"
+# define ERR_MAP_UNCLOSED "Invalid map: unclosed"
+# define ERR_NO_PLAYER "Invalid map: has no player position"
+# define ERR_NB_PLAYER "Invalid map: has more than one player"
+# define ERR_CHAR "Invalid character in map"
 
 /**************************\
  * MLX
@@ -178,7 +169,6 @@ typedef void	(*t_weapon_array)(t_game *game, t_weapon *w);
  * PLAYER'S DIRECTION
 \**************************/
 
-# define PLAYER_DIR "NSEW"
 # define N 270
 # define S 90
 # define E 0
@@ -209,9 +199,6 @@ typedef void	(*t_weapon_array)(t_game *game, t_weapon *w);
 # define BLACK_PIX 0xFF000000
 # define MANDARINE_PIX 0x00FEA347
 # define LAVENDER_PIX 0x009683EC
-# define LPINK_PIX 0x00FFB6C1
-# define ROY_PURPLE_PIX 0x005A006C
-# define RUSS_PURPLE_PIX 0x0019001E
 # define LGRAY_PIX 0x00D3D3D3
 # define GRAY_PIX 0x00303030
 

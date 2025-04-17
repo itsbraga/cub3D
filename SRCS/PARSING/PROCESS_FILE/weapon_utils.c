@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 02:12:03 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 03:13:46 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:54:22 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	read_sprite_paths(int fd, char **tmp_paths, int max_sprites)
 			return (free(line), count);
 		if (trimmed[0] == '%')
 			return (free(line), -1);
-		if (is_sprite_line(line))
+		if (is_sprite_line(line) == true)
 		{
 			if (count >= max_sprites)
 				return (free(line), -1);
