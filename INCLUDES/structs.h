@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 23:04:02 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 03:40:27 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,6 @@ typedef struct s_raycasting
 	t_point		closest_inter;
 	t_point		h_ray_inter;
 	t_point		v_ray_inter;
-	// t_point		h_door_inter;
-	// t_point		v_door_inter;
-	// t_point		door_inter;
 	t_point		h_offset;
 	t_point		v_offset;
 	float		dist_wall;
@@ -181,7 +178,7 @@ typedef struct s_data
 	t_textures	*decor_tex;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
-	uint32_t	feature_filled;
+	uint32_t	features;
 	int			door_nb;
 	t_door		*doors;
 	t_weapon	**weapons;

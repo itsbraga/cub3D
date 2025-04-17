@@ -3,34 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   color_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 20:57:10 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 17:13:28 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 02:58:41 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static char	**__rgb_to_convert(char *line, char **to_convert)
+static bool	__is_valid_number_str(char *str)
 {
-	int	count;
+	int	i;
+	int	len;
 
-	count = 0;
-	while (*line && ft_isdigit(*line) != 1)
-		line++;
-	if (*line == '\0' || *line == '\n')
+	i = 0;
+	while (str[i] != '\0' && ft_isspace((unsigned char)str[i]) == 1)
+		i++;
+	if (str[i] == '\0')
+		return (false);
+	len = ft_strlen(str) - 1;
+	while (len >= i && ft_isspace((unsigned char)str[len]) == 1)
+		len--;
+	if (len < i)
+		return (false);
+	while (i <= len)
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+static char	**__rgb_to_convert(char *line)
+{
+	char	**rgb_array;
+	char	*values_start;
+	int		i;
+
+	values_start = line;
+	while (*values_start != '\0' && ft_isdigit(*values_start) == 0
+		&& *values_start != ',')
+		values_start++;
+	if (*values_start == '\0' || *values_start == '\n' || *values_start == ',')
 		return (NULL);
-	to_convert = ft_split(line, ',');
-	secure_malloc(to_convert, true);
-    while (to_convert[count] != NULL)
-        count++;
-    if (count != 3)
-    {
-        free_array(to_convert);
-    	return (NULL);
-    }
-	return (to_convert);
+	rgb_array = ft_split(values_start, ',');
+	secure_malloc(rgb_array, true);
+	i = 0;
+	while (rgb_array[i] != NULL)
+	{
+		if (i > 3 || __is_valid_number_str(rgb_array[i]) == false)
+			return (free_array(rgb_array), NULL);
+		i++;
+	}
+	if (i != 3)
+		return (free_array(rgb_array), NULL);
+	return (rgb_array);
 }
 
 static uint32_t	__convert_rgb_to_uint(char *red, char *green, char *blue)
@@ -43,13 +72,13 @@ static uint32_t	__convert_rgb_to_uint(char *red, char *green, char *blue)
 	result = 0;
 	r = ft_atoi(red, &result);
 	if (r < 0 || r > 255)
-		(err_msg(NULL, ERR_RGB), clean_exit(FAILURE));
+		(err_msg(NULL, ERR_RGB_RANGE), clean_exit(FAILURE));
 	g = ft_atoi(green, &result);
 	if (g < 0 || g > 255)
-		(err_msg(NULL, ERR_RGB), clean_exit(FAILURE));
+		(err_msg(NULL, ERR_RGB_RANGE), clean_exit(FAILURE));
 	b = ft_atoi(blue, &result);
 	if (b < 0 || b > 255)
-		(err_msg(NULL, ERR_RGB), clean_exit(FAILURE));
+		(err_msg(NULL, ERR_RGB_RANGE), clean_exit(FAILURE));
 	result = (r << 16);
 	result = result | (g << 8);
 	result = result | (b);
@@ -58,26 +87,24 @@ static uint32_t	__convert_rgb_to_uint(char *red, char *green, char *blue)
 
 void	process_color_lines(char *line)
 {
-	char	**rgb_array;
+	char		id;
+	char		**rgb_array;
+	uint32_t	color;
 
-	rgb_array = NULL;
-	if (line[0] == 'F')
+	id = line[0];
+	rgb_array = __rgb_to_convert(line);
+	if (rgb_array == NULL)
+		(err_msg(NULL, ERR_RGB), clean_exit(FAILURE));
+	color = __convert_rgb_to_uint(rgb_array[0], rgb_array[1], rgb_array[2]);
+	if (id == 'F')
 	{
-		rgb_array = __rgb_to_convert(line, rgb_array);
-		if (rgb_array == NULL)
-			return ;
-		s_data()->floor_color = __convert_rgb_to_uint(rgb_array[0],
-				rgb_array[1], rgb_array[2]);
-		s_data()->feature_filled++;
+		s_data()->floor_color = color;
+		s_data()->features++;
 	}
-	else
+	else if (id == 'C')
 	{
-		rgb_array = __rgb_to_convert(line, rgb_array);
-		if (rgb_array == NULL)
-			return ;
-		s_data()->ceiling_color = __convert_rgb_to_uint(rgb_array[0],
-				rgb_array[1], rgb_array[2]);
-		s_data()->feature_filled++;
+		s_data()->ceiling_color = color;
+		s_data()->features++;
 	}
 	free_array(rgb_array);
 }

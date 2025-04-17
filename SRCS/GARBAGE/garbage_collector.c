@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:30:28 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/17 01:08:56 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 03:40:39 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	*__add(t_gc_lst **yama, void *ptr, bool is_tab)
 {
 	t_gc_lst	*node;
 
-	if (is_tab)
+	if (is_tab == true)
 		return (__add_tab(yama, ptr));
 	node = new_gc_node(ptr, is_tab);
 	if (node == NULL)

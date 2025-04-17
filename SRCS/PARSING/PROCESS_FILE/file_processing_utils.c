@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_processing_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 23:50:46 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/11 04:01:37 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/16 20:52:49 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	is_sprite_line(char *line)
 {
 	char	*trimmed;
 
-	if (line == NULL || is_empty_line(line) || line[0] == '%')
+	if (line == NULL || is_empty_line(line) == true || line[0] == '%')
 		return (false);
 	trimmed = skip_spaces(line);
 	if (ft_strncmp(trimmed, "./", 2) == 0)

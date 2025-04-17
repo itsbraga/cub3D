@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 15:20:42 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 16:23:00 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 03:14:57 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	is_map_line(char *line)
 	while (line[i] != '\0')
 	{
 		if (line[i] != '\n' && line[i] != '\t'
-			&& ft_strchr(VALID_MAP, line[i]) == NULL)
+			&& ft_strchr("NSEW 01", line[i]) == NULL)
 		{
 			err_msg_quoted(&line[i], ERR_CHAR);
 			return (false);
@@ -57,7 +57,7 @@ bool	is_bonus_map_line(char *line)
 	while (line[i] != '\0')
 	{
 		if (line[i] != '\n' && line[i] != '\t'
-			&& ft_strchr(VALID_BONUS_MAP, line[i]) == NULL)
+			&& ft_strchr("NSEW 012", line[i]) == NULL)
 		{
 			err_msg_quoted(&line[i], ERR_CHAR);
 			return (false);
@@ -65,4 +65,15 @@ bool	is_bonus_map_line(char *line)
 		i++;
 	}
 	return (true);
+}
+
+bool	c_in_str(char *str, char c)
+{
+	while (*str != '\0')
+	{
+		if (*str == c)
+			return (true);
+		str++;
+	}
+	return (false);
 }

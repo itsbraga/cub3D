@@ -5,89 +5,108 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 20:11:03 by pmateo           ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/04/17 03:41:33 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3D.h"
 
 /*
-	Recursive flood fill algorithm to check map boundaries and enclosed spaces
-    Operates on a temporary map padded with spaces
-	@param map: The temporary 2D map array (normalized, padded with spaces).
-	@param y: current y coordinate being checked.
-	@param x: current x coordinate being checked.
-	@param size: total height and width of the map.
-	@return: true if the path is enclosed, false if it hits a space or boundary.
-	
-	The function:
-    - Marks visited spaces with 'F' (Filled)
-    - Checks all four adjacent cells recursively
-    - Stops at walls ('1') or previously filled cells ('F')
-    - Fails if it goes out of bounds or encounters a space ' '
+	[1] Check top neighbor
+	[2] Check bottom
+	[3] Check left
+	[4] Check right
 */
-bool	flood_fill(char **map, int y, int x, t_size size)
+static bool	__is_invalid_neighbor(char **map, int i, int j)
 {
-	if (x < 0 || y < 0 || (size_t)x >= size.width || (size_t)y >= size.height
-		|| map[y][x] == ' ')
-	{
-		err_msg(NULL, ERR_MAP_BORDERS);
-		return (false);
-	}
-	if (map[y][x] == '1' || map[y][x] == 'F')
-		return (true);
-	map[y][x] = 'F';
-	if (flood_fill(map, y - 1, x, size) == false
-		|| flood_fill(map, y + 1, x, size) == false
-		|| flood_fill(map, y, x - 1, size) == false
-		|| flood_fill(map, y, x + 1, size) == false)
-		return (false);
-	return (true);
+	char	*valid_neighbors;
+
+	if (BONUS)
+		valid_neighbors = "0NSEW12";
+	else
+		valid_neighbors = "0NSEW1";
+    if (ft_strlen(map[i - 1]) < (size_t)j
+        || c_in_str(valid_neighbors, map[i - 1][j]) == false)
+        return (err_msg(NULL, ERR_MAP_UNCLOSED), true);
+    if (ft_strlen(map[i + 1]) < (size_t)j
+        || c_in_str(valid_neighbors, map[i + 1][j]) == false)
+        return (err_msg(NULL, ERR_MAP_UNCLOSED), true);
+    if (j != 0 && c_in_str(valid_neighbors, map[i][j - 1]) == false)
+        return (err_msg(NULL, ERR_MAP_UNCLOSED), true);
+    if (c_in_str(valid_neighbors, map[i][j + 1]) == false)
+        return (err_msg(NULL, ERR_MAP_UNCLOSED), true);
+    return (false);
 }
 
-static char	*__normalize_line_for_flood(char *line, size_t width)
+static int	__check_cell(char **map, int i, int j, int *player_count)
 {
-	char	*normed_line;
-	size_t	line_len;
-	size_t	j;
+	char	*valid_inner;
 
-	normed_line = malloc(width + 1);
-	secure_malloc(normed_line, true);
-	line_len = ft_strlen(line);
-	if (line[line_len - 1] == '\n')
-		line_len--;
-	j = 0;
-	while (j < width)
+	if (BONUS)
+		valid_inner = "0NSEW2";
+	else
+		valid_inner = "0NSEW";
+    if (c_in_str(valid_inner, map[i][j]) == true)
+    {
+        if (c_in_str("NSEW", map[i][j]) == true)
+            (*player_count)++;
+        if (__is_invalid_neighbor(map, i, j) == true)
+            return (FAILURE);
+    }
+    else if (c_in_str(" 1", map[i][j]) == false)
+        return (FAILURE);
+    return (SUCCESS);
+}
+
+static int	__scan_map(char **map, int i, int j, int *player_count)
+{
+	while (map[i + 1] != NULL)
 	{
-		if (j < line_len)
+		if (map[i][0] == '0')
+			return (-1);
+		j = 1;
+		while (map[i][j] != '\0')
 		{
-			if (line[j] == ' ' || line[j] == '\t')
-				normed_line[j] = '1';
-			else
-				normed_line[j] = line[j];
+			if (__check_cell(map, i, j, player_count) == FAILURE)
+				return (-1);
+			j++;
 		}
-		else
-			normed_line[j] = '1';
-		j++;
-	}
-	normed_line[width] = '\0';
-	return (normed_line);
-}
-
-char	**normalize_map_for_flood(char **map, t_size size)
-{
-	char	**normed;
-	size_t	i;
-
-	normed = malloc(sizeof(char *) * (size.height + 1));
-	secure_malloc(normed, true);
-	i = 0;
-	while (i < size.height)
-	{
-		normed[i] = __normalize_line_for_flood(map[i], size.width);
 		i++;
 	}
-	normed[size.height] = NULL;
-	return (normed);
+	return (i);
+}
+
+static int	__line_is_wall(char *line)
+{
+	int	j;
+
+	j = 0;
+	while (line != NULL && line[j] != '\0')
+	{
+		if (c_in_str(" 1", line[j]) == false)
+			return (err_msg(NULL, ERR_MAP_UNCLOSED), FAILURE);
+		j++;
+	}
+	return (SUCCESS);
+}
+
+int	check_map(char **map)
+{
+	int	i;
+	int	player_count;
+
+	i = 0;
+	player_count = 0;
+	if (__line_is_wall(map[0]) == FAILURE)
+		return (FAILURE);
+	i = __scan_map(map, i + 1, 0, &player_count);
+	if (i == -1)
+		return (FAILURE);
+	if (player_count != 1)
+		return (err_msg(NULL, ERR_NB_PLAYER), FAILURE);
+	if (__line_is_wall(map[i]) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
 }
