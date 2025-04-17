@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:55 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 03:32:21 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:44:11 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	__process_line(char *line, char *trimmed, t_data *data)
 		|| (BONUS && data->features < 7 && is_bonus_map_line(trimmed)))
 	{
 		err_msg(NULL, ERR_MAP_NOT_LAST);
-		clean_exit(FAILURE);
+		exit_game(s_mlx(), FAILURE);
 	}
 	else if ((!BONUS && data->features == 6 && is_map_line(trimmed))
 		|| (BONUS && data->features == 7 && is_bonus_map_line(trimmed)))

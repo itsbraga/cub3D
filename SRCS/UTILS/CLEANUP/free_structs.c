@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 00:43:27 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 18:57:31 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	free_map(t_map *map)
 		free_array(map->map2d);
 	if (map->path_to_file != NULL)
 		free_and_set_null((void **)&map->path_to_file);
+	free_and_set_null((void **)&map);
 }
 
 void	free_textures(t_textures *tex)
@@ -72,6 +73,7 @@ void	free_weapon(t_weapon *w)
 	while (i < w->xpm_count)
    {
 		free_and_set_null((void **)&w->sprites.path[i]);
+		mlx_destroy_image(s_mlx()->mlx_ptr, w->sprites.imgs[i].img_ptr);
 		i++;
     }
     free_and_set_null((void **)&w->sprites.path);

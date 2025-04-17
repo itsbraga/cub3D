@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_weapon.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:51:48 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 15:05:41 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 05:27:20 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ t_weapon	*new_weapon(char *name)
 	t_weapon	*new;
 	char		*trimmed_name;
 
-	new = yama(CREATE, NULL, sizeof(t_weapon));
+	new = malloc(sizeof(t_weapon));
 	secure_malloc(new, true);
 	ft_bzero(new, sizeof(t_weapon));
 	trimmed_name = ft_strtrim(name, "\n");
-	new->name = yama(ADD, ft_strdup(trimmed_name), 0);
+	new->name = ft_strdup(trimmed_name);
 	free_and_set_null((void **)&trimmed_name);
 	new->id = set_weapon_id(name);
 	new->state = IDLE;

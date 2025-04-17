@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   armory_section.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:10:48 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/17 02:53:26 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:42:38 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ static void	__process_single_weapon(int fd, t_data *d, char *trimmed_name)
 	secure_malloc(weapon, true);
 	marker_line = get_next_line(fd, false);
 	if (marker_line == NULL)
-		clean_exit(FAILURE);
+		exit_game(s_mlx(), FAILURE);
 	trimmed_marker = skip_spaces(marker_line);
 	if (trimmed_marker[0] != '%'
 		|| (trimmed_marker[1] != '\0' && trimmed_marker[1] != '\n'))
 	{
 		free(marker_line);
-		clean_exit(FAILURE);
+		exit_game(s_mlx(), FAILURE);
 	}
 	free(marker_line);
 	if (process_weapon_sprites(fd, weapon, d) == FAILURE)
-		clean_exit(FAILURE);
+		exit_game(s_mlx(), FAILURE);
 }
 
 void	process_armory_section(int fd, t_data *d)
@@ -53,11 +53,11 @@ void	process_armory_section(int fd, t_data *d)
 			if (is_weapon_typename(trimmed) == true)
 				__process_single_weapon(fd, d, trimmed);
 			else
-				(free(line), clean_exit(FAILURE));
+				(free(line), exit_game(s_mlx(), FAILURE));
 		}
 		free(line);
 		line = get_next_line(fd, false);
 	}
 	if (section_closed == false)
-		clean_exit(FAILURE);
+		exit_game(s_mlx(), FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/04/17 00:43:15 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 19:03:57 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	free_data(t_data *data)
 			free_textures(data->decor_tex);
 		if (BONUS && data->decor_tex != NULL)
 			free_bonus_textures(data->decor_tex);
-		if (data->weapons != NULL)
+		if (BONUS && data->doors != NULL)
+			free_and_set_null((void **)&data->doors);
+		if (BONUS && data->weapons != NULL)
 		{
 			while (i < data->weapon_count)
 			{
@@ -33,9 +35,10 @@ void	free_data(t_data *data)
 					free_weapon(data->weapons[i]);
 				i++;
 			}
+			free_and_set_null((void **)&data->weapons);
 		}
 	}
-	// free(data);
+	free_and_set_null((void **)&data);
 }
 
 void	free_game(t_game *game)
@@ -55,7 +58,7 @@ void	free_game(t_game *game)
 			free_and_set_null((void **)&game->mmap);
 		}
 	}
-	// free(game);
+	free(game);
 }
 
 void	free_mlx(t_mlx *mlx)
@@ -79,5 +82,6 @@ void	free_mlx(t_mlx *mlx)
 			free(mlx->mlx_ptr);
 			mlx->mlx_ptr = NULL;
 		}
+		free_and_set_null((void **)&mlx);
 	}
 }

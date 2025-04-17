@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 15:12:41 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 19:57:36 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	render_frame(t_game *game)
 
 	mlx = game->mlx;
 	data = game->data;
-	if (game->state == TITLE_SCREEN)
-		draw_title_screen(game, mlx);
-	else if (game->state == GAME)
-	{
+	// if (game->state == TITLE_SCREEN)
+	// 	draw_title_screen(game, mlx);
+	// else if (game->state == GAME)
+	// {
 		move_player(game, game->keys);
 		reset_move(game->player);
 		clear_img(&mlx->img, WIN_WIDTH, WIN_HEIGHT, GRAY_PIX);
@@ -36,6 +36,6 @@ int	render_frame(t_game *game)
 			if (data->weapon_count > 0)
 				render_curr_weapon(game);
 		}
-	}
+	// }
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 01:26:52 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 18:34:23 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ t_data	*s_data(void)
 
 	if (instance == NULL)
 	{
-		instance = yama(CREATE, NULL, sizeof(t_data));
+		instance = malloc(sizeof(t_data));
 		secure_malloc(instance, true);
 		ft_bzero(instance, sizeof(t_data));
-		instance->map = yama(CREATE, NULL, sizeof(t_map));
+		instance->map = malloc(sizeof(t_map));
 		secure_malloc(instance->map, true);
-		instance->decor_tex = yama(CREATE, NULL, sizeof(t_textures));
+		instance->decor_tex = malloc(sizeof(t_textures));
 		secure_malloc(instance->decor_tex, true);
 	}
 	return (instance);
@@ -40,19 +40,19 @@ t_game	*s_game(void)
 
 	if (instance == NULL)
 	{
-		instance = yama(CREATE, NULL, sizeof(t_game));
+		instance = malloc(sizeof(t_game));
 		secure_malloc(instance, true);
 		ft_bzero(instance, sizeof(t_game));
 		instance->state = TITLE_SCREEN;
-		instance->player = yama(CREATE, NULL, sizeof(t_player));
+		instance->player = malloc(sizeof(t_player));
 		secure_malloc(instance->player, true);
-		instance->ray = yama(CREATE, NULL, sizeof(t_raycasting));
+		instance->ray = malloc(sizeof(t_raycasting));
 		secure_malloc(instance->ray, true);
-		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
+		instance->keys = malloc(sizeof(t_keys));
 		secure_malloc(instance->keys, true);
 		if (BONUS)
 		{
-			instance->mmap = yama(CREATE, NULL, sizeof(t_minimap));
+			instance->mmap = malloc(sizeof(t_minimap));
 			secure_malloc(instance->mmap, true);
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 00:51:43 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/17 18:41:25 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	find_player_start_pos(t_map *map, t_player *player)
 	if (player_found == false)
 	{
 		err_msg(NULL, ERR_NO_PLAYER);
-		clean_exit(FAILURE);
+		exit_game(s_mlx(), FAILURE);
 	}
 	player->pos.x *= TILE_SIZE;
 	player->pos.y *= TILE_SIZE;
