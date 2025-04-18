@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 03:29:07 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:05:23 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	free_map(t_map *map)
 {
 	if (map == NULL)
 		return ;
+	if (map->fd > 0)
+		close(map->fd);
 	if (map->map2d != NULL)
 		free_array(map->map2d);
 	if (map->path_to_file != NULL)
