@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 15:20:42 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/17 03:14:57 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 07:49:36 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,36 +31,40 @@ size_t	get_longest_line(char **map2d, size_t height)
 	return (max);
 }
 
-bool	is_map_line(char *line)
+bool	is_map_line(char *line, char *trimmed)
 {
 	int	i;
 
 	i = 0;
-	while (line[i] != '\0')
+	while (trimmed[i] != '\0')
 	{
-		if (line[i] != '\n' && line[i] != '\t'
-			&& ft_strchr("NSEW 01", line[i]) == NULL)
+		if (trimmed[i] != '\n' && trimmed[i] != '\t'
+			&& ft_strchr("NSEW 01", trimmed[i]) == NULL)
 		{
-			err_msg_quoted(&line[i], ERR_CHAR);
-			return (false);
+			ft_printf(STDERR_FILENO, BOLD RED ERR RESET);
+			free(line);
+			get_next_line(s_data()->map->fd, true);
+			exit_game(s_mlx(), FAILURE);
 		}
 		i++;
 	}
 	return (true);
 }
 
-bool	is_bonus_map_line(char *line)
+bool	is_bonus_map_line(char *line, char *trimmed)
 {
 	int	i;
 
 	i = 0;
-	while (line[i] != '\0')
+	while (trimmed[i] != '\0')
 	{
-		if (line[i] != '\n' && line[i] != '\t'
-			&& ft_strchr("NSEW 012", line[i]) == NULL)
+		if (trimmed[i] != '\n' && trimmed[i] != '\t'
+			&& ft_strchr("NSEW 012", trimmed[i]) == NULL)
 		{
-			err_msg_quoted(&line[i], ERR_CHAR);
-			return (false);
+			ft_printf(STDERR_FILENO, BOLD RED ERR RESET);
+			free(line);
+			get_next_line(s_data()->map->fd, true);
+			exit_game(s_mlx(), FAILURE);
 		}
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 02:12:03 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 18:55:27 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 05:53:12 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	read_sprite_paths(int fd, char **tmp_paths, int max_sprites)
 		free(line);
 		line = get_next_line(fd, false);
 	}
+	get_next_line(fd, true);
 	return (-1);
 }
 
@@ -78,7 +79,6 @@ static void	__reallocate_weapons_array(t_data *d)
 		i++;
 	}
 	free_and_set_null((void **)&d->weapons);
-	// yama(REMOVE, d->weapons, 0);
 	d->weapons = new_array;
 	d->weapon_capacity = new_capacity;
 }

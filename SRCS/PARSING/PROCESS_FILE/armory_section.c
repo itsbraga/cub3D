@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   armory_section.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:10:48 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/17 18:42:38 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 07:40:35 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	__process_single_weapon(int fd, t_data *d, char *trimmed_name)
+static void	__process_single_weapon(char *name, int fd, t_data *d, char *line)
 {
 	t_weapon	*weapon;
 	char		*marker_line;
 	char		*trimmed_marker;
 
-	weapon = new_weapon(trimmed_name);
+	weapon = new_weapon(name);
 	secure_malloc(weapon, true);
 	marker_line = get_next_line(fd, false);
 	if (marker_line == NULL)
@@ -27,12 +27,18 @@ static void	__process_single_weapon(int fd, t_data *d, char *trimmed_name)
 	if (trimmed_marker[0] != '%'
 		|| (trimmed_marker[1] != '\0' && trimmed_marker[1] != '\n'))
 	{
-		free(marker_line);
+		err_msg(NULL, ERR_MISSING_MARK);
+		(free(marker_line), free(line), free_weapon(weapon));
+		get_next_line(fd, true);
 		exit_game(s_mlx(), FAILURE);
 	}
 	free(marker_line);
 	if (process_weapon_sprites(fd, weapon, d) == FAILURE)
+	{
+		(free(line), free_weapon(weapon));
+		get_next_line(fd, true);
 		exit_game(s_mlx(), FAILURE);
+	}
 }
 
 void	process_armory_section(int fd, t_data *d)
@@ -51,13 +57,15 @@ void	process_armory_section(int fd, t_data *d)
 		if (is_empty_line(trimmed) == false)
 		{
 			if (is_weapon_typename(trimmed) == true)
-				__process_single_weapon(fd, d, trimmed);
+				__process_single_weapon(trimmed, fd, d, line);
 			else
-				(free(line), exit_game(s_mlx(), FAILURE));
+				(err_msg(NULL, ERR_WPN_NAME), free(line),
+					get_next_line(fd, true), exit_game(s_mlx(), 1));
 		}
 		free(line);
 		line = get_next_line(fd, false);
 	}
+	get_next_line(fd, true);
 	if (section_closed == false)
-		exit_game(s_mlx(), FAILURE);
+		(free(line), exit_game(s_mlx(), FAILURE));
 }

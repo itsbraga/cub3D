@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 18:35:25 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 02:19:24 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	__init_map(t_map *map, char *path_to_file, int fd, t_data *data)
 	data->map = map;
 }
 
-static bool	__process_file(t_map *map, t_data *data, char *arg, int fd)
+static bool	__process_file(t_map *map, char *arg, int fd, t_data *data)
 {
 	__init_map(map, arg, fd, data);
 	get_file_data(fd, data);
@@ -50,11 +50,11 @@ int	parse_file(char *arg, t_data *data, t_game *game)
 	int		fd;
 	t_map	*map;
 
-	fd = check_cub_file(arg);
+	fd = open(arg, O_RDONLY);
 	if (fd < 0)
 		return (FAILURE);
 	map = data->map;
-	if (__process_file(map, data, arg, fd) == false)
+	if (__process_file(map, arg, fd, data) == false)
 		return (FAILURE);
 	__replace_by_normed_map(map);
 	if (check_map(map->map2d) == FAILURE)

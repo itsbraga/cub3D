@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:35:26 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/08 22:28:19 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 08:08:45 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,10 @@ t_point dest_pos)
 
 	src_pixel = (src_pos.y * src->size_line) + (src_pos.x * 4);
 	dest_pixel = (dest_pos.y * dest->size_line) + (dest_pos.x * 4);
-	// printf("src ? %d\n", *(int *)(src->addr + pixel));
 	if ((uint32_t) *(int *)(src->addr + src_pixel) == 0xFF000000)
-	{
-		// printf("degage\n");
 		return ;
-	}
 	else
-	{
 		*(int *)(dest->addr + dest_pixel) = *(int *)(src->addr + src_pixel);
-		// printf("bienvenue a toi %d\n", *(int *)(dest->addr + pixel));
-	}
 }
 
 void	blit_transparent_img(t_img *src, t_img *dest, int pos_x, int pos_y)

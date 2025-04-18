@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   secure.c                                           :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 18:58:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/17 20:53:41 by annabrag         ###   ########.fr       */
+/*   Created: 2025/04/17 20:15:56 by annabrag          #+#    #+#             */
+/*   Updated: 2025/04/17 20:16:44 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	secure_malloc(void *to_secure, bool full_clean)
+void	print_map_debug(t_map *map, const char *name)
 {
-	if (to_secure == NULL)
-	{
-		err_msg("malloc", strerror(errno));
-		if (full_clean == true)
-			exit_game(s_mlx(), FAILURE);
-	}
-}
+	size_t	i;
 
-void	free_and_set_null(void **to_free)
-{
-	if (to_free != NULL && (*to_free) != NULL)
+	i = 0;
+	printf(BOLD PINK "\n%s: " RESET, name);
+	printf("[height = %zu, width = %zu]\n", map->size.height, map->size.width);
+	printf(BOLD PG "Player position: [%f, %f]\n\n" RESET, \
+		s_game()->player->pos.x, s_game()->player->pos.y);
+	while (i < map->size.height)
 	{
-		free(*to_free);
-		*to_free = NULL;
+		printf("%s\n", map->map2d[i]);
+		i++;
 	}
+	printf("\n");
 }

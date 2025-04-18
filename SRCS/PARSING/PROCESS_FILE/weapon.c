@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 05:42:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/11 06:20:54 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/18 08:09:07 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,21 @@ static void	__add_weapon_to_data(t_data *d, t_weapon *w)
 
 static void	__clean_failed_weapon(t_weapon *w)
 {
-	if (w->sprites.path)
-		yama(REMOVE, w->sprites.path, 0);
-	if (w->sprites.imgs)
-		yama(REMOVE, w->sprites.imgs, 0);
+	int	i;
+
+	i = 0;
+	if (w->sprites.path != NULL)
+	{
+		while (i < w->xpm_count)
+		{
+			if (w->sprites.path[i] != NULL)
+				free_and_set_null((void **)&w->sprites.path[i]);
+			i++;
+		}
+		free_and_set_null((void **)&w->sprites.path);
+	}
+	if (w->sprites.imgs != NULL)
+		free_and_set_null((void **)&w->sprites.imgs);
 }
 
 int	process_weapon_sprites(int fd, t_weapon *w, t_data *d)
@@ -57,7 +68,7 @@ int	process_weapon_sprites(int fd, t_weapon *w, t_data *d)
 	sprite_count = read_sprite_paths(fd, tmp_paths, MAX_SPRITES);
 	if (sprite_count <= 0)
 	{
-		free_array(tmp_paths);
+		(free_array(tmp_paths), get_next_line(fd, true));
 		return (FAILURE);
 	}
 	if (allocate_and_copy_paths(w, tmp_paths, sprite_count) == true)

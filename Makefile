@@ -6,7 +6,7 @@
 #    By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/16 17:01:41 by annabrag          #+#    #+#              #
-#    Updated: 2025/03/16 17:03:15 by annabrag         ###   ########.fr        #
+#    Updated: 2025/04/18 00:42:52 by annabrag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ DFLAGS		+=	-MMD -MP
 LFLAGS		+=	-L $(LIBFT_DIR) -lft
 MLXFLAGS	+=	-L $(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm
 LIBFLAGS	+=	$(LFLAGS) $(MLXFLAGS)
-DEBUG		+=	-g3 #-03 -0fast
+DEBUG		+=	-g -g3#-03 -0fast
 
 #—————————————————————————————————————————————
 #	MANDATORY

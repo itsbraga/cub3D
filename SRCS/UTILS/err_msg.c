@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err_msg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:25:59 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/17 18:39:17 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 21:16:38 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*__append_strs(char *s1, char *s2)
 	tmp = s1;
 	s1 = ft_strjoin(tmp, s2);
 	secure_malloc(s1, true);
-	// (void)yama(ADD, s1, 0);
+	free(tmp);
 	return (s1);
 }
 
@@ -42,7 +42,6 @@ void	err_msg(char *context, char *reason)
 		msg = __append_strs(__append_strs(NULL, ERR_PREFIX), reason);
 	ft_putendl_fd(msg, STDERR_FILENO);
 	free_and_set_null((void **)&msg);
-	// yama(REMOVE, msg, 0);
 }
 
 void	err_msg_quoted(char *context, char *reason)
@@ -61,5 +60,4 @@ void	err_msg_quoted(char *context, char *reason)
 		msg = __append_strs(__append_strs(NULL, ERR_PREFIX), reason);
 	ft_putendl_fd(msg, STDERR_FILENO);
 	free_and_set_null((void **)&msg);
-	// yama(REMOVE, msg, 0);
 }

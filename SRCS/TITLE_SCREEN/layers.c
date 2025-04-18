@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 23:15:26 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 03:54:23 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/17 20:30:22 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void	background(t_title_screen *s)
 
 void	start_button(t_title_screen *s)
 {
+	const char	*button = "title screen start button";
+
 	s->second_layer.img = xpm_to_img("./TEXTURES/TITLE_S/start_button.xpm");
 	if (s->second_layer.img.img_ptr == NULL)
 	{
-		del_img(s_mlx(), s->first_layer.img_ptr);
+		delete_img(s_mlx(), s->first_layer.img_ptr, button);
 		return (err_msg("Title screen", ERR_BUTTON_IMG));
 	}
 	s->second_layer.pos.x = (WIN_WIDTH - s->second_layer.img.width) / 2;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_door.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:26:51 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 19:39:23 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 08:09:26 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	init_doors(t_data *d)
 	while (i < door_nb)
 	{
 		_get_door_pos(&d->doors[i], d->map->map2d, i);
-		printf("door[%d] = x(%d), y(%d)\n", i, (int)d->doors[i].pos.x, (int)d->doors[i].pos.y);
 		d->doors[i].state = CLOSED;
 		d->doors[i].ratio = 0.0f;
 		i++;

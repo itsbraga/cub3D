@@ -1,43 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_array.c                                       :+:      :+:    :+:   */
+/*   get_id_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 14:59:06 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 07:04:44 by annabrag         ###   ########.fr       */
+/*   Created: 2025/04/18 07:07:53 by annabrag          #+#    #+#             */
+/*   Updated: 2025/04/18 07:10:48 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	free_array(char **array)
+int	get_wall_id(char *line)
 {
-	int	i;
+	const char	*ids[] = {"NO", "SO", "WE", "EA"};
+	int			i;
+	size_t		len;
 
-	if (array == NULL)
-		return ;
 	i = 0;
-	while (array[i] != NULL)
+	while (i < 4)
 	{
-		free_and_set_null((void **)&array[i]);
+		len = ft_strlen(ids[i]);
+		if (ft_strncmp(line, ids[i], len) == 0
+			&& (line[len] == ' ' || line[len] == '\t'))
+			return (i);
 		i++;
 	}
-	free_and_set_null((void **)&array);
+	return (-1);
 }
 
-void	free_int_array(int **array)
+int	get_other_id(char *line)
 {
-	int	i;
+	const char	*ids[] = {"F", "C", "D"};
+	int			i;
 
-	if (array == NULL)
-		return ;
 	i = 0;
-	while (array[i] != NULL)
+	while (i < 3)
 	{
-		free_and_set_null((void **)&array[i]);
+		if (ft_strncmp(line, ids[i], 1) == 0
+			&& (line[1] == ' ' || line[1] == '\t'))
+			return (i + F);
 		i++;
 	}
-	free_and_set_null((void **)&array);
+	return (-1);
 }

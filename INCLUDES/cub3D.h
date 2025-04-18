@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/17 03:15:19 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 07:10:16 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ void	init_structs(t_data *data, t_game *game, t_mlx *mlx);
 int		check_cub_file(char *arg);
 
 // CHECKS/check_xpm.c
-int		check_xpm_file(char *arg);
-
-// CHECKS/check_all_xpm_paths.c
-int		check_mandatory_tex_paths(t_textures *tex);
+int		check_wall_tex_paths(t_textures *tex);
 int		check_bonus_tex_paths(t_textures *tex);
 int		check_weapon_sprites_paths(t_weapon *w);
 
@@ -73,21 +70,14 @@ int		check_map(char **map);
 // CHECKS/check_player.c
 void	find_player_start_pos(t_map *map, t_player *player);
 
-// PROCESS_FILE/file_processing_utils.c
-char	*skip_spaces(char *line);
-bool	is_empty_line(char *line);
-bool	is_wall_tex_line(char *line);
-bool	is_weapon_typename(char *line);
-bool	is_sprite_line(char *line);
-
 // PROCESS_FILE/fill_tex_paths.c
 char	*get_texture_path(char *line);
-int		fill_tex_paths(char *line, t_textures *tex);
+int		fill_wall_tex_paths(char *line, t_textures *tex);
 int		fill_bonus_tex_paths(char *line, t_textures *tex);
 
-// PROCESS_FILE/decor_textures.c
-void	process_mandatory_tex_lines(char *line, t_textures *tex);
-void	process_bonus_tex_lines(char *line, t_textures *tex);
+// PROCESS_FILE/textures.c
+void	process_wall_tex_lines(char *line, char *trimmed, t_textures *tex);
+void	process_bonus_tex_lines(char *line, char *trimmed, t_textures *tex);
 
 // PROCESS_FILE/weapon_utils.c
 int		read_sprite_paths(int fd, char **tmp_paths, int max_sprites);
@@ -101,18 +91,12 @@ int		process_weapon_sprites(int fd, t_weapon *w, t_data *d);
 // PROCESS_FILE/armory_section.c
 void	process_armory_section(int fd, t_data *d);
 
-// PROCESS_FILE/color_rgb.c
-void	process_color_lines(char *line);
+// PROCESS_FILE/colors.c
+void	process_color_lines(char *line, char *trimmed);
 
 // PROCESS_FILE/normalize_map.c
 char	**normalize_map(char **map, size_t height, size_t width);
 void	fill_map2d_array(t_map *map, char *line);
-
-// PROCESS_FILE/map_utils.c
-size_t	get_longest_line(char **map2d, size_t height);
-bool	is_map_line(char *line);
-bool	is_bonus_map_line(char *line);
-bool	c_in_str(char *str, char c);
 
 // PROCESS_FILE/get_file_data.c
 void	get_file_data(int fd, t_data *data);
@@ -131,6 +115,26 @@ void	err_msg_quoted(char *context, char *reason);
 // secure.c
 void	secure_malloc(void *to_secure, bool full_clean);
 void	free_and_set_null(void **to_free);
+
+// debug.c
+void	print_map_debug(t_map *map, const char *name);
+
+// parse_file_utils.c
+char	*skip_spaces(char *line);
+bool	is_empty_line(char *line);
+bool	is_wall_tex_line(char *line);
+bool	is_weapon_typename(char *line);
+bool	is_sprite_line(char *line);
+
+// parse_map_utils.c
+size_t	get_longest_line(char **map2d, size_t height);
+bool	is_map_line(char *line, char *trimmed);
+bool	is_bonus_map_line(char *line, char *trimmed);
+bool	c_in_str(char *str, char c);
+
+// get_id_utils.c
+int		get_wall_id(char *line);
+int		get_other_id(char *line);
 
 // draw_utils.c
 void	swap_point(t_point *p0, t_point *p1);
@@ -154,7 +158,6 @@ void	clear_img(t_img *img, size_t size_x, size_t size_y, int color);
 
 // math_formulas.c
 float	degree_to_radian(int degree);
-float	square(float to_square); // pas utilise
 float	norm_rad_angle(float angle);
 int		norm_h_angle(int angle);
 
@@ -175,28 +178,10 @@ void	free_game(t_game *game);
 void	free_mlx(t_mlx *mlx);
 
 // CLEANUP/delete_img.c
-void	del_img(t_mlx *mlx, void *img_ptr);
+void	delete_img(t_mlx *mlx, void *img_ptr, const char *name);
 
 // CLEANUP/clean_exit.c
 int		exit_game(t_mlx *mlx, int exit_code);
-void	clean_exit(int exit_code);
-
-/**********************\
- *	GARBAGE
-\**********************/
-
-// lst_utils.c
-int		remove_gc_node(t_gc_lst**yama, void *ptr);
-void	add_gc_node(t_gc_lst **yama, t_gc_lst *node);
-void	*new_gc_node(void *ptr, bool is_array);
-
-// utils.c
-void	*search_ptr(t_gc_lst **yama, void *ptr);
-int		handle_remove(t_gc_lst **yama, void *ptr);
-int		free_gc_array(t_gc_lst **y, char **array);
-
-// garbage_collector.c
-void	*yama(int flag, void *ptr, size_t size);
 
 /**********************\
  *	TITLE_SCREEN
