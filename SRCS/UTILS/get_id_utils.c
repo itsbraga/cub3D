@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 07:07:53 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 07:10:48 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:09:52 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	get_wall_id(char *line)
 			return (i);
 		i++;
 	}
+	err_msg(NULL, ERR_BAD_TEX_NAME);
 	return (-1);
 }
 
@@ -43,5 +44,6 @@ int	get_other_id(char *line)
 			return (i + F);
 		i++;
 	}
+	err_msg(NULL, ERR_BAD_TEX_NAME);
 	return (-1);
 }

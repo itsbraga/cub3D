@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 18:15:51 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:22:14 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ static bool	__process_file(t_map *map, char *arg, int fd, t_data *d)
 
 static void	__replace_by_normed_map(t_map *map)
 {
-    char	**normed_map;
-    size_t	longest_line;
+	char	**normed_map;
+	size_t	longest_line;
 
-    longest_line = get_longest_line(map->map2d, map->size.height);
-    normed_map = normalize_map(map->map2d, map->size.height,
-            longest_line);
-    secure_malloc(normed_map, true);
-    free_array(map->map2d);
-    map->map2d = normed_map;
-    map->size.width = longest_line;
+	longest_line = get_longest_line(map->map2d, map->size.height);
+	normed_map = normalize_map(map->map2d, map->size.height,
+			longest_line);
+	secure_malloc(normed_map, true);
+	free_array(map->map2d);
+	map->map2d = normed_map;
+	map->size.width = longest_line;
 }
 
 int	parse_file(char *arg, t_data *d, t_game *g)

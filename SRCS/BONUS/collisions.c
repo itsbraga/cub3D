@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 17:55:22 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:18:13 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static bool	__collision_detected(t_data *d, int cell_x, int cell_y)
 		|| cell_y < 0 || cell_y >= (int)d->map->size.height)
 		return (false);
 	if (d->map->map2d[cell_y][cell_x] == '1')
-		return (printf(BOLD "[WALL] " RED COLLISION_WARN RESET), true);
+		return (ft_printf(2, BOLD"[WALL] "RED COLLISION_WARN RESET), 1);
 	else if (d->map->map2d[cell_y][cell_x] == '2')
 	{
 		door = __get_door_at(d, cell_x, cell_y);
@@ -43,7 +43,7 @@ static bool	__collision_detected(t_data *d, int cell_x, int cell_y)
 		{
 			if (door->ratio >= 0.85f && door->ratio <= 1.0f)
 				return (false);
-			return (printf(BOLD PY "[DOOR] " RED COLLISION_WARN RESET), true);
+			return (ft_printf(2, BOLD PY"[DOOR] "RED COLLISION_WARN RESET), 1);
 		}
 		return (true);
 	}

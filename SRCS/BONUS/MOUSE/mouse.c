@@ -6,19 +6,19 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 19:10:31 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:31:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-// void	toggle_mouse_visibility(t_mlx *mlx, t_game_state state)
-// {
-// 	if (state == TITLE_SCREEN)
-// 		mlx_mouse_show(mlx->mlx_ptr, mlx->win_ptr);
-// 	else
-// 		mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
-// }
+void	toggle_mouse_visibility(t_mlx *mlx, t_game_state state)
+{
+	if (state == TITLE_SCREEN)
+		mlx_mouse_show(mlx->mlx_ptr, mlx->win_ptr);
+	else
+		mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
+}
 
 static int	__manage_mouse_wrapping(int x, int *prev_x, t_mlx *mlx)
 {

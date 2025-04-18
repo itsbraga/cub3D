@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:26:51 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/18 08:09:26 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:25:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int	_get_door_nb(char **map)
 {
-	int nb;
+	int	nb;
 	int	x;
 	int	y;
-	
+
 	nb = 0;
 	y = 0;
 	while (map[y] != NULL)
@@ -37,7 +37,7 @@ static int	_get_door_nb(char **map)
 static void	_get_door_pos(t_door *door, char **map, int door_index)
 {
 	int	x;
-	int y;
+	int	y;
 	int	curr_door;
 
 	y = 0;
@@ -52,7 +52,7 @@ static void	_get_door_pos(t_door *door, char **map, int door_index)
 				if (curr_door == door_index)
 				{
 					door->pos.x = x;
-					door->pos.y = y;	
+					door->pos.y = y;
 				}
 				curr_door++;
 			}
@@ -65,9 +65,9 @@ static void	_get_door_pos(t_door *door, char **map, int door_index)
 
 void	init_doors(t_data *d)
 {
-	int i;
-	int door_nb;
-	
+	int	i;
+	int	door_nb;
+
 	i = 0;
 	door_nb = _get_door_nb(d->map->map2d);
 	if (door_nb == 0)

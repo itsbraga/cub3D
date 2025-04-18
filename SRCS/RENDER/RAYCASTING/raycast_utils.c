@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 18:20:32 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/18 18:23:32 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:27:03 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	__get_door_info(t_data *d, t_raycasting *r)
 {
 	int	door_tex_offset;
 	int	door_index;
-	
+
 	door_tex_offset = 0;
 	door_index = 0;
 	r->is_door = is_door(d, r->closest_inter);
@@ -65,7 +65,7 @@ void	get_draw_info(t_data *d, t_player *p, t_raycasting *r)
 {
 	float	dist_h;
 	float	dist_v;
-		
+
 	dist_h = 0.0f;
 	dist_v = 0.0f;
 	__get_distances(&dist_h, &dist_v, p, r);

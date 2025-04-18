@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:53:53 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 07:04:17 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:27:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,3 @@ int	exit_game(t_mlx *mlx, int exit_code)
 		free_mlx(mlx);
 	exit(exit_code);
 }
-

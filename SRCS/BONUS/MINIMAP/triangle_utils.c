@@ -14,6 +14,7 @@
 
 /*
 	Sorts the three points of a triangle by their Y coordinates
+
 	The function:
 	- Compares Y coordinates of points pairwise
 	- Swaps points if they are in wrong order

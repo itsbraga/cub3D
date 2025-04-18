@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:24:27 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 21:30:27 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:04:45 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,6 @@ static bool	__is_valid_extension(char *filename)
 	return (true);
 }
 
-static bool	__is_not_directory(const char *path)
-{
-	int	fd;
-
-	fd = open(path, __O_DIRECTORY);
-	if (fd > 0)
-	{
-		close(fd);
-		return (false);
-	}
-	return (true);
-}
-
-static void	__check_open_error(const char *arg)
-{
-	if (__is_not_directory(arg) == false)
-		err_msg(NULL, strerror(EISDIR));
-	else if (errno == EACCES)
-		err_msg(NULL, strerror(EACCES));
-	else if (errno == ENOENT)
-		err_msg(NULL, strerror(ENOENT));
-	else
-		err_msg(NULL, strerror(errno));
-	exit(FAILURE);
-}
-
 int	check_cub_file(char *arg)
 {
 	int	fd;
@@ -63,6 +37,9 @@ int	check_cub_file(char *arg)
 	}
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
-		__check_open_error(arg);
+	{
+		err_msg(NULL, strerror(errno));
+		exit(FAILURE);
+	}
 	return (fd);
 }
