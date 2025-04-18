@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   secure.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:58:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/17 18:40:17 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 20:53:41 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	secure_malloc(void *to_secure, bool full_clean)
 	if (to_secure == NULL)
 	{
 		err_msg("malloc", strerror(errno));
-		if (full_clean)
+		if (full_clean == true)
 			exit_game(s_mlx(), FAILURE);
 	}
 }

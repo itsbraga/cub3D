@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_singletons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 16:39:53 by u4s2e0r           #+#    #+#             */
-/*   Updated: 2025/04/17 19:03:57 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 07:01:36 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_data(t_data *data)
 			free_and_set_null((void **)&data->doors);
 		if (BONUS && data->weapons != NULL)
 		{
-			while (i < data->weapon_count)
+			while (i < data->weapon_count && data->weapons[i] != NULL)
 			{
 				if (data->weapons[i] != NULL)
 					free_weapon(data->weapons[i]);
@@ -58,16 +58,16 @@ void	free_game(t_game *game)
 			free_and_set_null((void **)&game->mmap);
 		}
 	}
-	free(game);
+	free_and_set_null((void **)&game);
 }
 
 void	free_mlx(t_mlx *mlx)
 {
-	ft_printf(STDERR_FILENO, BOLD PY MLX_EXIT RESET);
 	if (mlx != NULL)
 	{
 		if (mlx->img.img_ptr != NULL)
 		{
+			ft_printf(STDERR_FILENO, BOLD PY DEL_IMG ": mlx\n" RESET);
 			mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);
 			mlx->img.img_ptr = NULL;
 		}
@@ -79,9 +79,8 @@ void	free_mlx(t_mlx *mlx)
 		if (mlx->mlx_ptr != NULL)
 		{
 			mlx_destroy_display(mlx->mlx_ptr);
-			free(mlx->mlx_ptr);
-			mlx->mlx_ptr = NULL;
+			free_and_set_null((void **)&mlx->mlx_ptr);
 		}
-		free_and_set_null((void **)&mlx);
 	}
+	free_and_set_null((void **)&mlx);
 }

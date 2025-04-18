@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:48:56 by pmateo            #+#    #+#             */
-/*   Updated: 2024/06/11 15:47:58 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 02:20:16 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ static char	*build_next_line(char **reserve)
 
 static char	*free_last_call(char **reserve)
 {
-	free(*reserve);
-	*reserve = NULL;
+	if (*reserve != NULL)
+	{
+		free(*reserve);
+		*reserve = NULL;
+	}
 	return (NULL);
 }
 

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_setter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 03:28:07 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 15:21:31 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/17 20:46:59 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
+// toggle_mouse_visibility(game->mlx, game->state);
 static int	__set_game_mouse_press(int button, int x, int y, t_game *game)
 {
 	t_layer	start_btn;
@@ -25,7 +26,6 @@ static int	__set_game_mouse_press(int button, int x, int y, t_game *game)
 				+ start_btn.size.height))
 		{
 			game->state = GAME;
-			toggle_mouse_visibility(game->mlx, game->state);
 		}
 	}
 	else if (game->state == GAME)

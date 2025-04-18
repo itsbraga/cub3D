@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_weapon.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:51:48 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/17 05:27:20 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 23:47:25 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ t_weapon	*new_weapon(char *name)
 	ft_bzero(new, sizeof(t_weapon));
 	trimmed_name = ft_strtrim(name, "\n");
 	new->name = ft_strdup(trimmed_name);
-	free_and_set_null((void **)&trimmed_name);
 	new->id = set_weapon_id(name);
 	new->state = IDLE;
+	free_and_set_null((void **)&trimmed_name);
 	return (new);
 }

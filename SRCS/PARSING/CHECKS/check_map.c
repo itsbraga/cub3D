@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/17 03:41:33 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 07:57:45 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ static bool	__is_invalid_neighbor(char **map, int i, int j)
 		valid_neighbors = "0NSEW1";
     if (ft_strlen(map[i - 1]) < (size_t)j
         || c_in_str(valid_neighbors, map[i - 1][j]) == false)
-        return (err_msg(NULL, ERR_MAP_UNCLOSED), true);
+        return (err_msg(NULL, ERR_MAP), true);
     if (ft_strlen(map[i + 1]) < (size_t)j
         || c_in_str(valid_neighbors, map[i + 1][j]) == false)
-        return (err_msg(NULL, ERR_MAP_UNCLOSED), true);
+        return (err_msg(NULL, ERR_MAP), true);
     if (j != 0 && c_in_str(valid_neighbors, map[i][j - 1]) == false)
-        return (err_msg(NULL, ERR_MAP_UNCLOSED), true);
+        return (err_msg(NULL, ERR_MAP), true);
     if (c_in_str(valid_neighbors, map[i][j + 1]) == false)
-        return (err_msg(NULL, ERR_MAP_UNCLOSED), true);
+        return (err_msg(NULL, ERR_MAP), true);
     return (false);
 }
 
@@ -86,7 +86,7 @@ static int	__line_is_wall(char *line)
 	while (line != NULL && line[j] != '\0')
 	{
 		if (c_in_str(" 1", line[j]) == false)
-			return (err_msg(NULL, ERR_MAP_UNCLOSED), FAILURE);
+			return (err_msg(NULL, ERR_MAP), FAILURE);
 		j++;
 	}
 	return (SUCCESS);
@@ -104,8 +104,10 @@ int	check_map(char **map)
 	i = __scan_map(map, i + 1, 0, &player_count);
 	if (i == -1)
 		return (FAILURE);
-	if (player_count != 1)
+	if (player_count > 1)
 		return (err_msg(NULL, ERR_NB_PLAYER), FAILURE);
+	else if (player_count == 0)
+		return (err_msg(NULL, ERR_NO_PLAYER), FAILURE);
 	if (__line_is_wall(map[i]) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);

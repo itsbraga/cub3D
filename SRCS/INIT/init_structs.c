@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/17 18:35:12 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 07:13:07 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	__init_textures(t_textures *tex, t_data *data)
 		ft_bzero(tex->path, sizeof(char *) * 4);
 		tex->imgs = malloc(sizeof(t_img) * 4);
 		secure_malloc(tex->imgs, true);
+		ft_bzero(tex->imgs, sizeof(t_img) * 4);
 	}
 	else
 	{
@@ -36,6 +37,7 @@ static void	__init_textures(t_textures *tex, t_data *data)
 		ft_bzero(tex->path, sizeof(char *) * 7);
 		tex->imgs = malloc(sizeof(t_img) * 7);
 		secure_malloc(tex->imgs, true);
+		ft_bzero(tex->imgs, sizeof(t_img) * 7);
 	}
 	data->decor_tex = tex;
 }

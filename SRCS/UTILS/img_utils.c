@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 19:33:51 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 01:59:27 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 04:48:50 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	build_resized_img(float scale_factor, t_img *src, t_img *dest)
 			src_pixel = (src_px_pos.y * src->size_line) + (src_px_pos.x * 4);
 			dest_pixel = (dest_px_pos.y * dest->size_line)
 				+ (dest_px_pos.x * 4);
-			// if ((uint32_t)*(int *)(src->addr + src_pixel) != 0xFF000000)
 			*(int *)(dest->addr + dest_pixel) = *(int *)(src->addr + src_pixel);
 			dest_px_pos.x++;
 		}
@@ -55,7 +54,7 @@ t_img	resize_img(float scale_factor, t_img *to_resize)
 			&resized.endian);
 	if (resized.addr == NULL)
 	{
-		err_msg("minilibX", ERR_ADDR); // free_mlx(s_mlx());
+		err_msg("minilibX", ERR_ADDR);
 		mlx_destroy_image(s_mlx()->mlx_ptr, resized.img_ptr);
 		return (resized);
 	}

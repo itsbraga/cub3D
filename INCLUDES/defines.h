@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/17 03:39:24 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 08:01:49 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 
 # define ERR "Error\n"
 # define ERR_PREFIX "\033[1m\033[31mError: \033[0m"
-# define ERR_USAGE "usage: ./cub3D <path/to/map.cub>"
+# define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
 
 // minilibX
 # define ERR_MLX "Cannot initialize minilibX"
@@ -64,7 +64,7 @@
 # define ERR_WIN "Cannot create new window"
 # define ERR_IMG "Cannot create new image"
 # define ERR_ADDR "Cannot find image address"
-# define ERR_XPM "Cannot convert XPM file into a minilibX image"
+# define ERR_XPM "Cannot convert XPM file"
 # define ERR_MALLOC "Cannot allocate memory"
 
 // Title screen
@@ -75,13 +75,17 @@
 # define ERR_CUB_EXT "Invalid extension (expected: .cub)"
 # define ERR_XPM_EXT "Invalid extension (expected: .xpm)"
 # define ERR_MISSING_TEX "Missing texture path"
+# define ERR_PATH "Path already exists"
 # define ERR_RGB "Invalid RGB"
-# define ERR_RGB_RANGE "RGB is out of range (expected: 0-255)"
-# define ERR_MAP_NOT_LAST "Invalid file: map is not the last element in file"
-# define ERR_MAP_UNCLOSED "Invalid map: unclosed"
+# define ERR_RGB_RANGE "RGB out of range (expected: 0-255)"
+# define ERR_CONFIG "Invalid config"
+# define ERR_MAP "Invalid map"
 # define ERR_NO_PLAYER "Invalid map: has no player position"
 # define ERR_NB_PLAYER "Invalid map: has more than one player"
 # define ERR_CHAR "Invalid character in map"
+# define ERR_MISSING_MARK "Missing marker"
+# define ERR_WPN_NAME "Weapon name missing"
+# define ERR_SECTION "Unclosed section"
 
 /**************************\
  * MLX
@@ -91,8 +95,7 @@
 # define WIN_WIDTH 1024 // 1280
 # define WIN_HEIGHT 1024 // 720
 
-# define DEL_IMG "[minilibX] Image destroyed\n"
-# define MLX_EXIT "[minilibX] All elements have been destroyed\n"
+# define DEL_IMG "[minilibX] Image destroyed"
 
 /**************************\
  * PLAYER MOVEMENTS

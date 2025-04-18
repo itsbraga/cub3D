@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:02:38 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 03:25:16 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 08:07:51 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,61 +31,36 @@ char	*get_texture_path(char *line)
 	return (path);
 }
 
-int	fill_tex_paths(char *line, t_textures *tex)
+int	fill_wall_tex_paths(char *line, t_textures *tex)
 {
-	if (ft_strncmp(line, "NO", 2) == 0 && tex->path[NO] == NULL)
+	int	id;
+
+	id = get_wall_id(line);
+	if (id >= 0)
 	{
-		tex->path[NO] = get_texture_path(line);
-		if (tex->path[NO] == NULL)
+		if (tex->path[id] != NULL)
+			return (err_msg(NULL, ERR_PATH), FAILURE);
+		tex->path[id] = get_texture_path(line);
+		if (tex->path[id] == NULL)
 			return (err_msg(NULL, ERR_MISSING_TEX), FAILURE);
-		printf(BOLD PB "NORTH: " RESET "[%s]\n", tex->path[NO]);
+		return (SUCCESS);
 	}
-	else if (ft_strncmp(line, "SO", 2) == 0 && tex->path[SO] == NULL)
-	{
-		tex->path[SO] = get_texture_path(line);
-		if (tex->path[SO] == NULL)
-			return (err_msg(NULL, ERR_MISSING_TEX), FAILURE);
-		printf(BOLD PB "SOUTH: " RESET "[%s]\n", tex->path[SO]);
-	}
-	else if (ft_strncmp(line, "WE", 2) == 0 && tex->path[WE] == NULL)
-	{
-		tex->path[WE] = get_texture_path(line);
-		if (tex->path[WE] == NULL)
-			return (err_msg(NULL, ERR_MISSING_TEX), FAILURE);
-		printf(BOLD PB "WEST: " RESET "[%s]\n", tex->path[WE]);
-	}
-	else if (ft_strncmp(line, "EA", 2) == 0 && tex->path[EA] == NULL)
-	{
-		tex->path[EA] = get_texture_path(line);
-		if (tex->path[EA] == NULL)
-			return (err_msg(NULL, ERR_MISSING_TEX), FAILURE);
-		printf(BOLD PB "EAST: " RESET "[%s]\n", tex->path[EA]);
-	}
-	return (SUCCESS);
+	return (FAILURE);
 }
 
 int	fill_bonus_tex_paths(char *line, t_textures *tex)
 {
-	if (line[0] == 'F' && tex->path[F] == NULL)
+	int	id;
+
+	id = get_other_id(line);
+	if (id >= 0)
 	{
-		tex->path[F] = get_texture_path(line);
-		if (tex->path[F] == NULL)
+		if (tex->path[id] != NULL)
+			return (err_msg(NULL, ERR_PATH), FAILURE);
+		tex->path[id] = get_texture_path(line);
+		if (tex->path[id] == NULL)
 			return (err_msg(NULL, ERR_MISSING_TEX), FAILURE);
-		printf(BOLD PG "FLOOR: " RESET "[%s]\n", tex->path[F]);
+		return (SUCCESS);
 	}
-	else if (line[0] == 'C' && tex->path[C] == NULL)
-	{
-		tex->path[C] = get_texture_path(line);
-		if (tex->path[C] == NULL)
-			return (err_msg(NULL, ERR_MISSING_TEX), FAILURE);
-		printf(BOLD PG "CEILING: " RESET "[%s]\n", tex->path[C]);
-	}
-	else if (line[0] == 'D' && tex->path[D] == NULL)
-	{
-		tex->path[D] = get_texture_path(line);
-		if (tex->path[D] == NULL)
-			return (err_msg(NULL, ERR_MISSING_TEX), FAILURE);
-		printf(BOLD PY "DOOR: " RESET "[%s]\n", tex->path[D]);
-	}
-	return (SUCCESS);
+	return (FAILURE);
 }

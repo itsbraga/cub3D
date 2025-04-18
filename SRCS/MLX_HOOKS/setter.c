@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 03:41:08 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/17 20:44:18 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+// toggle_mouse_visibility(game->mlx, game->state);
 static int	__set_title_screen_keys(int keycode, t_game *game)
 {
 	if (keycode == XK_Escape)
@@ -19,7 +20,6 @@ static int	__set_title_screen_keys(int keycode, t_game *game)
 	else if (keycode == XK_Return)
 	{
 		game->state = GAME;
-		toggle_mouse_visibility(game->mlx, game->state);
 	}
 	return (SUCCESS);
 }
@@ -82,6 +82,7 @@ static int	__set_keyrelease(int keycode, t_game *game)
 	return (SUCCESS);
 }
 
+// toggle_mouse_visibility(mlx, game->state);
 void	set_hooks(t_mlx *mlx, t_game *game)
 {
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
@@ -89,7 +90,6 @@ void	set_hooks(t_mlx *mlx, t_game *game)
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease, game);
 	if (BONUS)
 	{
-		toggle_mouse_visibility(mlx, game->state);
 		set_mouse_hooks(mlx, game);
 	}
 }

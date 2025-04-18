@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/08 22:28:35 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 07:09:10 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 float	degree_to_radian(int degree)
 {
 	return (degree * (PI / 180));
-}
-
-float	square(float to_square)
-{
-	float	result;
-
-	result = to_square * to_square;
-	return (result);
 }
 
 float	norm_rad_angle(float angle)
