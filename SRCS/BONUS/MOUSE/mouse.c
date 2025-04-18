@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 20:36:08 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:10:31 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	__manage_mouse_wrapping(int x, int *prev_x, t_mlx *mlx)
 	return (0);
 }
 
-int	mouse_motion(int x, int y, t_game *game)
+int	mouse_motion(int x, int y, t_game *g)
 {
 	static int	prev_x = -1;
 	static bool	recentered = false;
@@ -45,7 +45,7 @@ int	mouse_motion(int x, int y, t_game *game)
 	(void)y;
 	if (prev_x == -1)
 		prev_x = x;
-	if (__manage_mouse_wrapping(x, &prev_x, game->mlx) == 1)
+	if (__manage_mouse_wrapping(x, &prev_x, g->mlx) == 1)
 		return (recentered = true, SUCCESS);
 	if (recentered)
 	{
@@ -55,9 +55,9 @@ int	mouse_motion(int x, int y, t_game *game)
 	delta_x = x - prev_x;
 	if (delta_x != 0)
 	{
-		game->player->dir += delta_x * MOUSE_SENSITIVITY_X;
-		game->player->dir = norm_h_angle(game->player->dir);
-		game->ray->player_rad = degree_to_radian(game->player->dir);
+		g->player->dir += delta_x * MOUSE_SENSITIVITY_X;
+		g->player->dir = norm_h_angle(g->player->dir);
+		g->ray->player_rad = degree_to_radian(g->player->dir);
 	}
 	prev_x = x;
 	return (SUCCESS);

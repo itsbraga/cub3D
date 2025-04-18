@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:22:58 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 20:55:20 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:24:00 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ bool	is_within_map_bounds(int x, int y, t_map *map)
 	return (true);
 }
 
-bool	is_door(t_data *data, t_point p)
+bool	is_door(t_data *d, t_point pos)
 {
 	int	cell_x;
 	int	cell_y;
 
-	cell_x = (int)(p.x / TILE_SIZE);
-	cell_y = (int)(p.y / TILE_SIZE);
-	if (cell_x < 0 || cell_x >= (int)data->map->size.width
-		|| cell_y < 0 || cell_y >= (int)data->map->size.height)
+	cell_x = (int)(pos.x / TILE_SIZE);
+	cell_y = (int)(pos.y / TILE_SIZE);
+	if (cell_x < 0 || cell_x >= (int)d->map->size.width
+		|| cell_y < 0 || cell_y >= (int)d->map->size.height)
 		return (false);
-	if (data->map->map2d[cell_y][cell_x] == '2')
+	if (d->map->map2d[cell_y][cell_x] == '2')
 		return (true);
 	return (false);
 }

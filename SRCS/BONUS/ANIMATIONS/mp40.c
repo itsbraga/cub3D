@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   mp40.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:58:18 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 15:25:33 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/04/18 18:14:37 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	render_mp40(t_game *game, t_weapon *w)
+void	render_mp40(t_game *g, t_weapon *w)
 {
 	if (w->state == SHOOTING && w->frame == 0)
 		w->frame_counter_started = true;
 	if (w->frame >= 0 && w->frame < FBS)
-		draw_weapon(IDLE, w, game);
+		draw_weapon(IDLE, w, g);
 	else if (w->frame >= FBS && w->frame < (FBS * 2))
-		draw_weapon(PREFIRE, w, game);
+		draw_weapon(PREFIRE, w, g);
 	else if (w->frame >= (FBS * 2) && w->frame < (FBS * 3 + 2))
-		draw_weapon(SHOOTING, w, game);
+		draw_weapon(SHOOTING, w, g);
 	else if (w->frame >= (FBS * 3 + 2) && w->frame < (FBS * 4 + 2))
 	{
-		draw_weapon(POSTFIRE, w, game);
-		if (game->keys->key_array[_SPACE] == 0 && game->keys->mouse_btn[0] == 0)
+		draw_weapon(POSTFIRE, w, g);
+		if (g->keys->key_array[_SPACE] == 0 && g->keys->mouse_btn[0] == 0)
 			w->state = IDLE;
 		if (w->state == IDLE && w->frame == (FBS * 4 + 1))
 		{

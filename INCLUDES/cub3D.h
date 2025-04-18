@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/18 07:10:16 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:24:05 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ t_game	*s_game(void);
 t_mlx	*s_mlx(void);
 
 // init_mlx.c
-void	init_mlx(t_mlx *mlx, t_game *game);
+void	init_mlx(t_mlx *mlx, t_game *g);
 
 // init_structs.c
-void	init_structs(t_data *data, t_game *game, t_mlx *mlx);
+void	init_structs(t_data *d, t_game *g, t_mlx *mlx);
 
 /**********************\
  *	PARSING
@@ -68,7 +68,7 @@ int		check_weapon_sprites_paths(t_weapon *w);
 int		check_map(char **map);
 
 // CHECKS/check_player.c
-void	find_player_start_pos(t_map *map, t_player *player);
+void	find_player_start_pos(t_map *map, t_player *p);
 
 // PROCESS_FILE/fill_tex_paths.c
 char	*get_texture_path(char *line);
@@ -99,10 +99,10 @@ char	**normalize_map(char **map, size_t height, size_t width);
 void	fill_map2d_array(t_map *map, char *line);
 
 // PROCESS_FILE/get_file_data.c
-void	get_file_data(int fd, t_data *data);
+void	get_file_data(int fd, t_data *d);
 
 // parse_file.c
-int		parse_file(char *arg, t_data *data, t_game *game);
+int		parse_file(char *arg, t_data *d, t_game *g);
 
 /**********************\
  *	UTILS
@@ -140,7 +140,7 @@ int		get_other_id(char *line);
 void	swap_point(t_point *p0, t_point *p1);
 bool	is_valid_point(t_point point, size_t win_width, size_t win_height);
 bool	is_within_map_bounds(int x, int y, t_map *map);
-bool	is_door(t_data *data, t_point p);
+bool	is_door(t_data *d, t_point pos);
 
 // draw_line.c
 void	draw_line(t_img *img, t_point p0, t_point p1, int color);
@@ -173,8 +173,8 @@ void	free_bonus_textures(t_textures *tex);
 void	free_weapon(t_weapon *w);
 
 // CLEANUP/free_singletons.c
-void	free_data(t_data *data);
-void	free_game(t_game *game);
+void	free_data(t_data *d);
+void	free_game(t_game *g);
 void	free_mlx(t_mlx *mlx);
 
 // CLEANUP/delete_img.c
@@ -194,28 +194,28 @@ void	start_button(t_title_screen *s);
 
 // init.c
 void	init_title_screen(t_title_screen *screen);
-void	draw_title_screen(t_game *game, t_mlx *mlx);
+void	draw_title_screen(t_game *g, t_mlx *mlx);
 
 /**********************\
  *	MLX_HOOKS
 \**********************/
 
 // movements.c
-void	move_forward(t_game *game);
-void	move_backward(t_game *game);
-void	straf_leftward(t_game *game);
-void	straf_rightward(t_game *game);
+void	move_forward(t_game *g);
+void	move_backward(t_game *g);
+void	straf_leftward(t_game *g);
+void	straf_rightward(t_game *g);
 
 // camera.c
-void	rotate_leftward(t_game *game);
-void	rotate_rightward(t_game *game);
+void	rotate_leftward(t_game *g);
+void	rotate_rightward(t_game *g);
 
 // move_array.c
-void	move_player(t_game *game, t_keys *key);
-void	reset_move(t_player *player);
+void	move_player(t_game *g, t_keys *key);
+void	reset_move(t_player *p);
 
 // setter.c
-void	set_hooks(t_mlx *mlx, t_game *game);
+void	set_hooks(t_mlx *mlx, t_game *g);
 
 /**********************\
  *	RENDER
@@ -247,9 +247,9 @@ void	inter_hline(t_data *d, t_player *p, t_raycasting *r, float ray_rad);
 void	inter_vline(t_data *d, t_player *p, t_raycasting *r, float ray_rad);
 
 // RAYCASTING/raycast_utils.c
-void	get_draw_info(t_data *data, t_player *player, t_raycasting *r);
+void	get_draw_info(t_data *d, t_player *p, t_raycasting *r);
 
 // render_frame.c
-int		render_frame(t_game *game);
+int		render_frame(t_game *g);
 
 #endif

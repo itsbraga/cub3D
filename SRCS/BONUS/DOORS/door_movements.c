@@ -75,7 +75,6 @@ void handle_doors(int door_nb, t_door *doors)
 			__open_door(&doors[i]);
 		else if (doors[i].state == CLOSING)
 			__close_door(&doors[i]);
-		// printf("door[%d].ratio = %f\n", i, doors[i].ratio);
 		i++;
 	}
 }

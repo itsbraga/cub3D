@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 07:12:59 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:16:03 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 	init_structs(data, game, mlx);
 	if (parse_file(argv[1], data, game) == FAILURE)
 		exit_game(mlx, FAILURE);
-	// print_map_debug(data->map, argv[1]);
 	init_doors(data);
 	set_hooks(mlx, game);
 	mlx_loop_hook(mlx->mlx_ptr, &render_frame, game);

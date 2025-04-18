@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:07:04 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 18:40:52 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 18:27:27 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ static int	__init_mlx_img(t_mlx *mlx)
 	return (SUCCESS);
 }
 
-// free_mlx ou clean_structs
-void	init_mlx(t_mlx *mlx, t_game *game)
+void	init_mlx(t_mlx *mlx, t_game *g)
 {
 	mlx->mlx_ptr = mlx_init();
 	if (mlx->mlx_ptr == NULL)
@@ -53,5 +52,5 @@ void	init_mlx(t_mlx *mlx, t_game *game)
 		err_msg("minilibX", ERR_INIT_IMG);
 		return ;
 	}
-	game->mlx = mlx;
+	g->mlx = mlx;
 }

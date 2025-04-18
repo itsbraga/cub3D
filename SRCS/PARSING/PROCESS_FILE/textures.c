@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 20:47:23 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 08:09:14 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:43:57 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	process_wall_tex_lines(char *line, char *trimmed, t_textures *tex)
 	int	id;
 
 	id = get_wall_id(trimmed);
-	if (id < 0)
-		return ;
-	if (fill_wall_tex_paths(trimmed, tex) == FAILURE)
+	if (id < 0 || fill_wall_tex_paths(trimmed, tex) == FAILURE)
 	{
 		free(line);
 		get_next_line(s_data()->map->fd, true);
@@ -53,9 +51,7 @@ void	process_bonus_tex_lines(char *line, char *trimmed, t_textures *tex)
 	int	id;
 
 	id = get_other_id(trimmed);
-	if (id < 0)
-		return ;
-	if (fill_bonus_tex_paths(trimmed, tex) == FAILURE)
+	if (id < 0 || fill_bonus_tex_paths(trimmed, tex) == FAILURE)
 	{
 		free(line);
 		get_next_line(s_data()->map->fd, true);
