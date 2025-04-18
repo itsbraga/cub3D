@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/18 08:01:49 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:14:08 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@
 # define COLLISION_WARN "/!\\ Collision detected /!\\\n"
 
 // Array of pointers to functions
-typedef void	(*t_move_array)(t_game *game);
+typedef void	(*t_move_array)(t_game *g);
 
 // key_array indexes
 # define _W 0
@@ -145,7 +145,7 @@ typedef void	(*t_move_array)(t_game *game);
 \**************************/
 
 // Array of pointers to functions
-typedef void	(*t_weapon_array)(t_game *game, t_weapon *w);
+typedef void	(*t_weapon_array)(t_game *g, t_weapon *w);
 
 # define ARMORY "-- ARMORY --"
 # define MAX_SPRITES 35

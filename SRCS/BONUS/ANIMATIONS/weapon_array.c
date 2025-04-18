@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 16:31:17 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 02:25:27 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:17:08 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static void	__init_weapon_array(t_weapon_array *functions)
 	functions[2] = NULL;
 }
 
-void	render_curr_weapon(t_game *game)
+void	render_curr_weapon(t_game *g)
 {
 	t_weapon_array	functions[3];
-	t_data			*data;
+	t_data			*d;
 	int				curr_weapon;
 
-	data = game->data;
-	if (data->weapon_count == 0)
+	d = g->data;
+	if (d->weapon_count == 0)
 		return ;
-	curr_weapon = data->curr_weapon_idx;
+	curr_weapon = d->curr_weapon_idx;
 	__init_weapon_array(functions);
-	functions[curr_weapon](game, data->weapons[curr_weapon]);
+	functions[curr_weapon](g, d->weapons[curr_weapon]);
 }

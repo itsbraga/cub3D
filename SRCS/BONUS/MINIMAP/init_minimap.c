@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 23:38:24 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/16 01:40:55 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:15:24 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	__init_minimap_img(t_mlx *mlx, t_minimap *mmap)
 	return (SUCCESS);
 }
 
-void	init_minimap(t_minimap *mmap, t_game *game)
+void	init_minimap(t_minimap *mmap, t_game *g)
 {
 	ft_bzero(mmap, sizeof(t_minimap));
 	ft_bzero(&mmap->vp, sizeof(t_viewport));
@@ -59,7 +59,7 @@ void	init_minimap(t_minimap *mmap, t_game *game)
 	mmap->vp.perimeter = 4;
 	mmap->ratio = 0.15;
 	mmap->bg_color = GRAY_PIX;
-	if (__init_minimap_img(game->mlx, mmap) == FAILURE)
+	if (__init_minimap_img(g->mlx, mmap) == FAILURE)
 		return (err_msg("minilibX", ERR_INIT_MMAP_IMG));
-	game->mmap = mmap;
+	g->mmap = mmap;
 }

@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:39:37 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 20:49:45 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:26:56 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,19 @@ static void	__draw_tiles(t_minimap *mmap, t_map *map)
 	}
 }
 
-/*
-	Core function to draw the entire minimap content (tiles, player, frame)
-*/
-static void	__draw_minimap(t_game *game, t_minimap *mmap, t_map *map)
+static void	__draw_minimap(t_game *g, t_minimap *mmap, t_map *map)
 {
 	mmap->vp = compute_viewport(mmap);
-	mmap->vp.player_pos = game->player->pos;
+	mmap->vp.player_pos = g->player->pos;
 	__draw_tiles(mmap, map);
-	draw_centered_player(game, mmap);
+	draw_centered_player(g, mmap);
 	draw_minimap_frame(mmap);
 }
 
-void	render_minimap(t_game *game, t_minimap *mmap)
+void	render_minimap(t_game *g, t_minimap *mmap)
 {
 	clear_img(&mmap->img, mmap->width, mmap->height, mmap->bg_color);
-	__draw_minimap(game, mmap, game->data->map);
-	mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
+	__draw_minimap(g, mmap, g->data->map);
+	mlx_put_image_to_window(g->mlx->mlx_ptr, g->mlx->win_ptr,
 		mmap->img.img_ptr, mmap->pos.x, mmap->pos.y);
 }

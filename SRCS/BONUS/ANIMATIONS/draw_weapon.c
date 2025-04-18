@@ -6,17 +6,17 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:13:45 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 01:40:27 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:14:28 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-void	draw_weapon(int state, t_weapon *w, t_game *game)
+void	draw_weapon(int state, t_weapon *w, t_game *g)
 {
 	t_mlx	*mlx;
 
-	mlx = game->mlx;
+	mlx = g->mlx;
 	my_put_img_to_window(&w->sprites.imgs[state], &mlx->img,
 		w->pos.x, w->pos.y);
 }

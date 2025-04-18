@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 17:03:00 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 18:15:51 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	__init_map(t_map *map, char *path_to_file, int fd, t_data *data)
+static void	__init_map(t_map *map, char *path_to_file, int fd, t_data *d)
 {
 	ft_bzero(map, sizeof(t_map));
 	map->path_to_file = ft_strdup(path_to_file);
 	secure_malloc(map->path_to_file, true);
 	map->fd = fd;
-	data->map = map;
+	d->map = map;
 }
 
-static bool	__process_file(t_map *map, char *arg, int fd, t_data *data)
+static bool	__process_file(t_map *map, char *arg, int fd, t_data *d)
 {
-	__init_map(map, arg, fd, data);
-	get_file_data(fd, data);
+	__init_map(map, arg, fd, d);
+	get_file_data(fd, d);
 	close(fd);
 	if (map->map2d == NULL || map->size.height == 0)
 		return (false);
@@ -45,7 +45,7 @@ static void	__replace_by_normed_map(t_map *map)
     map->size.width = longest_line;
 }
 
-int	parse_file(char *arg, t_data *data, t_game *game)
+int	parse_file(char *arg, t_data *d, t_game *g)
 {
 	int		fd;
 	t_map	*map;
@@ -53,13 +53,13 @@ int	parse_file(char *arg, t_data *data, t_game *game)
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
 		return (FAILURE);
-	map = data->map;
-	if (__process_file(map, arg, fd, data) == false)
+	map = d->map;
+	if (__process_file(map, arg, fd, d) == false)
 		return (FAILURE);
 	__replace_by_normed_map(map);
 	if (check_map(map->map2d) == FAILURE)
 		return (FAILURE);
-	find_player_start_pos(map, game->player);
-	game->data = data;
+	find_player_start_pos(map, g->player);
+	g->data = d;
 	return (SUCCESS);
 }

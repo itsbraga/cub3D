@@ -36,37 +36,37 @@ static void	__calculate_player_trigonometry(float theta, t_trigo *trig)
 	- Draws both outline and filled triangle in red
 	Note: Triangle size is slightly smaller than tile size (60% of it)
 */
-static void	__draw_player(t_minimap *mmap, t_player *player)
+static void	__draw_player(t_minimap *mmap, t_player *p)
 {
 	const int		width = (int)(mmap->tile_size * 0.6);
 	const float		height = width * 1.3;
 	const float		offset_dist = width * 0.5;
-	t_triangle		triangle;
+	t_triangle		t;
 	t_point			new_pos;
 
-	ft_bzero(&triangle, sizeof(t_triangle));
-	triangle.theta = degree_to_radian(player->dir);
-	__calculate_player_trigonometry(triangle.theta, &triangle.trig);
-	new_pos.x = player->pos.x - triangle.trig.cos_theta * offset_dist;
-	new_pos.y = player->pos.y - triangle.trig.sin_theta * offset_dist;
-	triangle.a.x = new_pos.x + triangle.trig.cos_theta * height;
-	triangle.a.y = new_pos.y + triangle.trig.sin_theta * height;
-	triangle.b.x = new_pos.x + triangle.trig.cos_theta_plus_pi2 * offset_dist;
-	triangle.b.y = new_pos.y + triangle.trig.sin_theta_plus_pi2 * offset_dist;
-	triangle.c.x = new_pos.x + triangle.trig.cos_theta_minus_pi2 * offset_dist;
-	triangle.c.y = new_pos.y + triangle.trig.sin_theta_minus_pi2 * offset_dist;
-	draw_line(&mmap->img, triangle.a, triangle.b, RED_PIX);
-	draw_line(&mmap->img, triangle.b, triangle.c, RED_PIX);
-	draw_line(&mmap->img, triangle.c, triangle.a, RED_PIX);
-	fill_triangle(mmap, triangle.a, triangle.b, triangle.c);
+	ft_bzero(&t, sizeof(t_triangle));
+	t.theta = degree_to_radian(p->dir);
+	__calculate_player_trigonometry(t.theta, &t.trig);
+	new_pos.x = p->pos.x - t.trig.cos_theta * offset_dist;
+	new_pos.y = p->pos.y - t.trig.sin_theta * offset_dist;
+	t.a.x = new_pos.x + t.trig.cos_theta * height;
+	t.a.y = new_pos.y + t.trig.sin_theta * height;
+	t.b.x = new_pos.x + t.trig.cos_theta_plus_pi2 * offset_dist;
+	t.b.y = new_pos.y + t.trig.sin_theta_plus_pi2 * offset_dist;
+	t.c.x = new_pos.x + t.trig.cos_theta_minus_pi2 * offset_dist;
+	t.c.y = new_pos.y + t.trig.sin_theta_minus_pi2 * offset_dist;
+	draw_line(&mmap->img, t.a, t.b, RED_PIX);
+	draw_line(&mmap->img, t.b, t.c, RED_PIX);
+	draw_line(&mmap->img, t.c, t.a, RED_PIX);
+	fill_triangle(mmap, t.a, t.b, t.c);
 }
 
-void	draw_centered_player(t_game *game, t_minimap *mmap)
+void	draw_centered_player(t_game *g, t_minimap *mmap)
 {
 	t_player	player_copy;
 	t_point		center;
 
-	player_copy = *(game->player);
+	player_copy = *(g->player);
 	center.x = mmap->width / 2;
 	center.y = mmap->height / 2;
 	player_copy.pos = center;

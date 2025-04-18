@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:07:23 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 01:40:43 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:18:29 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 	  pixel (x = 0) of the scanline
 	- Calculates the shadow factor ('shadow_factor') based on the distance
 */
-static void	__calculate_floor_scanline(t_fc_render *fc, t_player *player)
+static void	__calculate_floor_scanline(t_fc_render *fc, t_player *p)
 {
 	float	curr_dist_from_horizon;
 	float	delta_ray_dir_x;
@@ -37,8 +37,8 @@ static void	__calculate_floor_scanline(t_fc_render *fc, t_player *player)
 	delta_ray_dir_y = fc->rightmost_ray_dir_y - fc->leftmost_ray_dir_y;
 	fc->step_x = fc->row_dist * delta_ray_dir_x / WIN_WIDTH;
 	fc->step_y = fc->row_dist * delta_ray_dir_y / WIN_WIDTH;
-	fc->start_x = player->pos.x + fc->row_dist * fc->leftmost_ray_dir_x;
-	fc->start_y = player->pos.y + fc->row_dist * fc->leftmost_ray_dir_y;
+	fc->start_x = p->pos.x + fc->row_dist * fc->leftmost_ray_dir_x;
+	fc->start_y = p->pos.y + fc->row_dist * fc->leftmost_ray_dir_y;
 	fc->shadow_factor = calculate_shadow_factor(fc->row_dist);
 }
 
@@ -55,7 +55,7 @@ static void	__calculate_floor_scanline(t_fc_render *fc, t_player *player)
 	- Calls 'draw_hline_pixels' to draw the pixels for that row
 */
 void	draw_floor_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
-	t_player *player)
+	t_player *p)
 {
 	t_fc_render	fc;
 	int			tex_buffer[TILE_SIZE * TILE_SIZE];
@@ -66,7 +66,7 @@ void	draw_floor_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
 	fc.y = fc.horizon_line;
 	while (fc.y < WIN_HEIGHT)
 	{
-		__calculate_floor_scanline(&fc, player);
+		__calculate_floor_scanline(&fc, p);
 		draw_hline_pixels(&fc);
 		fc.y++;
 	}
@@ -80,7 +80,7 @@ void	draw_floor_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
 	- Similar to '__calculate_floor_scanline', but calculates parameters
 	  for the ceiling (so the distance to the horizon is inverted)
 */
-static void	__calculate_ceil_scanline(t_fc_render *fc, t_player *player)
+static void	__calculate_ceil_scanline(t_fc_render *fc, t_player *p)
 {
 	float	curr_dist_from_horizon;
 	float	delta_ray_dir_x;
@@ -92,8 +92,8 @@ static void	__calculate_ceil_scanline(t_fc_render *fc, t_player *player)
 	delta_ray_dir_y = fc->rightmost_ray_dir_y - fc->leftmost_ray_dir_y;
 	fc->step_x = fc->row_dist * delta_ray_dir_x / WIN_WIDTH;
 	fc->step_y = fc->row_dist * delta_ray_dir_y / WIN_WIDTH;
-	fc->start_x = player->pos.x + fc->row_dist * fc->leftmost_ray_dir_x;
-	fc->start_y = player->pos.y + fc->row_dist * fc->leftmost_ray_dir_y;
+	fc->start_x = p->pos.x + fc->row_dist * fc->leftmost_ray_dir_x;
+	fc->start_y = p->pos.y + fc->row_dist * fc->leftmost_ray_dir_y;
 	fc->shadow_factor = calculate_shadow_factor(fc->row_dist);
 }
 
@@ -110,7 +110,7 @@ static void	__calculate_ceil_scanline(t_fc_render *fc, t_player *player)
 	- Calls 'draw_hline_pixels' to draw the pixels for that row
 */
 void	draw_ceil_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
-t_player *player)
+t_player *p)
 {
 	t_fc_render	fc;
 	int			tex_buffer[TILE_SIZE * TILE_SIZE];
@@ -121,7 +121,7 @@ t_player *player)
 	fc.y = 0;
 	while (fc.y < fc.horizon_line)
 	{
-		__calculate_ceil_scanline(&fc, player);
+		__calculate_ceil_scanline(&fc, p);
 		draw_hline_pixels(&fc);
 		fc.y++;
 	}
