@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 02:12:03 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 05:53:12 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:58:21 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,7 @@ void	load_and_resize_sprites(t_weapon *w)
 		w->pos.x = (int)WIN_WIDTH / 3;
 	else if (w->id == 1)
 		w->pos.x = (int)WIN_WIDTH / 2 + 40;
+	else if (w->id == 2)
+		w->pos.x = (int)WIN_WIDTH / 3;
 	w->pos.y = (int)WIN_HEIGHT / 1.50;
 }

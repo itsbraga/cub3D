@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_weapon.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:51:48 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/17 23:47:25 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:39:42 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	set_weapon_id(char *name)
 {
 	int			i;
-	const char	*typename[] = {"MP40", "GLOCK21", "FLAMETHROWER", NULL};
+	const char	*typename[] = {"MP40", "GLOCK21", "STUNNER", NULL};
 
 	i = 0;
 	while (typename[i] != NULL)
