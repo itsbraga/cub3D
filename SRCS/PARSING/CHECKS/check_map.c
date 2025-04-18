@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/18 07:57:45 by annabrag         ###   ########.fr       */
+/*   Created: 2025/04/17 17:00:47 by annabrag          #+#    #+#             */
+/*   Updated: 2025/04/18 21:25:13 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3D.h"
 
@@ -27,17 +26,17 @@ static bool	__is_invalid_neighbor(char **map, int i, int j)
 		valid_neighbors = "0NSEW12";
 	else
 		valid_neighbors = "0NSEW1";
-    if (ft_strlen(map[i - 1]) < (size_t)j
-        || c_in_str(valid_neighbors, map[i - 1][j]) == false)
-        return (err_msg(NULL, ERR_MAP), true);
-    if (ft_strlen(map[i + 1]) < (size_t)j
-        || c_in_str(valid_neighbors, map[i + 1][j]) == false)
-        return (err_msg(NULL, ERR_MAP), true);
-    if (j != 0 && c_in_str(valid_neighbors, map[i][j - 1]) == false)
-        return (err_msg(NULL, ERR_MAP), true);
-    if (c_in_str(valid_neighbors, map[i][j + 1]) == false)
-        return (err_msg(NULL, ERR_MAP), true);
-    return (false);
+	if (ft_strlen(map[i - 1]) < (size_t)j
+		|| c_in_str(valid_neighbors, map[i - 1][j]) == false)
+		return (err_msg(NULL, ERR_MAP), true);
+	if (ft_strlen(map[i + 1]) < (size_t)j
+		|| c_in_str(valid_neighbors, map[i + 1][j]) == false)
+		return (err_msg(NULL, ERR_MAP), true);
+	if (j != 0 && c_in_str(valid_neighbors, map[i][j - 1]) == false)
+		return (err_msg(NULL, ERR_MAP), true);
+	if (c_in_str(valid_neighbors, map[i][j + 1]) == false)
+		return (err_msg(NULL, ERR_MAP), true);
+	return (false);
 }
 
 static int	__check_cell(char **map, int i, int j, int *player_count)
@@ -48,16 +47,16 @@ static int	__check_cell(char **map, int i, int j, int *player_count)
 		valid_inner = "0NSEW2";
 	else
 		valid_inner = "0NSEW";
-    if (c_in_str(valid_inner, map[i][j]) == true)
-    {
-        if (c_in_str("NSEW", map[i][j]) == true)
-            (*player_count)++;
-        if (__is_invalid_neighbor(map, i, j) == true)
-            return (FAILURE);
-    }
-    else if (c_in_str(" 1", map[i][j]) == false)
-        return (FAILURE);
-    return (SUCCESS);
+	if (c_in_str(valid_inner, map[i][j]) == true)
+	{
+		if (c_in_str("NSEW", map[i][j]) == true)
+			(*player_count)++;
+		if (__is_invalid_neighbor(map, i, j) == true)
+			return (FAILURE);
+	}
+	else if (c_in_str(" 1", map[i][j]) == false)
+		return (FAILURE);
+	return (SUCCESS);
 }
 
 static int	__scan_map(char **map, int i, int j, int *player_count)

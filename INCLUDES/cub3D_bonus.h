@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 01:37:13 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 20:56:39 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:30:44 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		init_doors(t_data *d);
 // door_movements.c
 bool		can_vray_pass_door(t_point ray, t_data *d);
 bool		can_hray_pass_door(t_point ray, t_data *d);
-void 		handle_doors(int door_nb, t_door *doors);
+void		handle_doors(int door_nb, t_door *doors);
 
 // trigger_door.c
 void		trigger_door(t_game *g);
@@ -84,7 +84,7 @@ void		render_mp40(t_game *g, t_weapon *w);
 // glock21.c
 void		render_glock21(t_game *g, t_weapon *w);
 
-//stunner.c
+// stunner.c
 void		render_stunner(t_game *g, t_weapon *w);
 
 // weapon_array.c
@@ -110,13 +110,13 @@ void		set_mouse_hooks(t_mlx *mlx, t_game *g);
 
 // fc_render_utils.c
 void		init_fc_render(t_fc_render *fc, t_raycasting *r,
-		int (*wall_limits)[2]);
+				int (*wall_limits)[2]);
 void		draw_hline_pixels(t_fc_render *fc);
 
 // draw_fc_tex.c
 void		draw_floor_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
-		t_player *p);
+				t_player *p);
 void		draw_ceil_tex(t_raycasting *r, int wall_limits[WIN_WIDTH][2],
-		t_player *p);
+				t_player *p);
 
 #endif

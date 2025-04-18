@@ -6,30 +6,21 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 20:57:43 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:31:05 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-// static int	__set_title_screen_keys(int keycode, t_game *g)
-// {
-// 	if (keycode == XK_Escape)
-// 		exit_game(s_mlx(), SUCCESS);
-// 	else if (keycode == XK_Return)
-// 	{
-// 		g->state = GAME;
-// 		toggle_mouse_visibility(g->mlx, g->state);
-// 	}
-// 	return (SUCCESS);
-// }
 
 static int	__set_title_screen_keys(int keycode, t_game *g)
 {
 	if (keycode == XK_Escape)
 		exit_game(s_mlx(), SUCCESS);
 	else if (keycode == XK_Return)
+	{
 		g->state = GAME;
+		toggle_mouse_visibility(g->mlx, g->state);
+	}
 	return (SUCCESS);
 }
 
@@ -66,7 +57,7 @@ static int	__set_keypress(int keycode, t_game *g)
 	if (BONUS)
 	{
 		if (keycode == E_KEY)
-			trigger_door(g);	
+			trigger_door(g);
 		__weapon_selection(keycode, g->data);
 	}
 	return (SUCCESS);
@@ -91,23 +82,14 @@ static int	__set_keyrelease(int keycode, t_game *g)
 	return (SUCCESS);
 }
 
-// void	set_hooks(t_mlx *mlx, t_game *g)
-// {
-// 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
-// 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress, g);
-// 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease, g);
-// 	if (BONUS)
-// 	{
-// 		toggle_mouse_visibility(mlx, g->state);
-// 		set_mouse_hooks(mlx, g);
-// 	}
-// }
-
 void	set_hooks(t_mlx *mlx, t_game *g)
 {
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress, g);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease, g);
 	if (BONUS)
+	{
+		toggle_mouse_visibility(mlx, g->state);
 		set_mouse_hooks(mlx, g);
+	}
 }

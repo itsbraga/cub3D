@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 17:05:23 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 21:27:46 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	free_weapon(t_weapon *w)
 		i++;
 	}
 	free_and_set_null((void **)&w->sprites.path);
-	free_and_set_null((void **)&w->sprites.imgs); // Libérer le tableau d'images
+	free_and_set_null((void **)&w->sprites.imgs);
 	free_and_set_null((void **)&w->name);
 	free_and_set_null((void **)&w);
 }

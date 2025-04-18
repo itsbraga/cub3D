@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 02:07:53 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 18:14:35 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:19:47 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 static void	__handle_recoil_frames(t_game *g, t_weapon *w)
 {
 	if (w->frame >= (FBS * 2 + 1) && w->frame < (FBS * 3))
-		draw_weapon(2, w, g); // Recoil1
+		draw_weapon(2, w, g);
 	else if (w->frame >= (FBS * 3) && w->frame < (FBS * 4 - 1))
-		draw_weapon(3, w, g); // Recoil2
+		draw_weapon(3, w, g);
 	else if (w->frame >= (FBS * 4 - 1) && w->frame < (FBS * 5 - 2))
-		draw_weapon(4, w, g); // Recoil3
+		draw_weapon(4, w, g);
 	else if (w->frame >= (FBS * 5 - 2) && w->frame < (FBS * 5))
 	{
-		draw_weapon(3, w, g); // Recoil2
+		draw_weapon(3, w, g);
 		if (w->frame == (FBS * 5 - 1))
 		{
 			w->state = IDLE;
@@ -39,7 +39,7 @@ void	render_glock21(t_game *g, t_weapon *w)
 	if (w->frame >= 0 && w->frame < FBS)
 		draw_weapon(IDLE, w, g);
 	else if (w->frame >= FBS && w->frame < (FBS * 2 + 1))
-		draw_weapon(1, w, g); // Fire
+		draw_weapon(1, w, g);
 	else
 		__handle_recoil_frames(g, w);
 	if (w->frame_counter_started == true)

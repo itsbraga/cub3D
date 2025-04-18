@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/18 18:14:08 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:29:13 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@
 # define ERR_CUB_EXT "Invalid extension (expected: .cub)"
 # define ERR_XPM_EXT "Invalid extension (expected: .xpm)"
 # define ERR_MISSING_TEX "Missing texture path"
+# define ERR_BAD_TEX_NAME "Bad texture name"
 # define ERR_PATH "Path already exists"
 # define ERR_RGB "Invalid RGB"
 # define ERR_RGB_RANGE "RGB out of range (expected: 0-255)"
@@ -84,7 +85,7 @@
 # define ERR_NB_PLAYER "Invalid map: has more than one player"
 # define ERR_CHAR "Invalid character in map"
 # define ERR_MISSING_MARK "Missing marker"
-# define ERR_WPN_NAME "Weapon name missing"
+# define ERR_WPN_NAME "Invalid weapon section (name missing / unclosed section)"
 # define ERR_SECTION "Unclosed section"
 
 /**************************\
@@ -92,8 +93,8 @@
 \**************************/
 
 # define W_NAME "TeleCubbies3D - by @k0xdama and @itsbraga"
-# define WIN_WIDTH 1024 // 1280
-# define WIN_HEIGHT 1024 // 720
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 1024
 
 # define DEL_IMG "[minilibX] Image destroyed"
 

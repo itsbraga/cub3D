@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/18 18:17:24 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:08:10 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ typedef struct s_player
 typedef struct s_door
 {
 	t_point		pos;
-	int 		state;
-	float 		ratio;
-}	t_door;
+	int			state;
+	float		ratio;
+}				t_door;
 
 typedef struct s_raycasting
 {

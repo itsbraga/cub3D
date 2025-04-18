@@ -6,11 +6,11 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:08:32 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/18 20:57:16 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:20:00 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3D_bonus.h"
+#include "cub3D_bonus.h"
 
 static void	__handle_fire_frames(t_game *g, t_weapon *w)
 {

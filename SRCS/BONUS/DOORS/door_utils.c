@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 02:52:25 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/16 22:38:11 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 21:21:24 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	get_door_index(t_point pos, t_data *d)
 {
-	int i;
+	int	i;
 	int	pos_x;
-	int pos_y;
-	int door_x;
-	int door_y;
+	int	pos_y;
+	int	door_x;
+	int	door_y;
 
 	i = 0;
 	pos_x = (int)(pos.x / TILE_SIZE);

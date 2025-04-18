@@ -14,9 +14,9 @@
 
 bool	can_vray_pass_door(t_point ray, t_data *d)
 {
-	int	tile_y;
+	int		door_index;
+	int		tile_y;
 	float	normalized_pos_y;
-	int	door_index;
 
 	door_index = get_door_index(ray, d);
 	tile_y = (int)ray.y / TILE_SIZE;
@@ -28,9 +28,9 @@ bool	can_vray_pass_door(t_point ray, t_data *d)
 
 bool	can_hray_pass_door(t_point ray, t_data *d)
 {
-	int	tile_x;
+	int		door_index;
+	int		tile_x;
 	float	normalized_pos_x;
-	int	door_index;
 
 	door_index = get_door_index(ray, d);
 	tile_x = (int)ray.x / TILE_SIZE;
@@ -62,9 +62,9 @@ static void	__close_door(t_door *door)
 	}
 }
 
-void handle_doors(int door_nb, t_door *doors)
+void	handle_doors(int door_nb, t_door *doors)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (door_nb == -1)

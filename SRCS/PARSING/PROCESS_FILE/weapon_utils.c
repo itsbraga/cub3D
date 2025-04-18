@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 02:12:03 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 18:58:21 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/18 21:26:34 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int	read_sprite_paths(int fd, char **tmp_paths, int max_sprites)
 		free(line);
 		line = get_next_line(fd, false);
 	}
-	get_next_line(fd, true);
-	return (-1);
+	return (get_next_line(fd, true), -1);
 }
 
 bool	allocate_and_copy_paths(t_weapon *w, char **tmp_paths, int count)
