@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 01:37:13 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/16 19:54:34 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:34:56 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ void		render_mp40(t_game *game, t_weapon *w);
 
 // glock21.c
 void		render_glock21(t_game *game, t_weapon *w);
+
+//stunner.c
+void		render_stunner(t_game *game, t_weapon *w);
 
 // weapon_array.c
 void		render_curr_weapon(t_game *game);
