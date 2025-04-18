@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 20:44:18 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:04:26 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 // toggle_mouse_visibility(game->mlx, game->state);
-static int	__set_title_screen_keys(int keycode, t_game *game)
-{
-	if (keycode == XK_Escape)
-		exit_game(s_mlx(), SUCCESS);
-	else if (keycode == XK_Return)
-	{
-		game->state = GAME;
-	}
-	return (SUCCESS);
-}
+// static int	__set_title_screen_keys(int keycode, t_game *game)
+// {
+// 	if (keycode == XK_Escape)
+// 		exit_game(s_mlx(), SUCCESS);
+// 	else if (keycode == XK_Return)
+// 	{
+// 		game->state = GAME;
+// 	}
+// 	return (SUCCESS);
+// }
 
 static void	__weapon_selection(int keycode, t_data *data)
 {
@@ -30,14 +30,14 @@ static void	__weapon_selection(int keycode, t_data *data)
 		data->curr_weapon_idx = 0;
 	else if (keycode == AT_KEY)
 		data->curr_weapon_idx = 1;
-	// else if (keycode == HASH_KEY)
-	// 	data->curr_weapon_idx = 2;
+	else if (keycode == HASH_KEY)
+		data->curr_weapon_idx = 2;
 }
 
 static int	__set_keypress(int keycode, t_game *game)
 {
-	if (game->state == TITLE_SCREEN)
-		return (__set_title_screen_keys(keycode, game));
+// 	if (game->state == TITLE_SCREEN)
+// 		return (__set_title_screen_keys(keycode, game));
 	if (keycode == XK_Escape)
 		exit_game(s_mlx(), SUCCESS);
 	if (keycode == W_KEY)
