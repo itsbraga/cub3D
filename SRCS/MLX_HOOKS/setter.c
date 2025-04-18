@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 19:13:28 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 20:57:43 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	__weapon_selection(int keycode, t_data *d)
 		d->curr_weapon_idx = 0;
 	else if (keycode == AT_KEY)
 		d->curr_weapon_idx = 1;
-	// else if (keycode == HASH_KEY)
-	// 	d->curr_weapon_idx = 2;
+	else if (keycode == HASH_KEY)
+		d->curr_weapon_idx = 2;
 }
 
 static int	__set_keypress(int keycode, t_game *g)

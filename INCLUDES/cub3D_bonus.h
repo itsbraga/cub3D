@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 01:37:13 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 19:15:58 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/18 20:56:39 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ void		render_mp40(t_game *g, t_weapon *w);
 
 // glock21.c
 void		render_glock21(t_game *g, t_weapon *w);
+
+//stunner.c
+void		render_stunner(t_game *g, t_weapon *w);
 
 // weapon_array.c
 void		render_curr_weapon(t_game *g);
