@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/17 18:34:23 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/04/19 03:08:49 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ t_data	*s_data(void)
 	if (instance == NULL)
 	{
 		instance = malloc(sizeof(t_data));
-		secure_malloc(instance, true);
+		secure_singleton(instance);
 		ft_bzero(instance, sizeof(t_data));
 		instance->map = malloc(sizeof(t_map));
-		secure_malloc(instance->map, true);
+		secure_singleton(instance->map);
 		instance->decor_tex = malloc(sizeof(t_textures));
-		secure_malloc(instance->decor_tex, true);
+		secure_singleton(instance->decor_tex);
 	}
 	return (instance);
 }
@@ -41,19 +41,19 @@ t_game	*s_game(void)
 	if (instance == NULL)
 	{
 		instance = malloc(sizeof(t_game));
-		secure_malloc(instance, true);
+		secure_singleton(instance);
 		ft_bzero(instance, sizeof(t_game));
 		instance->state = TITLE_SCREEN;
 		instance->player = malloc(sizeof(t_player));
-		secure_malloc(instance->player, true);
+		secure_singleton(instance->player);
 		instance->ray = malloc(sizeof(t_raycasting));
-		secure_malloc(instance->ray, true);
+		secure_singleton(instance->ray);
 		instance->keys = malloc(sizeof(t_keys));
-		secure_malloc(instance->keys, true);
+		secure_singleton(instance->keys);
 		if (BONUS)
 		{
 			instance->mmap = malloc(sizeof(t_minimap));
-			secure_malloc(instance->mmap, true);
+			secure_singleton(instance->mmap);
 		}
 	}
 	return (instance);
@@ -66,7 +66,7 @@ t_mlx	*s_mlx(void)
 	if (instance == NULL)
 	{
 		instance = malloc(sizeof(t_mlx));
-		secure_malloc(instance, true);
+		secure_singleton(instance);
 		ft_bzero(instance, sizeof(t_mlx));
 		ft_bzero(&instance->img, sizeof(t_img));
 	}

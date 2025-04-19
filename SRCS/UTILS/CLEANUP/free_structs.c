@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 21:27:46 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/19 03:12:19 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	free_textures(t_textures *tex)
 	{
 		if (tex->imgs != NULL && tex->imgs[i].img_ptr != NULL)
 		{
-			ft_printf(STDERR_FILENO, BOLD PY DEL_IMG ": texture\n" RESET);
+			ft_printf(2, BOLD PY DEL_IMG ": texture\n" RESET);
 			mlx_destroy_image(s_mlx()->mlx_ptr, tex->imgs[i].img_ptr);
 			tex->imgs[i].img_ptr = NULL;
 		}
@@ -73,7 +73,7 @@ void	free_bonus_textures(t_textures *tex)
 	{
 		if (tex->imgs != NULL && tex->imgs[i].img_ptr != NULL)
 		{
-			ft_printf(STDERR_FILENO, BOLD PY DEL_IMG ": texture\n" RESET);
+			ft_printf(2, BOLD PY DEL_IMG ": texture\n" RESET);
 			mlx_destroy_image(s_mlx()->mlx_ptr, tex->imgs[i].img_ptr);
 			tex->imgs[i].img_ptr = NULL;
 		}
@@ -97,7 +97,7 @@ void	free_weapon(t_weapon *w)
 	{
 		if (w->sprites.imgs != NULL && w->sprites.imgs[i].img_ptr != NULL)
 		{
-			ft_printf(STDERR_FILENO, BOLD PY DEL_IMG ": weapon sprite\n" RESET);
+			ft_printf(2, BOLD PY DEL_IMG ": %s sprite\n" RESET, w->name);
 			mlx_destroy_image(s_mlx()->mlx_ptr, w->sprites.imgs[i].img_ptr);
 			w->sprites.imgs[i].img_ptr = NULL;
 		}

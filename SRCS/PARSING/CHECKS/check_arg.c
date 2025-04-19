@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:24:27 by art3mis           #+#    #+#             */
-/*   Updated: 2025/04/18 21:04:45 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:55:40 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ int	check_cub_file(char *arg)
 	if (__is_valid_extension(arg) == false)
 	{
 		err_msg(NULL, ERR_CUB_EXT);
-		exit(FAILURE);
+		return (FAILURE);
 	}
 	fd = open(arg, O_RDONLY);
 	if (fd < 0)
 	{
 		err_msg(NULL, strerror(errno));
-		exit(FAILURE);
+		return (FAILURE);
 	}
-	return (fd);
+	close(fd);
+	return (SUCCESS);
 }

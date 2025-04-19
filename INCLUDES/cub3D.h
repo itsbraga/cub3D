@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/18 18:24:05 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:54:42 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	err_msg(char *context, char *reason);
 void	err_msg_quoted(char *context, char *reason);
 
 // secure.c
+void	secure_singleton(void *to_secure);
 void	secure_malloc(void *to_secure, bool full_clean);
 void	free_and_set_null(void **to_free);
 

@@ -6,11 +6,17 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:58:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/04/17 20:53:41 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:54:21 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	secure_singleton(void *to_secure)
+{
+	if (to_secure == NULL)
+		exit(FAILURE);
+}
 
 void	secure_malloc(void *to_secure, bool full_clean)
 {

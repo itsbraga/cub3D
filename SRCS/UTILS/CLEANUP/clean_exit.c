@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:53:53 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 21:27:30 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/19 03:09:41 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 int	exit_game(t_mlx *mlx, int exit_code)
 {
-	free_title_screen(&s_game()->title_screen);
-	if (s_data() != NULL)
-		free_data(s_data());
-	if (s_game() != NULL)
-		free_game(s_game());
-	if (s_mlx() != NULL)
+	t_game	*game;
+	t_data	*data;
+
+	game = s_game();
+	data = s_data();
+	free_title_screen(&game->title_screen);
+	if (data != NULL)
+		free_data(data);
+	if (game != NULL)
+		free_game(game);
+	if (mlx != NULL)
 		free_mlx(mlx);
 	exit(exit_code);
 }
