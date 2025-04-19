@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/04/18 19:16:03 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:55:07 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	int		fd;
 	t_data	*data;
 	t_game	*game;
 	t_mlx	*mlx;
 
 	if (argc != 2)
 		return (err_msg(NULL, ERR_USAGE), FAILURE);
-	fd = check_cub_file(argv[1]);
-	if (fd < 0)
+	if (check_cub_file(argv[1]) == FAILURE)
 		return (FAILURE);
-	close(fd);
 	data = s_data();
 	game = s_game();
 	mlx = s_mlx();
